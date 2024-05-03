@@ -12,20 +12,20 @@
         <div class="wrapper-header">
             <div class="wrapper-header-top">
                 <div class="header-top-left">
-                    <img class="header-top-logo" src="./images/movie.png">
+                    <img class="header-top-logo" src="/static/images/movie.png">
                     <div class="header-top-title"><h1>영화 사이트</h1></div>
                 </div>
                 <div class="header-top-right">
                     <div class="top-user" OnClick="location.href ='https://www.cgv.co.kr/'" style="cursor:pointer;">
-                        <img class="top-user-img" src="./images/login.png">
+                        <img class="top-user-img" src="/static/images/login.png">
                         <div class="top-user-btn">로그인</div>
                     </div>
                     <div class="top-user" OnClick="location.href ='https://www.cgv.co.kr/'" style="cursor:pointer;">
-                        <img class="top-user-img" src="./images/join.png">
+                        <img class="top-user-img" src="/static/images/join.png">
                         <div class="top-user-btn">회원가입</div>
                     </div>
                     <div class="top-user" OnClick="location.href ='https://www.cgv.co.kr/'" style="cursor:pointer;">
-                        <img class="top-user-img" src="./images/mypage.png">
+                        <img class="top-user-img" src="/static/images/mypage.png">
                         <div class="top-user-btn">마이페이지</div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                             <input id="searchBox" type="text" placeholder="영화 검색">
                         </div>
                         <div class="search-btn">
-                            <img id="searchBtn" src="./images/search.png">
+                            <img id="searchBtn" src="/static/images/search.png">
                         </div>
                 </div>
             </div>
@@ -59,11 +59,11 @@
                     <div class="loginbox-loginform">
                         <form action="" method="">
                             <div class="loginform">
-                                <img class="icon" src="./images/login.png">
+                                <img class="icon" src="/static/images/login.png">
                                 <input class="input-box" name="id" placeholder="아이디를 입력해주세요.">
                             </div>
                             <div class="loginform">
-                                <img class="icon" src="./images/login.png">
+                                <img class="icon" src="/static/images/login.png">
                                 <input class="input-box" type="password" name="pw" placeholder="비밀번호를 입력해주세요.">
                             </div>
                             <div class="loginform">
@@ -81,7 +81,7 @@
         <div class="wrapper-ad">
             임시
         </div>
-        <div class="wrapper-footer">@팀명 Corp.</div>
+        <div class="wrapper-footer">우리의 마음은 하나 아이가. 남자다잉 Corp.</div>
     </div>
 </body>
 </html>
