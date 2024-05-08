@@ -1,0 +1,292 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper-header {
+    width: 70%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wrapper-header-top {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-top-left {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-top-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; /*이미지크기에 맞게 크기 조정*/
+    height: 60px;
+    margin-right: 10px;
+}
+
+.header-top-title {
+    font-size: 12px;
+}
+
+
+
+/****************top-right div****************/
+.header-top-right {
+    width: 220px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-user {
+    font-size: 12px;
+    width: 40%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-user-img {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/********************************************/
+
+
+
+/****************header-category div****************/
+.wrapper-header-category {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid gray;
+    border-bottom: 2px solid red;
+}
+
+.category-left {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-category-btn {
+    width: 20%;
+    height: 100%;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-right {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchBox {
+    width: 100%;
+    height: 30px;
+}
+
+#searchBtn {
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+/********************************************/
+
+.wrapper-body {
+    width: 650px;
+    height: 100%;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid gray;
+}
+
+.wrapper-loginbox {
+    width: 100%;
+    height: 150px;
+}
+
+.loginbox-top {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-title {
+    width: 20%;
+    height: 100%;
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.divideLine {
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid gray;
+}
+
+.loginbox-explanation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.loginbox-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loginbox-loginform {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.loginform {
+    width: 350px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.input-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-left: 0px;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.icon {
+    width: 39px;
+    height: 100%;
+    border-left: 2px solid gray;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    background-color: #e2e2e2;
+}
+
+.login-button {
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+}
+
+.loginbox-forget {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.forget-id {
+    padding-right: 30px;
+}
+
+.wrapper-ad {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.wrapper-footer {
+    width: 100%;
+    height: 100px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e2e2;
+}
