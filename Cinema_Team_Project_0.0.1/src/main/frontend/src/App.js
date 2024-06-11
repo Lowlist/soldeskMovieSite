@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {hello}
+        백엔드에서 가져온 데이터 : {hello}
       </header>
     </div>
   );
