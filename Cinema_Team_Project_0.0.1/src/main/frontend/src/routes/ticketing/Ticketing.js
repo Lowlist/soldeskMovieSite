@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../Ticketing.module.css';
+import styles from './style/Ticketing.module.css';
 
 function Ticketing() {
     const [dates, setDates] = useState([]);
