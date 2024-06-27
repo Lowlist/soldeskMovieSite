@@ -15,6 +15,7 @@ function Shop() {
                     </Nav>
                 </Container>
             </Navbar>
+            {/* 이거 분리해야겠따 */}
             <Container>
                 ㅁㄴㅇㄹ
                 <Row>
