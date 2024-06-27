@@ -40,6 +40,11 @@
     flex-direction: column;
 }
 
+.scrollable {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 .theaterContainer {
     display: flex;
 }
@@ -64,7 +69,6 @@
 
 .selectedRegion {
     background-color: #d3d3d3;
-    font-weight: bold;
 }
 
 .theaterList {
@@ -74,33 +78,31 @@
 }
 
 .theaterItem {
-    margin-bottom: 5px;
+    cursor: pointer;
     padding: 5px;
     border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.theaterItem:hover {
+    background-color: #e0e0e0;
 }
 
 .selectedTheater {
     background-color: #d3d3d3;
-    font-weight: bold;
 }
 
 .calendar {
     display: flex;
-    flex-direction: column; /* 날짜를 세로로 배치 */
-}
-
-.currentMonth {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
+    flex-direction: column;
 }
 
 .calendarItem {
-    margin-bottom: 5px;
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
 .calendarItem:hover {
@@ -109,7 +111,6 @@
 
 .selectedDate {
     background-color: #d3d3d3;
-    font-weight: bold;
 }
 
 .timeList {
@@ -117,18 +118,51 @@
     flex-direction: column;
 }
 
+.timeHall {
+    margin-bottom: 10px;
+}
+
+.timeHallHeader {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.timeRow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.timeItem {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2px;
+    flex: 1 1 calc(20% - 4px);
+    text-align: center;
+}
+
+.timeItem:hover {
+    background-color: #e0e0e0;
+}
+
+.selectedTime {
+    background-color: #d3d3d3;
+}
+
 .footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black; /* 검은색 배경 */
     padding: 10px;
-    color: white;
-    border-radius: 0 0 10px 10px; /* 하단 모서리 둥글게 */
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    background-color: #000;
+    color: #fff;
 }
 
 .movieInfo {
-    display: flex;
+    flex: 1;
+    font-size: 14px;
 }
 
 .buttonContainer {
@@ -136,12 +170,21 @@
 }
 
 .button {
-    background-color: red;
-    color: white;
+    background-color: #d9534f;
+    color: #fff;
+    padding: 10px 20px;
     border: none;
-    padding: 10px;
-    margin-left: 10px;
+    border-radius: 5px;
     cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.button:hover {
+    background-color: #c9302c;
 }
 
 .movieItem {
@@ -157,5 +200,4 @@
 
 .selectedMovie {
     background-color: #d3d3d3;
-    font-weight: bold;
 }
