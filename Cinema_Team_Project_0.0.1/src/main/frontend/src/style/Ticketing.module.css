@@ -161,8 +161,11 @@
 }
 
 .movieInfo {
-    flex: 1;
     font-size: 14px;
+}
+
+.movieInfoContainer {
+    display: flex;
 }
 
 .buttonContainer {
@@ -172,7 +175,8 @@
 .button {
     background-color: #d9534f;
     color: #fff;
-    padding: 10px 20px;
+    width: 80px; /* 정사각형으로 만들기 위해 고정된 너비 */
+    height: 80px; /* 정사각형으로 만들기 위해 고정된 높이 */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -182,7 +186,6 @@
     justify-content: center;
     font-size: 14px;
 }
-
 .button:hover {
     background-color: #c9302c;
 }

@@ -170,13 +170,24 @@ function Ticketing() {
                     <div className={`${styles.timeList} ${styles.scrollable}`}>{renderTimes()}</div>
                 </div>
             </div>
-            <div className={styles.footer}>
-                <div className={styles.movieInfo}>
+            <div className={styles.footer} style={{ textAlign: 'left' }}>
+                <div className={`${styles.movieInfo} ${styles.movieInfoContainer}`}>
                     <div>영화: {selectedMovie}</div>
-                    <div>극장: {selectedTheater}</div>
-                    <div>일시: {selectedDateString} {selectedTime}</div>
-                    <div>상영관: {selectedHall}</div>
-                    <div>인원: </div>
+                </div>
+                <div className={styles.movieInfoContainer}>
+                    <div className={styles.movieInfo}>
+                        <div>극장: </div>
+                        <div>일시: </div>
+                        <div>상영관: </div>
+                        <div>인원: </div>
+                    </div>
+                    &emsp;
+                    <div className={styles.movieInfo}>
+                        <div>{selectedTheater}</div>
+                        <div>{selectedDateString} {selectedTime}</div>
+                        <div>{selectedHall}</div>
+                        <div></div>
+                        </div>
                 </div>
                 <div className={styles.buttonContainer}>
                     <button className={styles.button}>좌석선택</button>
