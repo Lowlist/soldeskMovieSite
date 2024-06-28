@@ -1,9 +1,10 @@
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Goods from './Goods.js'
 function Shop() {
     return (
         <div className="store-main">
+            헤더 추가예정
             <Navbar bg="light" data-bs-theme="light">
                 <Container>
                     <Navbar.Brand href="#home">스토어</Navbar.Brand>
@@ -15,15 +16,9 @@ function Shop() {
                     </Nav>
                 </Container>
             </Navbar>
-            {/* 이거 분리해야겠따 */}
-            <Container>
-                ㅁㄴㅇㄹ
-                <Row>
-                    <Col>
-                    ㅁㄴㅇㄹ
-                    </Col>
-                </Row>
-            </Container>
+            <Goods/>
+            <br/>
+            ㅁㄴㅇㄹ
         </div>
     )
 }
