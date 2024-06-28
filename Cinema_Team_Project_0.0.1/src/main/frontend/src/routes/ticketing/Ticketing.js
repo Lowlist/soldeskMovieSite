@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../Ticketing.module.css';
+import { useNavigate } from 'react-router-dom';
+import styles from './style/Ticketing.module.css';
 
 function Ticketing() {
     const [dates, setDates] = useState([]);
@@ -11,6 +12,7 @@ function Ticketing() {
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHall, setSelectedHall] = useState(null);
+    const navigate = useNavigate();
 
     const theaterData = {
         서울: ['서울극장1', '서울극장2'],
@@ -49,8 +51,7 @@ function Ticketing() {
             const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
 
             return (
-                <div
-                    key={index}
+                <div key={index} 
                     className={`${styles.calendarItem} ${isSelected ? styles.selectedDate : ''}`}
                     onClick={() => handleDateClick(date)}
                 >
@@ -113,6 +114,10 @@ function Ticketing() {
 
     const currentMonth = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { month: 'long' }) : '';
     const selectedDateString = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' }).replace(/ /g, '').replace(/,/g, '') : '';
+
+    const handleSeatSelection = () => {
+        navigate('/seat', { state: { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } });
+    };
 
     return (
         <div className={styles.container}>
@@ -187,11 +192,10 @@ function Ticketing() {
                         <div>{selectedDateString} {selectedTime}</div>
                         <div>{selectedHall}</div>
                         <div></div>
-                        </div>
+                    </div>
                 </div>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.button}>좌석선택</button>
-                    <button className={styles.button}>결제</button>
+                    <button className={styles.button} onClick={handleSeatSelection}>좌석선택</button>
                 </div>
             </div>
         </div>
