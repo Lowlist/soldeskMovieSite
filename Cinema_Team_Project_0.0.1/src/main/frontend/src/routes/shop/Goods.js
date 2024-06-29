@@ -31,10 +31,10 @@ function Goods() {
             <br></br>
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Title>ㅁㄴㅇㄻㄴㅇㄹ</Card.Title>
                     <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
+                        한국이 요즘 진짜 비쌈
+                        리얼로다가ㅁㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ
                     </Card.Text>
                 </Card.Body>
             </Card>
