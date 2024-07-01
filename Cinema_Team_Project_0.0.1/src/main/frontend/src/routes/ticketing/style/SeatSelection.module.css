@@ -66,6 +66,11 @@
     color: white;
 }
 
+.disabledSeat {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 .aisle {
     width: 40px;
     height: 40px;
