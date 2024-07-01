@@ -35,6 +35,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <span onClick={ ()=>{ c(따봉+1) } }>따봉</span>{따봉}
+        {hello}
       </header>
     </div>
   );
