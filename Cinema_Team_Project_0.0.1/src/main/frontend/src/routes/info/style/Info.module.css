@@ -1,0 +1,95 @@
+.contaniner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.contents {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.select_main {
+    display: flex;
+    flex-direction: column;
+}
+
+.sect-base-movie {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.box-imge {
+    width: 150px;
+    height: 220px;
+    background-color: #ddd;
+    margin-right: 20px;
+}
+
+.box-contents {
+    flex: 1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.score {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.spec {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.ticketing {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cols-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-detail {
+    flex: 3;
+    margin-right: 20px;
+}
+
+.sect-story-movie, .movie-detail-ad, .sect-trailer, .sect-stillcut, .sect-grade {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.movie-grade, .real-rating, .wrap-persongrade {
+    margin-bottom: 10px;
+}
+
+.col-aside {
+    flex: 1;
+}
+
+.ad-externa {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
