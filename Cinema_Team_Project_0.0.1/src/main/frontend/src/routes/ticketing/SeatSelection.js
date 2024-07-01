@@ -15,50 +15,96 @@ function SeatSelection() {
     const handleSeatClick = (seat) => {
         const row = seat.charCodeAt(0) - 65;
         const col = parseInt(seat.substring(1)) - 1;
-
-        if (selectedSeats.includes(seat)) {
-            setSelectedSeats([]);
-            return;
-        }
-
-        const startCol = Math.floor(col / 4) * 4; // 0, 4로 시작하는 열을 찾기 위한 계산
+        const leftSectionCols = 4; // 좌측 섹션의 열 수
+        const rightSectionCols = 4; // 우측 섹션의 열 수
+        const seatsInRow = 8; // 한 줄에 있는 좌석 수
         const seatsToSelect = [];
 
-        for (let i = 0; i < numPeople; i++) {
-            const newSeat = `${String.fromCharCode(65 + row)}${startCol + 1 + i}`;
-            seatsToSelect.push(newSeat);
+        // 좌측 섹션에서 좌석 선택
+        if (col < leftSectionCols) {
+            for (let i = 0; i < numPeople; i++) {
+                const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 + i}`;
+                if (col + i < leftSectionCols && !selectedSeats.includes(seatToCheck)) {
+                    seatsToSelect.push(seatToCheck);
+                } else {
+                    seatsToSelect.length = 0;
+                    break;
+                }
+            }
+
+            if (seatsToSelect.length < numPeople) {
+                seatsToSelect.length = 0;
+                for (let i = 0; i < numPeople; i++) {
+                    const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 - i}`;
+                    if (col - i >= 0 && !selectedSeats.includes(seatToCheck)) {
+                        seatsToSelect.push(seatToCheck);
+                    } else {
+                        seatsToSelect.length = 0;
+                        break;
+                    }
+                }
+                seatsToSelect.reverse();
+            }
+        }
+
+        // 우측 섹션에서 좌석 선택
+        if (col >= leftSectionCols) {
+            for (let i = 0; i < numPeople; i++) {
+                const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 + i}`;
+                if (col + i < seatsInRow && !selectedSeats.includes(seatToCheck)) {
+                    seatsToSelect.push(seatToCheck);
+                } else {
+                    seatsToSelect.length = 0;
+                    break;
+                }
+            }
+
+            if (seatsToSelect.length < numPeople) {
+                seatsToSelect.length = 0;
+                for (let i = 0; i < numPeople; i++) {
+                    const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 - i}`;
+                    if (col - i >= leftSectionCols && !selectedSeats.includes(seatToCheck)) {
+                        seatsToSelect.push(seatToCheck);
+                    } else {
+                        seatsToSelect.length = 0;
+                        break;
+                    }
+                }
+                seatsToSelect.reverse();
+            }
         }
 
         const areAllSeatsAvailable = seatsToSelect.every(s => !selectedSeats.includes(s));
         if (areAllSeatsAvailable) {
             setSelectedSeats(seatsToSelect);
+        } else if (selectedSeats.every(s => seatsToSelect.includes(s))) {
+            setSelectedSeats([]);
         }
     };
 
     const renderSeats = () => {
         const rows = 8;
         const cols = 8;
-        const aisleIndices = [0, 4, 8];
+        const aisleIndex = 4;
         const seats = [];
 
         for (let row = 0; row < rows; row++) {
             const seatRow = [];
-            for (let col = 0; col < cols + 3; col++) {
-                if (aisleIndices.includes(col)) {
-                    seatRow.push(<div key={`${row}-aisle-${col}`} className={styles.aisle}></div>);
-                } else {
-                    const seat = `${String.fromCharCode(65 + row)}${col - Math.floor(col / 5) + 1}`;
-                    const isSelected = selectedSeats.includes(seat);
-                    const isDisabled = selectedSeats.length >= numPeople && !isSelected;
-                    seatRow.push(
-                        <div
-                            key={seat}
-                            className={`${styles.seat} ${isSelected ? styles.selectedSeat : ''} ${isDisabled ? styles.disabledSeat : ''}`}
-                            onClick={() => !isDisabled && handleSeatClick(seat)}
-                        >
-                            {seat}
-                        </div>
-                    );
+            for (let col = 0; col < cols; col++) {
+                const seat = `${String.fromCharCode(65 + row)}${col + 1}`;
+                const isSelected = selectedSeats.includes(seat);
+                const isDisabled = selectedSeats.length >= numPeople && !isSelected;
+                seatRow.push(
+                    <div
+                        key={seat}
+                        className={`${styles.seat} ${isSelected ? styles.selectedSeat : ''} ${isDisabled ? styles.disabledSeat : ''}`}
+                        onClick={() => !isDisabled && handleSeatClick(seat)}
+                    >
+                        {seat}
+                    </div>
+                );
+                if (col === aisleIndex - 1) {
+                    seatRow.push(<div key={`${row}-aisle`} className={styles.aisle}></div>);
                 }
             }
             seats.push(
