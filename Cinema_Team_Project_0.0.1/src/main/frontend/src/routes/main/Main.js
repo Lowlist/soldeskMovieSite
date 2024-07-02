@@ -18,7 +18,7 @@ function Main() {
                 </Container>
             </Navbar>
             
-
+            
 	    </div>    
     )
 }
