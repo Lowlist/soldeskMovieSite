@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Col, Container, Row, Card } from 'react-bootstrap';
 import Badge from 'react-bootstrap/Badge';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import style from './style/Goods.module.css';
 import data from './data';
 
 function Goods() {
@@ -10,7 +11,7 @@ function Goods() {
         <div>
             <Container>
                 <h3>
-                    Example heading <Badge bg="secondary">New</Badge>
+                    상품 팔거임 <Badge bg="secondary">New</Badge>
                 </h3>
                 <Row>
                     {
@@ -29,15 +30,66 @@ function Goods() {
             <br></br>
             <br></br>
             <br></br>
-            <Card style={{ width: '18rem' }}>
-                <Card.Body>
-                    <Card.Title>ㅁㄴㅇㄻㄴㅇㄹ</Card.Title>
-                    <Card.Text>
-                        한국이 요즘 진짜 비쌈
-                        리얼로다가ㅁㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+            <div className={style.leftGoods}>
+                <h3>
+                    상품 팔거임 <Badge bg="secondary">New</Badge>
+                </h3>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>{shoes[0].title}</Card.Title>
+                        <Card.Text>
+                        {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>{shoes[0].title}</Card.Title>
+                        <Card.Text>
+                        {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>{shoes[0].title}</Card.Title>
+                        <Card.Text>
+                        {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
+
+            <div className=''>
+                <h3>
+                    상품 팔거임 <Badge bg="secondary">New</Badge>
+                </h3>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>{shoes[0].title}</Card.Title>
+                        <Card.Text>
+                        {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>{shoes[0].title}</Card.Title>
+                        <Card.Text>
+                        {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>{shoes[0].title}</Card.Title>
+                        <Card.Text>
+                        {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
+
         </div>
     )
 }
