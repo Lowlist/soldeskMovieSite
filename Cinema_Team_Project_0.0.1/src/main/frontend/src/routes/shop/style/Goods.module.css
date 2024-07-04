@@ -1,4 +1,35 @@
-.leftGoods{
+.card-box{
+    display: flex;
+    justify-content: center;
+}
+.goodsLine{
     display: flex;
     background-color: black;
+    justify-content: center; 
+    align-items: center; 
+}
+.leftGoods{
+    background-color: red;
+    justify-content: center; 
+    width: 45%;
+    max-width: 650px;
+}
+.rightGoods{
+    background-color: red;
+    justify-content: center; 
+    width: 45%;
+    max-width: 650px;
+}
+.goodsName{
+    font-size: 30px;
+    text-align: left;
+}
+.centerGoods{
+    text-align: justify;
+}
+hr{
+    width: 60%;
+    margin: 5px;
+    border: 2px solid;
+    color: gray;
 }
