@@ -1,0 +1,14 @@
+.seatContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    overflow-x: auto; /* 수평 스크롤바 추가 */
+    padding-left: 100px;
+}
+
+.screen {
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}

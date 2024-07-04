@@ -1,0 +1,41 @@
+.peopleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 20px;
+}
+
+.peopleRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.peopleLabel {
+    width: 100px;
+    font-weight: bold;
+}
+
+.peopleCount {
+    display: flex;
+    align-items: center;
+}
+
+.peopleCount > button {
+    width: 30px;
+    height: 30px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.peopleCount > button:hover {
+    background-color: #c9302c;
+}
+
+.peopleCount > span {
+    margin: 0 10px;
+    font-size: 18px;
+}

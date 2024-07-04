@@ -1,0 +1,25 @@
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.seat:hover {
+    background-color: #e0e0e0;
+}
+
+.selectedSeat {
+    background-color: #d9534f;
+    color: white;
+}
+
+.disabledSeat {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
