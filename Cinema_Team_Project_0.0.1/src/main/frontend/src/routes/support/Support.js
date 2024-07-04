@@ -40,14 +40,15 @@ function Support(){
                 </ul>
               </div>
               <div className={styles.colContent}>
-              {isRootPath && (
-                <>
-                  <h2>고객센터 메인페이지</h2>
-                  <button onClick={() => navigate('notice')}>공지사항으로 가기</button>
-                  <button onClick={() => navigate('question')}>질문 게시판으로 가기</button>
-                  <button onClick={() => navigate('question/realtime')}>실시간 문의로 가기</button>
-                </>
-              )}
+                {isRootPath && (
+                  <>
+                    <h2>고객센터 메인페이지</h2>
+                    <p>공지사항이나 질문게시판에 궁금하신 내용이 없으면 실시간 문의로 질문해 주세요</p>
+                    <button onClick={() => navigate('notice')}>공지사항으로 가기</button>
+                    <button onClick={() => navigate('question')}>질문 게시판으로 가기</button>
+                    <button onClick={() => navigate('question/realtime')}>실시간 문의로 가기</button>
+                  </>
+                )}
                 <Outlet />
               </div>
             </div>

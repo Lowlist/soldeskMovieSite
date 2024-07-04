@@ -14,23 +14,26 @@ function Question(){
   return(
     <div>
       <h2>질문 게시판</h2>
-      <div class="tabs">
-        <nav class="tab-nav">
-          <ul class="tab-list">
-            <button>Tab #1</button>
-            <button>Tab #2</button>
-            <button>Tab #3</button>
-          </ul>
-        </nav>
+      <div className={styles.sTabWrap}>
+        <ul className={styles.sTab}>
+					<li class="on"><a href="/support/news/default.aspx?type=&amp;searchtext=" title="선택된 탭메뉴">전체</a></li>
+					<li class=""><a href="/support/news/default.aspx?type=1&amp;searchtext=">시스템점검</a></li>
+					<li class=""><a href="/support/news/default.aspx?type=2&amp;searchtext=">극장</a></li>
+				</ul>
       </div>
-      <ul>
-        {mockQuestions.map(question => (
-          <li key={question.id}>
-            <h3>{question.title}</h3>
-            <p>{question.content}</p>
-          </li>
-        ))}
-      </ul>
+      <div className={styles.tableArea}>
+        <ul>
+          {mockQuestions.map(notice => (
+            <li key={notice.id}>
+              <h3>{notice.title}</h3>
+              <p>{notice.content}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.paging}>
+          <p>페이징 블록</p>
+      </div>
     </div>
   )
 }
