@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Col, Container, Row, Card } from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel';
 import Badge from 'react-bootstrap/Badge';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import style from './style/Goods.module.css';
@@ -15,7 +16,7 @@ function Goods() {
                     <div className={style.goodsName}>
                         상품 팔거임 <Badge bg="secondary">New</Badge>
                     </div>
-                    <hr/>
+                    <hr className={style.hrCenter}/>
                     <Row>
                         {
                             shoes.map((a, i) => {
@@ -30,72 +31,130 @@ function Goods() {
                         }
                     </Row>
                 </Container>
-            <div className={style.goodsLine}>
-                <div className={style.leftGoods}>
-                    <div className={style.goodsName}>
-                        상품 팔거임 <Badge bg="secondary">New</Badge>
-                    </div>
-                    <hr/>
-                    <div className={style['card-box']}>
-                        <div className={style.cardImg}>
+                <div className={style.goodsLine}>
+                    <div className={style.goodsBoxLeft}>
+                        <div className={style.goodsName}>
+                            상품 팔거임 <Badge bg="secondary">New</Badge>
                         </div>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Body>
-                                <Card.Title>{shoes[0].title}</Card.Title>
-                                <Card.Text>
-                                    {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
+                        <hr/>
+                        <div className={style.cardBox}>
+                            <Card style={{ width: '28rem' }}>
+                                <Card.Body className={style.cardBody}>
+                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
+                                    </img>
+                                    <div className={style.cardBox}>
+                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
+                                        <Card.Text>
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                        </Card.Text>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                        <div className={style.cardBox}>
+                            <Card style={{ width: '28rem' }}>
+                                <Card.Body className={style.cardBody}>
+                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
+                                    </img>
+                                    <div className={style.cardBox}>
+                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
+                                        <Card.Text>
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                        </Card.Text>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                        <div className={style.cardBox}>
+                            <Card style={{ width: '28rem' }}>
+                                <Card.Body className={style.cardBody}>
+                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
+                                    </img>
+                                    <div className={style.cardBox}>
+                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
+                                        <Card.Text>
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                        </Card.Text>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
                     </div>
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Body>
-                            <Card.Title>{shoes[0].title}</Card.Title>
-                            <Card.Text>
-                                {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Body>
-                            <Card.Title>{shoes[0].title}</Card.Title>
-                            <Card.Text>
-                                {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
-                <div className={style.rightGoods}>
-                    <div className={style.goodsName}>
-                        상품 팔거임 <Badge bg="secondary">New</Badge>
+
+                    <div className={style.goodsBoxRight}>
+                        <div className={style.goodsName}>
+                            상품 팔거임 <Badge bg="secondary">New</Badge>
+                        </div>
+                        <hr/>
+                        <div className={style.cardBox}>
+                            <Card style={{ width: '28rem' }}>
+                                <Card.Body className={style.cardBody}>
+                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
+                                    </img>
+                                    <div className={style.cardBox}>
+                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
+                                        <Card.Text>
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                        </Card.Text>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                        <div className={style.cardBox}>
+                            <Card style={{ width: '28rem' }}>
+                                <Card.Body className={style.cardBody}>
+                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
+                                    </img>
+                                    <div className={style.cardBox}>
+                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
+                                        <Card.Text>
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                        </Card.Text>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                        <div className={style.cardBox}>
+                            <Card style={{ width: '28rem' }}>
+                                <Card.Body className={style.cardBody}>
+                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
+                                    </img>
+                                    <div className={style.cardBox}>
+                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
+                                        <Card.Text>
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                            하드코딩 해버릴거야
+                                        </Card.Text>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
                     </div>
-                    <hr/>
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Body>
-                            <Card.Title>{shoes[0].title}</Card.Title>
-                            <Card.Text>
-                                {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Body>
-                            <Card.Title>{shoes[0].title}</Card.Title>
-                            <Card.Text>
-                                {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Body>
-                            <Card.Title>{shoes[0].title}</Card.Title>
-                            <Card.Text>
-                                {shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}{shoes[0].title}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
+
                 </div>
-            </div>
             </div>
         </div>
     )

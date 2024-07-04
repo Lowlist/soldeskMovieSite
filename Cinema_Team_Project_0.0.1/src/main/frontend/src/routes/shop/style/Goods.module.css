@@ -1,25 +1,31 @@
-.card-box{
+.cardBody{
     display: flex;
-    justify-content: center;
+    width: 100%;
+}
+.cardBox{
+
+}
+.cardImg{
+    width: 35%;
+    margin-right: 15px;
+}
+.card-title{
+    display: flex;
 }
 .goodsLine{
     display: flex;
-    background-color: black;
     justify-content: center; 
     align-items: center; 
 }
-.leftGoods{
+.goodsBoxLeft,
+.goodsBoxRight{
     background-color: red;
-    justify-content: center; 
-    width: 45%;
-    max-width: 650px;
+    width: 40%;
+    max-width: 550px;
 }
-.rightGoods{
-    background-color: red;
-    justify-content: center; 
-    width: 45%;
-    max-width: 650px;
+.goodsBoxRight{
 }
+
 .goodsName{
     font-size: 30px;
     text-align: left;
@@ -27,14 +33,12 @@
 .centerGoods{
     text-align: justify;
 }
-.cardImg{
-    width: 100px;
-    background-size: cover;
-    background-image: url('https://codingapple1.github.io/shop/shoes2.jpg');
-}
 hr{
     width: 60%;
     margin: 5px;
     border: 2px solid;
     color: gray;
+}
+.hrCenter{
+    width: 90%;
 }
