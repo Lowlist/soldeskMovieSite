@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MovieSelection from './MovieSelection';
+import TheaterSelection from './TheaterSelection';
+import DateSelection from './DateSelection';
+import TimeSelection from './TimeSelection';
+import Footer from './Footer';
 import styles from './style/Ticketing.module.css';
 
 function Ticketing() {
@@ -28,7 +33,7 @@ function Ticketing() {
             tempDates.push(date);
         }
         setDates(tempDates);
-        setSelectedDate(tempDates[0]); // 기본 선택 날짜를 첫 번째 날짜로 설정
+        setSelectedDate(tempDates[0]);
     }, []);
 
     useEffect(() => {
@@ -40,79 +45,6 @@ function Ticketing() {
         }
     }, [selectedRegion]);
 
-    function handleDateClick(date) {
-        setSelectedDate(date);
-    }
-
-    function renderDates() {
-        return dates.map((date, index) => {
-            const day = date.toLocaleDateString('ko-KR', { day: '2-digit' });
-            const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'short' });
-            const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
-
-            return (
-                <div key={index} 
-                    className={`${styles.calendarItem} ${isSelected ? styles.selectedDate : ''}`}
-                    onClick={() => handleDateClick(date)}
-                >
-                    {`${day} (${dayOfWeek})`}
-                </div>
-            );
-        });
-    }
-
-    function handleTimeClick(time, hall) {
-        setSelectedTime(time);
-        setSelectedHall(hall);
-    }
-
-    function renderTimes() {
-        const halls = [
-            {
-                name: '1관',
-                times: Array.from({ length: 10 }, (_, i) => {
-                    const hours = 10 + Math.floor(i * 20 / 60);
-                    const minutes = (i * 20) % 60;
-                    return `${hours}:${minutes.toString().padStart(2, '0')}`;
-                })
-            },
-            {
-                name: '2관',
-                times: Array.from({ length: 10 }, (_, i) => {
-                    const hours = 10 + Math.floor(i * 30 / 60);
-                    const minutes = (10 + i * 30) % 60;
-                    return `${hours}:${minutes.toString().padStart(2, '0')}`;
-                })
-            },
-            {
-                name: '3관',
-                times: Array.from({ length: 10 }, (_, i) => {
-                    const hours = 9 + Math.floor(i * 60 / 60);
-                    const minutes = (30 + i * 60) % 60;
-                    return `${hours}:${minutes.toString().padStart(2, '0')}`;
-                })
-            }
-        ];
-
-        return halls.map((hall, index) => (
-            <div key={index} className={styles.timeHall}>
-                <div className={styles.timeHallHeader}>{hall.name}</div>
-                <div className={styles.timeRow}>
-                    {hall.times.map((time, idx) => (
-                        <div
-                            key={idx}
-                            className={`${styles.timeItem} ${selectedTime === time && selectedHall === hall.name ? styles.selectedTime : ''}`}
-                            onClick={() => handleTimeClick(time, hall.name)}
-                        >
-                            {time}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        ));
-    }
-
-    const currentMonth = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { month: 'long' }) : '';
     const selectedDateString = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' }).replace(/ /g, '').replace(/,/g, '') : '';
 
     const handleSeatSelection = () => {
@@ -122,82 +54,19 @@ function Ticketing() {
     return (
         <div className={styles.container}>
             <div className={styles.selectionContainer}>
-                <div className={styles.section}>
-                    <div className={styles.header}>영화</div>
-                    <div className={styles.subHeader}></div>
-                    <div className={`${styles.list} ${styles.scrollable}`}>
-                        {movies.map((movie, index) => (
-                            <div
-                                key={index}
-                                className={`${styles.movieItem} ${selectedMovie === movie ? styles.selectedMovie : ''}`}
-                                onClick={() => setSelectedMovie(movie)}
-                            >
-                                {movie}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className={styles.section}>
-                    <div className={styles.header}>극장</div>
-                    <div className={styles.subHeader}></div>
-                    <div className={styles.theaterContainer}>
-                        <div className={`${styles.regionList} ${styles.scrollable}`}>
-                            {['전체', '서울', '경기'].map((region) => (
-                                <div
-                                    key={region}
-                                    className={`${styles.regionItem} ${selectedRegion === region ? styles.selectedRegion : ''}`}
-                                    onClick={() => setSelectedRegion(region)}
-                                >
-                                    {region}
-                                </div>
-                            ))}
-                        </div>
-                        <div className={`${styles.theaterList} ${styles.scrollable}`}>
-                            {theaters.map((theater, index) => (
-                                <div
-                                    key={index}
-                                    className={`${styles.theaterItem} ${selectedTheater === theater ? styles.selectedTheater : ''}`}
-                                    onClick={() => setSelectedTheater(theater)}
-                                >
-                                    {theater}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.section}>
-                    <div className={styles.header}>날짜</div>
-                    <div className={styles.currentMonth}>{currentMonth}</div>
-                    <div className={`${styles.calendar} ${styles.scrollable}`}>{renderDates()}</div>
-                </div>
-                <div className={styles.section}>
-                    <div className={styles.header}>시간</div>
-                    <div className={`${styles.timeList} ${styles.scrollable}`}>{renderTimes()}</div>
-                </div>
+                <MovieSelection movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
+                <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} />
+                <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+                <TimeSelection selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
-            <div className={styles.footer} style={{ textAlign: 'left' }}>
-                <div className={`${styles.movieInfo} ${styles.movieInfoContainer}`}>
-                    <div>영화: {selectedMovie}</div>
-                </div>
-                <div className={styles.movieInfoContainer}>
-                    <div className={styles.movieInfo}>
-                        <div>극장: </div>
-                        <div>일시: </div>
-                        <div>상영관: </div>
-                        <div>인원: </div>
-                    </div>
-                    &emsp;
-                    <div className={styles.movieInfo}>
-                        <div>{selectedTheater}</div>
-                        <div>{selectedDateString} {selectedTime}</div>
-                        <div>{selectedHall}</div>
-                        <div></div>
-                    </div>
-                </div>
-                <div className={styles.buttonContainer}>
-                    <button className={styles.button} onClick={handleSeatSelection}>좌석선택</button>
-                </div>
-            </div>
+            <Footer 
+                selectedMovie={selectedMovie}
+                selectedTheater={selectedTheater}
+                selectedDateString={selectedDateString}
+                selectedTime={selectedTime}
+                selectedHall={selectedHall}
+                handleSeatSelection={handleSeatSelection}
+            />
         </div>
     );
 }

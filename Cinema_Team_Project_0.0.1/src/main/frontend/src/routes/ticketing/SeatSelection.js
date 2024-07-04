@@ -8,6 +8,12 @@ function SeatSelection() {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [numPeople, setNumPeople] = useState(1);
 
+    const hallConfigurations = {
+        '1관': { rows: 8, cols: 8 },
+        '2관': { rows: 16, cols: 16 },
+        '3관': { rows: 24, cols: 24 },
+    };
+
     useEffect(() => {
         console.log(location.state);
     }, [location.state]);
@@ -15,9 +21,9 @@ function SeatSelection() {
     const handleSeatClick = (seat) => {
         const row = seat.charCodeAt(0) - 65;
         const col = parseInt(seat.substring(1)) - 1;
-        const leftSectionCols = 4; // 좌측 섹션의 열 수
-        const rightSectionCols = 4; // 우측 섹션의 열 수
-        const seatsInRow = 8; // 한 줄에 있는 좌석 수
+        const cols = hallConfigurations[selectedHall].cols;
+        const leftSectionCols = Math.floor(cols / 2) - 1;
+        const rightSectionCols = Math.ceil(cols / 2);
         const seatsToSelect = [];
 
         // 좌측 섹션에서 좌석 선택
@@ -51,7 +57,7 @@ function SeatSelection() {
         if (col >= leftSectionCols) {
             for (let i = 0; i < numPeople; i++) {
                 const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 + i}`;
-                if (col + i < seatsInRow && !selectedSeats.includes(seatToCheck)) {
+                if (col + i < cols && !selectedSeats.includes(seatToCheck)) {
                     seatsToSelect.push(seatToCheck);
                 } else {
                     seatsToSelect.length = 0;
@@ -83,9 +89,8 @@ function SeatSelection() {
     };
 
     const renderSeats = () => {
-        const rows = 8;
-        const cols = 8;
-        const aisleIndex = 4;
+        const { rows, cols } = hallConfigurations[selectedHall] || hallConfigurations['1관'];
+        const aisleIndex = Math.floor(cols / 2);
         const seats = [];
 
         for (let row = 0; row < rows; row++) {
