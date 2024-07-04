@@ -27,6 +27,11 @@
 .centerGoods{
     text-align: justify;
 }
+.cardImg{
+    width: 100px;
+    background-size: cover;
+    background-image: url('https://codingapple1.github.io/shop/shoes2.jpg');
+}
 hr{
     width: 60%;
     margin: 5px;
