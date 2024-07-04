@@ -10,8 +10,8 @@ function SeatSelection() {
 
     const hallConfigurations = {
         '1관': { rows: 8, cols: 8 },
-        '2관': { rows: 16, cols: 16 },
-        '3관': { rows: 24, cols: 24 },
+        '2관': { rows: 14, cols: 16 },
+        '3관': { rows: 11, cols: 24, specialRow: 0, specialCols: 3 },
     };
 
     useEffect(() => {
@@ -23,7 +23,6 @@ function SeatSelection() {
         const col = parseInt(seat.substring(1)) - 1;
         const cols = hallConfigurations[selectedHall].cols;
         const leftSectionCols = Math.floor(cols / 2) - 1;
-        const rightSectionCols = Math.ceil(cols / 2);
         const seatsToSelect = [];
 
         // 좌측 섹션에서 좌석 선택
@@ -89,13 +88,20 @@ function SeatSelection() {
     };
 
     const renderSeats = () => {
-        const { rows, cols } = hallConfigurations[selectedHall] || hallConfigurations['1관'];
+        const { rows, cols, specialRow, specialCols } = hallConfigurations[selectedHall] || hallConfigurations['1관'];
         const aisleIndex = Math.floor(cols / 2);
         const seats = [];
 
         for (let row = 0; row < rows; row++) {
             const seatRow = [];
             for (let col = 0; col < cols; col++) {
+
+                // 3관 특별 좌석 처리
+                if (selectedHall === '3관' && row === specialRow && (col < specialCols || col >= cols - specialCols)) {
+                    seatRow.push(<div key={`${row}-${col}`} className={styles.specialSeat}></div>);
+                    continue;
+                }
+
                 const seat = `${String.fromCharCode(65 + row)}${col + 1}`;
                 const isSelected = selectedSeats.includes(seat);
                 const isDisabled = selectedSeats.length >= numPeople && !isSelected;
