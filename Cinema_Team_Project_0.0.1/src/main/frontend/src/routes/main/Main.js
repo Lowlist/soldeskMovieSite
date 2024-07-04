@@ -49,7 +49,7 @@ function Main() {
 	            </div>
             </Navbar>
             <div className={styles['wrapper-body']}>
-	            <div className={styles['body-video']}>무튼 비디오임</div>
+	            <div className={styles['body-video']}>비디오 들어갈 div</div>
 	            <div className={styles['body-chart']}>
 	                <div className={styles['chart-header']}>
 	                    <div className={styles['chart-title']}><strong>무비 차트</strong></div>
