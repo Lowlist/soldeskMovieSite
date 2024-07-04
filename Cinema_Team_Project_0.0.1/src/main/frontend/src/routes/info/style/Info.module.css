@@ -24,8 +24,8 @@
 }
 
 .box-imge {
-    width: 150px;
-    height: 220px;
+    width: 213px;
+    height: 304px;
     background-color: #ddd;
     margin-right: 20px;
 }
@@ -71,15 +71,21 @@
     margin-right: 20px;
 }
 
-.sect-story-movie, .movie-detail-ad, .sect-trailer, .sect-stillcut, .sect-grade {
+.sect-story-movie,
+.sect-trailer,
+.sect-stillcut,
+.sect-grade {
     background-color: #fff;
+    max-width: 1000px;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
-.movie-grade, .real-rating, .wrap-persongrade {
+.movie-grade,
+.real-rating,
+.wrap-persongrade {
     margin-bottom: 10px;
 }
 
@@ -92,4 +98,29 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stillcutImage {
+    /* 그림자 효과 설정 */
+    width: 300px;
+    /* 이미지의 너비를 키웁니다 */
+    height: auto;
+    /* 이미지 높이를 자동으로 설정합니다 */
+    object-fit: contain;
+    /* 이미지를 최대한 유지하면서 부모 요소에 맞춥니다 */
+    max-height: 250px;
+    /* 이미지의 최대 높이를 설정합니다 */
+    margin: 1px;
+}
+
+.stillcut {
+    white-space: nowrap;
+    /* 요소들이 한 줄에 나타나도록 설정합니다 */
+    max-height: 300px;
+    /* 스크롤 가능한 최대 높이를 설정합니다 */
+    overflow: hidden;
+    overflow-x: auto;
+    /* 가로스크롤 */
+    display: flex;
+    /* 내부 요소들을 플렉스 박스로 배치합니다 */
 }
