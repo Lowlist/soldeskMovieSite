@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Shop from './routes/shop/Shop.js';
+import Support from './routes/support/Support.js';
+import Notice from './routes/support/Notice.js';
+import Question from './routes/support/Question.js';
+import RealtimeQuestion from './routes/support/RealtimeQuestion.js';
+import { Link, Outlet, Route, Routes, useNavigate, Router } from 'react-router-dom'
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -20,8 +25,14 @@ function App() {
 
   return (
     <div className="App">
-      {/* <span onClick={ ()=>{ c(따봉+1) } }>따봉</span>{따봉} */}
-      <Shop></Shop>
+      <Routes>
+        <Route path='/' element={<Shop />} />
+        <Route path='/support/*' element={<Support />}>
+          <Route path="notice" element={<Notice />} />
+          <Route path="question" element={<Question />} />
+          <Route path="question/realtime" element={<RealtimeQuestion />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
