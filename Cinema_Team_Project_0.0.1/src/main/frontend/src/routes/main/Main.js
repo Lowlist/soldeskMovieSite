@@ -56,7 +56,7 @@ function Main() {
 	                    <div className={styles['chart-subtitle1']}>현재 상영작</div>
 	                    <div className={styles['chart-subtitle2']}>상영 예정작</div>
 	                </div>
-	                <div className={styles['chart-body']}>div 추가해야댐</div>
+	                <div className={styles['chart-body']}>CGV 참고</div>
 	            </div>
 	            <div className={styles['body-store']}>
 	                <div className={styles['store-header']}>
