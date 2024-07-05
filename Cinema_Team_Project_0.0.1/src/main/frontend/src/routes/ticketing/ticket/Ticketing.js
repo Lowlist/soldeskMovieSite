@@ -29,8 +29,7 @@ function Ticketing() {
     useEffect(() => {
         axios.get('/ticketing/movies', { params: { releaseDate: '20240626' } })
             .then(response => {
-                console.log(response);
-                setMovies(response.data);
+                console.log(response.data); // 응답 데이터 로깅
             })
             .catch(error => {
                 console.error("API 호출 오류: ", error);
