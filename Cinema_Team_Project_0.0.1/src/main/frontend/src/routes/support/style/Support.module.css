@@ -91,6 +91,28 @@
   font-size: 13px;
 }
 
+.tableArea {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* 부모 요소를 flex로 설정하고 중앙 정렬 */
+}
+
+.tableArea table {
+  width: 80%; /* 테이블 너비를 적절히 설정, 필요에 따라 조정 */
+  border-collapse: collapse;
+}
+
+.tableArea th, .tableArea td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.tableArea th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
 ol, ul {
   list-style: none;
 }
