@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import Ticketing from './routes/ticketing/ticket/Ticketing.js';
+import SeatSelection from './routes/ticketing/seat/SeatSelection.js';
 import customAxios from './customAxios';
 
 function App() {
@@ -36,6 +39,10 @@ function App() {
       <header className="App-header">
         <span onClick={ ()=>{ c(따봉+1) } }>따봉</span>{따봉}
       </header>
+      <Routes>
+        <Route path="/ticketing" element={<Ticketing/>}/>
+        <Route path="/seat" element={<SeatSelection />} />  
+      </Routes>
     </div>
   );
 }

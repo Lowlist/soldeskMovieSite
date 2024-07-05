@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,22 +23,20 @@ import com.team.cinema.ticketing.Movie.Movie;
 
 @Service
 public class TicketingService {
+    private static final Logger logger = LoggerFactory.getLogger(TicketingService.class);
 
-    private final String apiUrl = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp";
+    private final String apiUrl = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2";
     private final String serviceKey = "BOC8E6E947M11OX4WO71";
 
     public List<Movie> getMovies(String releaseDate) {
         try {
-            String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                    .queryParam("collection", "kmdb_new2")
-                    .queryParam("listCount", 12)
-                    .queryParam("releaseDts", URLEncoder.encode(releaseDate, StandardCharsets.UTF_8))
-                    .queryParam("detail", "Y")
-                    .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
-                    .toUriString();
 
+            String requestUrl = apiUrl + "&listCount=12&releaseDts=" + URLEncoder.encode(releaseDate, StandardCharsets.UTF_8)
+            		+ "&detail=Y&Servicekey=" + URLEncoder.encode(serviceKey, StandardCharsets.UTF_8);
+            
             URI uri = new URI(requestUrl);
-
+            
+            System.out.println(uri);
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -61,10 +61,10 @@ public class TicketingService {
                         .collect(Collectors.toList());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+        	System.out.println("못들옴?: " + e);
+            logger.error("에러: ", e);
         }
 
         return List.of();
     }
 }
-

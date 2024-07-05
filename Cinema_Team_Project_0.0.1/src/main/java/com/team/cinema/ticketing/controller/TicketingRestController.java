@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import com.team.cinema.ticketing.Movie.Movie;
 import com.team.cinema.ticketing.service.TicketingService;
 
 @RestController
+@RequestMapping("/ticketing")
 public class TicketingRestController {
 	
 	@Autowired
@@ -18,6 +20,7 @@ public class TicketingRestController {
 
     @GetMapping("/movies")
     public List<Movie> getMovies(@RequestParam String releaseDate) {
+    	System.out.println(releaseDate);
         return ticketingService.getMovies(releaseDate);
     }
 }
