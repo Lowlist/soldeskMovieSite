@@ -30,19 +30,24 @@ public class TicketingService {
 
     public List<Movie> getMovies(String releaseDate) {
         try {
+        	String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
+                    .queryParam("listCount", 12)
+                    .queryParam("releaseDts", URLEncoder.encode(releaseDate, StandardCharsets.UTF_8))
+                    .queryParam("detail", "Y")
+                    .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8)) // 인증키 확인
+                    .toUriString();
 
-            String requestUrl = apiUrl + "&listCount=12&releaseDts=" + URLEncoder.encode(releaseDate, StandardCharsets.UTF_8)
-            		+ "&detail=Y&Servicekey=" + URLEncoder.encode(serviceKey, StandardCharsets.UTF_8);
-            
             URI uri = new URI(requestUrl);
-            
-            System.out.println(uri);
+
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 
             HttpEntity<String> entity = new HttpEntity<>(headers);
             ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+
+            logger.info("Response Status: " + response.getStatusCode());
+            logger.info("Response Body: " + response.getBody());
 
             String jsonResponse = response.getBody();
 
@@ -61,7 +66,6 @@ public class TicketingService {
                         .collect(Collectors.toList());
             }
         } catch (Exception e) {
-        	System.out.println("못들옴?: " + e);
             logger.error("에러: ", e);
         }
 

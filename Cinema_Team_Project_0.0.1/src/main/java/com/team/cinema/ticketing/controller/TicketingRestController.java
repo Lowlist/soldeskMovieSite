@@ -19,8 +19,7 @@ public class TicketingRestController {
     private TicketingService ticketingService;
 
     @GetMapping("/movies")
-    public List<Movie> getMovies(@RequestParam String releaseDate) {
-    	System.out.println(releaseDate);
+    public List<Movie> getMovies(@RequestParam("releaseDate") String releaseDate) {
         return ticketingService.getMovies(releaseDate);
     }
 }

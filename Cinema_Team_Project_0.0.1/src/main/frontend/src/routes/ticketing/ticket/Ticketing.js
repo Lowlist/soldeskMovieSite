@@ -27,12 +27,13 @@ function Ticketing() {
 
     // 영화 데이터 불러오기
     useEffect(() => {
-        axios.get('/ticketing/movies', { params: { releaseDate: '20240626' } }) // 개봉날짜를 적절히 변경
+        axios.get('/ticketing/movies', { params: { releaseDate: '20240626' } })
             .then(response => {
+                console.log(response);
                 setMovies(response.data);
             })
             .catch(error => {
-                console.error("api 불러오기 오류", error);
+                console.error("API 호출 오류: ", error);
             });
     }, []);
 
