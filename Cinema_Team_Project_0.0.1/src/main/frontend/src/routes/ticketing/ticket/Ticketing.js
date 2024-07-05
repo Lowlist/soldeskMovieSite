@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import MovieSelection from './MovieSelection';
 import TheaterSelection from './TheaterSelection';
 import DateSelection from './DateSelection';
@@ -13,7 +14,7 @@ function Ticketing() {
     const [selectedRegion, setSelectedRegion] = useState('전체');
     const [theaters, setTheaters] = useState([]);
     const [selectedTheater, setSelectedTheater] = useState(null);
-    const [movies, setMovies] = useState(['영화1', '영화2', '영화3', '영화4', '영화5', '영화6', '영화7', '영화8']);
+    const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHall, setSelectedHall] = useState(null);
@@ -23,6 +24,17 @@ function Ticketing() {
         서울: ['서울극장1', '서울극장2'],
         경기: ['경기극장1', '경기극장2'],
     };
+
+    // 영화 데이터 불러오기
+    useEffect(() => {
+        axios.get('/movies', { params: { releaseDate: '20240626' } }) // 개봉날짜를 적절히 변경
+            .then(response => {
+                setMovies(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the movies!", error);
+            });
+    }, []);
 
     useEffect(() => {
         const today = new Date();
