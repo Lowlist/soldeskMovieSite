@@ -5,7 +5,9 @@ const Footer = ({ selectedMovie, selectedTheater, selectedDateString, selectedTi
     return (
         <div className={styles.footer} style={{ textAlign: 'left' }}>
             <div className={`${styles.movieInfo} ${styles.movieInfoContainer}`}>
-                <div>영화: {selectedMovie}</div>
+                <div>{selectedMovie && selectedMovie.poster && ( // 포스터가 있을 경우에만 이미지 표시
+                    <img src={selectedMovie.poster} alt={selectedMovie.title} className={styles.selectedMoviePoster} />
+                )} {selectedMovie ? selectedMovie.title : ''}</div> {/* 선택된 영화의 제목 표시 */}
             </div>
             <div className={styles.movieInfoContainer}>
                 <div className={styles.movieInfo}>

@@ -4,12 +4,13 @@ import axios from 'axios';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Ticketing from './routes/ticketing/ticket/Ticketing.js';
 import SeatSelection from './routes/ticketing/seat/SeatSelection.js';
+import { Link } from 'react-router-dom';
 import customAxios from './customAxios';
 
 function App() {
   // IP주소 변수 선언
   const [hello, setHello] = useState('');
-
+  const navigate = useNavigate();
   // // IP주소 값을 설정합니다.
   // function callback(data) {
   //   setIp(data);
@@ -36,11 +37,8 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <span onClick={ ()=>{ c(따봉+1) } }>따봉</span>{따봉}
-      </header>
       <Routes>
-        <Route path="/ticketing" element={<Ticketing/>}/>
+        <Route path="/ticketing" element={<Ticketing />} />
         <Route path="/seat" element={<SeatSelection />} />  
       </Routes>
     </div>

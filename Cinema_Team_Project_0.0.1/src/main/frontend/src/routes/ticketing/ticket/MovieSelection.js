@@ -1,7 +1,16 @@
+// MovieSelection.js
 import React from 'react';
 import styles from './style/MovieSelection.module.css';
 
 const MovieSelection = ({ movies, selectedMovie, setSelectedMovie }) => {
+
+    const handleMovieClick = (movie) => {
+        setSelectedMovie({
+            title: movie.title,
+            poster: movie.poster,
+        });
+    };
+
     return (
         <div className={styles.section}>
             <div className={styles.header}>영화</div>
@@ -11,9 +20,9 @@ const MovieSelection = ({ movies, selectedMovie, setSelectedMovie }) => {
                     <div
                         key={index}
                         className={`${styles.movieItem} ${selectedMovie === movie ? styles.selectedMovie : ''}`}
-                        onClick={() => setSelectedMovie(movie)}
+                        onClick={() => handleMovieClick(movie)}
                     >
-                        <img src={movie.posters} alt={movie.title} className={styles.moviePoster} />
+                        <img src={movie.poster} alt={movie.title} className={styles.moviePoster} />
                         <div>{movie.title}</div>
                     </div>
                 ))}
