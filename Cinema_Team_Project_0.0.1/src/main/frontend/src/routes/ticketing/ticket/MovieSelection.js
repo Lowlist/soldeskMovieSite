@@ -22,8 +22,8 @@ const MovieSelection = ({ movies, selectedMovie, setSelectedMovie }) => {
                         className={`${styles.movieItem} ${selectedMovie === movie ? styles.selectedMovie : ''}`}
                         onClick={() => handleMovieClick(movie)}
                     >
-                        <img src={movie.poster} alt={movie.title} className={styles.moviePoster} />
-                        <div>{movie.title}</div>
+                        <img src={movie.poster} alt={movie.title} className={styles.moviePoster} width={130}/>
+                        <div className={styles.title}>{movie.title}</div>
                     </div>
                 ))}
             </div>

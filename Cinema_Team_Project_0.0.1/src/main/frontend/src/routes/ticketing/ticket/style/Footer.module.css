@@ -1,6 +1,5 @@
 .footer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px;
     border-top: 1px solid #ccc;
@@ -8,29 +7,35 @@
     background-color: #000;
     color: #fff;
     border-radius: 10px;
+    height: 150px;
 }
 
 .movieInfo {
-    font-size: 14px;
+    font-size: larger;
 }
 
 .movieInfoContainer {
     display: flex;
+    width: 40%;
+    
 }
 
 .buttonContainer {
     display: flex;
+    width: 20%;
+    justify-content: end;
 }
 
 .button {
     background-color: #d9534f;
     color: #fff;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
+    margin-right: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,4 +49,16 @@
 .selectedMoviePoster {
     height: 150px;
     text-align: center;
+}
+
+.selectedMovieSet {
+    display: flex;
+}
+
+.selectedMovieTitle {
+    text-align: center;
+    margin: auto;
+    padding: 30px;
+    font-size: large;
+    font-weight: bolder;
 }

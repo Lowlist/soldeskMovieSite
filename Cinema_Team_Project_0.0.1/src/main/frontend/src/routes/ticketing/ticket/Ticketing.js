@@ -13,7 +13,7 @@ function Ticketing() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedRegion, setSelectedRegion] = useState('전체');
     const [theaters, setTheaters] = useState([]);
-    const [movies, setMovies] = useState([]); // 수정된 부분
+    const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [selectedTheater, setSelectedTheater] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
@@ -31,10 +31,11 @@ function Ticketing() {
             .then(response => {
                 const movieData = response.data.Data[0].Result;
                 const filteredMovies = movieData
+                    .filter(movie => movie.posters !== "")
                     .filter(movie => movie.genre !== '에로') // '에로' 장르 제외
                     .map(movie => ({
                         title: movie.title,
-                        poster: movie.posters.split('|')[0], // 첫 번째 포스터 이미지 추출
+                        poster: movie.posters.split('|')[0] || movie.posters, // 첫 번째 포스터 이미지 추출
                         genre: movie.genre || '장르 정보 없음', // 장르 데이터가 비어 있을 경우 처리
                     }));
                 setMovies(filteredMovies);
