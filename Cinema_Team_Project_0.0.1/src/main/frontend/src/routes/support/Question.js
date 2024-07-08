@@ -42,14 +42,14 @@ function Question(){
             </tr>
           </thead>
           <tbody>
-            {mockQuestions.map(notice => (
-              <tr key={notice.id}>
-                <td>{notice.id}</td>
-                <td onClick={() => navigate(`/support/notice/${notice.id}`)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-                  {notice.title}
+            {mockQuestions.map(question => (
+              <tr key={question.id}>
+                <td>{question.id}</td>
+                <td onClick={() => navigate(`/support/question/${question.id}`)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                  {question.title}
                 </td>
-                <td>{notice.date}</td>
-                <td>{notice.hit}</td>
+                <td>{question.date}</td>
+                <td>{question.hit}</td>
               </tr>
             ))}
           </tbody>

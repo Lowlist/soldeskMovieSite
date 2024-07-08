@@ -135,3 +135,61 @@ ol, ul {
   background-color: #f2f2f2;
 }
 
+.colsDetail {
+  position: relative;
+  width: 800px;
+  margin: 0 auto; /* 수평 가운데 정렬 */
+}
+
+.boardViewArea {
+  margin-top: 19px;
+}
+
+.titleFaq {
+  overflow: hidden;
+  padding: 11px;
+  border-top: solid 1px #b8b6aa;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}
+
+.stitArea {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.day {
+  margin-left: 9px;
+  font-family: 'Verdana';
+  color: #222;
+}
+
+.hitArea {
+  margin-left: 30px;
+  display: flex;
+  align-items: center; /* 조회수와 hit 값을 한 줄로 정렬 */
+}
+
+.checkHit {
+  margin-left: 5px; /* 조회수와 hit 값 사이 간격 조정 */
+  font-family: 'Verdana';
+  color: #222;
+}
+
+.title {
+  font-size: 18px; /* 글씨 크기 조정 */
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 10px; /* 제목과 stitArea 사이에 간격 추가 */
+}
+
+.titleFaq .titleContainer {
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+  justify-content: space-between;
+  width: 100%;
+}
