@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import styles from './style/Info.module.css';
 import axios from 'axios';
+import Carousel from 'react-bootstrap/Carousel';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Info() {
 
-    let [data, setDate] = useState(null);
+    let [data, setData] = useState(null);
 
     useEffect(() => {
         const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&movieId=k&movieSeq=36201&ServiceKey=BOC8E6E947M11OX4WO71";
 
         axios.get(url).then((response) => {
-            setDate(response.data.Data[0].Result[0]);
+            setData(response.data.Data[0].Result[0]);
         }).catch(error => {
             console.error("Error fetching data: ", error);
         })
@@ -20,26 +22,37 @@ function Info() {
         return <div>Loading...</div>; // 데이터가 로드되기 전 로딩 메시지 표시
     }
 
+    // 날짜 포맷 변경 함수 추가
+    const formatDate = (dateString) => {
+        if (dateString.length !== 8) return dateString; // 잘못된 형식 처리
+        const year = dateString.substring(0, 4);
+        const month = dateString.substring(4, 6);
+        const day = dateString.substring(6, 8);
+        return `${year}/${month}/${day}`;
+    };
+
     return (
-        <div className={styles.contaniner}>
+        <div className={styles.container}>
             <div className={styles.contents}>
                 <div className={styles.select_main}>
                     <div className={styles['sect-base-movie']}>
                         <div className={styles['box-imge']}>
-                            <img src={[data.posters.split('|')[0]]}></img>
+                            <img src={data.posters.split('|')[0]} alt="포스터" />
                         </div>
                         <div className={styles['box-contents']}>
                             <div className={styles.title}>
                                 {data.title}
                             </div>
-                            <div className={styles.score}>
+                            {/* <div className={styles.score}>
                                 예매율 및 평점
-                            </div>
+                            </div> */}
                             <div className={styles.spec}>
                                 {/* 영화 상세정보 */}
                                 감독: {data.directors.director.map(d => d.directorNm).join(', ')}<br />
                                 배우: {data.actors.actor.map(a => a.actorNm).join(', ')}<br />
-                                날짜: {data.repRlsDate}
+                                기본정보: {data.rating}/{data.runtime}분/{data.nation}<br />
+                                개봉날짜: {formatDate(data.repRlsDate)}<br />
+                                제작사: {data.company}
                             </div>
                             <span className={styles.ticketing}>
                                 {/* 티켓예매 링크(버튼으로) */}
@@ -55,17 +68,20 @@ function Info() {
                             </div>
                             <div className={styles['sect-trailer']}>
                                 트레일러 영상
-                                {/* {data.vods.vod.map((video,index)=>{
-                                    <div key={index}>
-                                        <video>
-                                            <source src={video.vodUrl} type='video/mp4'></source>
-                                        </video>
-                                    </div>
-                                })} */}
-                                <video>
-                                    <source src={data.vods.vod[0].vodUrl}></source>
-                                </video>
-
+                                <Carousel data-bs-theme="dark" interval={null}>
+                                    {data.vods.vod.map((video, index) => (
+                                        <Carousel.Item key={index}>
+                                            <div className={styles['movie-trailer']}>
+                                                <video className={styles['custom-video']} controls>
+                                                    <source src={video.vodUrl} type="video/mp4" />
+                                                </video>
+                                            </div>
+                                            <Carousel.Caption>
+                                                <h3>{video.vodClass}</h3>
+                                            </Carousel.Caption>
+                                        </Carousel.Item>
+                                    ))}
+                                </Carousel>
                             </div>
                             <div className={styles['sect-stillcut']}>
                                 <h3>스틸컷</h3>
@@ -102,6 +118,5 @@ function Info() {
         </div>
     );
 }
-
 
 export default Info;
