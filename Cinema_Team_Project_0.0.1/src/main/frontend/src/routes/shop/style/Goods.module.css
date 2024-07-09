@@ -25,8 +25,11 @@
 }
 .goodsBoxRight{
 }
-
+.plusButton{
+    margin-left: 250px;
+}
 .goodsName{
+    display: flex;
     font-size: 30px;
     text-align: left;
 }

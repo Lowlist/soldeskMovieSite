@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Col, Container, Row, Card } from 'react-bootstrap';
+import { Col, Container, Row, Card, Button } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 import Badge from 'react-bootstrap/Badge';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,7 +14,10 @@ function Goods() {
             <div className={style.centerGoods}>
                 <Container>
                     <div className={style.goodsName}>
-                        상품 팔거임 <Badge bg="secondary">New</Badge>
+                        상품 팔거임 
+                        <div className={style.plusButton}>
+                            <Button variant="light">+</Button>{' '}
+                        </div>
                     </div>
                     <hr className={style.hrCenter}/>
                     <Row>
@@ -34,7 +37,10 @@ function Goods() {
                 <div className={style.goodsLine}>
                     <div className={style.goodsBoxLeft}>
                         <div className={style.goodsName}>
-                            상품 팔거임 <Badge bg="secondary">New</Badge>
+                            상품 팔거임 
+                            <div className={style.plusButton}>
+                                <Button variant="light">+</Button>{' '}
+                            </div>
                         </div>
                         <hr/>
                         <div className={style.cardBox}>
@@ -95,7 +101,10 @@ function Goods() {
 
                     <div className={style.goodsBoxRight}>
                         <div className={style.goodsName}>
-                            상품 팔거임 <Badge bg="secondary">New</Badge>
+                            상품 팔거임 
+                            <div className={style.plusButton}>
+                                <Button variant="light">+</Button>{' '}
+                            </div>
                         </div>
                         <hr/>
                         <div className={style.cardBox}>
