@@ -4,7 +4,7 @@ import styles from './style/SeatMap.module.css';
 
 const SeatMap = ({ selectedHall, hallConfigurations, selectedSeats, numPeople, handleSeatClick }) => {
     const { rows, cols, specialRow, specialCols } = hallConfigurations[selectedHall] || hallConfigurations['1관'];
-    const aisleIndex = Math.floor(cols / 2);
+    const aisleIndex = Math.floor(cols / 2) + 1;
 
     const renderSeats = () => {
         const seats = [];

@@ -82,7 +82,7 @@ function Ticketing() {
                 <TimeSelection selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
             <Footer
-                selectedMovie={selectedMovie} // Footer에 selectedMovie 전달
+                selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}
                 selectedDateString={selectedDateString}
                 selectedTime={selectedTime}
