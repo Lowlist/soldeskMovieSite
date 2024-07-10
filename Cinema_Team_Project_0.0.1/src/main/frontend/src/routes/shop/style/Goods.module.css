@@ -19,7 +19,6 @@
 }
 .goodsBoxLeft,
 .goodsBoxRight{
-    background-color: red;
     width: 45%;
     max-width: 550px;
 }

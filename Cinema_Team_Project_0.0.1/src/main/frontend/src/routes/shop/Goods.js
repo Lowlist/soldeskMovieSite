@@ -37,7 +37,7 @@ function Goods() {
                 <div className={style.goodsLine}>
                     <div className={style.goodsBoxLeft}>
                         <div className={style.goodsName}>
-                            상품 팔거임 
+                            음식 입니다
                             <div className={style.plusButton}>
                                 <Button variant="light">+</Button>{' '}
                             </div>
@@ -101,7 +101,7 @@ function Goods() {
 
                     <div className={style.goodsBoxRight}>
                         <div className={style.goodsName}>
-                            상품 팔거임 
+                            상품권 임임 
                             <div className={style.plusButton}>
                                 <Button variant="light">+</Button>{' '}
                             </div>

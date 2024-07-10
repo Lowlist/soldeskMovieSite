@@ -11,8 +11,7 @@ function Shop() {
                     <Nav className="me-auto">
                         <Nav.Link href="#home">패키지 상품</Nav.Link>
                         <Nav.Link href="#features">음식</Nav.Link>
-                        <Nav.Link href="#pricing">음료</Nav.Link>
-                        <Nav.Link href="#pricing">상품 소개</Nav.Link>
+                        <Nav.Link href="#pricing">할인권</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
