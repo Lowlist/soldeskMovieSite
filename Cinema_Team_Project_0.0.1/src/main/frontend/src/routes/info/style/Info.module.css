@@ -147,3 +147,7 @@
     width: 750px;
     height: auto;
 }
+
+.movie-trailer-title {
+    text-align: center;
+}

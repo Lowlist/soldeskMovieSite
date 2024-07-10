@@ -31,6 +31,11 @@ function Info() {
         return `${year}/${month}/${day}`;
     };
 
+    // URL 변환 함수 추가
+    const transformUrl = (url) => {
+        return url.replace('/trailer/trailerPlayPop?pFileNm=', '/trailer/play/');
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.contents}>
@@ -73,12 +78,12 @@ function Info() {
                                         <Carousel.Item key={index}>
                                             <div className={styles['movie-trailer']}>
                                                 <video className={styles['custom-video']} controls>
-                                                    <source src={video.vodUrl} type="video/mp4" />
+                                                    <source src={transformUrl(video.vodUrl)} type="video/mp4" />
                                                 </video>
                                             </div>
-                                            <Carousel.Caption>
-                                                <h3>{video.vodClass}</h3>
-                                            </Carousel.Caption>
+                                            <div className={styles['movie-trailer-title']}>
+                                                {video.vodClass}
+                                            </div>
                                         </Carousel.Item>
                                     ))}
                                 </Carousel>
