@@ -24,7 +24,7 @@ public class TicketingService {
     public String getMovies(String releaseDate) {
         try {
             String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                    .queryParam("listCount", 15)
+                    .queryParam("listCount", 10)
                     .queryParam("releaseDts", URLEncoder.encode(releaseDate, StandardCharsets.UTF_8))
                     .queryParam("detail", "Y")
                     .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
@@ -39,7 +39,7 @@ public class TicketingService {
             HttpEntity<String> entity = new HttpEntity<>(headers);
             String response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class).getBody();
 
-            logger.info("Response Body: " + response);
+//            logger.info("Response Body: " + response);
 
             return response;
         } catch (Exception e) {

@@ -27,7 +27,7 @@ function Ticketing() {
 
     // 영화 데이터 불러오기
     useEffect(() => {
-        axios.get('/ticketing/movies', { params: { releaseDate: '20240626' } })
+        axios.get('/ticketing/movies', { params: { releaseDate: '20240615' } })
             .then(response => {
                 const movieData = response.data.Data[0].Result;
                 const filteredMovies = movieData
@@ -49,7 +49,7 @@ function Ticketing() {
     useEffect(() => {
         const today = new Date();
         const tempDates = [];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 7; i++) {
             const date = new Date(today);
             date.setDate(today.getDate() + i);
             tempDates.push(date);

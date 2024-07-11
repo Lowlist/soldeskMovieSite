@@ -14,10 +14,10 @@ const Footer = ({ selectedMovie, selectedTheater, selectedDateString, selectedTi
             </div>
             <div className={styles.movieInfoContainer}>
                 <div className={styles.movieInfo}>
-                    <div>극장 &emsp;  : </div>
-                    <div>일시 &emsp;  : </div>
-                    <div>상영관 &nbsp;: </div>
-                    <div>인원  &emsp; : </div>
+                    <div>극장 </div>
+                    <div>일시 </div>
+                    <div>상영관 </div>
+                    <div>인원 </div>
                 </div>
                 &emsp;
                 <div className={styles.movieInfo}>
