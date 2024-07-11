@@ -1,169 +1,50 @@
-import { useState } from 'react';
-import { Col, Container, Row, Card, Button } from 'react-bootstrap';
-import Carousel from 'react-bootstrap/Carousel';
-import Badge from 'react-bootstrap/Badge';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import style from './style/Goods.module.css';
-import ReactPlayer from 'react-player'
+import { useState } from 'react';
+import { Button, Card, Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import data from './data';
+import style from './style/Goods.module.css';
+import PackageGoods from './PackageGoods';
+import DrinkFood from './DrinkFood';
+import GiftTicket from './GiftTicket';
+
 
 function Goods() {
     let [shoes] = useState(data);
     return (
         <div>
-            <div className={style.centerGoods}>
+            <div className={style.goodsMain}>
                 <Container>
-                    <div className={style.goodsName}>
-                        상품 팔거임 
-                        <div className={style.plusButton}>
-                            <Button variant="light">+</Button>{' '}
-                        </div>
+                    {/* Navbar Start */}
+                    <Navbar bg="light" data-bs-theme="light" className={style.navBar}>
+                        <Container>
+                            <Navbar.Brand href="#home">스토어</Navbar.Brand>
+                            <Nav className="me-auto">
+                                <Nav.Link href="#home">패키지 상품</Nav.Link>
+                                <Nav.Link href="#features">음식</Nav.Link>
+                                <Nav.Link href="#pricing">할인권</Nav.Link>
+                            </Nav>
+                        </Container>
+                    </Navbar>
+                    {/* Navbar End */}
+
+                    {/* PackageGoods Start */}
+                     
+                    <PackageGoods/>
+                    
+                    {/* PackageGoods End */}
+
+                    <div className={style.goodsLine}>
+                        
+                        {/* LeftBox Start */}
+                        <DrinkFood/>
+                        {/* LeftBox End */}
+
+                        {/* RightBox Start */}
+                        <GiftTicket/>
+                        {/* RightBox End */}
+
                     </div>
-                    <hr className={style.hrCenter}/>
-                    <Row>
-                        {
-                            shoes.map((a, i) => {
-                                return (
-                                    <Col key={i}>
-                                        <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="80%" />
-                                        <h4>{shoes[i].title}</h4>
-                                        <div>{shoes[i].price}</div>
-                                    </Col>
-                                )
-                            })
-                        }
-                    </Row>
                 </Container>
-                <div className={style.goodsLine}>
-                    <div className={style.goodsBoxLeft}>
-                        <div className={style.goodsName}>
-                            음식 입니다
-                            <div className={style.plusButton}>
-                                <Button variant="light">+</Button>{' '}
-                            </div>
-                        </div>
-                        <hr/>
-                        <div className={style.cardBox}>
-                            <Card style={{ width: '28rem' }}>
-                                <Card.Body className={style.cardBody}>
-                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
-                                    </img>
-                                    <div className={style.cardBox}>
-                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
-                                        <Card.Text>
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                        </Card.Text>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                        <div className={style.cardBox}>
-                            <Card style={{ width: '28rem' }}>
-                                <Card.Body className={style.cardBody}>
-                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
-                                    </img>
-                                    <div className={style.cardBox}>
-                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
-                                        <Card.Text>
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                        </Card.Text>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                        <div className={style.cardBox}>
-                            <Card style={{ width: '28rem' }}>
-                                <Card.Body className={style.cardBody}>
-                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
-                                    </img>
-                                    <div className={style.cardBox}>
-                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
-                                        <Card.Text>
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                        </Card.Text>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    </div>
-
-                    <div className={style.goodsBoxRight}>
-                        <div className={style.goodsName}>
-                            상품권 임임 
-                            <div className={style.plusButton}>
-                                <Button variant="light">+</Button>{' '}
-                            </div>
-                        </div>
-                        <hr/>
-                        <div className={style.cardBox}>
-                            <Card style={{ width: '28rem' }}>
-                                <Card.Body className={style.cardBody}>
-                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
-                                    </img>
-                                    <div className={style.cardBox}>
-                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
-                                        <Card.Text>
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                        </Card.Text>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                        <div className={style.cardBox}>
-                            <Card style={{ width: '28rem' }}>
-                                <Card.Body className={style.cardBody}>
-                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
-                                    </img>
-                                    <div className={style.cardBox}>
-                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
-                                        <Card.Text>
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                        </Card.Text>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                        <div className={style.cardBox}>
-                            <Card style={{ width: '28rem' }}>
-                                <Card.Body className={style.cardBody}>
-                                    <img className={style.cardImg} src='https://codingapple1.github.io/shop/shoes2.jpg'>
-                                    </img>
-                                    <div className={style.cardBox}>
-                                        <Card.Title>하드 코딩 해버릴거야</Card.Title>
-                                        <Card.Text>
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                            하드코딩 해버릴거야
-                                        </Card.Text>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </div>
     )

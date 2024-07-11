@@ -1,9 +1,27 @@
+hr{
+    width: 60%;
+    margin: 5px;
+    border: 2px solid;
+    color: gray;
+}
+.hrCenter{
+    width: 90%;
+}
+.plusButton{
+    margin-left: 58%;
+}
+.plusButtonF{
+    margin-left: 76%;
+}
+.navBar{
+    width: 91%;
+}
+.goodsMain{
+    text-align: justify;
+}
 .cardBody{
     display: flex;
     width: 100%;
-}
-.cardBox{
-
 }
 .cardImg{
     width: 35%;
@@ -14,33 +32,19 @@
 }
 .goodsLine{
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    margin-top: 100px;
+    height: 546px;
 }
 .goodsBoxLeft,
 .goodsBoxRight{
-    width: 45%;
-    max-width: 550px;
+    width: 35%;
 }
-.goodsBoxRight{
-}
-.plusButton{
-    margin-left: 250px;
+.goodsBoxLeft{
+    margin-right: 280px;
 }
 .goodsName{
     display: flex;
+    min-width: 453px;
     font-size: 30px;
     text-align: left;
-}
-.centerGoods{
-    text-align: justify;
-}
-hr{
-    width: 60%;
-    margin: 5px;
-    border: 2px solid;
-    color: gray;
-}
-.hrCenter{
-    width: 90%;
 }
