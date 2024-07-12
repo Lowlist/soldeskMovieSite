@@ -2,9 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card } from 'react-bootstrap';
 import data from './data';
 import style from './style/Goods.module.css';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function GiftTicket() {
+    let navigate = useNavigate();
     let [shoes] = useState(data);
     return (
         <div>
@@ -12,7 +14,7 @@ function GiftTicket() {
                 <div className={style.goodsName}>
                     영화관람권
                     <div className={style.plusButton}>
-                        <Button variant="light" onClick={() => { alert("아직 미개발임") }}>+</Button>{' '}
+                        <Button variant="light" onClick={ () => navigate('giftTicket') }>+</Button>{' '}
                     </div>
                 </div>
                 <hr />

@@ -4,6 +4,9 @@ import { Route, Routes, useNavigate, Outlet } from 'react-router-dom';
 import './App.css';
 import Main from './routes/main/Main.js';
 import Shop from './routes/shop/Shop.js';
+import PackageGoods from './routes/shop/PackageGoods.js';
+import GiftTicket from './routes/shop/GiftTicket.js';
+import DrinkFood from './routes/shop/DrinkFood.js';
 import Ticket from './routes/ticketing/ticket/Ticketing.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
@@ -38,10 +41,10 @@ function App() {
             <Route path="/order" element={<>결제창</>}></Route>
             <Route path="/basket" element={<>장바구니</>}></Route>
 
-            <Route path="/store" element={<> <Shop></Shop> <Outlet></Outlet> </>}>
-              <Route path="package" element={<> / 패키지임 </>}></Route>
-              <Route path="food" element={<> / 음식임 </>}></Route>
-              <Route path="giftTicket" element={<> / 상품권임 </>}></Route>
+            <Route path="/store" element={<Shop/>}>
+              <Route path="package" element={<PackageGoods/>}></Route>
+              <Route path="food" element={<DrinkFood/>}></Route>
+              <Route path="giftTicket" element={<GiftTicket/>}></Route>
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>
 
