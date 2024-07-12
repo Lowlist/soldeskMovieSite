@@ -1,3 +1,8 @@
+.section {
+    width: 32%;
+    margin: 0 10px;
+}
+
 .header {
     font-weight: bold;
     margin-bottom: 10px;
@@ -32,10 +37,12 @@
 
 .movieItem {
     cursor: pointer;
+    width: 100%;
     display: flex;
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 5px;
+    position: relative;
 
 }
 
@@ -48,6 +55,8 @@
 }
 
 .title {
-    padding: 40px;
-    margin: auto;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px; /* 이 요소 높이의 절반 */
+    margin-left: 150px;
 }
