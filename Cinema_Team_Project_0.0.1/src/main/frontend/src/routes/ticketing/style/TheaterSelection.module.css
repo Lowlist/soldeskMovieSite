@@ -1,0 +1,62 @@
+.section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.theaterContainer {
+    display: flex;
+}
+
+.regionList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.regionItem {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.regionItem:hover {
+    background-color: #e0e0e0;
+}
+
+.selectedRegion {
+    background-color: #d3d3d3;
+}
+
+.theaterList {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.theaterItem {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.theaterItem:hover {
+    background-color: #e0e0e0;
+}
+
+.selectedTheater {
+    background-color: #d3d3d3;
+}

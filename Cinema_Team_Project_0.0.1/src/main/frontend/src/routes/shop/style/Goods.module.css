@@ -1,0 +1,44 @@
+.cardBody{
+    display: flex;
+    width: 100%;
+}
+.cardBox{
+
+}
+.cardImg{
+    width: 35%;
+    margin-right: 15px;
+}
+.card-title{
+    display: flex;
+}
+.goodsLine{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.goodsBoxLeft,
+.goodsBoxRight{
+    background-color: red;
+    width: 45%;
+    max-width: 550px;
+}
+.goodsBoxRight{
+}
+
+.goodsName{
+    font-size: 30px;
+    text-align: left;
+}
+.centerGoods{
+    text-align: justify;
+}
+hr{
+    width: 60%;
+    margin: 5px;
+    border: 2px solid;
+    color: gray;
+}
+.hrCenter{
+    width: 90%;
+}
