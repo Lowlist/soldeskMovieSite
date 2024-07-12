@@ -8,7 +8,12 @@ const mockQuestions = [
     { id: 3, title: '질문 3', content: '질문 내용 3', date: '2024-07-05', hit: '0' },
     { id: 4, title: '질문 4', content: '질문 내용 4', date: '2024-07-05', hit: '0' },
     { id: 5, title: '질문 5', content: '질문 내용 5', date: '2024-07-05', hit: '0' },
-];
+    { id: 6, title: '질문 6', content: '질문 내용 6', date: '2024-07-12', hit: '0' },
+    { id: 7, title: '질문 7', content: '질문 내용 7', date: '2024-07-12', hit: '0' },
+    { id: 8, title: '질문 8', content: '질문 내용 8', date: '2024-07-12', hit: '0' },
+    { id: 9, title: '질문 9', content: '질문 내용 9', date: '2024-07-12', hit: '0' },
+    { id: 10, title: '질문 10', content: '질문 내용 10', date: '2024-07-12', hit: '0' },
+  ];
 function QuestionDetail(){
     const {id} = useParams();
     const question = mockQuestions.find(q => q.id === parseInt(id));

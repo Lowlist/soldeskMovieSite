@@ -8,7 +8,12 @@ const mockNotices = [
     { id: 3, title: '공지사항 3', content: '공지사항 내용 3', date: '2024-07-05', hit: '0' },
     { id: 4, title: '공지사항 4', content: '공지사항 내용 4', date: '2024-07-05', hit: '0' },
     { id: 5, title: '공지사항 5', content: '공지사항 내용 5', date: '2024-07-05', hit: '0' },
-];
+    { id: 6, title: '공지사항 6', content: '공지사항 내용 6', date: '2024-07-12', hit: '0' },
+    { id: 7, title: '공지사항 7', content: '공지사항 내용 7', date: '2024-07-12', hit: '0' },
+    { id: 8, title: '공지사항 8', content: '공지사항 내용 8', date: '2024-07-12', hit: '0' },
+    { id: 9, title: '공지사항 9', content: '공지사항 내용 9', date: '2024-07-12', hit: '0' },
+    { id: 10, title: '공지사항 10', content: '공지사항 내용 10', date: '2024-07-12', hit: '0' },
+  ];
 function NoticeDetail(){
     const {id} = useParams();
     const notice = mockNotices.find(n => n.id === parseInt(id));

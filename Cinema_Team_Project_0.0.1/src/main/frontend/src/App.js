@@ -29,12 +29,17 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Shop />} />
-        <Route path='/support/*' element={<Support />}>
-          <Route path="notice" element={<Notice />} />
-          <Route path='notice/:id' element={<NoticeDetail />} />
-          <Route path="question" element={<Question />} />
-          <Route path='question/:id' element={<QuestionDetail />} />
-          <Route path="question/realtime" element={<RealtimeQuestion />} />
+        <Route path='/support' element={<Support />}>
+          <Route index element={<div>고객센터 기본 페이지</div>} />
+          <Route path='notice' element={<><Outlet /></>}>
+            <Route index element={<Notice />} />
+            <Route path=':id' element={<NoticeDetail />} />
+          </Route>
+          <Route path='question' element={<><Outlet /></>}>
+            <Route index element={<Question />} />
+            <Route path=':id' element={<QuestionDetail />} />
+            <Route path='realtime' element={<RealtimeQuestion />} />
+          </Route>
         </Route>
       </Routes>
     </div>
