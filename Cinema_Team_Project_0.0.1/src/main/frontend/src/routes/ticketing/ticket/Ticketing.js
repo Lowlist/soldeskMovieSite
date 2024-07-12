@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import MovieSelection from './MovieSelection';
 import TheaterSelection from './TheaterSelection';
 import DateSelection from './DateSelection';
@@ -12,9 +13,9 @@ function Ticketing() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedRegion, setSelectedRegion] = useState('전체');
     const [theaters, setTheaters] = useState([]);
-    const [selectedTheater, setSelectedTheater] = useState(null);
-    const [movies, setMovies] = useState(['영화1', '영화2', '영화3', '영화4', '영화5', '영화6', '영화7', '영화8']);
+    const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [selectedTheater, setSelectedTheater] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHall, setSelectedHall] = useState(null);
     const navigate = useNavigate();
@@ -24,10 +25,31 @@ function Ticketing() {
         경기: ['경기극장1', '경기극장2'],
     };
 
+    // 영화 데이터 불러오기
+    useEffect(() => {
+        axios.get('/ticketing/movies', { params: { releaseDate: '20240615' } })
+            .then(response => {
+                const movieData = response.data.Data[0].Result;
+                const filteredMovies = movieData
+                    .filter(movie => movie.posters !== "")
+                    .filter(movie => movie.genre !== '에로') // '에로' 장르 제외
+                    .map(movie => ({
+                        title: movie.title,
+                        poster: movie.posters.split('|')[0] || movie.posters, // 첫 번째 포스터 이미지 추출
+                        genre: movie.genre || '장르 정보 없음', // 장르 데이터가 비어 있을 경우 처리
+                    }));
+                setMovies(filteredMovies);
+
+            })
+            .catch(error => {
+                console.error("API 호출 오류: ", error);
+            });
+    }, []);
+
     useEffect(() => {
         const today = new Date();
         const tempDates = [];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 7; i++) {
             const date = new Date(today);
             date.setDate(today.getDate() + i);
             tempDates.push(date);
@@ -59,7 +81,7 @@ function Ticketing() {
                 <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
                 <TimeSelection selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
-            <Footer 
+            <Footer
                 selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}
                 selectedDateString={selectedDateString}

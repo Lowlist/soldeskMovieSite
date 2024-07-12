@@ -1,0 +1,4 @@
+.movieDetails {
+    display: flex;
+    flex-direction: column;
+}

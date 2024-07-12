@@ -1,0 +1,74 @@
+.section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    font-size: 22px;
+    padding: 10px;
+}
+
+.timeList {
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollable {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.timeHall {
+    margin-bottom: 10px;
+}
+
+.timeHallHeader {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.timeRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.timeItem {
+    cursor: pointer;
+    margin: 5px;
+    text-align: left;
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(33.33% - 10px); /* 한 줄에 3개 항목이 들어가도록 너비 설정 */
+    box-sizing: border-box; 
+}
+
+.timeSection {
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px #d3d3d3 solid;
+    flex: 1;
+}
+
+.timeSection:hover {
+    background-color: #e0e0e0;
+}
+
+.selectedTime {
+    background-color: #d3d3d3;
+}
+
+.remainingSeats {
+    font-size: 13px;
+    margin-left: 5px;
+    color: green;
+    flex-shrink: 0;
+    margin-top: 20px;
+}

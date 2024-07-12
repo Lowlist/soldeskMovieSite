@@ -18,7 +18,7 @@ const DateSelection = ({ dates, selectedDate, setSelectedDate }) => {
                     className={`${styles.calendarItem} ${isSelected ? styles.selectedDate : ''}`}
                     onClick={() => handleDateClick(date)}
                 >
-                    {`${day} (${dayOfWeek})`}
+                    {`${dayOfWeek}`} &nbsp; {`${day}`}
                 </div>
             );
         });
