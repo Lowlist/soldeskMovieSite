@@ -17,15 +17,15 @@ function Main() {
                     </div>
 	            </div>
 	            <div className={styles['header-top-right']}>
-	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/login') } } style={ {cursor : 'pointer'} }>
+	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/member/signIn') } } style={ {cursor : 'pointer'} }>
 	                    {/* <img className="top-user-img" src={ login }></img> */}
 	                    <div className={styles['top-user-btn']}>로그인</div>
 	                </div>
-	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/join') } } style={ {cursor : 'pointer'} }>
+	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/member/signUp') } } style={ {cursor : 'pointer'} }>
 	                    {/* <img className="top-user-img" src={ join }></img> */}
 	                    <div className={styles['top-user-btn']}>회원가입</div>
 	                </div>
-	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/mypage') } } style={ {cursor : 'pointer'} }>
+	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/member/mypage') } } style={ {cursor : 'pointer'} }>
 	                    {/* <img className="top-user-img" src={ mypage }></img> */}
 	                    <div className={styles['top-user-btn']}>마이페이지</div>
 	                </div>
@@ -34,10 +34,10 @@ function Main() {
             <Navbar className={styles['wrapper-header-category']} data-bs-theme="light">
                 <Container className={styles['category-left']}>
                     <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
-                    <Nav.Link onClick={ ()=>{ navigate('/shop') } }>shop</Nav.Link>
-                    <Nav.Link onClick={ ()=>{ navigate('/ticketing') } }>ticketing</Nav.Link>
+                    <Nav.Link onClick={ ()=>{ navigate('/store') } }>shop</Nav.Link>
+                    <Nav.Link onClick={ ()=>{ navigate('/ticket') } }>ticketing</Nav.Link>
                     <Nav.Link onClick={ ()=>{ navigate('/map') } }>카카오맵</Nav.Link>
-                    <Nav.Link onClick={ ()=>{ navigate('/map') } }>고객센터</Nav.Link>
+                    <Nav.Link onClick={ ()=>{ navigate('/support') } }>고객센터</Nav.Link>
                 </Container>
                 <div className={styles['category-right']}>
 	                <div className={styles['search-box']}>
