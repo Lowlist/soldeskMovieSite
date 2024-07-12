@@ -41,8 +41,10 @@ function NoticeDetail(){
                 <div className={styles.viewArea}>
                     <p>{notice.content}</p>
                 </div>
-                <button>이전</button>
-                <button>다음</button>
+                <div className={styles.pagination}>
+                    <button className={styles.paginationButton}>이전</button>
+                    <button className={styles.paginationButton}>다음</button>
+                </div>
             </div>
         </div>
     )

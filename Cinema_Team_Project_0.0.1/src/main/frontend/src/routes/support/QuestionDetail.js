@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
 import styles from './style/Support.module.css';
 
@@ -15,8 +15,17 @@ const mockQuestions = [
     { id: 10, title: '질문 10', content: '질문 내용 10', date: '2024-07-12', hit: '0' },
   ];
 function QuestionDetail(){
-    const {id} = useParams();
+    const { id } = useParams();
     const question = mockQuestions.find(q => q.id === parseInt(id));
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState('');
+  
+    const handleAddComment = () => {
+      if (newComment.trim() !== '') {
+        setComments([...comments, { text: newComment, date: new Date().toISOString() }]);
+        setNewComment('');
+      }
+    };
 
     if(!question){
         return(<div>질문을 찾을 수 없습니다.</div>);
@@ -45,8 +54,34 @@ function QuestionDetail(){
                 <div className={styles.viewArea}>
                     <p>{question.content}</p>
                 </div>
-                <button>이전</button>
-                <button>다음</button>
+                <div className={styles.commentsSection}>
+                    <h3>댓글</h3>
+                    {comments.length > 0 ? (
+                        <ul className={styles.commentList}>
+                        {comments.map((comment, index) => (
+                            <li key={index} className={styles.commentItem}>
+                            <div>{comment.text}</div>
+                            <div className={styles.commentDate}>{new Date(comment.date).toLocaleString()}</div>
+                            </li>
+                        ))}
+                        </ul>
+                    ) : (
+                        <p>댓글이 없습니다.</p>
+                    )}
+                    <div className={styles.commentForm}>
+                        <textarea
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        placeholder="댓글을 입력하세요"
+                        className={styles.commentInput}
+                        />
+                        <button onClick={handleAddComment} className={styles.commentButton}>댓글 추가</button>
+                    </div>
+                </div>
+                <div className={styles.pagination}>
+                    <button className={styles.paginationButton}>이전</button>
+                    <button className={styles.paginationButton}>다음</button>
+                </div>
             </div>
         </div>
     )

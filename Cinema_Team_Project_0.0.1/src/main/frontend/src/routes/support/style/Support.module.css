@@ -145,6 +145,13 @@ ol, ul {
   margin-top: 19px;
 }
 
+.viewArea {
+  padding: 35px 13px;
+  border-bottom: solid 1px #b8b6aa;
+  line-height: 24px;
+  margin-top: 20px;
+}
+
 .titleFaq {
   overflow: hidden;
   padding: 11px;
@@ -192,6 +199,77 @@ ol, ul {
   align-items: center; /* 수직 정렬 */
   justify-content: space-between;
   width: 100%;
+}
+
+.commentsSection {
+  margin-top: 20px;
+}
+
+.commentList {
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid #ccc;
+}
+
+.commentItem {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.commentDate {
+  font-size: 12px;
+  color: #999;
+}
+
+.commentForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 26px); /* Adjusting for padding */
+  padding: 0 13px; /* Same padding as .viewArea */
+  box-sizing: border-box;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.commentButton {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.commentButton:hover {
+  background-color: #0056b3;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.paginationButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.paginationButton:hover {
+  background-color: #0056b3;
 }
 
 .paging {
@@ -289,3 +367,4 @@ ol, ul {
 .chatSendButton:hover {
   background-color: #0056b3;
 }
+
