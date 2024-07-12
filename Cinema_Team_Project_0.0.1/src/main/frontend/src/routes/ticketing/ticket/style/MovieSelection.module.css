@@ -59,4 +59,5 @@
     top: 50%;
     margin-top: -25px; /* 이 요소 높이의 절반 */
     margin-left: 150px;
+    margin-right: 20px;
 }

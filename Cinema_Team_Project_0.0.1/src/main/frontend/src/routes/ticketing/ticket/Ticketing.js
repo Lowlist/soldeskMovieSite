@@ -37,6 +37,7 @@ function Ticketing() {
                         title: movie.title,
                         poster: movie.posters.split('|')[0] || movie.posters, // 첫 번째 포스터 이미지 추출
                         genre: movie.genre || '장르 정보 없음', // 장르 데이터가 비어 있을 경우 처리
+                        runtime: movie.ratings.rating[0].runtime // 런닝타임 추가
                     }));
                 setMovies(filteredMovies);
 
@@ -49,7 +50,7 @@ function Ticketing() {
     useEffect(() => {
         const today = new Date();
         const tempDates = [];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 10; i++) {
             const date = new Date(today);
             date.setDate(today.getDate() + i);
             tempDates.push(date);
