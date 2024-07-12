@@ -8,7 +8,7 @@ const TimeSelection = ({ selectedTime, selectedHall, setSelectedTime, setSelecte
             times: Array.from({ length: 10 }, (_, i) => {
                 const hours = 10 + Math.floor(i * 20 / 60);
                 const minutes = (i * 20) % 60;
-                return `${hours}:${minutes.toString().padStart(2, '0')}`;
+                return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
             })
         },
         {
@@ -16,7 +16,7 @@ const TimeSelection = ({ selectedTime, selectedHall, setSelectedTime, setSelecte
             times: Array.from({ length: 10 }, (_, i) => {
                 const hours = 10 + Math.floor(i * 30 / 60);
                 const minutes = (10 + i * 30) % 60;
-                return `${hours}:${minutes.toString().padStart(2, '0')}`;
+                return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
             })
         },
         {
@@ -24,7 +24,7 @@ const TimeSelection = ({ selectedTime, selectedHall, setSelectedTime, setSelecte
             times: Array.from({ length: 10 }, (_, i) => {
                 const hours = 9 + Math.floor(i * 60 / 60);
                 const minutes = (30 + i * 60) % 60;
-                return `${hours}:${minutes.toString().padStart(2, '0')}`;
+                return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
             })
         }
     ];
@@ -43,12 +43,13 @@ const TimeSelection = ({ selectedTime, selectedHall, setSelectedTime, setSelecte
                         <div className={styles.timeHallHeader}>{hall.name}</div>
                         <div className={styles.timeRow}>
                             {hall.times.map((time, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`${styles.timeItem} ${selectedTime === time && selectedHall === hall.name ? styles.selectedTime : ''}`}
-                                    onClick={() => handleTimeClick(time, hall.name)}
-                                >
-                                    {time}
+                                <div key={idx}
+                                    className={styles.timeItem}
+                                    onClick={() => handleTimeClick(time, hall.name)}>
+                                    <div className={`${styles.timeSection} ${selectedTime === time && selectedHall === hall.name ? styles.selectedTime : ''}`}>
+                                        {time}
+                                    </div>
+                                    <div className={styles.remainingSeats}>111석</div>
                                 </div>
                             ))}
                         </div>
