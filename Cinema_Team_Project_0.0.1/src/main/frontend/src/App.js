@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Shop from './routes/shop/Shop.js';
+import Main from './routes/main/Main.js';
 import Ticketing from './routes/ticketing/Ticketing.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
