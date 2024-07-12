@@ -47,12 +47,12 @@ function App() {
 
             <Route path="/movie" element={<>혁영이형이야~ <Outlet></Outlet> </>}>
               <Route path="main" element={<>/ 무비 메인</>}></Route>
-              <Route path="info" element={<>/ 무비 메인 <Outlet></Outlet> </>}>
-                <Route path="schedule" element={<>/ 상영관 스케줄</>}></Route>
-                <Route path="review" element={<>/ 리뷰 게시판</>}></Route>
+              <Route path="info" element={<>/ 영화 상세정보 <Outlet></Outlet> </>}>
+                <Route path="schedule" element={<>/ 해당 영화에 대한 상영관 스케줄</>}></Route>
+                <Route path="review" element={<>/ 해당 영화에 대한 리뷰 게시판</>}></Route>
               </Route>
-              <Route path="theater" element={<>/ 무비 메인</>}></Route>
-              <Route path="search" element={<>/ 무비 메인</>}></Route>
+              <Route path="theater" element={<>/ 상영관 정보 </>}></Route>
+              <Route path="search" element={<>/ 영화 검색정보 URL </>}></Route>
             </Route>
 
             <Route path="/member" element={<> <Outlet></Outlet> </>}>
