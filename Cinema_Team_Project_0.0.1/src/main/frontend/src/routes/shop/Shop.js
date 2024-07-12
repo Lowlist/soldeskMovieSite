@@ -18,7 +18,6 @@ function Shop() {
             </Navbar>
             <Goods/>
             <br/>
-            ㅁㄴㅇㄹ
         </div>
     )
 }

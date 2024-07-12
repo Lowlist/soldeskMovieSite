@@ -5,6 +5,8 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
  * -컴포넌트간 state 공유 편해짐
  * -작은 프로젝트면 props 사용하는게 더 편함
  * -컴포넌트간 공유가 필요없으면 useState() 그냥 써도 상관없슴
+ * -프롭스 사용해도 상관없습니다!
+ * 
  * 
  * Redux의 State를 수정하는방법
  * 1.state 수정하는 함수 만들기
@@ -18,5 +20,6 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 export default configureStore({
   reducer: { 
+
   }
 }) 

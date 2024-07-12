@@ -1,0 +1,42 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.movieInfo {
+    font-size: 14px;
+}
+
+.movieInfoContainer {
+    display: flex;
+}
+
+.buttonContainer {
+    display: flex;
+}
+
+.button {
+    background-color: #d9534f;
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.button:hover {
+    background-color: #c9302c;
+}
