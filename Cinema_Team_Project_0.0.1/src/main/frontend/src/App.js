@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-
+      
       {/* Suspense 의 기능은 페이지가 불러오는 도중일때 fallback 에 등록한 Div 및 컴포넌트를 보여줌 */}
       <Suspense fallback={<div>로딩중임</div>}>
           <Routes>
@@ -83,7 +83,6 @@ function App() {
             <Route path="*" element={<div>404임</div>}></Route>
           </Routes>
       </Suspense>
-
     </div>
   );
 }
