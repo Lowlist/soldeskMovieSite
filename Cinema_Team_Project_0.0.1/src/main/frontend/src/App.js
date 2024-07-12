@@ -27,6 +27,7 @@ function App() {
     <div className="App">
       {/* <span onClick={ ()=>{ c(따봉+1) } }>따봉</span>{따봉} */}
       <Shop></Shop>
+      <Main></Main>
       {/* <Ticketing></Ticketing> */}
     </div>
   );
