@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeView } from '../../slice/shopSlice';
 import { useState } from 'react';
 
+
+// 패키지 상품 컴포넌트
 function PackageGoods() {
     let navigate = useNavigate();
     let disPatch = useDispatch();

@@ -5,6 +5,8 @@ import style from './style/Goods.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+
+//음료,음식 컴포넌트
 function DrinkFood() {
     let navigate = useNavigate();
     let [shoes] = useState(data);

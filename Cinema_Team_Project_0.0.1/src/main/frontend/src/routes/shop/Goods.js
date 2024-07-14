@@ -8,7 +8,7 @@ import GiftTicket from './GiftTicket';
 import PackageGoods from './PackageGoods';
 import style from './style/Goods.module.css';
 
-
+//Store 컴포넌트
 function Goods() {
     let [shoes] = useState(data);
     let navigate = useNavigate();

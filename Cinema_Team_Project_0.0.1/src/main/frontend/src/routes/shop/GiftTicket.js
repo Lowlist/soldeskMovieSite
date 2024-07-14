@@ -5,6 +5,8 @@ import style from './style/Goods.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+
+//영화 관람권 컴포넌트
 function GiftTicket() {
     let navigate = useNavigate();
     let [shoes] = useState(data);
