@@ -6,7 +6,7 @@ let shop = createSlice({
     reducers: {
         changeView(state,actions){
             if(actions.payload.view){
-                return state.package === false;
+                return state.package === false
             }
             if(actions.payload.package){
                 return state.view === false;

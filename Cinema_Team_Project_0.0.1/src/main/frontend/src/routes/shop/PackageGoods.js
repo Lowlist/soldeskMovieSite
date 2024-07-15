@@ -36,6 +36,15 @@ function PackageGoods() {
                     })
                 }
             </Row>
+            
+            { state.shop.package && <Button variant="light" onClick={ (e) => { e.stopPropagation(); disPatch(changeView({package : true})); navigate(-1)} }>뒤로가기</Button> } {' '}
+            
+            {
+                console.log(state.shop.view + "zㅋㅋ")
+            }
+
+            {console.log(state.shop.package + "zㅋㅋㅋㅋㅋㅋ")}
+            
         </div>
     )
 }
