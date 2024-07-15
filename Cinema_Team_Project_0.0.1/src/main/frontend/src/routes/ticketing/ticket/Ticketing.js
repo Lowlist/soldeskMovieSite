@@ -27,7 +27,10 @@ function Ticketing() {
 
     // 영화 데이터 불러오기
     useEffect(() => {
-        axios.get('/ticketing/movies', { params: { releaseDate: '20240615' } })
+        const today = new Date();
+        const date = new Date(today);
+        date.setDate(today.getDate() - 30);
+        axios.get('/ticketing/movies', { params: { releaseDate: date } })
             .then(response => {
                 const movieData = response.data.Data[0].Result;
                 const filteredMovies = movieData

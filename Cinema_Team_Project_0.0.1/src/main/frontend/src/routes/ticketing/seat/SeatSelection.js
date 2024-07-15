@@ -12,17 +12,13 @@ function SeatSelection() {
     const [numPeople, setNumPeople] = useState(1);
 
     const hallConfigurations = {
-        '1관': { rows: 8, cols: 8 },
-        '2관': { rows: 14, cols: 16 },
-        '3관': { rows: 11, cols: 24, specialRow: 0, specialCols: 3 },
+        '2D 1관(일반)': { rows: 8, cols: 8 },
+        '2D 2관(리클라이너)': { rows: 14, cols: 16 },
+        'IMAX LASER 2D IMAX관': { rows: 11, cols: 24, specialRow: 0, specialCols: 3 },
     };
 
     const ticketPrice = 15000;
     const totalPrice = ticketPrice * numPeople;
-
-    useEffect(() => {
-        console.log(location.state);
-    }, [location.state]);
 
     const handleSeatClick = (seat) => {
         const row = seat.charCodeAt(0) - 65;
