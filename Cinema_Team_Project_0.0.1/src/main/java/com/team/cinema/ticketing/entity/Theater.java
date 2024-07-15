@@ -12,29 +12,29 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "theater")
 public class Theater {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
 
-    @Column(name = "cinemaNo")
+    @Column(name = "cinemaNo", nullable = false)
     private int cinemaNo;
 
-    @Column(name = "max")
+    @Column(name = "max", nullable = false)
     private int max;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private int price;
 
-    @Column(name = "state")
+    @Column(name = "state", nullable = false)
     private int state;
 
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private int content;
 
-    @Column(name = "createdAt")
+    @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
 
 	public int getNo() {

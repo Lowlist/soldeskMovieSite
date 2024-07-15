@@ -16,8 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.team.cinema.ticketing.entity.Cinema;
 import com.team.cinema.ticketing.entity.Theater;
-import com.team.cinema.ticketing.repository.TicketingRepository;
+import com.team.cinema.ticketing.repository.CinemaRepository;
+import com.team.cinema.ticketing.repository.TheaterRepository;
 
 @Service
 public class TicketingService {
@@ -27,7 +29,9 @@ public class TicketingService {
     private final String serviceKey = "BOC8E6E947M11OX4WO71";
     
     @Autowired
-    private TicketingRepository theaterRepository;
+    private CinemaRepository cinemaRepository;
+    @Autowired
+    private TheaterRepository theaterRepository;
 
     public String getMovies(String releaseDate) {
         try {
@@ -56,7 +60,13 @@ public class TicketingService {
         return "{}";
     }
     
-    public List<Theater> getTheater() {
-    	return theaterRepository.findAll();
+    public List<Cinema> getTheatersByArea(String area) {
+        return cinemaRepository.findByArea(area);
     }
+    
+    public List<Theater> getTheatersByCinema(int cinemaNo) {
+        return theaterRepository.findByCinemaNo(cinemaNo);
+    }
+    
+    
 }

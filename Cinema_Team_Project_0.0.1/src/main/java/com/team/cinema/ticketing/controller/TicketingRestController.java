@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.team.cinema.ticketing.entity.Cinema;
 import com.team.cinema.ticketing.entity.Theater;
 import com.team.cinema.ticketing.service.TicketingService;
 
@@ -23,8 +24,13 @@ public class TicketingRestController {
         return ticketingService.getMovies(releaseDate);
     }
     
-    @GetMapping("/theater")
-    public List<Theater> getTheater() {
-    	return ticketingService.getTheater();
+    @GetMapping("/theaters")
+    public List<Cinema> getTheaters(@RequestParam("area") String area) {
+        return ticketingService.getTheatersByArea(area);
+    }
+
+    @GetMapping("/theater/list")
+    public List<Theater> getTheatersByCinema(@RequestParam("cinemaNo") int cinemaNo) {
+        return ticketingService.getTheatersByCinema(cinemaNo);
     }
 }
