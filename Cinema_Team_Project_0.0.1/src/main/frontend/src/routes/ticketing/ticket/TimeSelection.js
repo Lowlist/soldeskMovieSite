@@ -2,33 +2,25 @@ import React, { useState, useEffect } from 'react';
 import styles from './style/TimeSelection.module.css';
 import axios from 'axios';
 
-const TimeSelection = ({ selectedTheater, theaterNo, selectedTime, selectedHall, setSelectedTime, setSelectedHall }) => {
+const TimeSelection = ({ selectedTheater, theaterNo, selectedDateString, selectedTime, selectedHall, setSelectedTime, setSelectedHall }) => {
     const [halls, setHalls] = useState([]);
 
     useEffect(() => {
         if (theaterNo) {
-            axios.get('/ticketing/theater-details', { params: { cinemaNo: theaterNo } })
+            axios.get('/ticketing/theater-details', { params: { theaterNo } })
                 .then(response => {
-                    const hallData = response.data.map(theater => ({
-                        name: getTheaterName(theater.no),
-                        times: generateTimes(theater.no),
-                        maxSeats: theater.max
-                    }));
+                    const theater = response.data;
+                    const hallData = [
+                        { name: '2D 1관(일반)', times: filterPastTimes(generateTimes(1)), maxSeats: theater.max },
+                        { name: '2D 2관(리클라이너)', times: filterPastTimes(generateTimes(2)), maxSeats: theater.max },
+                        { name: 'IMAX LASER 2D IMAX관', times: filterPastTimes(generateTimes(3)), maxSeats: theater.max },
+                        { name: 'ULTRA 4DX관', times: filterPastTimes(generateTimes(4)), maxSeats: theater.max }
+                    ];
                     setHalls(hallData);
                 })
                 .catch(error => console.error("API 호출 오류: ", error));
         }
     }, [theaterNo]);
-
-    const getTheaterName = (no) => {
-        switch (no) {
-            case 1: return '2D 1관(일반)';
-            case 2: return '2D 2관(리클라이너)';
-            case 3: return 'IMAX LASER 2D IMAX관';
-            case 4: return 'ULTRA 4DX관';
-            default: return '';
-        }
-    };
 
     const generateTimes = (theaterNo) => {
         switch (theaterNo) {
@@ -59,6 +51,16 @@ const TimeSelection = ({ selectedTheater, theaterNo, selectedTime, selectedHall,
             default:
                 return [];
         }
+    };
+
+    const filterPastTimes = (times) => {
+        const currentDate = new Date();
+        return times.filter(time => {
+            const [hours, minutes] = time.split(':').map(Number);
+            const timeDate = new Date(currentDate);
+            timeDate.setHours(hours, minutes, 0, 0);
+            return timeDate > currentDate;
+        });
     };
 
     const handleTimeClick = (time, hall) => {

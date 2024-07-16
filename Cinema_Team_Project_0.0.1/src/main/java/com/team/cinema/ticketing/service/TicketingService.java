@@ -67,6 +67,8 @@ public class TicketingService {
     public List<Theater> getTheatersByCinema(int cinemaNo) {
         return theaterRepository.findByCinemaNo(cinemaNo);
     }
-    
-    
+
+    public Theater getTheaterDetails(int theaterNo) {
+        return theaterRepository.findById(theaterNo).orElse(null);
+    }
 }

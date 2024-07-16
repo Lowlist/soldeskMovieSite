@@ -33,4 +33,9 @@ public class TicketingRestController {
     public List<Theater> getTheatersByCinema(@RequestParam("cinemaNo") int cinemaNo) {
         return ticketingService.getTheatersByCinema(cinemaNo);
     }
+
+    @GetMapping("/theater-details")
+    public Theater getTheaterDetails(@RequestParam("theaterNo") int theaterNo) {
+        return ticketingService.getTheaterDetails(theaterNo);
+    }
 }

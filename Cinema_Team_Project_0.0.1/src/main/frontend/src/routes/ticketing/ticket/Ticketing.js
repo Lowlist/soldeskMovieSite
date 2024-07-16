@@ -12,12 +12,13 @@ function Ticketing() {
     const [dates, setDates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedRegion, setSelectedRegion] = useState('전체');
-    const [theaterNo, setTheaterNo] = useState(null);
+    const [theaters, setTheaters] = useState([]);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [selectedTheater, setSelectedTheater] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHall, setSelectedHall] = useState(null);
+    const [selectedTheaterNo, setSelectedTheaterNo] = useState(null); // 추가된 상태
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,6 +38,7 @@ function Ticketing() {
                         runtime: movie.ratings.rating[0].runtime // 런닝타임 추가
                     }));
                 setMovies(filteredMovies);
+
             })
             .catch(error => {
                 console.error("API 호출 오류: ", error);
@@ -55,6 +57,7 @@ function Ticketing() {
         setSelectedDate(tempDates[0]);
     }, []);
 
+
     const selectedDateString = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' }).replace(/ /g, '').replace(/,/g, '') : '';
 
     const handleSeatSelection = () => {
@@ -65,21 +68,9 @@ function Ticketing() {
         <div className={styles.container}>
             <div className={styles.selectionContainer}>
                 <MovieSelection movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
-                <TheaterSelection
-                    selectedRegion={selectedRegion}
-                    setSelectedRegion={setSelectedRegion}
-                    selectedTheater={selectedTheater}
-                    setSelectedTheater={setSelectedTheater}
-                    setTheaterNo={setTheaterNo}
-                />
+                <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} setSelectedTheaterNo={setSelectedTheaterNo} />
                 <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-                <TimeSelection
-                    selectedTime={selectedTime}
-                    selectedHall={selectedHall}
-                    setSelectedTime={setSelectedTime}
-                    setSelectedHall={setSelectedHall}
-                    theaterNo={theaterNo}
-                />
+                <TimeSelection selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
             <Footer
                 selectedMovie={selectedMovie}

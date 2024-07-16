@@ -15,6 +15,7 @@ function SeatSelection() {
         '2D 1관(일반)': { rows: 8, cols: 8 },
         '2D 2관(리클라이너)': { rows: 14, cols: 16 },
         'IMAX LASER 2D IMAX관': { rows: 11, cols: 24, specialRow: 0, specialCols: 3 },
+        'ULTRA 4DX관': { rows: 10, cols: 16}
     };
 
     const ticketPrice = 15000;

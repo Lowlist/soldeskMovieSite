@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './style/TheaterSelection.module.css';
 
-const TheaterSelection = ({ selectedRegion, setSelectedRegion, selectedTheater, setSelectedTheater, setTheaterNo }) => {
+const TheaterSelection = ({ selectedRegion, setSelectedRegion, selectedTheater, setSelectedTheater, setSelectedTheaterNo }) => { // 여기서 setSelectedTheaterNo로 수정
     const [theaters, setTheaters] = useState([]);
     const regions = [ '서울'];
 
@@ -16,7 +16,7 @@ const TheaterSelection = ({ selectedRegion, setSelectedRegion, selectedTheater, 
 
     const handleTheaterSelect = (theater) => {
         setSelectedTheater(`${theater.name}(${theater.region})`);
-        setTheaterNo(theater.no);
+        setSelectedTheaterNo(theater.no); // 여기도 setSelectedTheaterNo로 수정
     };
 
     return (
