@@ -49,7 +49,16 @@ function Main() {
 	            </div>
             </Navbar>
             <div className={styles['wrapper-body']}>
-	            <div className={styles['body-video']}>비디오 들어갈 div</div>
+				<div className={styles['body-video-wrapper']}>
+					<div className={styles['body-video']} onMouseEnter={()=>{ setShow(true) }} onMouseLeave={()=>{ setShow(false) }}>비디오 들어갈 div</div>
+					<VideoInfo></VideoInfo>
+					{
+						show == true ? <VideoInfo/> : null
+					}
+					{
+						show == false ? 'body-video' : null
+					}
+				</div>
 	            <div className={styles['body-chart']}>
 	                <div className={styles['chart-header']}>
 	                    <div className={styles['chart-title']}><strong>무비 차트</strong></div>
@@ -78,6 +87,17 @@ function Main() {
 	        <div className={styles['wrapper-footer']}>@팀명 Corp.</div>
 	    </div>   
     )
+}
+
+function VideoInfo() {
+	let navigate = useNavigate();
+
+	return (
+		<div>
+			<div className={styles['video-title']}>비디오 이름</div>
+			<button className={styles['video-button']} onClick={()=>{ navigate('/')}}>바로가기 버튼</button>
+		</div>
+	)
 }
 
 export default Main;
