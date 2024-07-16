@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import styles from './style/Main.module.css';
 import ReactPlayer from 'react-player';
 import Button from 'react-bootstrap/Button';
+import search from '../../images/search.png';
+import login from '../../images/login.png';
+import logout from '../../images/logout.png';
+import mypage from '../../images/mypage.png';
+import join from '../../images/join.png';
 
 function Main() {
     let navigate = useNavigate();
-	let [close, setClose] = useState(false);
-	let [hide, setHide] = useState(true);
 
     return (
         <div className={styles['wrapper']}>
@@ -23,15 +26,15 @@ function Main() {
 	            </div>
 	            <div className={styles['header-top-right']}>
 	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/member/signIn') } } style={ {cursor : 'pointer'} }>
-	                    {/* <img className="top-user-img" src={ login }></img> */}
+	                    <img className={styles['top-user-img']} src={ login }></img>
 	                    <div className={styles['top-user-btn']}>로그인</div>
 	                </div>
 	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/member/signUp') } } style={ {cursor : 'pointer'} }>
-	                    {/* <img className="top-user-img" src={ join }></img> */}
+	                    <img className={styles['top-user-img']} src={ join }></img>
 	                    <div className={styles['top-user-btn']}>회원가입</div>
 	                </div>
 	                <div className={styles['top-user']} onClick={ ()=>{ navigate('/member/mypage') } } style={ {cursor : 'pointer'} }>
-	                    {/* <img className="top-user-img" src={ mypage }></img> */}
+	                    <img className={styles['top-user-img']} src={ mypage }></img>
 	                    <div className={styles['top-user-btn']}>마이페이지</div>
 	                </div>
 	            </div>
@@ -49,7 +52,7 @@ function Main() {
 	                    <input id={styles['searchBox']} type="text" placeholder="영화 검색"></input>
 	                </div>
 	                <div className={styles['search-btn']}>
-	                    {/* <img id="searchBtn" src={search}></img> */}
+	                    <img className={styles['searchBtn']} src={search}></img>
 	                </div>
 	            </div>
             </Navbar>

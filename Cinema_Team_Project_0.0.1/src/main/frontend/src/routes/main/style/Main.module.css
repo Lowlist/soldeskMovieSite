@@ -140,7 +140,7 @@ html, body {
     height: 30px;
 }
 
-#searchBtn {
+.searchBtn {
     width: 25px;
     height: 25px;
     margin-left: 5px;
