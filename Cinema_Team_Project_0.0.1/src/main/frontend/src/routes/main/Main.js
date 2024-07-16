@@ -1,9 +1,14 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './style/Main.module.css';
+import ReactPlayer from 'react-player';
+import Button from 'react-bootstrap/Button';
 
 function Main() {
     let navigate = useNavigate();
+	let [close, setClose] = useState(false);
+	let [hide, setHide] = useState(true);
 
     return (
         <div className={styles['wrapper']}>
@@ -49,15 +54,21 @@ function Main() {
 	            </div>
             </Navbar>
             <div className={styles['wrapper-body']}>
-				<div className={styles['body-video-wrapper']}>
-					<div className={styles['body-video']} onMouseEnter={()=>{ setShow(true) }} onMouseLeave={()=>{ setShow(false) }}>비디오 들어갈 div</div>
-					<VideoInfo></VideoInfo>
-					{
-						show == true ? <VideoInfo/> : null
-					}
-					{
-						show == false ? 'body-video' : null
-					}
+				<div className={styles['body-video']}>
+					<ReactPlayer
+					className={styles['background-video']}
+					url={"https://youtu.be/phuiiNCxRMg?si=VNb76MM_fBd7GHHe"}
+      				width="100%"
+      				height="100%"
+      				loop={true}
+      				playing={true}
+      				muted={true}
+      				controls={false} />
+					<div className={styles['video-div']}>
+						<div className={styles['video-title']}>에스파 - 슈퍼노바</div>
+						<div className={styles['video-info']}>에스파 윈터 vs 카리나 당신의 선택은???</div>
+						<Button className={styles['video-button']} onClick={()=>{ navigate('/')}}variant="light">상세보기 {'>'}</Button>{' '}
+					</div>
 				</div>
 	            <div className={styles['body-chart']}>
 	                <div className={styles['chart-header']}>
@@ -87,17 +98,6 @@ function Main() {
 	        <div className={styles['wrapper-footer']}>@팀명 Corp.</div>
 	    </div>   
     )
-}
-
-function VideoInfo() {
-	let navigate = useNavigate();
-
-	return (
-		<div>
-			<div className={styles['video-title']}>비디오 이름</div>
-			<button className={styles['video-button']} onClick={()=>{ navigate('/')}}>바로가기 버튼</button>
-		</div>
-	)
 }
 
 export default Main;
