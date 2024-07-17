@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { useEffect , Suspense , useState } from 'react';
-import { Route, Routes, useNavigate, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from './routes/main/Main.js';
-import Shop from './routes/shop/Shop.js';
-import PackageGoods from './routes/shop/PackageGoods.js';
-import GiftTicket from './routes/shop/GiftTicket.js';
 import DrinkFood from './routes/shop/DrinkFood.js';
+import GiftTicket from './routes/shop/GiftTicket.js';
+import GoodsDetail from './routes/shop/GoodsDetail.js';
+import PackageGoods from './routes/shop/PackageGoods.js';
+import Shop from './routes/shop/Shop.js';
 import Ticket from './routes/ticketing/ticket/Ticketing.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
@@ -45,8 +45,11 @@ function App() {
               <Route path="package" element={<PackageGoods/>}></Route>
               <Route path="food" element={<DrinkFood/>}></Route>
               <Route path="giftTicket" element={<GiftTicket/>}></Route>
+              <Route path=':id' element={<GoodsDetail/>}></Route>
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>
+            
+
 
             <Route path="/movie" element={<>혁영이형이야~ <Outlet></Outlet> </>}>
               <Route path="main" element={<>/ 무비 메인</>}></Route>

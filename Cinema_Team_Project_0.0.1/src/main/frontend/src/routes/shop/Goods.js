@@ -1,17 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import data from './data';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import DrinkFood from './DrinkFood';
 import GiftTicket from './GiftTicket';
 import PackageGoods from './PackageGoods';
 import style from './style/Goods.module.css';
+import { useState } from 'react';
 
 //Store 컴포넌트
 function Goods() {
-    let [shoes] = useState(data);
+    let id = useLocation();
     let navigate = useNavigate();
+    let [viewGoods] = useState(false);
+    
+    if (id.pathname === "/store") {
+        viewGoods = true;
+    }
     return (
         <div>
             <div className={style.goodsMain}>
@@ -29,24 +33,33 @@ function Goods() {
                     </Navbar>
                     {/* Navbar End */}
 
-                    {/* PackageGoods Start */}
-                     
-                    {  <PackageGoods/> }
-                    
-                    {/* PackageGoods End */}
+                    {/* Goods Start */}
+                    {
+                    viewGoods &&
+                    <div>
+                        {/* PackageGoods Start */}
 
-                    <div className={style.goodsLine}>
+                        <PackageGoods/> 
                         
-                        {/* LeftBox Start */}
-                        <DrinkFood/>
-                        {/* LeftBox End */}
+                        {/* PackageGoods End */}
 
-                        {/* RightBox Start */}
-                        <GiftTicket/>
-                        {/* RightBox End */}
+                        <div className={style.goodsLine}>
+                            
+                            {/* LeftBox Start */}
+                            <DrinkFood/>
+                            {/* LeftBox End */}
 
+                            {/* RightBox Start */}
+                            <GiftTicket/>
+                            {/* RightBox End */}
+
+                        </div>
                     </div>
+                    }   
+                    {/* Goods End */}
+                    <Outlet/>
                 </Container>
+
             </div>
         </div>
     )

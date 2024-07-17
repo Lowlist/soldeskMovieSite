@@ -21,6 +21,14 @@ let data = [
       content : "Born in the States",
       price : 130000,
       count : 0
+    },
+    
+    {
+      id : 4,
+      title : "Grey Yordan",
+      content : "Born in the States",
+      price : 130000,
+      count : 0
     }
   ] 
 

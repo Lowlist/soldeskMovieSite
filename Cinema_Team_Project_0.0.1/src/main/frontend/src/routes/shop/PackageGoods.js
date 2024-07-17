@@ -1,49 +1,44 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Col, Row } from 'react-bootstrap';
-import data from './data';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import style from './style/Goods.module.css';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeView } from '../../slice/shopSlice';
-import { useState } from 'react';
-
 
 // 패키지 상품 컴포넌트
 function PackageGoods() {
     let navigate = useNavigate();
-    let disPatch = useDispatch();
     let state = useSelector((state)=>{ return state })
-    let [shoes] = useState(data);
+    let id = useLocation();
+    let buttons = true;
+    if (id.pathname === "/store/package"){
+        buttons = false;
+    }
+
     return (
         <div>
             <div className={style.goodsName}>
                 패키지 상품
-                <div className={style.plusButtonF}>
-                    <Button variant="light" onClick={ (e) => { e.stopPropagation(); disPatch(changeView({package : true})); navigate('package')} }>+</Button>{' '}
-                </div>
+                { 
+                    buttons &&
+                    <div className={style.plusButtonF}>
+                        <Button variant="light" onClick={ (e) => { e.stopPropagation(); navigate('package')} }>+</Button>{' '}
+                    </div>
+                }
             </div>
             <hr className={style.hrCenter} />
             <Row>
                 {
-                    shoes.map((a, i) => {
-                        return (
-                            <Col key={i}>
-                                <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" />
-                                <h4>{shoes[i].title}</h4>
-                                <div>{shoes[i].price}</div>
-                            </Col>
-                        )
-                    })
+                    state.shop.map((a, i) =>
+                        <Col key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
+                            <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" alt='이미지 로딩 실패'/>
+                            <h4>{state.shop[i].title}</h4>
+                            <div>{state.shop[i].price}</div>
+                        </Col>
+                    )
                 }
             </Row>
-            
-            { state.shop.package && <Button variant="light" onClick={ (e) => { e.stopPropagation(); disPatch(changeView({package : true})); navigate(-1)} }>뒤로가기</Button> } {' '}
-            
-            {
-                console.log(state.shop.view + "zㅋㅋ")
-            }
 
-            {console.log(state.shop.package + "zㅋㅋㅋㅋㅋㅋ")}
+            { !buttons && <Button variant="light" onClick={ (e) => { e.stopPropagation(); navigate('/store')} }>뒤로가기</Button> } {' '}
             
         </div>
     )
