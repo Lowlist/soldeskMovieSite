@@ -25,7 +25,9 @@ function Ticketing() {
         const today = new Date();
         const date = new Date(today);
         date.setDate(today.getDate() - 30);
-        axios.get('/ticketing/movies', { params: { releaseDate: date } })
+        const formattedDate = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
+
+        axios.get('/ticketing/movies', { params: { releaseDate: formattedDate } })
             .then(response => {
                 const movieData = response.data.Data[0].Result;
                 const filteredMovies = movieData

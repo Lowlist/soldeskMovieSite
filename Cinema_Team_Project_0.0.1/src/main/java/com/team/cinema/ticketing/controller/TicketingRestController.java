@@ -15,7 +15,7 @@ import com.team.cinema.ticketing.service.TicketingService;
 @RestController
 @RequestMapping("/ticketing")
 public class TicketingRestController {
-    
+
     @Autowired
     private TicketingService ticketingService;
 
@@ -23,7 +23,7 @@ public class TicketingRestController {
     public String getMovies(@RequestParam("releaseDate") String releaseDate) {
         return ticketingService.getMovies(releaseDate);
     }
-    
+
     @GetMapping("/theaters")
     public List<Cinema> getTheaters(@RequestParam("area") String area) {
         return ticketingService.getTheatersByArea(area);
@@ -34,8 +34,4 @@ public class TicketingRestController {
         return ticketingService.getTheatersByCinema(cinemaNo);
     }
 
-    @GetMapping("/theater-details")
-    public Theater getTheaterDetails(@RequestParam("theaterNo") int theaterNo) {
-        return ticketingService.getTheaterDetails(theaterNo);
-    }
 }

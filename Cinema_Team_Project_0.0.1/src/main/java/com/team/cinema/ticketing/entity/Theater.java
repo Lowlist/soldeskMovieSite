@@ -12,12 +12,18 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "theater")
 public class Theater {
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
 
     @Column(name = "cinemaNo", nullable = false)
     private int cinemaNo;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "dimension", nullable = false)
+    private String dimension;
 
     @Column(name = "max", nullable = false)
     private int max;
@@ -37,69 +43,85 @@ public class Theater {
     @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
 
-	public int getNo() {
-		return no;
-	}
+    // Getters and Setters
 
-	public void setNo(int no) {
-		this.no = no;
-	}
+    public int getNo() {
+        return no;
+    }
 
-	public int getCinemaNo() {
-		return cinemaNo;
-	}
+    public void setNo(int no) {
+        this.no = no;
+    }
 
-	public void setCinemaNo(int cinemaNo) {
-		this.cinemaNo = cinemaNo;
-	}
+    public int getCinemaNo() {
+        return cinemaNo;
+    }
 
-	public int getMax() {
-		return max;
-	}
+    public void setCinemaNo(int cinemaNo) {
+        this.cinemaNo = cinemaNo;
+    }
 
-	public void setMax(int max) {
-		this.max = max;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public int getPrice() {
-		return price;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
+    public String getDimension() {
+        return dimension;
+    }
 
-	public int getState() {
-		return state;
-	}
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
 
-	public void setState(int state) {
-		this.state = state;
-	}
+    public int getMax() {
+        return max;
+    }
 
-	public int getContent() {
-		return content;
-	}
+    public void setMax(int max) {
+        this.max = max;
+    }
 
-	public void setContent(int content) {
-		this.content = content;
-	}
+    public int getPrice() {
+        return price;
+    }
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
+    public int getState() {
+        return state;
+    }
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
+    public void setState(int state) {
+        this.state = state;
+    }
 
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-    
-    
+    public int getContent() {
+        return content;
+    }
+
+    public void setContent(int content) {
+        this.content = content;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

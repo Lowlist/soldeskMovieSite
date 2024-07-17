@@ -7,42 +7,41 @@ const TimeSelection = ({ selectedTheater, theaterNo, selectedDateString, selecte
 
     useEffect(() => {
         if (theaterNo) {
-            axios.get('/ticketing/theater-details', { params: { theaterNo } })
+            axios.get('/ticketing/theater/list', { params: { cinemaNo: theaterNo } })
                 .then(response => {
-                    const theater = response.data;
-                    const hallData = [
-                        { name: '2D 1관(일반)', times: filterPastTimes(generateTimes(1)), maxSeats: theater.max },
-                        { name: '2D 2관(리클라이너)', times: filterPastTimes(generateTimes(2)), maxSeats: theater.max },
-                        { name: 'IMAX LASER 2D IMAX관', times: filterPastTimes(generateTimes(3)), maxSeats: theater.max },
-                        { name: 'ULTRA 4DX관', times: filterPastTimes(generateTimes(4)), maxSeats: theater.max }
-                    ];
+                    const theaterDetails = response.data;
+                    const hallData = theaterDetails.map(detail => ({
+                        name: `${detail.dimension} ${detail.name}`,
+                        times: filterPastTimes(generateTimes(`${detail.dimension} ${detail.name}`)),
+                        maxSeats: detail.max
+                    }));
                     setHalls(hallData);
                 })
                 .catch(error => console.error("API 호출 오류: ", error));
         }
     }, [theaterNo]);
 
-    const generateTimes = (theaterNo) => {
-        switch (theaterNo) {
-            case 1:
+    const generateTimes = (hallName) => {
+        switch (hallName) {
+            case '2D 1관(일반)':
                 return Array.from({ length: 30 }, (_, i) => {
                     const hours = 10 + Math.floor(i * 20 / 60);
                     const minutes = (i * 20) % 60;
                     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
                 });
-            case 2:
+            case '2D 2관(리클라이너)':
                 return Array.from({ length: 28 }, (_, i) => {
                     const hours = 10 + Math.floor(i * 30 / 60);
                     const minutes = (10 + i * 30) % 60;
                     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
                 });
-            case 3:
+            case 'IMAX LASER 2D IMAX관':
                 return Array.from({ length: 8 }, (_, i) => {
                     const hours = 9 + Math.floor(i * 120 / 60);
                     const minutes = (i * 60) % 60;
                     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
                 });
-            case 4:
+            case 'ULTRA 4DX관':
                 return Array.from({ length: 15 }, (_, i) => {
                     const hours = 10 + Math.floor(i * 40 / 60);
                     const minutes = (i * 40) % 60;
