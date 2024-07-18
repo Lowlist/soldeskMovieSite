@@ -31,22 +31,24 @@
     margin-bottom: 5px;
 }
 
+.hallLine {
+    width: 100%;
+}
+
 .timeRow {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 그리드 설정 */
+    gap: 10px; /* 그리드 항목 사이의 간격 설정 */
 }
 
 .timeItem {
     cursor: pointer;
-    margin: 5px;
     text-align: left;
     display: flex;
+    flex-direction: column;
     font-size: 20px;
     justify-content: space-between;
     align-items: center;
-    width: calc(33.33% - 10px); /* 한 줄에 3개 항목이 들어가도록 너비 설정 */
-    box-sizing: border-box; 
 }
 
 .timeSection {
@@ -54,7 +56,7 @@
     border-radius: 10px;
     text-align: center;
     border: 1px #d3d3d3 solid;
-    flex: 1;
+    width: 100%;
 }
 
 .timeSection:hover {
@@ -67,8 +69,18 @@
 
 .remainingSeats {
     font-size: 13px;
-    margin-left: 5px;
     color: green;
-    flex-shrink: 0;
-    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
 }

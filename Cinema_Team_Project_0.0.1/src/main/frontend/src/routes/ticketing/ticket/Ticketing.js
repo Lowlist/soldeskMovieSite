@@ -18,16 +18,16 @@ function Ticketing() {
     const [selectedTheater, setSelectedTheater] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHall, setSelectedHall] = useState(null);
+    const [selectedTheaterNo, setSelectedTheaterNo] = useState(null); // 추가된 상태
     const navigate = useNavigate();
 
-    const theaterData = {
-        서울: ['서울극장1', '서울극장2'],
-        경기: ['경기극장1', '경기극장2'],
-    };
-
-    // 영화 데이터 불러오기
     useEffect(() => {
-        axios.get('/ticketing/movies', { params: { releaseDate: '20240615' } })
+        const today = new Date();
+        const date = new Date(today);
+        date.setDate(today.getDate() - 30);
+        const formattedDate = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
+
+        axios.get('/ticketing/movies', { params: { releaseDate: formattedDate } })
             .then(response => {
                 const movieData = response.data.Data[0].Result;
                 const filteredMovies = movieData
@@ -37,6 +37,7 @@ function Ticketing() {
                         title: movie.title,
                         poster: movie.posters.split('|')[0] || movie.posters, // 첫 번째 포스터 이미지 추출
                         genre: movie.genre || '장르 정보 없음', // 장르 데이터가 비어 있을 경우 처리
+                        runtime: movie.ratings.rating[0].runtime // 런닝타임 추가
                     }));
                 setMovies(filteredMovies);
 
@@ -49,7 +50,7 @@ function Ticketing() {
     useEffect(() => {
         const today = new Date();
         const tempDates = [];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 10; i++) {
             const date = new Date(today);
             date.setDate(today.getDate() + i);
             tempDates.push(date);
@@ -58,14 +59,6 @@ function Ticketing() {
         setSelectedDate(tempDates[0]);
     }, []);
 
-    useEffect(() => {
-        if (selectedRegion === '전체') {
-            const allTheaters = Object.values(theaterData).flat();
-            setTheaters(allTheaters);
-        } else {
-            setTheaters(theaterData[selectedRegion]);
-        }
-    }, [selectedRegion]);
 
     const selectedDateString = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' }).replace(/ /g, '').replace(/,/g, '') : '';
 
@@ -77,9 +70,9 @@ function Ticketing() {
         <div className={styles.container}>
             <div className={styles.selectionContainer}>
                 <MovieSelection movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
-                <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} />
+                <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} setSelectedTheaterNo={setSelectedTheaterNo} />
                 <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-                <TimeSelection selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
+                <TimeSelection selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
             <Footer
                 selectedMovie={selectedMovie}
