@@ -1,9 +1,8 @@
 .poster {
     width: 213px;
     height: 304px;
-    background-color: #ddd;
-    margin-right: 20px;
     object-fit: cover; /* 이미지를 잘라서 크기에 맞추기 */
+    position: relative;
 }
 
 .movieIndex {
@@ -21,8 +20,20 @@
     text-align: center;
 }
 
+.textContainer {
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
 .ratingImge {
     object-fit: cover;
     width: 20px;
     height: 20px;
+}
+
+.title {
+    display: inline;
+    text-align: center;
 }

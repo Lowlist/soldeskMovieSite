@@ -10,6 +10,9 @@ import adult from './style/19.svg'
 function Index() {
 
     let [data, setData] = useState(null);
+    const stringLimit = (str, n) => { //글자수 제한 함수
+        return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+      }; 
 
     useEffect(() => {
         const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=20240601&listCount=500&ServiceKey=BOC8E6E947M11OX4WO71";
@@ -28,7 +31,7 @@ function Index() {
     return (
         <div className={styles.movieIndex}>
             {data.map((movie, index) => {
-                let rating;
+                let rating; //연령제한 이미지 넣기
                 switch (movie.rating) {
                     case '전체관람가':
                         rating = <img src={all} alt='연령등급표' className={styles.ratingImge} />;
@@ -60,9 +63,9 @@ function Index() {
                                 <img src={image} alt="이미지" className={styles.poster} />
                             )}
                         </div>
-                        <div>
+                        <div className={styles.textContainer}>
                             {/* 영화 제목 */}
-                            {rating} {movie.title}
+                            {rating} <p className={styles.title}>{stringLimit(movie.title, 10)}</p>
                         </div>
                     </div>
                 );
