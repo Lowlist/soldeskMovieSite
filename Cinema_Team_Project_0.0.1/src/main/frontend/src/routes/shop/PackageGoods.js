@@ -21,6 +21,7 @@ function PackageGoods() {
                 { 
                     buttons &&
                     <div className={style.plusButtonF}>
+                        {/* 더보기로 바꾸면 어떻겠냐 나 : 좋음 */}
                         <Button variant="light" onClick={ (e) => { e.stopPropagation(); navigate('package')} }>+</Button>{' '}
                     </div>
                 }

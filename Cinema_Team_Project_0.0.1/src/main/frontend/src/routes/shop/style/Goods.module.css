@@ -7,6 +7,13 @@ hr{
 .hrCenter{
     width: 90%;
 }
+.storeHead{
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+.storeName{
+    margin-left: 15px;
+}
 .plusButton{
     margin-left: 58%;
 }
