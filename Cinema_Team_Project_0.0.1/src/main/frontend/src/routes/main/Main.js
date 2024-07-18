@@ -70,14 +70,14 @@ function Main() {
 					<div className={styles['video-div']}>
 						<div className={styles['video-title']}>에스파 - 슈퍼노바</div>
 						<div className={styles['video-info']}>에스파 윈터 vs 카리나 당신의 선택은???</div>
-						<Button className={styles['video-button']} onClick={()=>{ navigate('/')}}variant="light">상세보기 {'>'}</Button>{' '}
+						<Button className={styles['video-button']} onClick={()=>{ navigate('/')}} variant="light">상세보기 {'>'}</Button>{' '}
 					</div>
 				</div>
 	            <div className={styles['body-chart']}>
 	                <div className={styles['chart-header']}>
 	                    <div className={styles['chart-title']}><strong>무비 차트</strong></div>
-	                    <div className={styles['chart-subtitle1']}>현재 상영작</div>
-	                    <div className={styles['chart-subtitle2']}>상영 예정작</div>
+	                    <div className={styles['chart-subtitle1']} onClick={()=>{ }}>현재 상영작</div>
+	                    <div className={styles['chart-subtitle2']} onClick={()=>{ }}>상영 예정작</div>
 	                </div>
 	                <div className={styles['chart-body']}>CGV 참고</div>
 	            </div>
