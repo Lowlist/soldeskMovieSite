@@ -3,7 +3,7 @@ import Seat from './Seat';
 import styles from './style/SeatRow.module.css';
 
 const SeatRow = ({ row, cols, selectedSeats, handleSeatClick }) => {
-    console.log('Rendering SeatRow for row:', row, 'with cols:', cols);
+    const midpoint = Math.floor(cols.length / 2) - 1;
 
     return (
         <div className={styles.seatRow}>
@@ -13,6 +13,7 @@ const SeatRow = ({ row, cols, selectedSeats, handleSeatClick }) => {
                     seat={`${row.rowLabel}${col.line}`}
                     isSelected={selectedSeats.includes(`${row.rowLabel}${col.line}`)}
                     handleSeatClick={handleSeatClick}
+                    isMidpoint={colIndex === midpoint}
                 />
             ))}
         </div>

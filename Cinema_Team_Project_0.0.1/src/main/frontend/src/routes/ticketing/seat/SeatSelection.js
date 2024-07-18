@@ -11,7 +11,7 @@ function SeatSelection() {
     const { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } = location.state || {};
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [numPeople, setNumPeople] = useState(1);
-    const [hallConfigurations, setHallConfigurations] = useState({ rows: [], cols: 0 });
+    const [hallConfigurations, setHallConfigurations] = useState({ rows: [], cols: [] });
 
     useEffect(() => {
         if (selectedHall) {
@@ -20,11 +20,11 @@ function SeatSelection() {
                     const rows = response.data;
                     setHallConfigurations(prevState => ({ ...prevState, rows: rows }));
 
-                    // 좌석 정보도 함께 가져오기
+                    // 각 행에 대해 좌석 정보를 가져오기
                     axios.get('/seats/cols', { params: { theaterNo: selectedHall } })
                         .then(colResponse => {
                             const cols = colResponse.data;
-                            setHallConfigurations(prevState => ({ ...prevState, cols: cols.length }));
+                            setHallConfigurations(prevState => ({ ...prevState, cols: cols }));
                         })
                         .catch(error => console.error('Error fetching column data:', error));
                 })
@@ -38,7 +38,7 @@ function SeatSelection() {
     const handleSeatClick = (seat) => {
         const row = seat.charCodeAt(0) - 65;
         const col = parseInt(seat.substring(1)) - 1;
-        const cols = hallConfigurations.cols;
+        const cols = hallConfigurations.cols.length;
         const leftSectionCols = Math.floor(cols / 2);
         const seatsToSelect = [];
 
@@ -123,13 +123,14 @@ function SeatSelection() {
                 numPeople={numPeople}
                 handlePeopleChange={handlePeopleChange}
             />
-            <SeatMap
-                selectedHall={selectedHall}
-                selectedSeats={selectedSeats}
-                handleSeatClick={handleSeatClick}
-                numPeople={numPeople}
-                hallConfigurations={hallConfigurations}
-            />
+            <div className={styles.seatMapWrapper}>
+                <SeatMap
+                    selectedHall={selectedHall}
+                    selectedSeats={selectedSeats}
+                    handleSeatClick={handleSeatClick}
+                    hallConfigurations={hallConfigurations}
+                />
+            </div>
             <SelectionComplete
                 movie={selectedMovie}
                 theater={selectedTheater}
