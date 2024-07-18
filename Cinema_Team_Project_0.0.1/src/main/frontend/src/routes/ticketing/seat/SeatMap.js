@@ -1,37 +1,34 @@
 import React from 'react';
-import SeatRow from './SeatRow';
 import styles from './style/SeatMap.module.css';
 
-const SeatMap = ({ selectedHall, hallConfigurations, selectedSeats, numPeople, handleSeatClick }) => {
-    const { rows, cols, specialRow, specialCols } = hallConfigurations[selectedHall] || hallConfigurations['1관'];
-    const aisleIndex = Math.floor(cols / 2) + 1;
+function SeatMap({ selectedHall, selectedSeats, handleSeatClick, numPeople, hallConfigurations }) {
+    const { rows, cols } = hallConfigurations;
 
-    const renderSeats = () => {
-        const seats = [];
-        for (let row = 0; row < rows; row++) {
-            seats.push(
-                <SeatRow
-                    key={row}
-                    row={row}
-                    cols={cols}
-                    specialRow={specialRow}
-                    specialCols={specialCols}
-                    selectedSeats={selectedSeats}
-                    numPeople={numPeople}
-                    handleSeatClick={handleSeatClick}
-                    aisleIndex={aisleIndex}
-                />
-            );
-        }
-        return seats;
-    };
+    if (!rows || !cols) {
+        return <div>좌석 정보를 불러오는 중입니다...</div>;
+    }
 
     return (
-        <div className={styles.seatContainer}>
-            <div className={styles.screen}>스크린</div>
-            {renderSeats()}
+        <div className={styles.seatMapContainer}>
+            {rows.map((row, rowIndex) => (
+                <div key={rowIndex} className={styles.seatRow}>
+                    {Array.from({ length: cols }).map((_, colIndex) => {
+                        const seat = `${String.fromCharCode(65 + rowIndex)}${colIndex + 1}`;
+                        const isSelected = selectedSeats.includes(seat);
+                        return (
+                            <button
+                                key={colIndex}
+                                className={`${styles.seat} ${isSelected ? styles.selectedSeat : ''}`}
+                                onClick={() => handleSeatClick(seat)}
+                            >
+                                {seat}
+                            </button>
+                        );
+                    })}
+                </div>
+            ))}
         </div>
     );
-};
+}
 
 export default SeatMap;

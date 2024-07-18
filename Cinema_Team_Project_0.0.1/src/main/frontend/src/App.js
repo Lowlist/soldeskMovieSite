@@ -32,8 +32,8 @@ function App() {
           <Routes>
             <Route path="/" element={ <Main></Main> }/>
 
-            <Route path="/ticket" element={<> <Ticket></Ticket> <Outlet></Outlet> </>}></Route>
-            <Route path="/seat" element={<><Seat></Seat></>}></Route>
+            <Route path="/ticket" element={<Ticket/>}></Route>
+            <Route path="/seat" element={<Seat/>}></Route>
 
             <Route path="/order" element={<>결제창</>}></Route>
             <Route path="/basket" element={<>장바구니</>}></Route>
@@ -79,7 +79,6 @@ function App() {
 
             {/* 어드민 nested는 추가 할 때 작성예정 */}
             <Route path="/admin" element={<>관리자임</>}></Route>
-
             <Route path="*" element={<div>404임</div>}></Route>
           </Routes>
       </Suspense>

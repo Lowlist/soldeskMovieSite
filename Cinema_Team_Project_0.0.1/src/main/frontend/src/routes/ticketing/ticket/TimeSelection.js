@@ -13,7 +13,8 @@ const TimeSelection = ({ selectedTheater, theaterNo, selectedDateString, selecte
                     const hallData = theaterDetails.map(detail => ({
                         name: `${detail.dimension} ${detail.name}`,
                         times: filterPastTimes(generateTimes(`${detail.dimension} ${detail.name}`)),
-                        maxSeats: detail.max
+                        maxSeats: detail.max,
+                        theaterNo: detail.no // 추가된 부분
                     }));
                     setHalls(hallData);
                 })
@@ -64,7 +65,7 @@ const TimeSelection = ({ selectedTheater, theaterNo, selectedDateString, selecte
 
     const handleTimeClick = (time, hall) => {
         setSelectedTime(time);
-        setSelectedHall(hall);
+        setSelectedHall(hall.theaterNo); // 수정된 부분
     };
 
     return (
@@ -79,9 +80,9 @@ const TimeSelection = ({ selectedTheater, theaterNo, selectedDateString, selecte
                             {hall.times.map((time, idx) => (
                                 <div key={idx}
                                     className={styles.timeItem}
-                                    onClick={() => handleTimeClick(time, hall.name)}
+                                    onClick={() => handleTimeClick(time, hall)}
                                 >
-                                    <div className={`${styles.timeSection} ${selectedTime === time && selectedHall === hall.name ? styles.selectedTime : ''}`}>
+                                    <div className={`${styles.timeSection} ${selectedTime === time && selectedHall === hall.theaterNo ? styles.selectedTime : ''}`}>
                                         {time}
                                     </div>
                                     <div className={styles.remainingSeats}>{hall.maxSeats}석</div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import styles from './style/SeatSelection.module.css';
 import Header from './Header';
 import SeatMap from './SeatMap';
@@ -10,13 +11,26 @@ function SeatSelection() {
     const { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } = location.state || {};
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [numPeople, setNumPeople] = useState(1);
+    const [hallConfigurations, setHallConfigurations] = useState({ rows: [], cols: 0 });
 
-    const hallConfigurations = {
-        '2D 1관(일반)': { rows: 8, cols: 8 },
-        '2D 2관(리클라이너)': { rows: 14, cols: 16 },
-        'IMAX LASER 2D IMAX관': { rows: 11, cols: 24, specialRow: 0, specialCols: 3 },
-        'ULTRA 4DX관': { rows: 10, cols: 16}
-    };
+    useEffect(() => {
+        if (selectedHall) {
+            axios.get('/seats/rows', { params: { theaterNo: selectedHall } })
+                .then(response => {
+                    const rows = response.data;
+                    setHallConfigurations(prevState => ({ ...prevState, rows: rows }));
+
+                    // 좌석 정보도 함께 가져오기
+                    axios.get('/seats/cols', { params: { theaterNo: selectedHall } })
+                        .then(colResponse => {
+                            const cols = colResponse.data;
+                            setHallConfigurations(prevState => ({ ...prevState, cols: cols.length }));
+                        })
+                        .catch(error => console.error('Error fetching column data:', error));
+                })
+                .catch(error => console.error('Error fetching row data:', error));
+        }
+    }, [selectedHall]);
 
     const ticketPrice = 15000;
     const totalPrice = ticketPrice * numPeople;
@@ -24,7 +38,7 @@ function SeatSelection() {
     const handleSeatClick = (seat) => {
         const row = seat.charCodeAt(0) - 65;
         const col = parseInt(seat.substring(1)) - 1;
-        const cols = hallConfigurations[selectedHall].cols;
+        const cols = hallConfigurations.cols;
         const leftSectionCols = Math.floor(cols / 2);
         const seatsToSelect = [];
 

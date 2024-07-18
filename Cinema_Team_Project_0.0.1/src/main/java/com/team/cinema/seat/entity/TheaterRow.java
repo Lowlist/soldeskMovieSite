@@ -1,4 +1,4 @@
-package com.team.cinema.ticketing.entity;
+package com.team.cinema.seat.entity;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
@@ -13,7 +13,7 @@ public class TheaterRow {
     @Column(name = "theaterNo", nullable = false)
     private int theaterNo;
 
-    @Column(name = "row_label", nullable = false, length = 16)
+    @Column(name = "rowLabel", nullable = false, length = 16)
     private String rowLabel;
 
     @Column(name = "createdAt", nullable = false)
