@@ -63,16 +63,18 @@ function Ticketing() {
     const selectedDateString = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' }).replace(/ /g, '').replace(/,/g, '') : '';
 
     const handleSeatSelection = () => {
-        navigate('/seat', {
-            state: {
-                selectedMovie,
-                selectedTheater,
-                selectedDateString,
-                selectedTime,
-                selectedHall,
-                selectedTheaterNo
-            }
-        });
+        if (selectedMovie && selectedTheater && selectedDateString && selectedTime) {
+            navigate('/seat', {
+                state: {
+                    selectedMovie,
+                    selectedTheater,
+                    selectedDateString,
+                    selectedTime,
+                    selectedHall,
+                    selectedTheaterNo
+                }
+            });
+        }
     };
 
     return (
@@ -81,7 +83,7 @@ function Ticketing() {
                 <MovieSelection movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
                 <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} setSelectedTheaterNo={setSelectedTheaterNo} />
                 <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-                <TimeSelection selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
+                <TimeSelection selectedMovie={selectedMovie} selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedDateString={selectedDateString} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
             <TicketingFooter
                 selectedMovie={selectedMovie}
