@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import styles from './style/SeatSelection.module.css';
 import Header from './Header';
 import SeatMap from './SeatMap';
@@ -10,83 +11,42 @@ function SeatSelection() {
     const { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } = location.state || {};
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [numPeople, setNumPeople] = useState(1);
+    const [hallConfigurations, setHallConfigurations] = useState({ rows: [], cols: [] });
+    const [ticketPrice, setTicketPrice] = useState(15000); // 기본값을 15000으로 설정
 
-    const hallConfigurations = {
-        '2D 1관(일반)': { rows: 8, cols: 8 },
-        '2D 2관(리클라이너)': { rows: 14, cols: 16 },
-        'IMAX LASER 2D IMAX관': { rows: 11, cols: 24, specialRow: 0, specialCols: 3 },
-        'ULTRA 4DX관': { rows: 10, cols: 16}
-    };
+    useEffect(() => {
+        if (selectedHall) {
+            axios.get('/seats/rows', { params: { theaterNo: selectedHall } })
+                .then(response => {
+                    const rows = response.data;
+                    setHallConfigurations(prevState => ({ ...prevState, rows: rows }));
 
-    const ticketPrice = 15000;
+                    // 각 행에 대해 좌석 정보를 가져오기
+                    axios.get('/seats/cols', { params: { theaterNo: selectedHall } })
+                        .then(colResponse => {
+                            const cols = colResponse.data;
+                            setHallConfigurations(prevState => ({ ...prevState, cols: cols }));
+                        })
+                        .catch(error => console.error('Error fetching column data:', error));
+                })
+                .catch(error => console.error('Error fetching row data:', error));
+
+            // 선택된 관의 가격을 가져오기
+            axios.get('/seats/theater/price', { params: { theaterNo: selectedHall } })
+                .then(response => {
+                    setTicketPrice(response.data);
+                })
+                .catch(error => console.error('Error fetching theater price:', error));
+        }
+    }, [selectedHall]);
+
     const totalPrice = ticketPrice * numPeople;
 
     const handleSeatClick = (seat) => {
-        const row = seat.charCodeAt(0) - 65;
-        const col = parseInt(seat.substring(1)) - 1;
-        const cols = hallConfigurations[selectedHall].cols;
-        const leftSectionCols = Math.floor(cols / 2);
-        const seatsToSelect = [];
-
-        // 좌측 섹션에서 좌석 선택
-        if (col < leftSectionCols) {
-            for (let i = 0; i < numPeople; i++) {
-                const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 + i}`;
-                if (col + i < leftSectionCols && !selectedSeats.includes(seatToCheck)) {
-                    seatsToSelect.push(seatToCheck);
-                } else {
-                    seatsToSelect.length = 0;
-                    break;
-                }
-            }
-
-            if (seatsToSelect.length < numPeople) {
-                seatsToSelect.length = 0;
-                for (let i = 0; i < numPeople; i++) {
-                    const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 - i}`;
-                    if (col - i >= 0 && !selectedSeats.includes(seatToCheck)) {
-                        seatsToSelect.push(seatToCheck);
-                    } else {
-                        seatsToSelect.length = 0;
-                        break;
-                    }
-                }
-                seatsToSelect.reverse();
-            }
-        }
-
-        // 우측 섹션에서 좌석 선택
-        if (col >= leftSectionCols) {
-            for (let i = 0; i < numPeople; i++) {
-                const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 + i}`;
-                if (col + i < cols && !selectedSeats.includes(seatToCheck)) {
-                    seatsToSelect.push(seatToCheck);
-                } else {
-                    seatsToSelect.length = 0;
-                    break;
-                }
-            }
-
-            if (seatsToSelect.length < numPeople) {
-                seatsToSelect.length = 0;
-                for (let i = 0; i < numPeople; i++) {
-                    const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 - i}`;
-                    if (col - i >= leftSectionCols && !selectedSeats.includes(seatToCheck)) {
-                        seatsToSelect.push(seatToCheck);
-                    } else {
-                        seatsToSelect.length = 0;
-                        break;
-                    }
-                }
-                seatsToSelect.reverse();
-            }
-        }
-
-        const areAllSeatsAvailable = seatsToSelect.every(s => !selectedSeats.includes(s));
-        if (areAllSeatsAvailable) {
-            setSelectedSeats(seatsToSelect);
-        } else if (selectedSeats.every(s => seatsToSelect.includes(s))) {
-            setSelectedSeats([]);
+        if (selectedSeats.includes(seat)) {
+            setSelectedSeats(selectedSeats.filter(s => s !== seat));
+        } else {
+            setSelectedSeats([...selectedSeats, seat]);
         }
     };
 
@@ -109,13 +69,15 @@ function SeatSelection() {
                 numPeople={numPeople}
                 handlePeopleChange={handlePeopleChange}
             />
-            <SeatMap
-                selectedHall={selectedHall}
-                selectedSeats={selectedSeats}
-                handleSeatClick={handleSeatClick}
-                numPeople={numPeople}
-                hallConfigurations={hallConfigurations}
-            />
+            <div className={styles.seatMapWrapper}>
+                <SeatMap
+                    selectedHall={selectedHall}
+                    selectedSeats={selectedSeats}
+                    handleSeatClick={handleSeatClick}
+                    hallConfigurations={hallConfigurations}
+                    numPeople={numPeople}
+                />
+            </div>
             <SelectionComplete
                 movie={selectedMovie}
                 theater={selectedTheater}
@@ -125,8 +87,8 @@ function SeatSelection() {
                 audience={`일반 ${numPeople}명`}
                 seatType="일반석"
                 seatNumbers={selectedSeats.join(', ')}
-                ticketPrice={`15,000 원`}
-                totalPrice={`${totalPrice.toLocaleString()}원`}
+                ticketPrice={`${ticketPrice.toLocaleString()} 원`}
+                totalPrice={`${totalPrice.toLocaleString()} 원`}
             />
         </div>
     );

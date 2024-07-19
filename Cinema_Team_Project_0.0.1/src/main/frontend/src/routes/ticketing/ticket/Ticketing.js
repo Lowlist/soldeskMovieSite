@@ -63,7 +63,16 @@ function Ticketing() {
     const selectedDateString = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' }).replace(/ /g, '').replace(/,/g, '') : '';
 
     const handleSeatSelection = () => {
-        navigate('/seat', { state: { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } });
+        navigate('/seat', {
+            state: {
+                selectedMovie,
+                selectedTheater,
+                selectedDateString,
+                selectedTime,
+                selectedHall,
+                selectedTheaterNo
+            }
+        });
     };
 
     return (

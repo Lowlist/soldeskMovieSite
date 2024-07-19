@@ -25,7 +25,7 @@ function SelectionComplete({ movie, theater, date, time, hall, audience, seatTyp
                 </div>
                 <div className={styles.infoSection}>
                     <div className={styles.infoTitle}>상영관:</div>
-                    <div className={styles.infoValue}>{hall}</div>
+                    <div className={styles.infoValue}>{hall}관</div>
                 </div>
                 <div className={styles.infoSection}>
                     <div className={styles.infoTitle}>인원:</div>

@@ -1,4 +1,4 @@
-package com.team.cinema.ticketing.entity;
+package com.team.cinema.seat.entity;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
@@ -10,8 +10,8 @@ public class TheaterLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
 
-    @Column(name = "rowNo", nullable = false)
-    private int rowNo;
+    @Column(name = "theaterNo", nullable = false)
+    private int theaterNo;
 
     @Column(name = "line", nullable = false)
     private int line;
@@ -30,12 +30,12 @@ public class TheaterLine {
 		this.no = no;
 	}
 
-	public int getRowNo() {
-		return rowNo;
+	public int getTheaterNo() {
+		return theaterNo;
 	}
 
-	public void setRowNo(int rowNo) {
-		this.rowNo = rowNo;
+	public void setTheaterNo(int theaterNo) {
+		this.theaterNo = theaterNo;
 	}
 
 	public int getLine() {

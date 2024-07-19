@@ -1,7 +1,7 @@
 import React from 'react';
+import styles from './style/Header.module.css';
 import PeopleSelector from './PeopleSelector';
 import MovieInfo from './MovieInfo.js';
-import styles from './style/Header.module.css';
 
 const Header = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, numPeople, handlePeopleChange }) => {
     return (

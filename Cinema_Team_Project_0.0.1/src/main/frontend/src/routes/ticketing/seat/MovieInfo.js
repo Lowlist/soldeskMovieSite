@@ -15,7 +15,7 @@ const MovieInfo = ({ selectedMovie, selectedTheater, selectedDateString, selecte
                 {selectedMovie && selectedMovie.posters && <img src={selectedMovie.posters} alt={selectedMovie.title} className={styles.moviePoster} />}
                 <div> {selectedTheater}</div>
                 <div>{selectedDateString} {selectedTime}</div>
-                <div>{selectedHall}</div>
+                <div>{selectedHall}관</div>
             </div>
         </div>
         
