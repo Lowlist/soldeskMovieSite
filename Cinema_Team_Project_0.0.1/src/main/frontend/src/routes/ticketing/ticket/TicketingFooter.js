@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './style/Footer.module.css';
 
-const Footer = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, handleSeatSelection }) => {
+const TicketingFooter = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, handleSeatSelection }) => {
+    const isButtonDisabled = !selectedMovie || !selectedTheater || !selectedDateString || !selectedTime;
+
     return (
         <div className={styles.footer}>
             <div className={`${styles.movieInfo} ${styles.movieInfoContainer}`}>
@@ -28,10 +30,17 @@ const Footer = ({ selectedMovie, selectedTheater, selectedDateString, selectedTi
                 </div>
             </div>
             <div className={styles.buttonContainer}>
-                <button className={styles.button} onClick={handleSeatSelection}>좌석선택</button>
+                <button 
+                    className={styles.button} 
+                    onClick={handleSeatSelection} 
+                    disabled={isButtonDisabled}
+                    style={{ backgroundColor: isButtonDisabled ? '#ccc' : '#d9534f', cursor: isButtonDisabled ? 'not-allowed' : 'pointer' }}
+                >
+                    좌석선택
+                </button>
             </div>
         </div>
     );
 };
 
-export default Footer;
+export default TicketingFooter;
