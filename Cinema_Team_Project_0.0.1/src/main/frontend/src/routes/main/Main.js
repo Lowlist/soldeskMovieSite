@@ -15,7 +15,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import React from "react";
 import {
 	SliderContainer,
-	BodyContainer,
 	NextTo,
 	Prev
   } from './style/styles.js'
@@ -35,20 +34,21 @@ function Main() {
         { id: 9, title: '임시 영화 제목10', preference: '75%', reservation: '65%' }
     ];
 
+	const [currentSlide, setCurrentSlide] = useState(0);
+  	const [totalSlides, setTotalSlides] = useState(movieChartData.length);
+
 	// React-slick 세팅
 	const settings = {
-		variableWidth: true,
-		slidesToShow: 4,
-		slidesToScroll: 4,
+		variableWidth: false,
+		slidesToShow: 5, //한 화면에 보여줄 요소 개수
+    	slidesToScroll: 5, //스와이프를 시 넘길 요소 개수
+		infinite: false,
 		autoplay: true,
 		autoplaySpeed: 10000, // 자동 캐러셀 속도
 		draggable: false, // 드래그
-		nextArrow: (			//오른쪽 화살표
-			<NextTo />
-		),
-		prevArrow: (			//왼쪽 화살표
-			<Prev />
-		)
+		nextArrow: <NextTo hidden={currentSlide >= totalSlides - 5} />,
+    	prevArrow: <Prev hidden={currentSlide === 0} />,
+    	beforeChange: (current, next) => setCurrentSlide(next)
 	};
 
     return (
@@ -120,23 +120,17 @@ function Main() {
 							<button className={styles['all-button']} onClick={()=>{ navigate('/ticketing')}}>전체보기 {'>'}</button>
 						</div>
 	                </div>
-					<div className={styles['movie-chart-body']}>
-						<div className={styles['movie-chart']}>
-							<BodyContainer>
-								<SliderContainer>
-									<Slider {...settings}>
-									{
-										movieChartData.map((movie, i)=> {
-											return (
-												<MovieChart key={i} i={i} movieData={movieChartData} style={{width : "350px"}}></MovieChart>
-											)
-										})
-									}
-									</Slider>
-								</SliderContainer>
-							</BodyContainer>
-						</div>
-					</div>
+					<SliderContainer>
+						<Slider {...settings}>
+						{
+							movieChartData.map((movie, i)=> {
+								return (
+									<MovieChart key={i} i={i} movieData={movieChartData}></MovieChart>
+								)
+							})
+						}
+						</Slider>
+					</SliderContainer>
 	            </div>
 	            <div className={styles['body-store']}>
 	                <div className={styles['store-header']}>

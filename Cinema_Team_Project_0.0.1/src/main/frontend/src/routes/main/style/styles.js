@@ -1,38 +1,50 @@
 import styled from 'styled-components';
 import arrow from '../../../images/right.png'
 
-export const BodyContainer = styled.div`
+export const SliderContainer = styled.div`
+    width: 70%;
+    height: 100%;
     display: flex;
-    position: relative;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
-`
 
-export const SliderContainer = styled.div`
-    margin: 0px 20px;
     .slick-prev:before,
     .slick-next:before {
         display: none;
     }
+    .slick-initialized {
+        width: 90%;
+    }
+    .slick-slide {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    }
     .slick-list{ 
-        width: 200vw;
-        justify-content: space-between;
+        width: 100%;
     }
 `
 
 export const NextTo = styled.div`
     background-image: url(${arrow});
     background-size: contain;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: ${props => props.hidden ? 'none' : 'block'};
 `
 
 export const Prev = styled.div`
     transform: rotate(180deg);
     background-image: url(${arrow});
     background-size: contain;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: ${props => props.hidden ? 'none' : 'block'};
 `
