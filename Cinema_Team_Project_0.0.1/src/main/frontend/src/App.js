@@ -71,10 +71,23 @@ function App() {
               </Route>
             </Route>
 
-            <Route path="/support" element={<>고객센터 <Outlet></Outlet> </> }>
+            {/* <Route path="/support" element={<>고객센터 <Outlet></Outlet> </> }>
               <Route path="notice" element={<>/ 공지사항</>}></Route>
               <Route path="question" element={<>질문게시판 <Outlet></Outlet></>}>
                 <Route path="realtime" element={<>/ 실시간 문의</>}></Route>
+              </Route>
+            </Route> */}
+            
+            <Route path='/support' element={<Support />}>
+              <Route index element={<div>고객센터 기본 페이지</div>} />
+              <Route path='notice' element={<><Outlet /></>}>
+                <Route index element={<Notice />} />
+                <Route path=':id' element={<NoticeDetail />} />
+              </Route>
+              <Route path='question' element={<><Outlet /></>}>
+                <Route index element={<Question />} />
+                <Route path=':id' element={<QuestionDetail />} />
+                <Route path='realtime' element={<RealtimeQuestion />} />
               </Route>
             </Route>
 
