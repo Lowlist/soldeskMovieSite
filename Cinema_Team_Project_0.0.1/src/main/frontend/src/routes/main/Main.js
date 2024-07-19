@@ -9,9 +9,32 @@ import login from '../../images/login.png';
 import logout from '../../images/logout.png';
 import mypage from '../../images/mypage.png';
 import join from '../../images/join.png';
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function Main() {
     let navigate = useNavigate();
+	let movieChartData = [
+        { id: 1, title: '임시 영화 제목1', preference: '80%', reservation: '70%' },
+        { id: 2, title: '임시 영화 제목2', preference: '75%', reservation: '65%' },
+        { id: 3, title: '임시 영화 제목3', preference: '75%', reservation: '65%' },
+        { id: 4, title: '임시 영화 제목4', preference: '75%', reservation: '65%' },
+        { id: 5, title: '임시 영화 제목5', preference: '75%', reservation: '65%' },
+        { id: 6, title: '임시 영화 제목6', preference: '75%', reservation: '65%' },
+        { id: 7, title: '임시 영화 제목7', preference: '75%', reservation: '65%' },
+        { id: 8, title: '임시 영화 제목8', preference: '75%', reservation: '65%' },
+        { id: 9, title: '임시 영화 제목9', preference: '75%', reservation: '65%' },
+        { id: 10, title: '임시 영화 제목10', preference: '75%', reservation: '65%' },
+    ];
+
+	// React-slick 세팅
+	const settings = {
+		speed: 500,
+		slidesToShow: 5,
+		slidesToScroll: 5,
+		arrows: true
+	};
 
     return (
         <div className={styles['wrapper']}>
@@ -78,8 +101,25 @@ function Main() {
 	                    <div className={styles['chart-title']}><strong>무비 차트</strong></div>
 	                    <div className={styles['chart-subtitle1']} onClick={()=>{ }}>현재 상영작</div>
 	                    <div className={styles['chart-subtitle2']} onClick={()=>{ }}>상영 예정작</div>
+						<div className={styles['chart-button']}>
+							<button className={styles['all-button']} onClick={()=>{ navigate('/ticketing')}}>전체보기 {'>'}</button>
+						</div>
 	                </div>
-	                <div className={styles['chart-body']}>CGV 참고</div>
+					<div className={styles['movie-chart-body']}>
+						<div className={styles['prev-button']} onClick={()=>{  }}>{'<'}</div>
+						<div className={styles['movie-chart']}>
+							<Slider {...settings}>
+							{
+								movieChartData.map((movie, index)=> {
+									return (
+										<MovieChart key={index} movieData={movie}></MovieChart>
+									)
+								})
+							}
+							</Slider>
+						</div>
+						<div className={styles['next-button']} onClick={()=>{  }}>{'>'}</div>
+					</div>
 	            </div>
 	            <div className={styles['body-store']}>
 	                <div className={styles['store-header']}>
@@ -101,6 +141,34 @@ function Main() {
 	        <div className={styles['wrapper-footer']}>@팀명 Corp.</div>
 	    </div>   
     )
+}
+
+function MovieChart(movieData) {
+	let navigate = useNavigate();
+	let [show, setShow] = useState(false);
+	
+	return (
+		<div className={styles['chart-body']}>
+            <div className={styles['chart-movie']} onMouseEnter={() => { setShow(true) }} onMouseLeave={() => { setShow(false) }}>
+                {movieData.title}
+                <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
+                    <button className={styles['chart-button1']} onClick={() => { navigate('/') }}>상세보기</button>
+                    <button className={styles['chart-button2']} onClick={() => { navigate('/') }}>예매하기</button>
+                </div>
+            </div>
+            <div className={styles['chart-movie-title']}>
+                {movieData.title}
+            </div>
+            <div className={styles['chart-movie-info']}>
+                <div className={styles['chart-movie-preference']}>
+                    선호도: {movieData.preference}
+                </div>
+                <div className={styles['chart-movie-reservation']}>
+                    예매율: {movieData.reservation}
+                </div>
+            </div>
+        </div>
+	)
 }
 
 export default Main;
