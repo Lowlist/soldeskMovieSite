@@ -1,0 +1,29 @@
+hr{
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border: 2px solid black;
+    opacity: 0.8;
+}
+
+.detailName{
+    font-size: 30px;
+}
+
+.detailLine{
+    display: flex;
+    background-color: red;
+    height: 500px;
+}
+
+.detailImgLine{
+    background-color: blue;
+    height: 500px;
+    width: 45%;
+}
+
+.detailTextLine{
+    background-color: aqua;
+    height: 500px;
+    width: 55%;
+}
