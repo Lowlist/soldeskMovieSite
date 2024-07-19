@@ -2,7 +2,7 @@ import React from 'react';
 import SeatRow from './SeatRow';
 import styles from './style/SeatMap.module.css';
 
-const SeatMap = ({ selectedSeats, handleSeatClick, hallConfigurations }) => {
+const SeatMap = ({ selectedSeats, handleSeatClick, hallConfigurations , numPeople }) => {
     const { rows, cols } = hallConfigurations;
 
     return (
@@ -17,6 +17,7 @@ const SeatMap = ({ selectedSeats, handleSeatClick, hallConfigurations }) => {
                         selectedSeats={selectedSeats}
                         handleSeatClick={handleSeatClick}
                         contentContainerStyle={{paddingHorizontal: 25}}
+                        numPeople={numPeople}
                     />
                 ))}
             </div>

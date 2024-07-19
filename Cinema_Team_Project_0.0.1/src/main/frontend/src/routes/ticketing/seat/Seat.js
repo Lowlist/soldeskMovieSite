@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './style/Seat.module.css';
 
-const Seat = ({ seat, isSelected, handleSeatClick, isMidpoint }) => {
+const Seat = ({ seat, isSelected, handleSeatClick, isMidpoint, isDisabled  }) => {
     return (
         <div
-            className={`${styles.seat} ${isSelected ? styles.selectedSeat : ''} ${isMidpoint ? styles.midpointSeat : ''}`}
-            onClick={() => handleSeatClick(seat)}
+            className={`${styles.seat} ${isSelected ? styles.selectedSeat : ''} ${isMidpoint ? styles.midpointSeat : ''} ${isDisabled ? styles.disabledSeat : ''}`}
+            onClick={() => !isDisabled && handleSeatClick(seat)}
         >
             {seat}
         </div>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.team.cinema.seat.entity.TheaterLine;
 import com.team.cinema.seat.entity.TheaterRow;
 import com.team.cinema.seat.service.SeatService;
+import com.team.cinema.ticketing.entity.Theater;
 
 @RestController
 @RequestMapping("/seats")
@@ -27,5 +28,11 @@ public class SeatRestController {
     @GetMapping("/cols")
     public List<TheaterLine> getCols(@RequestParam("theaterNo") int theaterNo) {
         return seatService.getColsByTheaterNo(theaterNo);
+    }
+    
+    @GetMapping("/theater/price")
+    public int getTheaterPrice(@RequestParam("theaterNo") int theaterNo) {
+        Theater theater = seatService.getTheaterByNo(theaterNo);
+        return theater.getPrice();
     }
 }
