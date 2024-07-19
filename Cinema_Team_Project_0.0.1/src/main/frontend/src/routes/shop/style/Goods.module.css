@@ -39,7 +39,10 @@ hr{
     opacity: 0.2;
 }
 .cardImg{
-    width: 35%;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 150px;
+    height: 150px;
     margin-right: 15px;
 }
 .card-title{

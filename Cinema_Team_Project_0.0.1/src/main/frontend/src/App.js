@@ -78,13 +78,6 @@ function App() {
                 <Route path="findPwResult" element={<>/ 조건 통과해서 결과 보내주면됨</>}></Route>
               </Route>
             </Route>
-
-            {/* <Route path="/support" element={<>고객센터 <Outlet></Outlet> </> }>
-              <Route path="notice" element={<>/ 공지사항</>}></Route>
-              <Route path="question" element={<>질문게시판 <Outlet></Outlet></>}>
-                <Route path="realtime" element={<>/ 실시간 문의</>}></Route>
-              </Route>
-            </Route> */}
             
             <Route path='/support' element={<Support />}>
               <Route index element={<div>고객센터 기본 페이지</div>} />

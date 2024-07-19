@@ -50,7 +50,7 @@ function Main() {
             </Navbar>
             <div className={styles['wrapper-body']}>
 	            <div className={styles['body-video']}>비디오 들어갈 div</div>
-	            <div className={styles['body-chart']}>
+	            <div className={styles['body-chart']} onClick={ ()=>{ navigate('/movie/main') } }>
 	                <div className={styles['chart-header']}>
 	                    <div className={styles['chart-title']}><strong>무비 차트</strong></div>
 	                    <div className={styles['chart-subtitle1']}>현재 상영작</div>

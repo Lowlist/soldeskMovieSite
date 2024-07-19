@@ -6,6 +6,12 @@ hr{
     opacity: 0.8;
 }
 
+.hrTwo{
+    width: 98%;
+    border: 1px solid black;
+    opacity: 0.3;
+}
+
 .detailName{
     font-size: 30px;
 }
@@ -18,12 +24,22 @@ hr{
 
 .detailImgLine{
     background-color: blue;
+    text-align: center;
+    justify-content: center;
     height: 500px;
-    width: 45%;
+    width: 583px;
+}
+
+.detailImg{
+    width: 583px;
+    height: 500px;
+    background-color: red;
 }
 
 .detailTextLine{
     background-color: aqua;
     height: 500px;
-    width: 55%;
+    width: 713px;
 }
+
+

@@ -5,8 +5,8 @@ let shop = createSlice({
     initialState: [
         {
             id: 0,
-            title: "White and Black",
-            content: "Born in France",
+            title: "우리 패키지",
+            content: "콘텐츠콘텐츠콘텐츠콘텐츠콘텐츠콘텐츠",
             price: 120000,
             count: 0
         },

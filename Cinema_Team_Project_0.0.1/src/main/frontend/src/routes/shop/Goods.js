@@ -33,31 +33,30 @@ function Goods() {
                             </Container>
                         </Navbar>
                     </div>
-                    {/* Navbar End */}
                     {/* Goods Start */}
+
                     {
-                    viewGoods &&
-                    <div>
-                        {/* PackageGoods Start */}
+                        viewGoods &&
+                        <div>
+                            {/* PackageGoods Start */}
 
-                        <PackageGoods/> 
-                        
-                        {/* PackageGoods End */}
-
-                        <div className={style.goodsLine}>
+                            <PackageGoods/> 
                             
-                            {/* LeftBox Start */}
-                            <DrinkFood/>
-                            {/* LeftBox End */}
 
-                            {/* RightBox Start */}
-                            <GiftTicket/>
-                            {/* RightBox End */}
+                            <div className={style.goodsLine}>
+                                
+                                {/* LeftBox Start */}
+                                
+                                <DrinkFood/>
 
+                                {/* RightBox Start */}
+
+                                <GiftTicket/>
+
+                            </div>
                         </div>
-                    </div>
                     }   
-                    {/* Goods End */}
+                    
                     <Outlet/>
                 </Container>
 
