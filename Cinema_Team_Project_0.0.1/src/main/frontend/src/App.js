@@ -9,6 +9,7 @@ import PackageGoods from './routes/shop/PackageGoods.js';
 import Shop from './routes/shop/Shop.js';
 import Ticket from './routes/ticketing/ticket/Ticketing.js';
 import Seat from './routes/ticketing/seat/SeatSelection.js';
+import MovieList from './routes/movieInfo/MovieList.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
