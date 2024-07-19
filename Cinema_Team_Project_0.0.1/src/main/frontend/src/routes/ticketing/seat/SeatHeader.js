@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './style/Header.module.css';
-import PeopleSelector from './PeopleSelector';
+import PeopleSelector from './PeopleSelector.js';
 import MovieInfo from './MovieInfo.js';
 
-const Header = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, numPeople, handlePeopleChange }) => {
+const SeatHeader = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, numPeople, handlePeopleChange }) => {
     return (
         <div className={styles.header}>
             <div className={styles.movieInfo}>
@@ -22,4 +22,4 @@ const Header = ({ selectedMovie, selectedTheater, selectedDateString, selectedTi
     );
 };
 
-export default Header;
+export default SeatHeader;

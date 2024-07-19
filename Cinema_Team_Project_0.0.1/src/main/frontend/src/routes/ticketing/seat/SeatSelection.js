@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import styles from './style/SeatSelection.module.css';
-import Header from './Header';
+import SeatHeader from './SeatHeader';
 import SeatMap from './SeatMap';
 import SelectionComplete from './SelectionComplete';
 
@@ -60,7 +60,7 @@ function SeatSelection() {
 
     return (
         <div className={styles.container}>
-            <Header
+            <SeatHeader
                 selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}
                 selectedDateString={selectedDateString}

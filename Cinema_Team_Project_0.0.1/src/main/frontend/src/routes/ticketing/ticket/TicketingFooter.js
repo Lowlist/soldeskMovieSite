@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style/Footer.module.css';
 
-const Footer = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, handleSeatSelection }) => {
+const TicketingFooter = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, handleSeatSelection }) => {
     return (
         <div className={styles.footer}>
             <div className={`${styles.movieInfo} ${styles.movieInfoContainer}`}>
@@ -34,4 +34,4 @@ const Footer = ({ selectedMovie, selectedTheater, selectedDateString, selectedTi
     );
 };
 
-export default Footer;
+export default TicketingFooter;

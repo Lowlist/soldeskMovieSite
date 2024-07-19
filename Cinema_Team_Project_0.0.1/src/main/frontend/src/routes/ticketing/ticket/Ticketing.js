@@ -5,7 +5,7 @@ import MovieSelection from './MovieSelection';
 import TheaterSelection from './TheaterSelection';
 import DateSelection from './DateSelection';
 import TimeSelection from './TimeSelection';
-import Footer from './Footer';
+import TicketingFooter from './TicketingFooter';
 import styles from './style/Ticketing.module.css';
 
 function Ticketing() {
@@ -83,7 +83,7 @@ function Ticketing() {
                 <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
                 <TimeSelection selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
-            <Footer
+            <TicketingFooter
                 selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}
                 selectedDateString={selectedDateString}

@@ -36,7 +36,7 @@ public class TicketingService {
     public String getMovies(String releaseDate) {
         try {
             String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                    .queryParam("listCount", 10)
+                    .queryParam("listCount", 20)
                     .queryParam("releaseDts", URLEncoder.encode(releaseDate, StandardCharsets.UTF_8))
                     .queryParam("detail", "Y")
                     .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
