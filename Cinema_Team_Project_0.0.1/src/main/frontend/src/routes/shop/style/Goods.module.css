@@ -30,6 +30,14 @@ hr{
     display: flex;
     width: 100%;
 }
+.cardBody:hover{
+    cursor: pointer;
+}
+.cardBody:hover .cardContent{
+    background-color: black;
+    color: white;
+    opacity: 0.2;
+}
 .cardImg{
     width: 35%;
     margin-right: 15px;
@@ -54,4 +62,10 @@ hr{
     min-width: 453px;
     font-size: 30px;
     text-align: left;
+}
+.packageBox{
+    cursor: pointer;
+}
+.packageBox:hover .packageImg{
+    filter: brightness(0.5) opacity(50%);
 }

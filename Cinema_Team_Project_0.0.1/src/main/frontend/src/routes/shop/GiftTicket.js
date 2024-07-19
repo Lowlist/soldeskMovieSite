@@ -34,10 +34,10 @@ function GiftTicket() {
                         return (
                             <div className={style.cardBox} key={i}>
                                 <Card style={{ width: '28rem', border: '0px' }}>
-                                    <Card.Body className={style.cardBody}>
+                                    <Card.Body className={style.cardBody} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
                                         <img className={style.cardImg} src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} alt='이미지 로딩 실패' />
-                                        <div className={style.cardBox}>
-                                            <Card.Title>{state.shop[i].title}</Card.Title>
+                                        <div className={style.cardContent}>
+                                            <Card.Title >{state.shop[i].title}</Card.Title>
                                             <Card.Text>
                                                 {state.shop[i].content}
                                                 {state.shop[i].content}
@@ -69,8 +69,10 @@ function GiftTicket() {
                 <Row>
                     {
                         state.shop.map((a, i) =>
-                            <Col key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
-                                <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" alt='이미지 로딩 실패' />
+                            <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
+                                <div className={style.packageImg}>
+                                    <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" alt='이미지 로딩 실패' />
+                                </div>
                                 <h4>{state.shop[i].title}</h4>
                                 <div>{state.shop[i].price}</div>
                             </Col>

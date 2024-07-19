@@ -24,7 +24,7 @@ function Goods() {
                     <div className={style.storeHead}>
                         <Navbar bg="light" data-bs-theme="light" className={style.navBar}>
                             <Container>
-                                <Navbar.Brand onClick={ () => navigate('/store') } className={style.storeName}>스토어</Navbar.Brand>
+                                <Navbar.Brand onClick={ () => navigate('/store') } className={style.storeName} style={{cursor : 'pointer'}}>스토어</Navbar.Brand>
                                 <Nav className="me-auto">
                                     <Nav.Link onClick={ () => navigate('package') }>패키지 상품</Nav.Link>
                                     <Nav.Link onClick={ () => navigate('food') }>음식</Nav.Link>

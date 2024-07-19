@@ -35,8 +35,8 @@ function App() {
           <Routes>
             <Route path="/" element={ <Main></Main> }/>
 
-            <Route path="/ticket" element={<> <Ticket></Ticket> <Outlet></Outlet> </>}></Route>
-            <Route path="/seat" element={<><Seat></Seat></>}></Route>
+            <Route path="/ticket" element={ <Ticket/> }></Route>
+            <Route path="/seat" element={ <Seat/> }></Route>
 
             <Route path="/order" element={<>결제창</>}></Route>
             <Route path="/basket" element={<>장바구니</>}></Route>
@@ -48,8 +48,6 @@ function App() {
               <Route path=':id' element={<GoodsDetail/>}></Route>
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>
-            
-
 
             <Route path="/movie" element={<>혁영이형이야~ <Outlet></Outlet> </>}>
               <Route path="main" element={<>/ 무비 메인</>}></Route>

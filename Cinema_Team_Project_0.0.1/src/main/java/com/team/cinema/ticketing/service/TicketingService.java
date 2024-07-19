@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.team.cinema.ticketing.dto.TheaterDetail;
 import com.team.cinema.ticketing.entity.Cinema;
 import com.team.cinema.ticketing.entity.Theater;
 import com.team.cinema.ticketing.repository.CinemaRepository;
