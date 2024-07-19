@@ -10,6 +10,13 @@ import Shop from './routes/shop/Shop.js';
 import Ticket from './routes/ticketing/ticket/Ticketing.js';
 import Seat from './routes/ticketing/seat/SeatSelection.js';
 import MovieList from './routes/movieInfo/MovieList.js';
+import Movie from './routes/movieInfo/Movie.js';
+import Notice from './routes/support/Notice.js';
+import Support from './routes/support/Support.js';
+import RealtimeQuestion from './routes/support/RealtimeQuestion.js';
+import Question from './routes/support/Question.js';
+import NoticeDetail from './routes/support/NoticeDetail.js';
+import QuestionDetail from './routes/support/QuestionDetail.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -50,9 +57,9 @@ function App() {
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>
 
-            <Route path="/movie" element={<>혁영이형이야~ <Outlet></Outlet> </>}>
-              <Route path="main" element={<>/ 무비 메인</>}></Route>
-              <Route path="info" element={<>/ 영화 상세정보 <Outlet></Outlet> </>}>
+            <Route path="/movie" element={<Outlet/>}>
+              <Route path="main" element={<MovieList/>}></Route>
+              <Route path="info" element={<Movie/>}>
                 <Route path="schedule" element={<>/ 해당 영화에 대한 상영관 스케줄</>}></Route>
                 <Route path="review" element={<>/ 해당 영화에 대한 리뷰 게시판</>}></Route>
               </Route>

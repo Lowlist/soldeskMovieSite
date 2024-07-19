@@ -20,11 +20,12 @@
     text-align: center;
 }
 
+/* 여기부분 수정한건데 width 213px로 고정시켜놓고 flex 빼서 정렬 바꾸고 title에 인라인 속성 넣어놨길래 그걸로 레이팅이미지 title이랑 고정시켜둠  */
+
 .textContainer {
-    display: flex;
     height: 30px;
-    justify-content: center;
-    align-items: center;
+    margin-top: 10px;
+    width: 213px;
 }
 
 .ratingImge {

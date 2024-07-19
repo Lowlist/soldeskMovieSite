@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import styles from './style/Info.module.css';
+import styles from './style/Movie.module.css';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Info() {
+function Movie() {
 
     let [data, setData] = useState(null);
 
@@ -124,4 +124,4 @@ function Info() {
     );
 }
 
-export default Info;
+export default Movie;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './style/Index.module.css';
+import styles from './style/MovieList.module.css';
 import axios from 'axios';
 import image from './style/image.png'; // 이미지 경로 불러오기
 import all from './style/all.svg'
@@ -7,7 +7,7 @@ import twelve from './style/12.svg'
 import fifteen from './style/15.svg'
 import adult from './style/19.svg'
 
-function Index() {
+function MovieList() {
 
     let [data, setData] = useState(null);
     const stringLimit = (str, n) => { //글자수 제한 함수
@@ -74,4 +74,4 @@ function Index() {
     );
 }
 
-export default Index;
+export default MovieList;
