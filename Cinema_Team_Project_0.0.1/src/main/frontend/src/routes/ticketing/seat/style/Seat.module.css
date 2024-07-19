@@ -1,6 +1,6 @@
 .seat {
-    width: 40px; /* 고정된 너비 */
-    height: 40px; /* 고정된 높이 */
+    width: 40px !important;
+    height: 40px;
     margin: 5px;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    box-sizing: border-box; /* 박스 모델 설정 */
+    box-sizing: border-box;
 }
 
 .seat:hover {
@@ -26,5 +26,5 @@
 }
 
 .midpointSeat {
-    margin-right: 20px; /* 가운데에 20px 마진 추가 */
+    margin-right: 50px; /* 가운데에 20px 마진 추가 */
 }
