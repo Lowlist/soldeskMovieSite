@@ -12,28 +12,43 @@ import join from '../../images/join.png';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import React from "react";
+import {
+	SliderContainer,
+	BodyContainer,
+	NextTo,
+	Prev
+  } from './style/styles.js'
 
 function Main() {
     let navigate = useNavigate();
 	let movieChartData = [
-        { id: 1, title: '임시 영화 제목1', preference: '80%', reservation: '70%' },
-        { id: 2, title: '임시 영화 제목2', preference: '75%', reservation: '65%' },
-        { id: 3, title: '임시 영화 제목3', preference: '75%', reservation: '65%' },
-        { id: 4, title: '임시 영화 제목4', preference: '75%', reservation: '65%' },
-        { id: 5, title: '임시 영화 제목5', preference: '75%', reservation: '65%' },
-        { id: 6, title: '임시 영화 제목6', preference: '75%', reservation: '65%' },
-        { id: 7, title: '임시 영화 제목7', preference: '75%', reservation: '65%' },
-        { id: 8, title: '임시 영화 제목8', preference: '75%', reservation: '65%' },
-        { id: 9, title: '임시 영화 제목9', preference: '75%', reservation: '65%' },
-        { id: 10, title: '임시 영화 제목10', preference: '75%', reservation: '65%' },
+        { id: 0, title: '임시 영화 제목1', preference: '80%', reservation: '70%' },
+        { id: 1, title: '임시 영화 제목2', preference: '75%', reservation: '65%' },
+        { id: 2, title: '임시 영화 제목3', preference: '75%', reservation: '65%' },
+        { id: 3, title: '임시 영화 제목4', preference: '75%', reservation: '65%' },
+        { id: 4, title: '임시 영화 제목5', preference: '75%', reservation: '65%' },
+        { id: 5, title: '임시 영화 제목6', preference: '75%', reservation: '65%' },
+        { id: 6, title: '임시 영화 제목7', preference: '75%', reservation: '65%' },
+        { id: 7, title: '임시 영화 제목8', preference: '75%', reservation: '65%' },
+        { id: 8, title: '임시 영화 제목9', preference: '75%', reservation: '65%' },
+        { id: 9, title: '임시 영화 제목10', preference: '75%', reservation: '65%' }
     ];
 
 	// React-slick 세팅
 	const settings = {
-		speed: 500,
-		slidesToShow: 5,
-		slidesToScroll: 5,
-		arrows: true
+		variableWidth: true,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+		autoplay: true,
+		autoplaySpeed: 10000, // 자동 캐러셀 속도
+		draggable: false, // 드래그
+		nextArrow: (			//오른쪽 화살표
+			<NextTo />
+		),
+		prevArrow: (			//왼쪽 화살표
+			<Prev />
+		)
 	};
 
     return (
@@ -106,19 +121,21 @@ function Main() {
 						</div>
 	                </div>
 					<div className={styles['movie-chart-body']}>
-						<div className={styles['prev-button']} onClick={()=>{  }}>{'<'}</div>
 						<div className={styles['movie-chart']}>
-							<Slider {...settings}>
-							{
-								movieChartData.map((movie, index)=> {
-									return (
-										<MovieChart key={index} movieData={movie}></MovieChart>
-									)
-								})
-							}
-							</Slider>
+							<BodyContainer>
+								<SliderContainer>
+									<Slider {...settings}>
+									{
+										movieChartData.map((movie, i)=> {
+											return (
+												<MovieChart key={i} i={i} movieData={movieChartData} style={{width : "350px"}}></MovieChart>
+											)
+										})
+									}
+									</Slider>
+								</SliderContainer>
+							</BodyContainer>
 						</div>
-						<div className={styles['next-button']} onClick={()=>{  }}>{'>'}</div>
 					</div>
 	            </div>
 	            <div className={styles['body-store']}>
@@ -143,28 +160,28 @@ function Main() {
     )
 }
 
-function MovieChart(movieData) {
+function MovieChart(props) {
 	let navigate = useNavigate();
 	let [show, setShow] = useState(false);
-	
+	console.log(props.i);
 	return (
 		<div className={styles['chart-body']}>
             <div className={styles['chart-movie']} onMouseEnter={() => { setShow(true) }} onMouseLeave={() => { setShow(false) }}>
-                {movieData.title}
+                임시 영화 포스터
                 <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
                     <button className={styles['chart-button1']} onClick={() => { navigate('/') }}>상세보기</button>
                     <button className={styles['chart-button2']} onClick={() => { navigate('/') }}>예매하기</button>
                 </div>
             </div>
             <div className={styles['chart-movie-title']}>
-                {movieData.title}
+                {props.movieData[props.i].title}
             </div>
             <div className={styles['chart-movie-info']}>
                 <div className={styles['chart-movie-preference']}>
-                    선호도: {movieData.preference}
+                    {props.movieData[props.i].preference}
                 </div>
                 <div className={styles['chart-movie-reservation']}>
-                    예매율: {movieData.reservation}
+                    {props.movieData[props.i].reservation}
                 </div>
             </div>
         </div>
