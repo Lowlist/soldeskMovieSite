@@ -70,7 +70,7 @@ function App() {
               <Route path="search" element={<>/ 영화 검색정보 URL </>}></Route>
             </Route>
 
-            <Route path="/member" element={<> <Outlet></Outlet> </>}>
+            <Route path="/member" element={<Outlet/>}>
               <Route path="signUp" element={<>회원가입</>}></Route>
               <Route path="signIn" element={<>로그인</>}></Route>
               <Route path="myPage" element={<>마이페이지임</>}></Route>

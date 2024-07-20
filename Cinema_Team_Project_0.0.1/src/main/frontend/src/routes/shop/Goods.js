@@ -16,6 +16,7 @@ function Goods() {
     if (id.pathname === "/store") {
         viewGoods = true;
     }
+    
     return (
         <div>
             <div className={style.goodsMain}>
