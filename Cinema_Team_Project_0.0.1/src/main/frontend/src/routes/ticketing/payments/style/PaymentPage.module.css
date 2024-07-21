@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.paymentSteps {
+    flex: 1;
+}
+
+.paymentSummary {
+    flex: 1;
+}
+
+.paymentFooter {
+    flex: 1;
+}

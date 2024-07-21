@@ -1,0 +1,24 @@
+.stepsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.step {
+    margin-bottom: 10px;
+}
+
+.stepHeader {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.stepContent {
+    background-color: #f5f5dc;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-top: 5px;
+}
