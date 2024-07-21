@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style/SelectionComplete.module.css';
 
-function SelectionComplete({ movie, theater, date, time, hall, audience, seatType, seatNumbers, ticketPrice, totalPrice }) {
+function SelectionComplete({ movie, theater, date, time, hall, audience, seatType, seatNumbers, ticketPrice, totalPrice, isButtonEnabled, onButtonClick }) {
     return (
         <div className={styles.container}>
             <div className={styles.movieInfoContainer}>
@@ -51,7 +51,13 @@ function SelectionComplete({ movie, theater, date, time, hall, audience, seatTyp
                 </div>
             </div>
             <div className={styles.buttonContainer}>
-                <button className={styles.button}>결제</button>
+                <button 
+                    className={`${styles.button} ${isButtonEnabled ? styles.enabled : styles.disabled}`} 
+                    onClick={isButtonEnabled ? onButtonClick : null}
+                    disabled={!isButtonEnabled}
+                >
+                    결제
+                </button>
             </div>
         </div>
     );
