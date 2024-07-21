@@ -20,6 +20,8 @@ import QuestionDetail from './routes/support/QuestionDetail.js';
 import Login from './routes/login/login.js';
 import Page from './routes/login/page.js';
 import Re from './routes/login/register.js';
+import PaymentPage from './routes/ticketing/payments/PaymentPage.js';
+
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -48,7 +50,8 @@ function App() {
 
             <Route path="/ticket" element={ <Ticket/> }></Route>
             <Route path="/seat" element={ <Seat/> }></Route>
-
+            <Route path="/PaymentPage" element={<PaymentPage/>} ></Route>
+            
             <Route path="/order" element={<>결제창</>}></Route>
             <Route path="/basket" element={<>장바구니</>}></Route>
 
