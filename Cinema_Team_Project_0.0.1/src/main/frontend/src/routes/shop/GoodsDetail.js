@@ -1,10 +1,12 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import style from './style/GoodsDetail.module.css';
+import { useEffect, useState } from 'react';
 
 function GoodsDetail(){
     let {id} = useParams();
-    let state = useSelector((state)=>{ return state })
+    let state = useSelector( (state)=>{ return state } );
+    let [count,setCount] = useState(1);
     let location = useLocation();
     let findData;
     
@@ -16,6 +18,9 @@ function GoodsDetail(){
         );
     }
 
+    let [price] = useState(findData.price);
+    let [salePrice] = useState(findData.salePrice);
+    
     if(findData == undefined){
         return(
             <div>
@@ -29,8 +34,8 @@ function GoodsDetail(){
             <div className={style.detailName}>
                 {findData.title}
             </div>
-
-            <hr/>
+            
+            <hr className={style.hrOne}/>
 
                 {/* Detail Start */}
 
@@ -49,8 +54,8 @@ function GoodsDetail(){
                         {/* Title Start */}
 
                         <div className={style.detailTitleLine}>
-                            <div className={style.detailTitle}>62,000원</div>
-                            <div className={style.detailTitleSale}>68,000원</div>
+                            <div className={style.detailTitle}>{salePrice.toLocaleString("ko-KR")}원</div>
+                            { <div className={style.detailTitleSale}>{price.toLocaleString("ko-KR")}원</div>}
                         </div>
 
                         {/* Content Start */}
@@ -79,7 +84,7 @@ function GoodsDetail(){
 
                             <div className={style.detailContentPlaceLine}>
                                 <b className={style.detailContentPlaceName}>상품교환</b>
-                                <div className={style.detailContentPlace}>사용가능 CGV 보기</div>
+                                <div className={style.detailContentPlace}>사용가능 DTO 보기</div>
                             </div>
 
                         </div>
@@ -90,13 +95,13 @@ function GoodsDetail(){
 
                         <div className={style.detailNumberLine}>
                             <div className={style.detailPriceBox}>
-                                <div className={style.detailPriceMinus}>-</div>
-                                <div className={style.detailPriceText}>1</div>
-                                <div className={style.detailPricePlus}>+</div>
+                                <div className={style.detailPriceMinus} onClick={ ()=>count !== 1 ? setCount(count-1) : setCount(1)}>-</div>
+                                <div className={style.detailPriceText}>{count}</div>
+                                <div className={style.detailPricePlus} onClick={ ()=>{ setCount(count+1) } } >+</div>
                             </div>
 
                             <div className={style.detailPrice}>
-                                248,000원
+                                {(price*count).toLocaleString("ko-KR")}원
                             </div>
                         </div>
                         
@@ -109,7 +114,7 @@ function GoodsDetail(){
                                 총 구매금액
                             </b>
                             <div className={style.detailTotal}>
-                                248,000원
+                                {(salePrice*count).toLocaleString("ko-KR")}원
                             </div>
                         </div>
 
@@ -124,7 +129,7 @@ function GoodsDetail(){
 
                 </div>
 
-            <hr/>
+            <hr className={style.hrOne}/>
 
             {/* 경고창 및 그런거 쏼라쏼라 */}
 

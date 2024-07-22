@@ -42,7 +42,6 @@ function Goods() {
                             {/* PackageGoods Start */}
 
                             <PackageGoods/> 
-                            
 
                             <div className={style.goodsLine}>
                                 

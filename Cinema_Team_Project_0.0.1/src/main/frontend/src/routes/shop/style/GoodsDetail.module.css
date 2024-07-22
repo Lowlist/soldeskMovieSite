@@ -1,5 +1,5 @@
-hr{
-    width: 100%;
+.hrOne{
+    width: 1285px;
     margin-left: 3px;
     margin-bottom: 14px;
     margin-top: 12px;
@@ -157,7 +157,12 @@ hr{
     margin-bottom: 30px;
 }
 
+.detailSalePrice{
+    margin-left: auto;
+}
+
 .detailPrice{
+    text-decoration:line-through;
     margin-left: auto;
     margin-right: 9px;
     font-size: 30px;
@@ -178,6 +183,7 @@ hr{
 }
 
 .detailBasketButton{
+    cursor: pointer;
     margin-left: auto;
     width: 60px;
     font-size: 0;
@@ -193,6 +199,7 @@ hr{
 }
 
 .detailBuyButton{
+    cursor: pointer;
     display: block;
     float: left;
     width: 245px;

@@ -8,6 +8,7 @@ let shop = createSlice({
             title: "우리 패키지",
             content: "콘텐츠콘텐츠콘텐츠콘텐츠콘텐츠콘텐츠",
             price: 120000,
+            salePrice: 115000,
             count: 0
         },
 
@@ -15,7 +16,8 @@ let shop = createSlice({
             id: 1,
             title: "Red Knit",
             content: "Born in Seoul",
-            price: 110000,
+            price: 150000,
+            salePrice: 135000,
             count: 0
         },
 
@@ -24,6 +26,7 @@ let shop = createSlice({
             title: "Grey Yordan",
             content: "Born in the States",
             price: 130000,
+            salePrice: 125000,
             count: 0
         }
     ],
