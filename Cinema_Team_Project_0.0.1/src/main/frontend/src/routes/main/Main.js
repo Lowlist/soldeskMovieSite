@@ -133,12 +133,71 @@ function Main() {
 					</SliderContainer>
 	            </div>
 	            <div className={styles['body-store']}>
-	                <div className={styles['store-header']}>
-	                    <div className={styles['store-title']}><strong>스토어</strong></div>
-	                    <div className={styles['store-subtitle1']}>푸드</div>
-	                    <div className={styles['store-subtitle2']}>굿즈</div>
+	                <div className={styles['store-wrapper']}>
+						<div className={styles['store-header']}>
+							<div className={styles['store-title']}><strong>푸드</strong></div>
+	                    	<div className={styles['store-more-button']}>더보기</div>
+						</div>
+	                    <div className={styles['store-body']}>
+						{
+							[1, 2, 3].map((foods, i)=> {
+								return (
+									<div className={styles['body-wrapper']}>
+										<div className={styles['store-img']}>팝콘이미지</div>
+										<div className={styles['store-sub']}>
+											<div className={styles['store-subtitle']}>우리 패키지</div>
+											<div className={styles['store-price']}>62,000원</div>
+										</div>
+									</div>
+								)
+							})
+						}
+						</div>
 	                </div>
-	                <div className={styles['store-body']}>div 추가해야댐</div>
+					
+					<div className={styles['store-wrapper']}>
+						<div className={styles['store-header']}>
+							<div className={styles['store-title']}><strong>굿즈</strong></div>
+	                    	<div className={styles['store-more-button']}>더보기</div>
+						</div>
+	                    <div className={styles['store-body']}>
+						{
+							[1, 2, 3].map((foods, i)=> {
+								return (
+									<div className={styles['body-wrapper']}>
+										<div className={styles['store-img']}>굿즈이미지</div>
+										<div className={styles['store-sub']}>
+											<div className={styles['store-subtitle']}>우리 패키지</div>
+											<div className={styles['store-price']}>62,000원</div>
+										</div>
+									</div>
+								)
+							})
+						}
+						</div>
+	                </div>
+					<div className={styles['store-wrapper']}>
+					<div className={styles['store-header']}>
+							<div className={styles['store-title']}><strong>영화관람권</strong></div>
+	                    	<div className={styles['store-more-button']}>더보기</div>
+						</div>
+	                    <div className={styles['store-body']}>
+						{
+							[1, 2, 3].map((foods, i)=> {
+								return (
+									<div className={styles['body-wrapper']}>
+										<div className={styles['store-img']}>팝콘이미지</div>
+										<div className={styles['store-sub']}>
+											<div className={styles['store-subtitle']}>우리 패키지</div>
+											<div className={styles['store-price']}>62,000원</div>
+										</div>
+									</div>
+								)
+							})
+						}
+						</div>
+	                </div>
+	                
 	            </div>
 	            <div className={styles['body-temporary']}>
 	                <div className={styles['temporary-header']}>

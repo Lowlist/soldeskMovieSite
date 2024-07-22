@@ -370,6 +370,11 @@ html, body {
     border-bottom: 2px solid gray;
 }
 
+.store-wrpper {
+
+}
+
+
 .store-header {
     width: 70%;
     height: 50px;
@@ -387,21 +392,32 @@ html, body {
     align-items: center;
 }
 
-.store-subtitle1 {
-    width: 100px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-left: 2px solid gray;
+.store-more-button {
+
 }
 
-.store-subtitle2 {
-    width: 50px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.store-body {
+
+}
+
+.body-wrapper {
+
+}
+
+.store-img {
+
+}
+
+.store-sub {
+
+}
+
+.store-subtitle {
+
+}
+
+.store-price {
+    
 }
 
 .body-temporary {
