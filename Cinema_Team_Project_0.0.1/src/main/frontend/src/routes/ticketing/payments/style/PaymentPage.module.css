@@ -1,17 +1,21 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border-radius: 10px; /* 모서리 둥글게 */
+    max-width : 90%;
+    margin: 0 auto; /* 가운데 정렬 */
 }
 
 .paymentSteps {
-    flex: 1;
+    margin-bottom: 20px;
 }
 
 .paymentSummary {
-    flex: 1;
+    margin-bottom: 20px;
 }
 
 .paymentFooter {
-    flex: 1;
+    margin-top: auto;
 }

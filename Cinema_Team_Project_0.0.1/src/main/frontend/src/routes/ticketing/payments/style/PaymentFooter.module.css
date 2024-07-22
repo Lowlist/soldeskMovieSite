@@ -8,19 +8,29 @@
     border-radius: 10px;
 }
 
+
+
+.selectedMovieSet {
+    display: flex;
+    align-items: center;
+}
+
 .movieInfoContainer {
     display: flex;
     align-items: center;
 }
 
 .selectedMoviePoster {
-    width: 100px;
-    margin-right: 20px;
+    height: 150px;
+    text-align: center;
 }
 
 .selectedMovieTitle {
-    font-size: 20px;
-    font-weight: bold;
+    text-align: left;
+    margin: auto;
+    padding: 30px;
+    font-size: large;
+    font-weight: bolder;
 }
 
 .movieInfo {

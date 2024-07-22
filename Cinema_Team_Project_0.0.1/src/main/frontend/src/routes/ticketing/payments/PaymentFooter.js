@@ -6,12 +6,14 @@ const PaymentFooter = ({ selectedMovie, selectedTheater, selectedDateString, sel
 
     return (
         <div className={styles.footer}>
-            <div className={`${styles.movieInfo} ${styles.movieInfoContainer}`}>
-                {selectedMovie && selectedMovie.poster && (
-                    <img src={selectedMovie.poster} alt={selectedMovie.title} className={styles.selectedMoviePoster} />
-                )}
-                <div className={styles.selectedMovieTitle}>
-                    {selectedMovie ? selectedMovie.title : ''}
+            <div className={styles.movieInfoContainer}>
+                <div className={styles.selectedMovieSet}>
+                    {selectedMovie.poster && (
+                        <img src={selectedMovie.poster} alt={selectedMovie.title} className={styles.selectedMoviePoster} />
+                    )}
+                    <div className={styles.selectedMovieTitle}>
+                        {selectedMovie.title}
+                    </div>
                 </div>
             </div>
             <div className={styles.totalInfo}>

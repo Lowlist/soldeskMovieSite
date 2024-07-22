@@ -1,6 +1,9 @@
 .stepsContainer {
-    display: flex;
-    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 18px;
 }
 
 .step {
@@ -8,17 +11,122 @@
 }
 
 .stepHeader {
-    background-color: #000;
-    color: #fff;
+    font-weight: bold;
     padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    border-bottom: 1px solid #ddd;
 }
 
 .stepContent {
-    background-color: #f5f5dc;
     padding: 10px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    margin-top: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: block;
+}
+
+.discountSection {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.discountInput {
+    flex: 1;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.applyButton {
+    padding: 5px 10px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.applyButton:hover {
+    background-color: #c9302c;
+}
+
+.giftTicketSection {
+    margin-top: 10px;
+}
+
+.giftTicketHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.giftTicketInput {
+    flex: 1;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.registerButton {
+    padding: 5px 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.registerButton:hover {
+    background-color: #4cae4c;
+}
+
+.giftTicketTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.giftTicketTable th,
+.giftTicketTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.giftTicketTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.discountAmount {
+    text-align: right;
+    font-weight: bold;
+}
+
+.paymentMethods {
+    display: flex;
+    justify-content: space-around;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.paymentMethods div {
+    margin-bottom: 5px;
+}
+
+.easyPayMethods {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.paymentMethodDetails {
+    margin-top: 10px;
+}
+
+.notice {
+    color: red;
+    font-size: 17px;
+    margin-top: 10px;
 }
