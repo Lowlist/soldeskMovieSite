@@ -133,79 +133,81 @@ function Main() {
 					</SliderContainer>
 	            </div>
 	            <div className={styles['body-store']}>
-	                <div className={styles['store-wrapper']}>
-						<div className={styles['store-header']}>
-							<div className={styles['store-title']}><strong>푸드</strong></div>
-	                    	<div className={styles['store-more-button']}>더보기</div>
-						</div>
-	                    <div className={styles['store-body']}>
-						{
-							[1, 2, 3].map((foods, i)=> {
-								return (
-									<div className={styles['body-wrapper']}>
-										<div className={styles['store-img']}>팝콘이미지</div>
-										<div className={styles['store-sub']}>
-											<div className={styles['store-subtitle']}>우리 패키지</div>
-											<div className={styles['store-price']}>62,000원</div>
+					<div className={styles['body-store-wrapper']}>
+						<div className={styles['store-wrapper']}>
+							<div className={styles['store-header']}>
+								<div className={styles['store-title']}><strong>푸드</strong></div>
+	                    		<div className={styles['store-more-button']} onClick={()=>{ navigate('/ticketing')}}>더보기</div>
+							</div>
+	                    	<div className={styles['store-body']}>
+							{
+								[1, 2, 3].map((foods, i)=> {
+									return (
+										<div className={styles['body-wrapper']}>
+											<div className={styles['store-img']}>팝콘이미지</div>
+											<div className={styles['store-sub']}>
+												<div className={styles['store-subtitle']}>우리 패키지</div>
+												<div className={styles['store-price']}><strong>62,000원</strong></div>
+											</div>
 										</div>
-									</div>
-								)
-							})
-						}
-						</div>
-	                </div>
+									)
+								})
+							}
+							</div>
+	                	</div>
 					
-					<div className={styles['store-wrapper']}>
-						<div className={styles['store-header']}>
-							<div className={styles['store-title']}><strong>굿즈</strong></div>
-	                    	<div className={styles['store-more-button']}>더보기</div>
-						</div>
-	                    <div className={styles['store-body']}>
-						{
-							[1, 2, 3].map((foods, i)=> {
-								return (
-									<div className={styles['body-wrapper']}>
-										<div className={styles['store-img']}>굿즈이미지</div>
-										<div className={styles['store-sub']}>
-											<div className={styles['store-subtitle']}>우리 패키지</div>
-											<div className={styles['store-price']}>62,000원</div>
+						<div className={styles['store-wrapper']}>
+							<div className={styles['store-header']}>
+								<div className={styles['store-title']}><strong>굿즈</strong></div>
+	                	    	<div className={styles['store-more-button']} onClick={()=>{ navigate('/ticketing')}}>더보기</div>
+							</div>
+	                	    <div className={styles['store-body']}>
+							{
+								[1, 2, 3].map((foods, i)=> {
+									return (
+										<div className={styles['body-wrapper']}>
+											<div className={styles['store-img']}>굿즈이미지</div>
+											<div className={styles['store-sub']}>
+												<div className={styles['store-subtitle']}>우리 패키지</div>
+												<div className={styles['store-price']}><strong>62,000원</strong></div>
+											</div>
 										</div>
-									</div>
-								)
-							})
-						}
-						</div>
-	                </div>
-					<div className={styles['store-wrapper']}>
-					<div className={styles['store-header']}>
-							<div className={styles['store-title']}><strong>영화관람권</strong></div>
-	                    	<div className={styles['store-more-button']}>더보기</div>
-						</div>
-	                    <div className={styles['store-body']}>
-						{
-							[1, 2, 3].map((foods, i)=> {
-								return (
-									<div className={styles['body-wrapper']}>
-										<div className={styles['store-img']}>팝콘이미지</div>
-										<div className={styles['store-sub']}>
-											<div className={styles['store-subtitle']}>우리 패키지</div>
-											<div className={styles['store-price']}>62,000원</div>
+									)
+								})
+							}
+							</div>
+	                	</div>
+						<div className={styles['store-wrapper']}>
+							<div className={styles['store-header']}>
+								<div className={styles['store-title']}><strong>영화관람권</strong></div>
+	                	    	<div className={styles['store-more-button']} onClick={()=>{ navigate('/ticketing')}}>더보기</div>
+							</div>
+	                	    <div className={styles['store-body']}>
+							{
+								[1, 2, 3].map((foods, i)=> {
+									return (
+										<div className={styles['body-wrapper']}>
+											<div className={styles['store-img']}>팝콘이미지</div>
+											<div className={styles['store-sub']}>
+												<div className={styles['store-subtitle']}>우리 패키지</div>
+												<div className={styles['store-price']}><strong>62,000원</strong></div>
+											</div>
 										</div>
-									</div>
-								)
-							})
-						}
-						</div>
-	                </div>
-	                
+									)
+								})
+							}
+							</div>
+	                	</div>
+					</div>
 	            </div>
-	            <div className={styles['body-temporary']}>
-	                <div className={styles['temporary-header']}>
-	                    <div className={styles['temporary-title']}><strong>임시</strong></div>
-	                    <div className={styles['temporary-subtitle1']}>하부1</div>
-	                    <div className={styles['temporary-subtitle2']}>하부2</div>
+	            <div className={styles['body-cinema']}>
+	                <div className={styles['cinema-header']}>
+	                    <div className={styles['cinema-title']}>공지사항</div>
+	                    <div className={styles['cinema-subtitle']}>고객센터</div>
 	                </div>
-	                <div className={styles['temporary-body']}>div 추가해야댐</div>
+	                <div className={styles['cinema-body']}>
+						공지사항 or 고객센터 글 리스트 띄우는 div
+					</div>
 	            </div>
 	        </div>
 	        <div className={styles['wrapper-footer']}>@팀명 Corp.</div>
@@ -234,7 +236,7 @@ function MovieChart(props) {
                     {props.movieData[props.i].preference}
                 </div>
                 <div className={styles['chart-movie-reservation']}>
-                    {props.movieData[props.i].reservation}
+                    예매율 {props.movieData[props.i].reservation}
                 </div>
             </div>
         </div>
