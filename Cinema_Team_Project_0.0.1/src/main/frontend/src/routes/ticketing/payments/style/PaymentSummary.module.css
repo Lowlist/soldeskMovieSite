@@ -1,8 +1,9 @@
 .summaryContainer {
-    background-color: #fff;
+    background-color: #F2F0E4;
     border: 1px solid #000;
     border-radius: 10px;
     padding: 20px;
+    font-size: 20px;
 }
 
 .summaryRow {

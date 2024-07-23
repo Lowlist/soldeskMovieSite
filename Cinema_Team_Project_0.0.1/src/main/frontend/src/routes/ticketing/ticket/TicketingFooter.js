@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style/Footer.module.css';
+import styles from './style/TicketingFooter.module.css';
 
 const TicketingFooter = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall, handleSeatSelection }) => {
     const isButtonDisabled = !selectedMovie || !selectedTheater || !selectedDateString || !selectedTime;

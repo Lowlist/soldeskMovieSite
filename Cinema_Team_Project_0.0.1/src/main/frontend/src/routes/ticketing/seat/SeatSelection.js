@@ -121,14 +121,14 @@ function SeatSelection() {
     };
 
     const handlePaymentClick = () => {
-        navigate('/payment', {
+        navigate('/PaymentPage', {
             state: {
                 selectedMovie,
                 selectedTheater,
                 selectedDateString,
                 selectedTime,
                 selectedHall,
-                selectedSeats, // 배열 그대로 전달
+                selectedSeats,
                 totalAmount: totalPrice
             }
         });
