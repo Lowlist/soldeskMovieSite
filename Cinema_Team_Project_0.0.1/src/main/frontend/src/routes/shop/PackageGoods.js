@@ -15,7 +15,7 @@ function PackageGoods() {
     }
 
     return (
-        <div>
+        <div className={style.packageLine}>
             <div className={style.goodsName}>
                 패키지 상품
                 { 

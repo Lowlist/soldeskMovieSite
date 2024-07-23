@@ -38,7 +38,7 @@ function Goods() {
 
                     {
                         viewGoods &&
-                        <div>
+                        <div className={style.shopLine}>
                             {/* PackageGoods Start */}
 
                             <PackageGoods/> 

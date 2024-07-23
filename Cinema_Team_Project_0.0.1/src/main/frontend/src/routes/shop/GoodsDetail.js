@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import style from './style/GoodsDetail.module.css';
 import { useEffect, useState } from 'react';
@@ -8,6 +8,7 @@ function GoodsDetail(){
     let state = useSelector( (state)=>{ return state } );
     let [count,setCount] = useState(1);
     let location = useLocation();
+    let navigate = useNavigate();
     let findData;
     
     if(location.pathname.indexOf("/store/") !== -1){
@@ -121,7 +122,7 @@ function GoodsDetail(){
                         {/* Button Start */}
 
                         <div className={style.detailButtonLine}>
-                            <div className={style.detailBasketButton}></div>
+                            <div className={style.detailBasketButton} onClick={()=>{navigate('/store/basket')}}></div>
                             <div className={style.detailBuyButton}>구매하기</div>
                         </div>
                         

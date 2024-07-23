@@ -21,6 +21,7 @@ import Login from './routes/login/login.js';
 import Page from './routes/login/page.js';
 import Re from './routes/login/register.js';
 import PaymentPage from './routes/ticketing/payments/PaymentPage.js';
+import GoodsBasket from './routes/shop/GoodsBasket.js';
 
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
@@ -52,13 +53,14 @@ function App() {
             <Route path="/seat" element={ <Seat/> }></Route>
             <Route path="/PaymentPage" element={<PaymentPage/>} ></Route>
             
+            {/* 재원이형이랑 공용으로 쓸 예정 */}
             <Route path="/order" element={<>결제창</>}></Route>
-            <Route path="/basket" element={<>장바구니</>}></Route>
 
             <Route path="/store" element={<Shop/>}>
               <Route path="package" element={<PackageGoods/>}></Route>
               <Route path="food" element={<DrinkFood/>}></Route>
               <Route path="giftTicket" element={<GiftTicket/>}></Route>
+              <Route path="basket" element={<GoodsBasket/>}></Route>
               <Route path=':id' element={<GoodsDetail/>}></Route>
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>

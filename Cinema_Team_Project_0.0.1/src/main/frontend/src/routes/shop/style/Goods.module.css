@@ -8,6 +8,13 @@ hr{
 .hrCenter{
     width: 90%;
 }
+
+.packageLine{
+    width: 1296px;
+}
+.shopLine{
+    width: 1296px;
+}
 .storeHead{
     width: 1420px;
     margin-top: 40px;

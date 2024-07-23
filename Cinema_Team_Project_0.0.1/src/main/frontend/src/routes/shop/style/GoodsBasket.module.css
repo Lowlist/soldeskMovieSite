@@ -1,0 +1,122 @@
+.goodsBasketLine{
+    width: 1292px;
+    height: 1000px;
+}
+
+.goodsBasketStepLine{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 1292px;
+    height: 133px;
+}
+
+.shopBasketHrOne{
+    margin-top: 15px;
+    margin-bottom: 0px;
+    width: 1287px;
+    color: black;
+    opacity: 1;
+}
+
+.basketStepInfo,
+.basketStepOrder,
+.basketStepComple{
+    padding-left: 40px;
+    display: flex;
+    text-align: center;
+}
+
+.basketStepRightIcon{
+    content: '';
+    margin-top: 56px;
+    margin-bottom: auto;
+    margin-left: 35px;
+    width: 18px;
+    height: 30px;
+    background-image: url(https://img.cgv.co.kr/R2014/images/giftstore/common/bg_step_arrow.png);
+}
+
+.basketStepInfoIcon,
+.basketStepOrderIcon,
+.basketStepCompleIcon{
+    margin-left: 3px;
+    content: '';
+    display: inline-block;
+    margin-top: 54px;
+    margin-bottom: auto;
+    width: 38px;
+    height: 33px;
+    background-image: url(https://img.cgv.co.kr/R2014/images/giftstore/common/bg_stepIcon.png);
+}
+
+.basketStepOrderIcon{
+    background-position: top right 113px;
+}
+
+.basketStepCompleIcon{
+    background-position: top right 150px;
+}
+
+.basketStepComple{
+    padding-right: 40px;
+}
+
+.basketStepText{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 14px;
+    text-align: center;
+}
+
+.basketStepInfoSmall,
+.basketStepOrderSmall,
+.basketStepCompleSmall{
+    display: block;
+    font-weight: 400;
+    font-size: 18px;
+    color: #8d8d8d;
+    line-height: 22px;
+}
+
+.basketStepInfoLarge,
+.basketStepOrderLarge,
+.basketStepCompleLarge{
+    padding-top: 5px;
+    display: block;
+    font-family: 'CJONLYONENEW';
+    font-weight: 500;
+    font-size: 27px;
+    color: #8d8d8d;
+    line-height: 22px;
+}
+
+.goodsBasketList{
+    display: flex;
+    background-color: #fafafa;
+    margin-left: 5px;
+    height: 61px;
+}
+
+.basketListCheckLine{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.basketListAllCheckBox,
+.basketListAllCheckBoxAfter{
+    content: '';
+    cursor: pointer;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+    background-image: url(https://img.cgv.co.kr/R2014/images/giftstore/common/bg_checkbox_radio.png);
+    margin: 0px;
+    background-position: bottom 25px left 104px;
+}
+.basketListAllCheckBoxAfter{
+    background-position: bottom 25px left 50px;
+}
+
