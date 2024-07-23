@@ -71,9 +71,9 @@ function App() {
             </Route>
 
             <Route path="/member" element={<> <Outlet></Outlet> </>}>
-              <Route path="signUp" element={<>회원가입</>}></Route>
-              <Route path="signIn" element={<>로그인</>}></Route>
-              <Route path="myPage" element={<>마이페이지임</>}></Route>
+              <Route path="signUp" element={<Re/>}></Route>
+              <Route path="signIn" element={<Login/>}></Route>
+              <Route path="myPage" element={<Page/>}></Route>
               {/* 여기 아래부분은 ver2 에서 해도 됨 */}
               <Route path="find" element={<>아이디/비밀번호 찾기</>}></Route>
               <Route path="findId" element={<>아이디 찾기</>}></Route>
