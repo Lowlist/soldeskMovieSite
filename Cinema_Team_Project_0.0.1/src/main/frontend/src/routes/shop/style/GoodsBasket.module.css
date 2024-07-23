@@ -92,16 +92,41 @@
 }
 
 .goodsBasketList{
+    background-color: aqua;
+    width: 1287px;
     display: flex;
-    background-color: #fafafa;
+    flex-direction: column;
     margin-left: 5px;
-    height: 61px;
 }
 
 .basketListCheckLine{
+    background-color: #fafafa;
+    width: 1287px;
+    text-align: center;
+    height: 61px;
+    border-bottom: 1px solid black;
     display: flex;
+    margin-bottom: auto;
+}
+
+.basketListCheckLineName,
+.basketListCheckLineSellPrice,
+.basketListCheckLineAmount,
+.basketListCheckLineBuyPrice,
+.basketListCheckLineBuySelect{
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.basketListCheckLineName{
+    margin-right: 35%;
+}
+
+.basketListCheckLineSellPrice,
+.basketListCheckLineAmount,
+.basketListCheckLineBuyPrice,
+.basketListCheckLineBuySelect{
+    margin-right: 8%;
 }
 
 .basketListAllCheckBox,
@@ -114,9 +139,19 @@
     font-size: 0;
     background-image: url(https://img.cgv.co.kr/R2014/images/giftstore/common/bg_checkbox_radio.png);
     margin: 0px;
+    margin-left: 15px;
+    margin-right: 8%;
+    margin-top: auto;
+    margin-bottom: auto;
     background-position: bottom 25px left 104px;
 }
+
 .basketListAllCheckBoxAfter{
-    background-position: bottom 25px left 50px;
+    background-position: bottom 25px left 79px;
 }
 
+.basketListItemLine{
+    display: flex;
+    width: 1320px;
+    height: 150px;
+}

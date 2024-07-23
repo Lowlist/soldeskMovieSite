@@ -7,8 +7,8 @@ let shop = createSlice({
             id: 0,
             title: "우리 패키지",
             content: "콘텐츠콘텐츠콘텐츠콘텐츠콘텐츠콘텐츠",
-            price: 120000,
-            salePrice: 115000,
+            price: 80000,
+            salePrice: 75000,
             count: 0
         },
 
