@@ -82,7 +82,7 @@ function Main() {
                     <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
                     <Nav.Link onClick={ ()=>{ navigate('/store') } }>shop</Nav.Link>
                     <Nav.Link onClick={ ()=>{ navigate('/ticket') } }>ticketing</Nav.Link>
-                    <Nav.Link onClick={ ()=>{ navigate('/map') } }>카카오맵</Nav.Link>
+                    <Nav.Link onClick={ ()=>{ navigate('/gps/map') } }>카카오맵</Nav.Link>
                     <Nav.Link onClick={ ()=>{ navigate('/support') } }>고객센터</Nav.Link>
                 </Container>
                 <div className={styles['category-right']}>
@@ -137,7 +137,7 @@ function Main() {
 						<div className={styles['store-wrapper']}>
 							<div className={styles['store-header']}>
 								<div className={styles['store-title']}><strong>푸드</strong></div>
-	                    		<div className={styles['store-more-button']} onClick={()=>{ navigate('/ticketing')}}>더보기</div>
+	                    		<div className={styles['store-more-button']} onClick={()=>{ navigate('/store')}}>더보기</div>
 							</div>
 	                    	<div className={styles['store-body']}>
 							{
@@ -159,7 +159,7 @@ function Main() {
 						<div className={styles['store-wrapper']}>
 							<div className={styles['store-header']}>
 								<div className={styles['store-title']}><strong>굿즈</strong></div>
-	                	    	<div className={styles['store-more-button']} onClick={()=>{ navigate('/ticketing')}}>더보기</div>
+	                	    	<div className={styles['store-more-button']} onClick={()=>{ navigate('/store')}}>더보기</div>
 							</div>
 	                	    <div className={styles['store-body']}>
 							{
@@ -180,7 +180,7 @@ function Main() {
 						<div className={styles['store-wrapper']}>
 							<div className={styles['store-header']}>
 								<div className={styles['store-title']}><strong>영화관람권</strong></div>
-	                	    	<div className={styles['store-more-button']} onClick={()=>{ navigate('/ticketing')}}>더보기</div>
+	                	    	<div className={styles['store-more-button']} onClick={()=>{ navigate('/store')}}>더보기</div>
 							</div>
 	                	    <div className={styles['store-body']}>
 							{
