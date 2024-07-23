@@ -5,7 +5,6 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
     const [discountCode, setDiscountCode] = useState('');
     const [discountSuccess, setDiscountSuccess] = useState(false);
 
-    
     const [giftTicketCode, setGiftTicketCode] = useState('');
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
     const [selectedEasyPayMethod, setSelectedEasyPayMethod] = useState('');
@@ -43,7 +42,7 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
     return (
         <div className={styles.stepsContainer}>
             <div className={styles.step}>
-            <div className={styles.stepHeader}>
+                <div className={styles.stepHeader}>
                     STEP 1. 할인쿠폰
                 </div>
                 <div className={styles.stepContent}>
@@ -95,60 +94,62 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
                 <div className={styles.stepHeader}>STEP 3. 최종결제 수단</div>
                 <div className={styles.stepContent}>
                     <div className={styles.paymentMethods}>
-                        <div>
-                            <input
-                                type="radio"
-                                id="creditCard"
-                                name="paymentMethod"
-                                value="신용카드"
-                                checked={selectedPaymentMethod === '신용카드'}
-                                onChange={handlePaymentMethodChange}
-                            />
-                            <label htmlFor="creditCard">신용카드</label>
-                        </div>
-                        <div>
-                            <input
-                                type="radio"
-                                id="mobilePayment"
-                                name="paymentMethod"
-                                value="휴대폰 결제"
-                                checked={selectedPaymentMethod === '휴대폰 결제'}
-                                onChange={handlePaymentMethodChange}
-                            />
-                            <label htmlFor="mobilePayment">휴대폰 결제</label>
-                        </div>
-                        <div>
-                            <input
-                                type="radio"
-                                id="easyPayment"
-                                name="paymentMethod"
-                                value="간편결제"
-                                checked={selectedPaymentMethod === '간편결제'}
-                                onChange={handlePaymentMethodChange}
-                            />
-                            <label htmlFor="easyPayment">간편결제</label>
-                        </div>
-                        <div>
-                            <input
-                                type="radio"
-                                id="bankTransfer"
-                                name="paymentMethod"
-                                value="내통장결제"
-                                checked={selectedPaymentMethod === '내통장결제'}
-                                onChange={handlePaymentMethodChange}
-                            />
-                            <label htmlFor="bankTransfer">내통장결제</label>
-                        </div>
-                        <div>
-                            <input
-                                type="radio"
-                                id="tos"
-                                name="paymentMethod"
-                                value="토스"
-                                checked={selectedPaymentMethod === '토스'}
-                                onChange={handlePaymentMethodChange}
-                            />
-                            <label htmlFor="tos">토스</label>
+                        <div className={styles.paymentMethodsDiv}>
+                            <div>
+                                <button
+                                    type="radio"
+                                    id="creditCard"
+                                    name="paymentMethod"
+                                    value="신용카드"
+                                    checked={selectedPaymentMethod === '신용카드'}
+                                    onClick={handlePaymentMethodChange}
+                                    className={styles.paymentSelectionButton}
+                                >신용카드</button>
+                            </div>
+                            <div>
+                                <button
+                                    type="radio"
+                                    id="mobilePayment"
+                                    name="paymentMethod"
+                                    value="휴대폰 결제"
+                                    checked={selectedPaymentMethod === '휴대폰 결제'}
+                                    onClick={handlePaymentMethodChange}
+                                    className={styles.paymentSelectionButton}
+                                >휴대폰 결제</button>
+                            </div>
+                            <div>
+                                <button
+                                    type="radio"
+                                    id="easyPayment"
+                                    name="paymentMethod"
+                                    value="간편결제"
+                                    checked={selectedPaymentMethod === '간편결제'}
+                                    onClick={handlePaymentMethodChange}
+                                    className={styles.paymentSelectionButton}
+                                >간편결제</button>
+                            </div>
+                            <div>
+                                <button
+                                    type="radio"
+                                    id="bankTransfer"
+                                    name="paymentMethod"
+                                    value="내통장결제"
+                                    checked={selectedPaymentMethod === '내통장결제'}
+                                    onClick={handlePaymentMethodChange}
+                                    className={styles.paymentSelectionButton}
+                                >내통장결제</button>
+                            </div>
+                            <div>
+                                <button
+                                    type="radio"
+                                    id="tos"
+                                    name="paymentMethod"
+                                    value="토스"
+                                    checked={selectedPaymentMethod === '토스'}
+                                    onClick={handlePaymentMethodChange}
+                                    className={styles.paymentSelectionButton}
+                                >토스</button>
+                            </div>
                         </div>
                     </div>
                     {selectedPaymentMethod === '간편결제' && (
@@ -191,8 +192,8 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
                                 </div>
                             )}
                             {selectedPaymentMethod === '휴대폰 결제' && (
-                                <div>
-                                    <p>결제금액 10,000원</p>
+                                <div className={styles.mainNotice}>
+                                    <p>결제금액 {totalAmount}원</p>
                                     <p>상품명 영화티켓예매</p>
                                     <p>휴대폰 결제 순서</p>
                                     <ol>
@@ -208,7 +209,7 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
                                 </div>
                             )}
                             {selectedPaymentMethod === '내통장결제' && (
-                                <div>
+                                <div className={styles.mainNotice}>
                                     <p>내통장결제 결제 순서</p>
                                     <ol>
                                         <li>아래 결제하기 버튼 클릭 후 다음 단계로 이동</li>
@@ -223,7 +224,7 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
                                 </div>
                             )}
                             {selectedPaymentMethod === '토스' && (
-                                <div>
+                                <div className={styles.mainNotice}>
                                     <p>토스 결제 순서</p>
                                     <ol>
                                         <li>우측 하단에 있는 "결제하기" 버튼을 클릭해 주세요.</li>
@@ -236,7 +237,7 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
                                 </div>
                             )}
                             {selectedPaymentMethod === '간편결제' && selectedEasyPayMethod === '네이버페이' && (
-                                <div>
+                                <div className={styles.mainNotice}>
                                     <p>네이버페이 결제 순서</p>
                                     <ol>
                                         <li>우측 하단에 있는 "결제하기" 버튼을 클릭해 주세요.</li>
@@ -256,7 +257,7 @@ const PaymentSteps = ({ totalAmount, setTotalAmount, numTickets }) => {
                                 </div>
                             )}
                             {selectedPaymentMethod === '간편결제' && selectedEasyPayMethod === '카카오페이' && (
-                                <div>
+                                <div className={styles.mainNotice}>
                                     <p>카카오페이 결제 순서</p>
                                     <ol>
                                         <li>우측 하단에 있는 "결제하기" 버튼을 클릭해 주세요.</li>

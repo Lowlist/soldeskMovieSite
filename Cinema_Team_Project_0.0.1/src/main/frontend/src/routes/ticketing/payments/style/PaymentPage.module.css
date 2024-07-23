@@ -6,6 +6,8 @@
     border-radius: 10px; /* 모서리 둥글게 */
     max-width : 90%;
     margin: 0 auto; /* 가운데 정렬 */
+    background-color: #F2F0E4;;
+    
 }
 
 .paymentSteps {

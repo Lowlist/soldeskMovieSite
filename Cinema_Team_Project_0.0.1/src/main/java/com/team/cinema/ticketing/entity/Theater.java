@@ -43,7 +43,6 @@ public class Theater {
     @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
 
-    // Getters and Setters
 
     public int getNo() {
         return no;
