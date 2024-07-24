@@ -9,8 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
+@Data
+@Table(name = "question")
 public class QuestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +34,12 @@ public class QuestionEntity {
 
     @Column(nullable = false, columnDefinition = "DATETIME default NOW() ON UPDATE NOW()")
     private LocalDateTime updatedAt;
-
-    @ManyToOne
-    @JoinColumn(name = "no", referencedColumnName = "no")
-    private Member member;
+	
+    /*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "no", referencedColumnName = "no") private Member member;
+	 */
 
     @ManyToOne
     @JoinColumn(name = "replyNo", referencedColumnName = "replyNo")
