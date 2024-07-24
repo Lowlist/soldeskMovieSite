@@ -71,32 +71,6 @@ function GoodsBasket(){
                     <div className={style.basketListItemAmountLine}></div>
                 </div>
 
-                <div className={style.basketListItemLine}>
-                    <div className={checkBox === true ? style.basketListAllCheckBox : style.basketListAllCheckBoxAfter}
-                        onClick={ ()=>{ switchCheckBox() } }></div>
-                    <div className={style.basketListItemContentLine}>
-                        <div className={style.basketListItemImg}></div>
-                        <div className={style.basketListItemContent}>
-                            <div className={style.basketListItemContentName}></div>
-                            <div className={style.basketListItemContentNotice}></div>
-                        </div>
-                    </div>
-                    <div className={style.basketListItemAmountLine}></div>
-                </div>
-
-                <div className={style.basketListItemLine}>
-                    <div className={checkBox === true ? style.basketListAllCheckBox : style.basketListAllCheckBoxAfter}
-                        onClick={ ()=>{ switchCheckBox() } }></div>
-                    <div className={style.basketListItemContentLine}>
-                        <div className={style.basketListItemImg}></div>
-                        <div className={style.basketListItemContent}>
-                            <div className={style.basketListItemContentName}></div>
-                            <div className={style.basketListItemContentNotice}></div>
-                        </div>
-                    </div>
-                    <div className={style.basketListItemAmountLine}></div>
-                </div>
-
                 <div className={style.basketListDel}></div>
                 <div className={style.basketListNotice}></div>
             </div>
