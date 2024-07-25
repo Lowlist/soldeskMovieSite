@@ -61,6 +61,8 @@ function App() {
               <Route path="food" element={<DrinkFood/>}></Route>
               <Route path="giftTicket" element={<GiftTicket/>}></Route>
               <Route path="basket" element={<GoodsBasket/>}></Route>
+              <Route path="payment" element={<GoodsBasket/>}></Route>
+              <Route path="result" element={<GoodsBasket/>}></Route>
               <Route path=':id' element={<GoodsDetail/>}></Route>
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>
