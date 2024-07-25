@@ -4,8 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.team.cinema.support.service.notice.NoticeService;
-import com.team.cinema.support.service.question.QuestionService;
+import com.team.cinema.support.service.NoticeSerivce;
+import com.team.cinema.support.service.QuestionService;
+import com.team.cinema.support.service.ReplyService;
 
 import lombok.AllArgsConstructor;
 
@@ -13,8 +14,9 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/support/*")
 @AllArgsConstructor
 public class SupportController {
-	private NoticeService notice;
+	private NoticeSerivce notice;
 	private QuestionService question;
+	private ReplyService reply;
 	
 	@GetMapping("/notice")
 	public String notice() {
