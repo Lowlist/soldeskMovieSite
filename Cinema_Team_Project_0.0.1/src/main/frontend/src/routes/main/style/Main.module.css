@@ -481,7 +481,7 @@ html, body {
     margin-left: 10px;
 }
 
-.body-cinema {
+.announcement-div {
     width: 1920px;
     height: 600px;
     display: flex;
@@ -491,27 +491,227 @@ html, body {
     padding-top: 50px;
 }
 
-.cinema-header {
-    width: 70%;
-    height: 100px;
+.announcement-body {
+    width: 50%;
+    height: 240px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-size: 20px;
+    border-radius: 10px;
+    border: 0.5px solid gray;
 }
 
-.cinema-title {
-    width: 150px;
+.announcement-service {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+}
+
+.announcement-main {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 0.2px solid gray;
+}
+
+.announcement-title {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.announcement-list {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+
+.announcement-button {
+    width: 20%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cinema-subtitle {
-    width: 150px;
+.announcement-button-click {
+    width: 60px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border: 0.5px solid gray;
+    border-radius: 15px;
+}
+
+.service-center {
+    width: 100%;
     height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-body {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.service-title {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 18px;
+    
+}
+
+.service-subdiv {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.service-number {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+
+.service-time {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+.service-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+
+.service-footer {
+    width: 50%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.service-button-div {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-button-div2 {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-button {
+    width: 85%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.service-button2 {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.app-download {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 0.5px solid gray;
+    
+}
+
+.app-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.app-title {
+    width: 100%;
+    height: 20%;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.app-info {
+    width: 100%;
+    height: 10%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-qr {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-info {
+    width: 100%;
+    height: 20%;
+    font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
