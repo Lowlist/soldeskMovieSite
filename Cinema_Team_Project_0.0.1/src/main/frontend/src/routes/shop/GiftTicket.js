@@ -28,9 +28,9 @@ function GiftTicket() {
                     </div>
                 }
                 </div>
-                <hr />
+                <hr/>
                 {
-                    state.shop.map((a, i) => {
+                    [1,2,3].map((a, i) => {
                         return (
                             <div className={style.cardBox} key={i}>
                                 <Card style={{ width: '28rem', border: '0px' }}>

@@ -75,9 +75,18 @@ hr{
     font-size: 30px;
     text-align: left;
 }
+.packageRow{
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    width: 1200px;
+    gap: 0px 10px;
+    justify-content: space-between;
+}
 .packageBox{
     cursor: pointer;
 }
+
 .packageBox:hover .packageImg{
     filter: brightness(0.5) opacity(50%);
 }

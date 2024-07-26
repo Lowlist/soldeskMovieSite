@@ -179,7 +179,8 @@
 .basketListCheckLineBuySelect{
     margin-right: 7%;
 }
-
+.basketListCheckLineBuyPrice{
+}
 .basketListAllCheckBox,
 .basketListAllCheckBoxAfter{
     content: '';
@@ -241,8 +242,7 @@
 .basketListItemContentLineAct{
     width: 100%;
     display: flex;
-    justify-content: center;
-    padding-right: 70px;
+    margin-left: 140px;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -292,7 +292,17 @@
     text-align: center;
     margin-top: auto;
     margin-bottom: auto;
-    margin-right: 15px;
+}
+
+.basketListItemAmountLineAct{
+    width: 13%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left:13px;
+    margin-right:5px;
 }
 
 .basketListItemAmountChangeLine{
@@ -354,7 +364,7 @@
 }
 
 .basketListItemBuyPrice{
-    margin-left: auto;
+    margin-left: 20px;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
@@ -363,6 +373,7 @@
 
 .basketListButtonLine{
     display: flex;
+    margin-left:auto;
 }
 
 .basketListItemSelectButton{
@@ -374,7 +385,6 @@
     color: #fff;
     background-color: #4b4f56;
     padding: 3px;
-    margin-left: 55px;
     margin-top: auto;
     margin-bottom: auto;
     font-size: 15px;

@@ -1,9 +1,11 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './style/GoodsDetail.module.css';
 import { useEffect, useState } from 'react';
+import { addCart } from '../../slice/shopCartSlice';
 
 function GoodsDetail(){
+    let disPatch = useDispatch();
     let {id} = useParams();
     let state = useSelector( (state)=>{ return state } );
     let [count,setCount] = useState(1);
@@ -122,7 +124,7 @@ function GoodsDetail(){
                         {/* Button Start */}
 
                         <div className={style.detailButtonLine}>
-                            <div className={style.detailBasketButton} onClick={()=>{navigate('/store/basket')}}></div>
+                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch(addCart(findData)) }}></div>
                             <div className={style.detailBuyButton}>구매하기</div>
                         </div>
                         

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Axios로 불러올예정
 let shop = createSlice({
     name: 'shop',
     initialState: [
@@ -16,13 +17,49 @@ let shop = createSlice({
             id: 1,
             title: "Red Knit",
             content: "Born in Seoul",
-            price: 150000,
-            salePrice: 135000,
+            price: 1500000,
+            salePrice: 1350000,
             count: 0
         },
 
         {
             id: 2,
+            title: "Grey Yordan",
+            content: "Born in the States",
+            price: 130000,
+            salePrice: 125000,
+            count: 0
+        },
+
+        {
+            id: 3,
+            title: "Grey Yordan",
+            content: "Born in the States",
+            price: 130000,
+            salePrice: 125000,
+            count: 0
+        },
+
+        {
+            id: 4,
+            title: "Grey Yordan",
+            content: "Born in the States",
+            price: 130000,
+            salePrice: 125000,
+            count: 0
+        },
+
+        {
+            id: 4,
+            title: "Grey Yordan",
+            content: "Born in the States",
+            price: 130000,
+            salePrice: 125000,
+            count: 0
+        },
+
+        {
+            id: 4,
             title: "Grey Yordan",
             content: "Born in the States",
             price: 130000,

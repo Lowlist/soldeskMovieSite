@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import style from './style/GoodsBasket.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector} from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 function GoodsBasket(){
@@ -113,17 +113,17 @@ function GoodsBasket(){
                                     activateBasket === true ?
                                         <div className={style.basketListItemAmountLine}>
                                             <div className={style.basketListItemAmountChangeLine}>
-                                                <div className={style.basketListItemAmountChangeText}>1</div>
+                                                <div className={style.basketListItemAmountChangeText}>{count}</div>
                                                 <div className={style.basketListItemAmountChangeButton}>
-                                                    <div className={style.basketListItemAmountChangePlus}></div>
-                                                    <div className={style.basketListItemAmountChangeMinus}></div>
+                                                    <div className={style.basketListItemAmountChangePlus} onClick={ ()=>{setCount(count+1)} }></div>
+                                                    <div className={style.basketListItemAmountChangeMinus} onClick={ ()=>count !== 1 ? setCount(count-1) : setCount(1)}></div>
                                                 </div>
                                                 <b className={style.basketListItemAmountButton}>변경</b>
                                             </div>
                                         </div>
                                         :
-                                        <div className={style.basketListItemAmountLine}>
-                                            <div className={style.basketListItemAmountTextAct}>66</div>
+                                        <div className={activateBasket === true ? style.basketListItemAmountLine : style.basketListItemAmountLineAct}>
+                                            <div className={style.basketListItemAmountTextAct}>{count}</div>
                                         </div>
                                 }
                                 <b className={style.basketListItemBuyPrice}>{state.shop[i].salePrice.toLocaleString("ko-KR")}원</b>
