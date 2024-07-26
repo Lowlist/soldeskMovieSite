@@ -42,9 +42,9 @@ function Notice(){
       <h2>공지사항</h2>
       <div className={styles.sTabWrap}>
         <ul className={styles.sTab}>
-					<li class="on"><a href="/support/news/default.aspx?type=&amp;searchtext=" title="선택된 탭메뉴">전체</a></li>
-					<li class=""><a href="/support/news/default.aspx?type=1&amp;searchtext=">시스템점검</a></li>
-					<li class=""><a href="/support/news/default.aspx?type=2&amp;searchtext=">극장</a></li>
+          <li class="on"><a href="/support/notice?type=movie&searchtext=" title="선택된 탭메뉴">영화</a></li>
+          <li class=""><a href="/support/notice?type=store&searchtext=">스토어</a></li>
+          <li class=""><a href="/support/notice?type=member&searchtext=">회원</a></li>
 				</ul>
       </div>
       <div className={styles.tableArea}>
