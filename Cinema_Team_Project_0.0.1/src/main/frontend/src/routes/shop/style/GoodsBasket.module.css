@@ -286,10 +286,11 @@
 }
 
 .basketListItemAmountLine{
-    width: 13%;
+    width: 11%;
+    margin-left: 10px;
     justify-content: center;
-    display: flex;
     text-align: center;
+    display: flex;
     margin-top: auto;
     margin-bottom: auto;
 }

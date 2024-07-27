@@ -43,9 +43,9 @@ hr{
     cursor: pointer;
 }
 .cardBody:hover .cardContent{
-    background-color: black;
-    color: white;
+    background-color: #fff;
     opacity: 0.2;
+    color: black;
 }
 .cardImg{
     margin-top: auto;
@@ -88,5 +88,5 @@ hr{
 }
 
 .packageBox:hover .packageImg{
-    filter: brightness(0.5) opacity(50%);
+    filter: brightness(0.8) opacity(50%);
 }

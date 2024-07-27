@@ -124,7 +124,7 @@ function GoodsDetail(){
                         {/* Button Start */}
 
                         <div className={style.detailButtonLine}>
-                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch(addCart(findData)) }}></div>
+                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count }))  }}></div>
                             <div className={style.detailBuyButton}>구매하기</div>
                         </div>
                         

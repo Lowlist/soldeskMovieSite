@@ -40,11 +40,6 @@ function DrinkFood() {
                                             <Card.Title>{state.shop[i].title}</Card.Title>
                                             <Card.Text>
                                                 {state.shop[i].content}
-                                                {state.shop[i].content}
-                                                {state.shop[i].content}
-                                                {state.shop[i].content}
-                                                {state.shop[i].content}
-                                                {state.shop[i].content}
                                             </Card.Text>
                                         </div>
                                     </Card.Body>

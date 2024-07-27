@@ -50,7 +50,7 @@ let shop = createSlice({
         },
 
         {
-            id: 4,
+            id: 5,
             title: "Grey Yordan",
             content: "Born in the States",
             price: 130000,
@@ -59,7 +59,7 @@ let shop = createSlice({
         },
 
         {
-            id: 4,
+            id: 6,
             title: "Grey Yordan",
             content: "Born in the States",
             price: 130000,
