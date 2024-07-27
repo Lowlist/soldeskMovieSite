@@ -56,7 +56,6 @@ public class TicketingService {
         } catch (Exception e) {
             logger.error("에러: ", e);
         }
-
         return "{}";
     }
     
@@ -67,5 +66,4 @@ public class TicketingService {
     public List<Theater> getTheatersByCinema(int cinemaNo) {
         return theaterRepository.findByCinemaNo(cinemaNo);
     }
-
 }
