@@ -17,7 +17,6 @@ public class PasswordEncoderConfig {
 	    http
 	        .authorizeHttpRequests(authorize -> authorize
 	            .requestMatchers("/member/signIn", "/member/signUp").permitAll() // 인증 없이 접근 허용
-	            //재원이형 해줘
 	            .anyRequest().authenticated() // 나머지 요청은 인증 필요
 	        )
 	        .csrf(csrf -> csrf
