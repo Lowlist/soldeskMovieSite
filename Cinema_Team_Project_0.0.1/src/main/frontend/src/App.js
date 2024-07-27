@@ -22,6 +22,7 @@ import Page from './routes/login/page.js';
 import Re from './routes/login/register.js';
 import PaymentPage from './routes/ticketing/payments/PaymentPage.js';
 import GoodsBasket from './routes/shop/GoodsBasket.js';
+import SignUp from './routes/member/SignUp.js';
 
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
