@@ -15,9 +15,9 @@ function MovieList() {
       }; 
 
     useEffect(() => {
-        const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=20240601&listCount=500&ServiceKey=BOC8E6E947M11OX4WO71";
+        // const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=20240601&listCount=500&ServiceKey=BOC8E6E947M11OX4WO71";
 
-        axios.get(url).then((response) => {
+        axios.get('/movieInfo/movies?releaseDate=20240601').then((response) => {
             setData(response.data.Data[0].Result);
         }).catch(error => {
             console.error("Error fetching data: ", error);
