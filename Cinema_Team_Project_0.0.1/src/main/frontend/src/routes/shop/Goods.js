@@ -16,6 +16,7 @@ function Goods() {
     if (id.pathname === "/store") {
         viewGoods = true;
     }
+    
     return (
         <div>
             <div className={style.goodsMain}>
@@ -33,31 +34,29 @@ function Goods() {
                             </Container>
                         </Navbar>
                     </div>
-                    {/* Navbar End */}
                     {/* Goods Start */}
+
                     {
-                    viewGoods &&
-                    <div>
-                        {/* PackageGoods Start */}
+                        viewGoods &&
+                        <div className={style.shopLine}>
+                            {/* PackageGoods Start */}
 
-                        <PackageGoods/> 
-                        
-                        {/* PackageGoods End */}
+                            <PackageGoods/> 
 
-                        <div className={style.goodsLine}>
-                            
-                            {/* LeftBox Start */}
-                            <DrinkFood/>
-                            {/* LeftBox End */}
+                            <div className={style.goodsLine}>
+                                
+                                {/* LeftBox Start */}
+                                
+                                <DrinkFood/>
 
-                            {/* RightBox Start */}
-                            <GiftTicket/>
-                            {/* RightBox End */}
+                                {/* RightBox Start */}
 
+                                <GiftTicket/>
+
+                            </div>
                         </div>
-                    </div>
                     }   
-                    {/* Goods End */}
+                    
                     <Outlet/>
                 </Container>
 

@@ -12,18 +12,23 @@ function Support(){
     return(
         <div className={styles.supportMain}>
         <div className={styles.nav}>
-          <Navbar bg="light" data-bs-theme="light">
-                <Container>
-                    <Navbar.Brand href="/">스토어</Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">패키지 상품</Nav.Link>
-                        <Nav.Link href="#features">음식</Nav.Link>
-                        <Nav.Link href="#pricing">음료</Nav.Link>
-                        <Nav.Link href="#pricing">상품 소개</Nav.Link>
-                        <Nav.Link onClick={()=>navigate('/support')}>고객센터</Nav.Link>
-                    </Nav>
-                </Container>
-            </Navbar>
+          <Navbar className={styles['wrapper-header-category']} data-bs-theme="light">
+              <Container className={styles['category-left']}>
+                <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
+                <Nav.Link onClick={ ()=>{ navigate('/store') } }>shop</Nav.Link>
+                <Nav.Link onClick={ ()=>{ navigate('/ticket') } }>ticketing</Nav.Link>
+                <Nav.Link onClick={ ()=>{ navigate('/map') } }>카카오맵</Nav.Link>
+                <Nav.Link onClick={ ()=>{ navigate('/support') } }>고객센터</Nav.Link>
+              </Container>
+              <div className={styles['category-right']}>
+	              <div className={styles['search-box']}>
+	                <input id={styles['searchBox']} type="text" placeholder="영화 검색"></input>
+	              </div>
+	              <div className={styles['search-btn']}>
+	                {/* <img id="searchBtn" src={search}></img> */}
+	              </div>
+	            </div>
+          </Navbar>
           <div className={styles.contents}>
             <div className={styles.colsContent}>
               <div className={styles.colAside}>

@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import shop from './slice/shopSlice.js';
+import shopCart from './slice/shopCartSlice.js';
 
 
 /**
@@ -22,6 +23,7 @@ import shop from './slice/shopSlice.js';
 
 export default configureStore({
   reducer: { 
-    shop : shop.reducer
+    shop : shop.reducer,
+    shopCart : shopCart.reducer
   }
 }) 

@@ -1,9 +1,16 @@
-hr{
-    width: 100%;
-    margin-bottom: 30px;
-    margin-top: 30px;
+.hrOne{
+    width: 1285px;
+    margin-left: 3px;
+    margin-bottom: 14px;
+    margin-top: 12px;
     border: 2px solid black;
     opacity: 0.8;
+}
+
+.hrTwo{
+    width: 98%;
+    border: 1px solid black;
+    opacity: 0.3;
 }
 
 .detailName{
@@ -12,18 +19,197 @@ hr{
 
 .detailLine{
     display: flex;
-    background-color: red;
+    margin-top: 40px;
+    margin-bottom: 40px;
     height: 500px;
 }
 
 .detailImgLine{
-    background-color: blue;
+    text-align: center;
+    justify-content: center;
     height: 500px;
-    width: 45%;
+    width: 583px;
+}
+
+.detailImg{
+    width: 583px;
+    height: 500px;
 }
 
 .detailTextLine{
-    background-color: aqua;
+    padding-left: 40px;
     height: 500px;
-    width: 55%;
+    width: 713px;
+}
+
+.detailTitleLine{
+    margin-left: 3px;
+    display: flex;
+}
+
+.detailTitle{
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+.detailTitleSale{
+    margin-top: auto;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    font-size: 24px;
+    text-decoration:line-through;
+}
+
+.detailContentLine{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.detailContentProductLine,
+.detailContentPeriodLine,
+.detailContentOriginLine,
+.detailContentPlaceLine,
+.detailPriceBox,
+.detailNumberLine,
+.detailTotalLine,
+.detailButtonLine{
+    display: flex;
+    margin-top: 5px;
+}
+
+.detailContentProductLine,
+.detailContentPeriodLine,
+.detailContentOriginLine,
+.detailContentPlaceLine{
+    width: 713px;
+    height: 24px;
+}
+.detailContentPeriodLine{
+    height: 48px;
+}
+
+.detailContentProductName,
+.detailContentPeriodName,
+.detailContentOriginName,
+.detailContentPlaceName{
+    margin-left: 5px;
+    width: 64px;
+    height: 24px;
+}
+
+.detailContentProduct,
+.detailContentPeriod,
+.detailContentOrigin,
+.detailContentPlace{
+    margin-left: 30px;
+}
+
+.detailNumberLine{
+    margin-left: 6px;
+    margin-top: 40px;
+}
+
+.detailPriceMinus,
+.detailPricePlus,
+.detailPriceText{
+    margin: auto;
+    float: left;
+    width: 35px;
+    height: 35px;
+    font-size: 0;
+    border: 1px solid #bdc1c8;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: initial;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: transparent;
+}
+
+.detailPriceMinus{
+    cursor: pointer;
+    background-image: url(https://img.cgv.co.kr/R2014/images/giftstore/common/bg_minusBtn.png);
+}
+
+.detailPricePlus{
+    cursor: pointer;
+    background-image: url(https://img.cgv.co.kr/R2014/images/giftstore/common/bg_plusBtn.png);
+}
+
+.detailPriceText{
+    float: left;
+    width: 54px;
+    height: 35px;
+    font-weight: 400;
+    font-size: 23px;
+    color: #000;
+    letter-spacing: -0.25px;
+    line-height: 28px;
+    text-align: center;
+    border-top: 1px solid #bdc1c8;
+    border-bottom: 1px solid #bdc1c8;
+}
+
+.detailTotalLine{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.detailSalePrice{
+    margin-left: auto;
+}
+
+.detailPrice{
+    text-decoration:line-through;
+    margin-left: auto;
+    margin-right: 9px;
+    font-size: 30px;
+}
+
+.detailTotalText{
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 25px;
+    font-size: 25px;
+}
+
+.detailTotal{
+    margin-right: 9px;
+    padding-left: 18px;
+    font-size: 30px;
+    color: #fb4357;
+}
+
+.detailBasketButton{
+    cursor: pointer;
+    margin-left: auto;
+    width: 60px;
+    font-size: 0;
+    background-image: url(https://img.cgv.co.kr/R2014/images/giftstore/common/bg_cartBtn.png);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: initial;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(251, 67, 87);
+}
+
+.detailBuyButton{
+    cursor: pointer;
+    display: block;
+    float: left;
+    width: 245px;
+    height: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 24px;
+    color: #fff;
+    line-height: 60px;
+    text-align: center;
+    background-color: #373e46;
 }

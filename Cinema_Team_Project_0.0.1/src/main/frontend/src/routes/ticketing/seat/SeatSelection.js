@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './style/SeatSelection.module.css';
-import Header from './Header';
+import SeatHeader from './SeatHeader';
 import SeatMap from './SeatMap';
 import SelectionComplete from './SelectionComplete';
 
 function SeatSelection() {
     const location = useLocation();
+    const navigate = useNavigate();
     const { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } = location.state || {};
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [numPeople, setNumPeople] = useState(1);
@@ -43,10 +44,71 @@ function SeatSelection() {
     const totalPrice = ticketPrice * numPeople;
 
     const handleSeatClick = (seat) => {
-        if (selectedSeats.includes(seat)) {
-            setSelectedSeats(selectedSeats.filter(s => s !== seat));
-        } else {
-            setSelectedSeats([...selectedSeats, seat]);
+        const row = seat.charCodeAt(0) - 65;
+        const col = parseInt(seat.substring(1)) - 1;
+        const cols = hallConfigurations.cols.length;
+        const leftSectionCols = Math.floor(cols / 2);
+        const seatsToSelect = [];
+
+        // 좌측 섹션에서 좌석 선택
+        if (col < leftSectionCols) {
+            for (let i = 0; i < numPeople; i++) {
+                const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 + i}`;
+                if (col + i < leftSectionCols && !selectedSeats.includes(seatToCheck)) {
+                    seatsToSelect.push(seatToCheck);
+                } else {
+                    seatsToSelect.length = 0;
+                    break;
+                }
+            }
+
+            if (seatsToSelect.length < numPeople) {
+                seatsToSelect.length = 0;
+                for (let i = 0; i < numPeople; i++) {
+                    const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 - i}`;
+                    if (col - i >= 0 && !selectedSeats.includes(seatToCheck)) {
+                        seatsToSelect.push(seatToCheck);
+                    } else {
+                        seatsToSelect.length = 0;
+                        break;
+                    }
+                }
+                seatsToSelect.reverse();
+            }
+        }
+
+        // 우측 섹션에서 좌석 선택
+        if (col >= leftSectionCols) {
+            for (let i = 0; i < numPeople; i++) {
+                const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 + i}`;
+                if (col + i < cols && !selectedSeats.includes(seatToCheck)) {
+                    seatsToSelect.push(seatToCheck);
+                } else {
+                    seatsToSelect.length = 0;
+                    break;
+                }
+            }
+
+            if (seatsToSelect.length < numPeople) {
+                seatsToSelect.length = 0;
+                for (let i = 0; i < numPeople; i++) {
+                    const seatToCheck = `${String.fromCharCode(65 + row)}${col + 1 - i}`;
+                    if (col - i >= leftSectionCols && !selectedSeats.includes(seatToCheck)) {
+                        seatsToSelect.push(seatToCheck);
+                    } else {
+                        seatsToSelect.length = 0;
+                        break;
+                    }
+                }
+                seatsToSelect.reverse();
+            }
+        }
+
+        const areAllSeatsAvailable = seatsToSelect.every(s => !selectedSeats.includes(s));
+        if (areAllSeatsAvailable) {
+            setSelectedSeats(seatsToSelect);
+        } else if (selectedSeats.every(s => seatsToSelect.includes(s))) {
+            setSelectedSeats([]);
         }
     };
 
@@ -58,9 +120,23 @@ function SeatSelection() {
         }
     };
 
+    const handlePaymentClick = () => {
+        navigate('/PaymentPage', {
+            state: {
+                selectedMovie,
+                selectedTheater,
+                selectedDateString,
+                selectedTime,
+                selectedHall,
+                selectedSeats,
+                totalAmount: totalPrice
+            }
+        });
+    };
+
     return (
         <div className={styles.container}>
-            <Header
+            <SeatHeader
                 selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}
                 selectedDateString={selectedDateString}
@@ -89,6 +165,8 @@ function SeatSelection() {
                 seatNumbers={selectedSeats.join(', ')}
                 ticketPrice={`${ticketPrice.toLocaleString()} 원`}
                 totalPrice={`${totalPrice.toLocaleString()} 원`}
+                isButtonEnabled={selectedSeats.length === numPeople}
+                onButtonClick={handlePaymentClick}
             />
         </div>
     );
