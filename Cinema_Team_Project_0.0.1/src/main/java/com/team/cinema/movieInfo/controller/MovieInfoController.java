@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.team.cinema.movieInfo.service.MovieInfoService;
 
 @RestController
-@RequestMapping("/movieInfo")
+@RequestMapping("/movie")
 public class MovieInfoController {
 	
 	@Autowired
 	private MovieInfoService movieInfoService;
 	
-	@GetMapping("/movies")
+	@GetMapping("/main")
 	public String getMovies(@RequestParam("releaseDate") String releaseDate) {
 		return movieInfoService.getMovies(releaseDate);
 	}

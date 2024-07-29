@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useEffect, useState } from 'react';
 import styles from './style/MovieList.module.css';
 import axios from 'axios';
@@ -7,18 +8,17 @@ import twelve from './style/12.svg'
 import fifteen from './style/15.svg'
 import adult from './style/19.svg'
 
-function MovieList() {
+function MovieTop() {
 
     let [data, setData] = useState(null);
     const stringLimit = (str, n) => { //글자수 제한 함수
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-      }; 
+    };
 
     useEffect(() => {
-        // const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=20240601&listCount=500&ServiceKey=BOC8E6E947M11OX4WO71";
+        const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=20240601&listCount=5&ServiceKey=BOC8E6E947M11OX4WO71";
 
-        axios.get('/movie/main').then((response) => {
-            console.log(response.data); // 응답 데이터 구조 확인
+        axios.get(url).then((response) => {
             setData(response.data.Data[0].Result);
         }).catch(error => {
             console.error("Error fetching data: ", error);
@@ -72,7 +72,7 @@ function MovieList() {
                 );
             })}
         </div>
-    );
+    )
 }
 
-export default MovieList;
+export default MovieTop;
