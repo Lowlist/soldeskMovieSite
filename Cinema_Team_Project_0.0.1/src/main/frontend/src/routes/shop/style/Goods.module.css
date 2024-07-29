@@ -4,19 +4,10 @@ hr{
     border: 2px solid;
     color: gray;
 }
-
 .hrCenter{
     width: 90%;
 }
-
-.packageLine{
-    width: 1296px;
-}
-.shopLine{
-    width: 1296px;
-}
 .storeHead{
-    width: 1420px;
     margin-top: 40px;
     margin-bottom: 50px;
 }
@@ -43,15 +34,12 @@ hr{
     cursor: pointer;
 }
 .cardBody:hover .cardContent{
-    background-color: #fff;
+    background-color: black;
+    color: white;
     opacity: 0.2;
-    color: black;
 }
 .cardImg{
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 150px;
-    height: 150px;
+    width: 35%;
     margin-right: 15px;
 }
 .card-title{
@@ -75,18 +63,9 @@ hr{
     font-size: 30px;
     text-align: left;
 }
-.packageRow{
-    display: flex;
-    margin: auto;
-    flex-wrap: wrap;
-    width: 1200px;
-    gap: 0px 10px;
-    justify-content: space-between;
-}
 .packageBox{
     cursor: pointer;
 }
-
 .packageBox:hover .packageImg{
-    filter: brightness(0.8) opacity(50%);
+    filter: brightness(0.5) opacity(50%);
 }

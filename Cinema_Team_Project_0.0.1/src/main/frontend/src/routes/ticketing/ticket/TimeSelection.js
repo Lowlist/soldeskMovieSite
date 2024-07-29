@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styles from './style/TimeSelection.module.css';
 import axios from 'axios';
 
-const TimeSelection = ({ selectedMovie, selectedTheater, theaterNo, selectedDateString, selectedTime, selectedHall, setSelectedTime, setSelectedHall }) => {
+const TimeSelection = ({ selectedTheater, theaterNo, selectedDateString, selectedTime, selectedHall, setSelectedTime, setSelectedHall }) => {
     const [halls, setHalls] = useState([]);
 
     useEffect(() => {
-        if (selectedMovie && theaterNo && selectedDateString) {
+        if (theaterNo) {
             axios.get('/ticketing/theater/list', { params: { cinemaNo: theaterNo } })
                 .then(response => {
                     const theaterDetails = response.data;
@@ -20,7 +20,7 @@ const TimeSelection = ({ selectedMovie, selectedTheater, theaterNo, selectedDate
                 })
                 .catch(error => console.error("API 호출 오류: ", error));
         }
-    }, [selectedMovie, theaterNo, selectedDateString]);
+    }, [theaterNo]);
 
     const generateTimes = (hallName) => {
         switch (hallName) {
@@ -67,10 +67,6 @@ const TimeSelection = ({ selectedMovie, selectedTheater, theaterNo, selectedDate
         setSelectedTime(time);
         setSelectedHall(hall.theaterNo); // 수정된 부분
     };
-
-    if (!selectedMovie || !theaterNo || !selectedDateString) {
-        return null; // 조건이 충족되지 않으면 아무것도 렌더링하지 않음
-    }
 
     return (
         <div className={styles.section}>

@@ -10,3 +10,4 @@ import com.team.cinema.ticketing.entity.Theater;
 public interface TheaterRepository extends JpaRepository<Theater, Integer> {
     List<Theater> findByCinemaNo(int cinemaNo);
 }
+

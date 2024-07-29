@@ -5,7 +5,7 @@ import MovieSelection from './MovieSelection';
 import TheaterSelection from './TheaterSelection';
 import DateSelection from './DateSelection';
 import TimeSelection from './TimeSelection';
-import TicketingFooter from './TicketingFooter';
+import Footer from './Footer';
 import styles from './style/Ticketing.module.css';
 
 function Ticketing() {
@@ -63,18 +63,16 @@ function Ticketing() {
     const selectedDateString = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' }).replace(/ /g, '').replace(/,/g, '') : '';
 
     const handleSeatSelection = () => {
-        if (selectedMovie && selectedTheater && selectedDateString && selectedTime) {
-            navigate('/seat', {
-                state: {
-                    selectedMovie,
-                    selectedTheater,
-                    selectedDateString,
-                    selectedTime,
-                    selectedHall,
-                    selectedTheaterNo
-                }
-            });
-        }
+        navigate('/seat', {
+            state: {
+                selectedMovie,
+                selectedTheater,
+                selectedDateString,
+                selectedTime,
+                selectedHall,
+                selectedTheaterNo
+            }
+        });
     };
 
     return (
@@ -83,9 +81,9 @@ function Ticketing() {
                 <MovieSelection movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
                 <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} setSelectedTheaterNo={setSelectedTheaterNo} />
                 <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-                <TimeSelection selectedMovie={selectedMovie} selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedDateString={selectedDateString} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
+                <TimeSelection selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
             </div>
-            <TicketingFooter
+            <Footer
                 selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}
                 selectedDateString={selectedDateString}

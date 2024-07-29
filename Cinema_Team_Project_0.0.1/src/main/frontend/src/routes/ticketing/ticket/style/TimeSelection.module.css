@@ -1,27 +1,25 @@
 .section {
     flex: 1;
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 .header {
     font-weight: bold;
     margin-bottom: 10px;
-    background-color: rgb(96, 96, 96);
+    background-color: black;
     color: white;
-    font-size: 21px;
+    font-size: 22px;
     padding: 10px;
 }
 
 .timeList {
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
 .scrollable {
     max-height: 600px;
     overflow-y: auto;
-    overflow-x: hidden;
 }
 
 .timeHall {
@@ -39,8 +37,8 @@
 
 .timeRow {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 10px; 
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 그리드 설정 */
+    gap: 10px; /* 그리드 항목 사이의 간격 설정 */
 }
 
 .timeItem {
@@ -58,7 +56,7 @@
     border-radius: 10px;
     text-align: center;
     border: 1px #d3d3d3 solid;
-    width: 80%;
+    width: 100%;
 }
 
 .timeSection:hover {
