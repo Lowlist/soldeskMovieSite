@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
-import styles from './style/Support.module.css';
+import styles from '../style/Support.module.css'; 
 
 const mockQuestions = [
     { id: 1, title: '질문 1', content: '질문 내용 1', date: '2024-07-05', hit: '0' },

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import styles from './style/Support.module.css';
+import styles from '../style/Support.module.css'; 
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 
 const mockQuestions = [

@@ -14,7 +14,7 @@ import com.team.cinema.support.repository.NoticeRepository;
 @Service
 public class NoticeSerivce {
     @Autowired
-    private NoticeRepository noticeRepository; 
+    private NoticeRepository noticeRepository;
 
     public List<NoticeDTO> getList() {
         List<NoticeEntity> notices = noticeRepository.findAll();

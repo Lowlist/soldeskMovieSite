@@ -35,4 +35,8 @@ public class ReplyEntity {
 	 * @JoinColumn(name = "adminId", referencedColumnName = "adminId") private Admin
 	 * admin;
 	 */
+	
+    @ManyToOne
+    @JoinColumn(name = "questionNo", referencedColumnName = "questionNo")
+    private QuestionEntity question;
 }
