@@ -30,6 +30,5 @@ public class PasswordEncoderConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
+    
 }
