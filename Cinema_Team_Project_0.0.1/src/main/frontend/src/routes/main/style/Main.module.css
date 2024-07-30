@@ -140,7 +140,7 @@ html, body {
     height: 30px;
 }
 
-#searchBtn {
+.searchBtn {
     width: 25px;
     height: 25px;
     margin-left: 5px;
@@ -157,25 +157,63 @@ html, body {
 
 .body-video {
     width: 100%;
-    height: 300px; /* 임시로 높이 조정했음, 비디오 들어가면 알아서 조정될 것(호오) */
+    height: 500px; /* 임시로 높이 조정했음, 비디오 들어가면 알아서 조정될 것(호오) */
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid gray;
+    position: relative;
+}
+
+.video-div {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    color: white;
+}
+
+.video-title {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.video-info {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.video-button {
+    width: 110px;
+    font-size: 15px;
+    align-items: center;
+    border-radius: 40px;
+    margin-top: 20px;
+}
+
+.background-video {
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
 }
 
 .body-chart {
-    width: 100%;
-    height: 300px;
+    width: 1920px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 2px solid gray;
+    padding-top: 50px;
 }
 
 .chart-header {
     width: 70%;
-    height: 50px;
+    height: 100px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -183,110 +221,498 @@ html, body {
 }
 
 .chart-title {
-    width: 100px;
+    width: 150px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
 }
 
 .chart-subtitle1 {
-    width: 120px;
+    width: 150px;
     height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-left: 2px solid gray;
+    font-size: 20px;
 }
 
 .chart-subtitle2 {
-    width: 120px;
+    width: 150px;
     height: 25px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.chart-button {
+    margin-left: auto;
+}
+
+.all-button {
+    width: 90px;
+    height: 30px;
+    box-shadow:2px 3px 5px 0px;
+    border-radius: 50px;
+    background-color: white;
+    font-size: 13px;
+}
+
+.slick-list {
+    width: 70%;
+}
+
+.chart-body {
+    width: 170.4px;
+    height: 290px;
+}
+
+.chart-movie {
+    width: 170px;
+    height: 234px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 15px;
+}
+
+.chart-movie-button {
+    width: 170px;
+    height: 234px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    display: none;
+    background-color: black;
+    opacity: 0.1;
+    border-radius: 15px;
+}
+
+.chart-movie-button2 {
+    width: 170px;
+    height: 234px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba( 0, 0, 0, 0.2 );
+    border-radius: 15px;
+}
+
+.chart-button1 {
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+.chart-button2 {
+    width: 100px;
+    height: 30px;
+    margin-top: 5px;
+    background-color: tomato;
+    border: none;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+.chart-movie-title {
+    display: flex;
+    width: 100%;
+    height: 21px;
+    font-size: 18px;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.chart-movie-info {
+    width: 170.4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.chart-movie-preference {
+    display: flex;
+    width: 30%;
+    height: 13px;
+    border-right: 1px solid gray;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-movie-reservation {
+    display: flex;
+    width: 50%;
+    height: 13px;
     justify-content: center;
     align-items: center;
 }
 
 .body-store {
-    width: 100%;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-bottom: 2px solid gray;
-}
-
-.store-header {
-    width: 70%;
-    height: 50px;
+    width: 1920px;
+    height: 600px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+}
+
+.body-store-wrapper {
+    width: 50%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.store-wrapper {
+    width: 300px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+
+.store-header {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
 }
 
 .store-title {
+    width: 70%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 28px;
+}
+
+.store-more-button {
+    width: 25%;
+    height: 30px;
+    margin-right: 20px;
+    border: 0.5px solid gray;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.store-body {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.body-wrapper {
+    width: 297.5px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.store-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
+    height: 100px;
+}
+
+.store-sub {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.store-subtitle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.store-price {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.announcement-div {
+    width: 1920px;
+    height: 600px;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.announcement-body {
+    width: 50%;
+    height: 240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 0.5px solid gray;
+}
+
+.announcement-service {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+}
+
+.announcement-main {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 0.2px solid gray;
+}
+
+.announcement-title {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.announcement-list {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+
+.announcement-button {
+    width: 20%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.store-subtitle1 {
-    width: 100px;
+.announcement-button-click {
+    width: 60px;
     height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-left: 2px solid gray;
+    font-size: 12px;
+    border: 0.5px solid gray;
+    border-radius: 15px;
 }
 
-.store-subtitle2 {
-    width: 50px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.body-temporary {
+.service-center {
     width: 100%;
-    height: 300px;
+    height: 100%;
+    
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
-.temporary-header {
-    width: 70%;
-    height: 50px;
+.service-body {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.service-title {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 18px;
+    
+}
+
+.service-subdiv {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.service-number {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+
+.service-time {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+.service-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}
+
+.service-footer {
+    width: 50%;
+    height: 30%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
 
-.temporary-title {
-    width: 100px;
+.service-button-div {
+    width: 25%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.temporary-subtitle1 {
-    width: 100px;
-    height: 25px;
+.service-button-div2 {
+    width: 30%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-left: 2px solid gray;
 }
 
-.temporary-subtitle2 {
-    width: 100px;
-    height: 25px;
+.service-button {
+    width: 85%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.service-button2 {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.app-download {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 0.5px solid gray;
+    
+}
+
+.app-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.app-title {
+    width: 100%;
+    height: 20%;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.app-info {
+    width: 100%;
+    height: 10%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-qr {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-info {
+    width: 100%;
+    height: 20%;
+    font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
