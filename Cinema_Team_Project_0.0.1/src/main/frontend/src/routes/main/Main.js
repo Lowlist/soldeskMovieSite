@@ -105,6 +105,10 @@ function Main() {
       				playing={true}
       				muted={true}
       				controls={false} />
+
+					{
+						// 예고편 데이터 바인딩
+					}
 					<div className={styles['video-div']}>
 						<div className={styles['video-title']}>에스파 - 슈퍼노바</div>
 						<div className={styles['video-info']}>에스파 윈터 vs 카리나 당신의 선택은???</div>
