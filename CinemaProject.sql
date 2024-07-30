@@ -1,4 +1,5 @@
 CREATE DATABASE movies default CHARACTER SET UTF8MB4;
+use movies;
 drop database movies;
 
 -- 영화관
@@ -215,8 +216,7 @@ CREATE TABLE `productLog` (
 	`productState` TINYINT NOT NULL, -- 상품 상태 0이면 삭제 1이면 생성 --	
 	`adminNo` VARCHAR(30), -- 상품을 추가한 관리자 ID --		
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
-    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정 날짜 -- 					
-	FOREIGN KEY (`adminNo`) REFERENCES `admin`(`no`) -- 외래키 설정 --
+    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 					
 ) ENGINE=InnoDB; 
 				
 -- 운영자				
@@ -244,8 +244,7 @@ CREATE TABLE `inquiry` (
 	`inquiryCategory` VARCHAR(30) NOT NULL, -- 문의 카태고리 --		
 	`inquiryDetails` text NOT NULL, -- 문의 내용 --
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
-    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정 날짜 -- 	
-	FOREIGN KEY (`userNo`) REFERENCES `no`(`member`) -- 외래키 설정 --		
+    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 	
 ) ENGINE=InnoDB;				
 					
 -- 관리자 문의답변 테이블 --
@@ -255,9 +254,7 @@ CREATE TABLE `inquiryResponse` (
 	`inquiryNo` INT NOT NULL, -- 문의 키값 (어떤 문의에 대답했는지) --	
 	`inquiryResponseText` text NOT NULL, -- 답변 내용 --
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
-    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 수정 날짜 -- 			
-	FOREIGN KEY (`adminId`) REFERENCES `admin`(`no`), -- 외래키 설정 --	
-	FOREIGN KEY (`inquiryNo`) REFERENCES `inquiry`(`no`) -- 외래키 설정 --
+    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 			
 ) ENGINE=InnoDB;				
 
 

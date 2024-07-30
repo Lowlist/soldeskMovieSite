@@ -155,7 +155,9 @@ function GoodsBasket(){
             </div>
 
             <div className={style.basketButtonLine}>
-                <div className={style.basketBuyButton}></div>
+                {/* 선물하기 추가시 생성예정 */}
+                {/* <div className={style.basketPresentButton}>선물하기</div> */}
+                <div className={style.basketBuyButton} onClick={()=>{ navigate('/store/payment') }}>구매하기</div>
             </div>
 
         </div>

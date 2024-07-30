@@ -1,6 +1,6 @@
 # 포트설정
 server:
-  port: 8080
+  port: 7080
   
 # DB설정
 spring:
