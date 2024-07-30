@@ -2,14 +2,13 @@ import styled from 'styled-components';
 import arrow from '../../../images/right.png'
 
 export const SliderContainer = styled.div`
-    width: 70%;
+    width: 1344px;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-
     .slick-prev:before,
     .slick-next:before {
         display: none;

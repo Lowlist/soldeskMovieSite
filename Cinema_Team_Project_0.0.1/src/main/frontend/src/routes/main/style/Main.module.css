@@ -4,38 +4,43 @@
 }
 
 html, body {
-    width: 100%;
+    width: 100vw;
     height: 100%;
+    
 }
 
 .wrapper {
     width: 100%;
+    min-width: 1040px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .wrapper-header {
-    width: 70%;
+    width: 1913px;
     height: 150px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin: auto;
 }
 
 .wrapper-header-top {
-    width: 100%;
+    width: 1280px;
     height: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: auto;
 }
 
 .header-top-left {
     height: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
 }
 
@@ -50,13 +55,21 @@ html, body {
 
 .header-top-title {
     font-size: 25px;
-    margin-left: 30px;
 }
 
 
 
 /****************top-right div****************/
-.header-top-right {
+.header-top-right-logout {
+    width: 220px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-top-right-login {
     width: 220px;
     height: 100%;
     display: flex;
@@ -88,15 +101,25 @@ html, body {
 
 
 /****************header-category div****************/
-.wrapper-header-category {
+.wrapper-header-line {
     width: 100%;
     height: 50px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     border-top: 1px solid gray;
     border-bottom: 2px solid red;
+}
+
+.wrapper-header-category {
+    width: 1280px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
 }
 
 .category-left {
@@ -104,27 +127,21 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    margin-left: 100px;
 }
 
-.header-category-btn {
-    width: 20%;
-    height: 100%;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.category-btn {
+    padding-right: 100px;
 }
 
 .category-right {
-    width: 200px;
+    width: 215px;
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin-right: 5%;
 }
 
 .search-box {
@@ -161,6 +178,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: auto;
     position: relative;
 }
 
@@ -207,6 +225,7 @@ html, body {
     height: 600px;
     display: flex;
     flex-direction: column;
+    margin: auto;
     align-items: center;
     padding-top: 50px;
 }
