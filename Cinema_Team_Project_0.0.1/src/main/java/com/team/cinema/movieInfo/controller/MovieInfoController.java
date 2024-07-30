@@ -19,5 +19,9 @@ public class MovieInfoController {
 	public String getMovies(@RequestParam("releaseDate") String releaseDate) {
 		return movieInfoService.getMovies(releaseDate);
 	}
-
+	
+	@GetMapping("/info")
+	public String getMovieInfo(@RequestParam("DOCID") String DOCID) {
+		return movieInfoService.getMovieInfo(DOCID);
+	}
 }
