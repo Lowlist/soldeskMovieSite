@@ -25,7 +25,7 @@ public class MovieInfoService {
                     .queryParam("releaseDts", URLEncoder.encode(releaseDate, StandardCharsets.UTF_8))
                     .queryParam("detail", "Y")
                     .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
-                    .toUriString();
+                    .toUriString(); //문자열로 변환해주는 함수
 
             URI uri = new URI(requestUrl);
             RestTemplate restTemplate = new RestTemplate();
