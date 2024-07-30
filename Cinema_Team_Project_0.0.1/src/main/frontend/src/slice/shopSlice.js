@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 // Axios로 불러올예정
 let shop = createSlice({
     name: 'shop',
-    initialState: [
+    initialState: 
+    [
         {
             id: 0,
             title: "우리 패키지",
@@ -69,7 +70,7 @@ let shop = createSlice({
     ],
     reducers: {
         
-    }
+    },
 })
 
 export let { changeMain } = shop.actions

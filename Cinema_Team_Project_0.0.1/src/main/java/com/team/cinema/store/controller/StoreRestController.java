@@ -2,14 +2,15 @@ package com.team.cinema.store.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/store")
-public class ShopRestController {
-
+public class StoreRestController {
 	
 	@GetMapping("/food")
+	@ResponseBody
 	public String food() {
 		return "asdf";
 	}

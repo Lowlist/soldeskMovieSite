@@ -334,5 +334,6 @@ function MovieHeader() {
 	)
 }
 
-
 export default Main;
+
+export {MovieHeader,MovieChart};

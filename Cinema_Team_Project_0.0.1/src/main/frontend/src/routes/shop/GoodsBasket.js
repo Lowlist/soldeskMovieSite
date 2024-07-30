@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './style/GoodsBasket.module.css';
 import { useDispatch, useSelector} from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { plusCount, minusCount, checkBox, checkBoxAll } from '../../slice/shopCartSlice';
 
-
 function GoodsBasket(){
+
     let navigate = useNavigate();
     let location = useLocation();
     let state = useSelector( (state)=>{ return state } );
@@ -13,6 +13,8 @@ function GoodsBasket(){
     let activateBasket = false;
     let activatePayment = false;
     let activateResult = false;
+
+    {console.log(state.shop)};
 
     switch (location.pathname) {
         case "/store/basket":
