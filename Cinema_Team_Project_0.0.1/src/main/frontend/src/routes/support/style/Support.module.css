@@ -1,0 +1,380 @@
+.supportMain {
+  position: relative;
+  width: 100%;
+  min-width: 1040px;
+}
+
+.nav {
+  position: absolute;
+  left: 0;
+  top: 113px;
+  width: 100%;
+  padding: 5px 0;
+  background-color: #fff;
+}
+
+.contents {
+  clear: both;
+  padding-bottom: 50px;
+}
+
+.colsContent {
+  margin-top: 25px;
+  padding-top: 25px;
+  display: flex;
+  align-items: flex-start; /* colAside가 colContent에 맞춰 늘어나지 않도록 */
+}
+
+.colAside {
+  width: 160px;
+  padding: 20px; /* 박스 형태를 위해 패딩 추가 */
+  background-color: #ffdddd; /* 붉은 색 배경 */
+  border: 1px solid #ff0000; /* 경계선 */
+  border-radius: 5px; /* 모서리를 둥글게 */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+  flex-shrink: 0; /* colContent의 내용이 늘어나도 colAside의 크기가 변하지 않도록 */
+  height: auto; /* 고정 높이를 설정하지 않으면 내용에 따라 자동으로 높이 조정 */
+}
+
+.colAside ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.colAside ul li {
+  margin: 10px 0;
+}
+
+.colAside ul li a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.colAside ul li a:hover {
+  text-decoration: underline;
+}
+
+.colContent {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+
+.sTabWrap{
+  position: relative;
+  margin-top: 15px;
+  border-bottom: 2px solid #898987;
+  height: 35px;
+}
+
+.sTab{
+  overflow: hidden;
+}
+
+.sTab > li{
+  float: left;
+    position: relative;
+    display: block;
+    width: 87px;
+    height: 37px;
+    margin-left: 2px;
+    line-height: 36px;
+    text-align: center;
+    background-color: #898987;
+    font-weight: 500;
+    font-size: 13px;
+    color: #fff;
+}
+
+.sTab > li > a {
+  display: block;
+  font-size: 13px;
+}
+
+.tableArea {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* 부모 요소를 flex로 설정하고 중앙 정렬 */
+}
+
+.tableArea table {
+  width: 80%; /* 테이블 너비를 적절히 설정, 필요에 따라 조정 */
+  border-collapse: collapse;
+}
+
+.tableArea th, .tableArea td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.tableArea th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.paging {
+  margin: 20px 0;
+  text-align: center; /* 페이지네이션을 가운데 정렬 */
+}
+
+.paging a {
+  margin: 0 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.paging a:hover {
+  background-color: #f2f2f2;
+}
+
+.colsDetail {
+  position: relative;
+  width: 800px;
+  margin: 0 auto; /* 수평 가운데 정렬 */
+}
+
+.boardViewArea {
+  margin-top: 19px;
+}
+
+.viewArea {
+  padding: 35px 13px;
+  border-bottom: solid 1px #b8b6aa;
+  line-height: 24px;
+  margin-top: 20px;
+}
+
+.titleFaq {
+  overflow: hidden;
+  padding: 11px;
+  border-top: solid 1px #b8b6aa;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}
+
+.stitArea {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.day {
+  margin-left: 9px;
+  font-family: 'Verdana';
+  color: #222;
+}
+
+.hitArea {
+  margin-left: 30px;
+  display: flex;
+  align-items: center; /* 조회수와 hit 값을 한 줄로 정렬 */
+}
+
+.checkHit {
+  margin-left: 5px; /* 조회수와 hit 값 사이 간격 조정 */
+  font-family: 'Verdana';
+  color: #222;
+}
+
+.title {
+  font-size: 18px; /* 글씨 크기 조정 */
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 10px; /* 제목과 stitArea 사이에 간격 추가 */
+}
+
+.titleFaq .titleContainer {
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+  justify-content: space-between;
+  width: 100%;
+}
+
+.commentsSection {
+  margin-top: 20px;
+}
+
+.commentList {
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid #ccc;
+}
+
+.commentItem {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.commentDate {
+  font-size: 12px;
+  color: #999;
+}
+
+.commentForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 26px); /* Adjusting for padding */
+  padding: 0 13px; /* Same padding as .viewArea */
+  box-sizing: border-box;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.commentButton {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.commentButton:hover {
+  background-color: #0056b3;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.paginationButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.paginationButton:hover {
+  background-color: #0056b3;
+}
+
+.paging {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pageNumbers {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pageNumbers li {
+  margin: 0 5px;
+}
+
+.pageNumbers li button {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.pageNumbers li button:hover {
+  background-color: #eee;
+}
+
+.pageNumbers li.active button {
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chatWindow {
+  flex: 1;
+  padding: 10px;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.userMessage {
+  background-color: #dcf8c6;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  align-self: flex-end;
+  max-width: 80%;
+}
+
+.botMessage {
+  background-color: #f1f0f0;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  align-self: flex-start;
+  max-width: 80%;
+}
+
+.chatInputContainer {
+  display: flex;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.chatSendButton {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chatSendButton:hover {
+  background-color: #0056b3;
+}
+
+.wrapper-header-category {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid gray;
+  border-bottom: 2px solid red;
+}

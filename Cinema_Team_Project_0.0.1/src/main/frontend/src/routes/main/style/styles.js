@@ -9,7 +9,6 @@ export const SliderContainer = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-
     .slick-prev:before,
     .slick-next:before {
         display: none;

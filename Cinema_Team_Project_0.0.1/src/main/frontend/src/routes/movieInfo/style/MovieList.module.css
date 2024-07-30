@@ -1,0 +1,40 @@
+.poster {
+    width: 213px;
+    height: 304px;
+    object-fit: cover; /* 이미지를 잘라서 크기에 맞추기 */
+    position: relative;
+}
+
+.movieIndex {
+    width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movieItem {
+    flex: 1 1 calc(20% - 20px); /* 한 줄에 5개씩 배치, 간격 조절을 위한 20px */
+    margin-right: 20px; /* 각 항목 사이의 간격 */
+    margin-bottom: 20px; /* 줄바꿈 시 아래 항목과의 간격 */
+    box-sizing: border-box; /* 패딩과 테두리를 크기에 포함 */
+    text-align: center;
+}
+
+/* 여기부분 수정한건데 width 213px로 고정시켜놓고 flex 빼서 정렬 바꾸고 title에 인라인 속성 넣어놨길래 그걸로 레이팅이미지 title이랑 고정시켜둠  */
+
+.textContainer {
+    height: 30px;
+    margin-top: 10px;
+    width: 213px;
+}
+
+.ratingImge {
+    object-fit: cover;
+    width: 20px;
+    height: 20px;
+}
+
+.title {
+    display: inline;
+    text-align: center;
+}

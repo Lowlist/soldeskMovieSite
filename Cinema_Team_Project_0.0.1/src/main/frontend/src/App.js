@@ -1,10 +1,29 @@
-import axios from 'axios';
-import { useEffect , Suspense , useState } from 'react';
-import { Route, Routes, useNavigate, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from './routes/main/Main.js';
+import DrinkFood from './routes/shop/DrinkFood.js';
+import GiftTicket from './routes/shop/GiftTicket.js';
+import GoodsDetail from './routes/shop/GoodsDetail.js';
+import PackageGoods from './routes/shop/PackageGoods.js';
 import Shop from './routes/shop/Shop.js';
 import Ticket from './routes/ticketing/ticket/Ticketing.js';
+import Seat from './routes/ticketing/seat/SeatSelection.js';
+import MovieList from './routes/movieInfo/MovieList.js';
+import Movie from './routes/movieInfo/Movie.js';
+import Notice from './routes/support/Notice.js';
+import Support from './routes/support/Support.js';
+import RealtimeQuestion from './routes/support/RealtimeQuestion.js';
+import Question from './routes/support/Question.js';
+import NoticeDetail from './routes/support/NoticeDetail.js';
+import QuestionDetail from './routes/support/QuestionDetail.js';
+import Login from './routes/login/login.js';
+import Page from './routes/login/page.js';
+import Re from './routes/login/register.js';
+import PaymentPage from './routes/ticketing/payments/PaymentPage.js';
+import GoodsBasket from './routes/shop/GoodsBasket.js';
+import SignUp from './routes/member/SignUp.js';
+
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -31,23 +50,27 @@ function App() {
           <Routes>
             <Route path="/" element={ <Main></Main> }/>
 
-            <Route path="/ticket" element={<> <Ticket></Ticket> <Outlet></Outlet> </>}>
-              <Route path="seat" element={<>형주몸안좋음</>}></Route>
-            </Route>
-
+            <Route path="/ticket" element={ <Ticket/> }></Route>
+            <Route path="/seat" element={ <Seat/> }></Route>
+            <Route path="/PaymentPage" element={<PaymentPage/>} ></Route>
+            
+            {/* 재원이형이랑 공용으로 쓸 예정 */}
             <Route path="/order" element={<>결제창</>}></Route>
-            <Route path="/basket" element={<>장바구니</>}></Route>
 
-            <Route path="/store" element={<> <Shop></Shop> <Outlet></Outlet> </>}>
-              <Route path="package" element={<> / 패키지임 </>}></Route>
-              <Route path="food" element={<> / 음식임 </>}></Route>
-              <Route path="giftTicket" element={<> / 상품권임 </>}></Route>
+            <Route path="/store" element={<Shop/>}>
+              <Route path="package" element={<PackageGoods/>}></Route>
+              <Route path="food" element={<DrinkFood/>}></Route>
+              <Route path="giftTicket" element={<GiftTicket/>}></Route>
+              <Route path="basket" element={<GoodsBasket/>}></Route>
+              <Route path="payment" element={<GoodsBasket/>}></Route>
+              <Route path="result" element={<GoodsBasket/>}></Route>
+              <Route path=':id' element={<GoodsDetail/>}></Route>
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>
 
-            <Route path="/movie" element={<>혁영이형이야~ <Outlet></Outlet> </>}>
-              <Route path="main" element={<>/ 무비 메인</>}></Route>
-              <Route path="info" element={<>/ 영화 상세정보 <Outlet></Outlet> </>}>
+            <Route path="/movie" element={<Outlet/>}>
+              <Route path="main" element={<MovieList/>}></Route>
+              <Route path="info" element={<Movie/>}>
                 <Route path="schedule" element={<>/ 해당 영화에 대한 상영관 스케줄</>}></Route>
                 <Route path="review" element={<>/ 해당 영화에 대한 리뷰 게시판</>}></Route>
               </Route>
@@ -55,21 +78,28 @@ function App() {
               <Route path="search" element={<>/ 영화 검색정보 URL </>}></Route>
             </Route>
 
-            <Route path="/member" element={<> <Outlet></Outlet> </>}>
-              <Route path="signUp" element={<>회원가입</>}></Route>
-              <Route path="signIn" element={<>로그인</>}></Route>
+            <Route path="/member" element={<Outlet/>}>
+              <Route path="signUp" element={<SignUp/>}></Route>
+              <Route path="signIn" element={<Login/>}></Route>
               <Route path="myPage" element={<>마이페이지임</>}></Route>
+              {/* 여기 아래부분은 ver2 에서 해도 됨 */}
               <Route path="find" element={<>아이디/비밀번호 찾기</>}></Route>
               <Route path="findId" element={<>아이디 찾기</>}></Route>
               <Route path="findPw" element={<>패스워드 찾기 <Outlet></Outlet> </>}>
                 <Route path="findPwResult" element={<>/ 조건 통과해서 결과 보내주면됨</>}></Route>
               </Route>
             </Route>
-
-            <Route path="/support" element={<>고객센터 <Outlet></Outlet> </> }>
-              <Route path="notice" element={<>/ 공지사항</>}></Route>
-              <Route path="question" element={<>질문게시판 <Outlet></Outlet></>}>
-                <Route path="realtime" element={<>/ 실시간 문의</>}></Route>
+            
+            <Route path='/support' element={<Support />}>
+              <Route index element={<div>고객센터 기본 페이지</div>} />
+              <Route path='notice' element={<><Outlet /></>}>
+                <Route index element={<Notice />} />
+                <Route path=':id' element={<NoticeDetail />} />
+              </Route>
+              <Route path='question' element={<><Outlet /></>}>
+                <Route index element={<Question />} />
+                <Route path=':id' element={<QuestionDetail />} />
+                <Route path='realtime' element={<RealtimeQuestion />} />
               </Route>
             </Route>
 

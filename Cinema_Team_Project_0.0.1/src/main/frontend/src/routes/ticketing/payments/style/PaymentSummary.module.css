@@ -1,0 +1,18 @@
+.summaryContainer {
+    background-color: #F2F0E4;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summaryRow:last-child {
+    font-weight: bold;
+    color: red;
+}

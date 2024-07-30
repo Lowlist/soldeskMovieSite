@@ -1,36 +1,25 @@
 import React from 'react';
 import Seat from './Seat';
-import Aisle from './Aisle';
 import styles from './style/SeatRow.module.css';
 
-const SeatRow = ({ row, cols, specialRow, specialCols, selectedSeats, numPeople, handleSeatClick, aisleIndex }) => {
-    const seatRow = [];
-    for (let col = 0; col < cols; col++) {
-        if (col === aisleIndex - 1) {
-            seatRow.push(<Aisle key={`${row}-aisle`} />);
-        }
+const SeatRow = ({ row, cols, selectedSeats, handleSeatClick, numPeople }) => {
+    const midpoint = Math.floor(cols.length / 2) - 1;
+    const isRowDisabled = selectedSeats.length >= numPeople;
 
-        // 3관 특별 좌석 처리
-        if (row === specialRow && (col < specialCols || col >= cols - specialCols)) {
-            seatRow.push(<Aisle key={`${row}-${col}`} />);
-            continue;
-        }
-
-        const seat = `${String.fromCharCode(65 + row)}${col + 1}`;
-        const isSelected = selectedSeats.includes(seat);
-        const isDisabled = selectedSeats.length >= numPeople && !isSelected;
-
-        seatRow.push(
-            <Seat
-                key={seat}
-                seat={seat}
-                isSelected={isSelected}
-                isDisabled={isDisabled}
-                handleSeatClick={handleSeatClick}
-            />
-        );
-    }
-    return <div className={styles.seatRow}>{seatRow}</div>;
+    return (
+        <div className={styles.seatRow}>
+            {cols.map((col, colIndex) => (
+                <Seat
+                    key={colIndex}
+                    seat={`${row.rowLabel}${col.line}`}
+                    isSelected={selectedSeats.includes(`${row.rowLabel}${col.line}`)}
+                    handleSeatClick={handleSeatClick}
+                    isMidpoint={colIndex === midpoint}
+                    isDisabled={isRowDisabled && !selectedSeats.includes(`${row.rowLabel}${col.line}`)}
+                />
+            ))}
+        </div>
+    );
 };
 
 export default SeatRow;

@@ -1,8 +1,11 @@
 # 포트설정
 server:
-  port: 8080
+  port: 7080
+  
 # DB설정
 spring:
+  main:
+    allow-bean-definition-overriding: true
   mvc:
     static-path-pattern: /static/**
     view:
@@ -13,3 +16,9 @@ spring:
     url: jdbc:mysql://localhost:3306/movies
     username: root
     password: root
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl

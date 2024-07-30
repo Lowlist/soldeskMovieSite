@@ -1,4 +1,7 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
+import shop from './slice/shopSlice.js';
+import shopCart from './slice/shopCartSlice.js';
+
 
 /**
  * -리덕스 쓰는이유 
@@ -20,6 +23,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 export default configureStore({
   reducer: { 
-
+    shop : shop.reducer,
+    shopCart : shopCart.reducer
   }
 }) 

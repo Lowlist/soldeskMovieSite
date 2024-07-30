@@ -1,33 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styles from './style/SeatSelection.module.css';
-import Header from './Header';
+import SeatHeader from './SeatHeader';
 import SeatMap from './SeatMap';
 import SelectionComplete from './SelectionComplete';
 
 function SeatSelection() {
     const location = useLocation();
+    const navigate = useNavigate();
     const { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } = location.state || {};
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [numPeople, setNumPeople] = useState(1);
-
-    const hallConfigurations = {
-        '1관': { rows: 8, cols: 8 },
-        '2관': { rows: 14, cols: 16 },
-        '3관': { rows: 11, cols: 24, specialRow: 0, specialCols: 3 },
-    };
-
-    const ticketPrice = 15000;
-    const totalPrice = ticketPrice * numPeople;
+    const [hallConfigurations, setHallConfigurations] = useState({ rows: [], cols: [] });
+    const [ticketPrice, setTicketPrice] = useState(15000); // 기본값을 15000으로 설정
 
     useEffect(() => {
-        console.log(location.state);
-    }, [location.state]);
+        if (selectedHall) {
+            axios.get('/seats/rows', { params: { theaterNo: selectedHall } })
+                .then(response => {
+                    const rows = response.data;
+                    setHallConfigurations(prevState => ({ ...prevState, rows: rows }));
+
+                    // 각 행에 대해 좌석 정보를 가져오기
+                    axios.get('/seats/cols', { params: { theaterNo: selectedHall } })
+                        .then(colResponse => {
+                            const cols = colResponse.data;
+                            setHallConfigurations(prevState => ({ ...prevState, cols: cols }));
+                        })
+                        .catch(error => console.error('Error fetching column data:', error));
+                })
+                .catch(error => console.error('Error fetching row data:', error));
+
+            // 선택된 관의 가격을 가져오기
+            axios.get('/seats/theater/price', { params: { theaterNo: selectedHall } })
+                .then(response => {
+                    setTicketPrice(response.data);
+                })
+                .catch(error => console.error('Error fetching theater price:', error));
+        }
+    }, [selectedHall]);
+
+    const totalPrice = ticketPrice * numPeople;
 
     const handleSeatClick = (seat) => {
         const row = seat.charCodeAt(0) - 65;
         const col = parseInt(seat.substring(1)) - 1;
-        const cols = hallConfigurations[selectedHall].cols;
+        const cols = hallConfigurations.cols.length;
         const leftSectionCols = Math.floor(cols / 2);
         const seatsToSelect = [];
 
@@ -101,9 +120,23 @@ function SeatSelection() {
         }
     };
 
+    const handlePaymentClick = () => {
+        navigate('/PaymentPage', {
+            state: {
+                selectedMovie,
+                selectedTheater,
+                selectedDateString,
+                selectedTime,
+                selectedHall,
+                selectedSeats,
+                totalAmount: totalPrice
+            }
+        });
+    };
+
     return (
         <div className={styles.container}>
-            <Header
+            <SeatHeader
                 selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}
                 selectedDateString={selectedDateString}
@@ -112,13 +145,15 @@ function SeatSelection() {
                 numPeople={numPeople}
                 handlePeopleChange={handlePeopleChange}
             />
-            <SeatMap
-                selectedHall={selectedHall}
-                selectedSeats={selectedSeats}
-                handleSeatClick={handleSeatClick}
-                numPeople={numPeople}
-                hallConfigurations={hallConfigurations}
-            />
+            <div className={styles.seatMapWrapper}>
+                <SeatMap
+                    selectedHall={selectedHall}
+                    selectedSeats={selectedSeats}
+                    handleSeatClick={handleSeatClick}
+                    hallConfigurations={hallConfigurations}
+                    numPeople={numPeople}
+                />
+            </div>
             <SelectionComplete
                 movie={selectedMovie}
                 theater={selectedTheater}
@@ -128,8 +163,10 @@ function SeatSelection() {
                 audience={`일반 ${numPeople}명`}
                 seatType="일반석"
                 seatNumbers={selectedSeats.join(', ')}
-                ticketPrice={`15,000 원`}
-                totalPrice={`${totalPrice.toLocaleString()}원`}
+                ticketPrice={`${ticketPrice.toLocaleString()} 원`}
+                totalPrice={`${totalPrice.toLocaleString()} 원`}
+                isButtonEnabled={selectedSeats.length === numPeople}
+                onButtonClick={handlePaymentClick}
             />
         </div>
     );

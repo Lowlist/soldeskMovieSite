@@ -1,25 +1,27 @@
 .section {
     flex: 1;
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 .header {
     font-weight: bold;
     margin-bottom: 10px;
-    background-color: black;
+    background-color: rgb(96, 96, 96);
     color: white;
-    font-size: 22px;
+    font-size: 21px;
     padding: 10px;
 }
 
 .timeList {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .scrollable {
     max-height: 600px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .timeHall {
@@ -31,22 +33,24 @@
     margin-bottom: 5px;
 }
 
+.hallLine {
+    width: 100%;
+}
+
 .timeRow {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
 }
 
 .timeItem {
     cursor: pointer;
-    margin: 5px;
     text-align: left;
     display: flex;
+    flex-direction: column;
     font-size: 20px;
     justify-content: space-between;
     align-items: center;
-    width: calc(33.33% - 10px); /* 한 줄에 3개 항목이 들어가도록 너비 설정 */
-    box-sizing: border-box; 
 }
 
 .timeSection {
@@ -54,7 +58,7 @@
     border-radius: 10px;
     text-align: center;
     border: 1px #d3d3d3 solid;
-    flex: 1;
+    width: 80%;
 }
 
 .timeSection:hover {
@@ -67,8 +71,18 @@
 
 .remainingSeats {
     font-size: 13px;
-    margin-left: 5px;
     color: green;
-    flex-shrink: 0;
-    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
 }

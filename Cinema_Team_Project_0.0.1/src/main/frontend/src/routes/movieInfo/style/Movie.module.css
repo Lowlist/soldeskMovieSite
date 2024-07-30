@@ -1,0 +1,153 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+}
+
+.contents {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* 콘텐츠 영역의 너비를 100%로 설정 */
+    max-width: 1000px; /* 최대 너비 설정 */
+}
+
+.select_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+}
+
+.sect-base-movie {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    width: 100%; /* 영화 섹션의 너비를 100%로 설정 */
+}
+
+.box-imge {
+    width: 213px;
+    height: 304px;
+    background-color: #ddd;
+    margin-right: 20px;
+}
+
+.box-contents {
+    flex: 1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.score {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.spec {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.ticketing {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cols-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%; /* 콘텐츠 영역의 너비를 100%로 설정 */
+}
+
+.col-detail {
+    flex: 3;
+    margin-right: 20px;
+}
+
+.sect-story-movie,
+.sect-trailer,
+.sect-stillcut,
+.sect-grade {
+    background-color: #fff;
+    max-width: 970px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.movie-grade,
+.real-rating,
+.wrap-persongrade {
+    margin-bottom: 10px;
+}
+
+.col-aside {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* 세로 배치 */
+    justify-content: flex-start; /* 상단 정렬 */
+}
+
+.ad-externa {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.stillcutImage {
+    /* 그림자 효과 설정 */
+    width: 300px;
+    /* 이미지의 너비를 키웁니다 */
+    height: auto;
+    /* 이미지 높이를 자동으로 설정합니다 */
+    object-fit: contain;
+    /* 이미지를 최대한 유지하면서 부모 요소에 맞춥니다 */
+    max-height: 250px;
+    /* 이미지의 최대 높이를 설정합니다 */
+    margin: 1px;
+}
+
+.stillcut {
+    white-space: nowrap;
+    /* 요소들이 한 줄에 나타나도록 설정합니다 */
+    max-height: 300px;
+    /* 스크롤 가능한 최대 높이를 설정합니다 */
+    overflow: hidden;
+    overflow-x: auto;
+    /* 가로스크롤 */
+    display: flex;
+    /* 내부 요소들을 플렉스 박스로 배치합니다 */
+}
+
+.movie-trailer {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.custom-video {
+    width: 750px;
+    height: auto;
+}
+
+.movie-trailer-title {
+    text-align: center;
+}
