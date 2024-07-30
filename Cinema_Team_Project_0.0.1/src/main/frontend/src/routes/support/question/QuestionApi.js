@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/support/question';
+const API_URL = 'http://localhost:8080/support/question';
 
 export const getQuestions = async () => {
   try {

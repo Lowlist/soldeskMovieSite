@@ -30,10 +30,9 @@ public class ReplyEntity {
 	private LocalDateTime updatedAt;
 
 	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "adminId", referencedColumnName = "adminId") private Admin
-	 * admin;
+	 @ManyToOne 
+	 @JoinColumn(name = "adminId", referencedColumnName = "adminId") 
+	 private Admin admin;
 	 */
 	
     @ManyToOne

@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team.cinema.support.dto.QuestionDTO;
+import com.team.cinema.support.dto.ReplyDTO;
 import com.team.cinema.support.entity.QuestionEntity;
+import com.team.cinema.support.entity.ReplyEntity;
 import com.team.cinema.support.repository.QuestionRepository;
+import com.team.cinema.support.repository.ReplyRepository;
 
 
 
@@ -16,6 +19,9 @@ import com.team.cinema.support.repository.QuestionRepository;
 public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
 
     public List<QuestionDTO> getList() {
         List<QuestionEntity> questions = questionRepository.findAll();
@@ -40,7 +46,15 @@ public class QuestionService {
     public QuestionDTO read(int questionNo) {
         QuestionEntity question = questionRepository.findById(questionNo)
                 .orElseThrow(() -> new RuntimeException("Question not found"));
-        return convertToDTO(question);
+        QuestionDTO questionDTO = convertToDTO(question);
+        
+        List<ReplyDTO> replies = replyRepository.findByQuestion_QuestionNo(questionNo)
+                .stream()
+                .map(this::convertReplyToDTO)
+                .collect(Collectors.toList());
+        questionDTO.setReplies(replies);
+        
+        return questionDTO;
     }
 
     public void delete(int questionNo) {
@@ -81,5 +95,15 @@ public class QuestionService {
         // question.setMember(member); 
         // question.setQuestionReply(replyEntity); 
         return question;
+    }
+
+    private ReplyDTO convertReplyToDTO(ReplyEntity reply) {
+        ReplyDTO replyDTO = new ReplyDTO();
+        replyDTO.setReplyNo(reply.getReplyNo());
+        replyDTO.setReplyContent(reply.getReplyContent());
+        replyDTO.setCreatedAt(reply.getCreatedAt());
+        replyDTO.setUpdatedAt(reply.getUpdatedAt());
+        //replyDTO.setAdminId(reply.getAdmin() != null ? reply.getAdmin().getAdminId() : null);
+        return replyDTO;
     }
 }

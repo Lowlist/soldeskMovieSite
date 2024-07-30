@@ -1,6 +1,7 @@
 package com.team.cinema.support.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class QuestionDTO {
     private LocalDateTime updatedAt;
     private int no; 
     private int replyNo; 
+    private List<ReplyDTO> replies;  
 }

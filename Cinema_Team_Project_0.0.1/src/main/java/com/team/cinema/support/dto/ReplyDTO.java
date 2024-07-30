@@ -11,4 +11,5 @@ public class ReplyDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String adminId;
+    private int questionNo;
 }

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
 import styles from '../style/Support.module.css'; 
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import { getNotices } from './NoticeApi';
@@ -55,8 +54,8 @@ function Notice() {
       <div className={styles.sTabWrap}>
         <ul className={styles.sTab}>
           <li className="on"><a href="/support/notice?type=movie&searchtext=" title="선택된 탭메뉴">영화</a></li>
-          <li className=""><a href="/support/notice?type=store&searchtext=">스토어</a></li>
-          <li className=""><a href="/support/notice?type=member&searchtext=">회원</a></li>
+          <li><a href="/support/notice?type=store&searchtext=">스토어</a></li>
+          <li><a href="/support/notice?type=member&searchtext=">회원</a></li>
         </ul>
       </div>
       <div className={styles.tableArea}>
@@ -71,13 +70,11 @@ function Notice() {
           </thead>
           <tbody>
             {currentItems.map(notice => (
-              <tr key={notice.id}>
-                <td>{notice.id}</td>
-                <td onClick={() => handleClick(notice.id)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-                  {notice.title}
-                </td>
-                <td>{notice.date}</td>
-                <td>{notice.hit}</td>
+              <tr key={notice.noticeNo}>
+                <td>{notice.noticeNo}</td>
+                <td onClick={() => handleClick(notice.noticeNo)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{notice.noticeTitle}</td>
+                <td>{new Date(notice.createdAt).toLocaleDateString()}</td>
+                <td>{notice.noticeHit}</td>
               </tr>
             ))}
           </tbody>
@@ -87,9 +84,7 @@ function Notice() {
         <ul className={styles.pageNumbers}>
           {pageNumbers.map(number => (
             <li key={number} className={number === currentPage ? styles.active : ''}>
-              <button onClick={() => handlePageChange(number)}>
-                {number}
-              </button>
+              <button onClick={() => handlePageChange(number)}>{number}</button>
             </li>
           ))}
         </ul>
