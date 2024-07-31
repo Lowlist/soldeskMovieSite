@@ -178,6 +178,12 @@ insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) V
 insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "아메리카노", "아메리카노(ICE)1", '4000', '3500','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16989243001120.jpg', NOW(), NOW() );
 insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "아메리카노", "아메리카노(HOT)1", '4000', '3500','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16988142885670.jpg', NOW(), NOW() );
 
+insert into goods (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "영화관람권", "영화관람권", '13000', '12000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16777513186720.jpg', NOW(), NOW() );
+insert into goods (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "IMAX영화관람권", "IMAX영화관람권", '18000', '17000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16104445892120.jpg', NOW(), NOW() );
+insert into goods (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "4DX영화관람권", "4DX영화관람권", '19000', '18000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16105061094000.jpg', NOW(), NOW() );
+insert into goods (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "씨네드쉐프 영화관람권", "씨네드쉐프 영화관람권", '13000', '12000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/15458907785230.jpg', NOW(), NOW() );
+
+insert into goodsSet (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "씨네드쉐프 영화관람권", "씨네드쉐프 영화관람권", '13000', '12000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16678839682990.jpg', NOW(), NOW() );
 
 
 -- 굿즈(관람권 등)

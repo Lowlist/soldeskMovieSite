@@ -25,6 +25,8 @@ import {
 // 2.상점 (푸드,굿즈,영화관람권)
 // 3.고객센터에 공지사항 1줄
 
+// 헤더부분 영어로 통일 한글로 통일할지 결정
+
 function Main() {
 	let navigate = useNavigate();
 	let state = useSelector((state) => { return state });

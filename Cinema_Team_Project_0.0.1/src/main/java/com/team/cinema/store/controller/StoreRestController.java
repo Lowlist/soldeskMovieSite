@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.cinema.store.entity.Food;
+import com.team.cinema.store.entity.Goods;
+import com.team.cinema.store.entity.GoodsSet;
 import com.team.cinema.store.service.StoreService;
 
 @RestController
@@ -23,13 +25,13 @@ public class StoreRestController {
 	}
 	
 	@GetMapping("/goods")
-	public String goods() {
-		return "asdf";
+	public List<Goods> goods() {
+		return storeSevice.getGoodsList();
 	}
 	
-	@GetMapping("/foodSet")
-	public String foodSet() {
-		return "asdf";
+	@GetMapping("/goodsSet")
+	public List<GoodsSet> foodSet() {
+		return storeSevice.getGoodsSetList();
 	}
 	
 	@GetMapping("/basket")

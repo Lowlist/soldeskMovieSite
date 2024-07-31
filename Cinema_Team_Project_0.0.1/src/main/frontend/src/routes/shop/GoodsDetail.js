@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { addCart } from '../../slice/shopCartSlice';
 
 function GoodsDetail(){
+
     let disPatch = useDispatch();
     let {id} = useParams();
     let state = useSelector( (state)=>{ return state } );
@@ -13,12 +14,25 @@ function GoodsDetail(){
     let navigate = useNavigate();
     let findData;
     
-    if(location.pathname.indexOf("/store/") !== -1){
-        findData = state.shop.find(
-            function(x){
-                return x.id == id;
-            }
-        );
+    if(state.food.data.length > id){
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.food.data.find(
+                function(x){
+                    return x.no == id;
+                }
+            );
+        }
+    }
+
+    if(state.food.data.length < id){
+        id = id - state.food.data.length;
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.goods.data.find(
+                function(x){
+                    return x.no == id;
+                }
+            );
+        }
     }
 
     let [price] = useState(findData.price);
@@ -47,7 +61,7 @@ function GoodsDetail(){
                     {/* Img Start */}
 
                     <div className={style.detailImgLine}>
-                        <img className={style.detailImg} src={'https://codingapple1.github.io/shop/shoes' + (findData.id + 1) + '.jpg'}></img>
+                        <img className={style.detailImg} src={findData.img}></img>
                     </div>
 
                     {/* Text Start */}
@@ -69,14 +83,14 @@ function GoodsDetail(){
 
                             <div className={style.detailContentProductLine}>
                                 <b className={style.detailContentProductName}>상품구성</b>
-                                <div className={style.detailContentProduct}>일반 영화 관람권 4매+더블콤보 1개</div>
+                                <div className={style.detailContentProduct}>{findData.content}</div>
                             </div>
 
                             <div className={style.detailContentPeriodLine}>
                                 <b className={style.detailContentPeriodName}>유효기간</b>
                                 <div className={style.detailContentPeriod}>
-                                CGV 영화관람권 : 구매일로부터 24개월 이내<br/>
-                                더블콤보 : 구매일로부터 6개월 이내
+                                영화관람권 : 구매일로부터 24개월 이내<br/>
+                                팝콘,음료 : 구매일로부터 6개월 이내
                                 </div>
                             </div>
 
