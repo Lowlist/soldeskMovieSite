@@ -1,5 +1,6 @@
 package com.team.cinema.support.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,8 @@ public class QuestionService {
 
     public QuestionDTO write(QuestionDTO questionDTO) {
         QuestionEntity question = convertToEntity(questionDTO);
+        question.setCreatedAt(LocalDateTime.now());
+        question.setUpdatedAt(LocalDateTime.now());
         QuestionEntity savedQuestion = questionRepository.save(question);
         return convertToDTO(savedQuestion);
     }
@@ -67,6 +70,7 @@ public class QuestionService {
         question.setQuestionTitle(questionDTO.getQuestionTitle());
         question.setQuestionContent(questionDTO.getQuestionContent());
         question.setQuestionHit(questionDTO.getQuestionHit());
+        question.setUpdatedAt(LocalDateTime.now());
         QuestionEntity updatedQuestion = questionRepository.save(question);
         return convertToDTO(updatedQuestion);
     }
@@ -90,8 +94,8 @@ public class QuestionService {
         question.setQuestionTitle(questionDTO.getQuestionTitle());
         question.setQuestionContent(questionDTO.getQuestionContent());
         question.setQuestionHit(questionDTO.getQuestionHit());
-        question.setCreatedAt(questionDTO.getCreatedAt());
-        question.setUpdatedAt(questionDTO.getUpdatedAt());
+        question.setCreatedAt(questionDTO.getCreatedAt() != null ? questionDTO.getCreatedAt() : LocalDateTime.now());
+        question.setUpdatedAt(questionDTO.getUpdatedAt() != null ? questionDTO.getUpdatedAt() : LocalDateTime.now());
         // question.setMember(member); 
         // question.setQuestionReply(replyEntity); 
         return question;

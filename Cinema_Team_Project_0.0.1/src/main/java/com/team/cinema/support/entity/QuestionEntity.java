@@ -45,4 +45,9 @@ public class QuestionEntity {
 	    @OneToOne
 	    @JoinColumn(name = "replyNo", referencedColumnName = "replyNo")
 	    private ReplyEntity questionReply;
+	    
+	    public QuestionEntity() {
+	    	this.createdAt = LocalDateTime.now();
+	    	this.updatedAt = LocalDateTime.now();
+	    }
 }

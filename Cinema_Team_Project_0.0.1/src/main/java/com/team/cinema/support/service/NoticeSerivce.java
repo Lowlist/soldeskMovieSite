@@ -1,5 +1,6 @@
 package com.team.cinema.support.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import com.team.cinema.support.repository.NoticeRepository;
 public class NoticeSerivce {
     @Autowired
     private NoticeRepository noticeRepository;
+
 
     public List<NoticeDTO> getList() {
         List<NoticeEntity> notices = noticeRepository.findAll();
@@ -32,6 +34,8 @@ public class NoticeSerivce {
 
     public NoticeDTO write(NoticeDTO noticeDTO) {
         NoticeEntity notice = convertToEntity(noticeDTO);
+        notice.setCreatedAt(LocalDateTime.now());
+        notice.setUpdatedAt(LocalDateTime.now());
         NoticeEntity savedNotice = noticeRepository.save(notice);
         return convertToDTO(savedNotice);
     }
@@ -52,7 +56,8 @@ public class NoticeSerivce {
         notice.setNoticeTitle(noticeDTO.getNoticeTitle());
         notice.setNoticeContent(noticeDTO.getNoticeContent());
         notice.setNoticeHit(noticeDTO.getNoticeHit());
-        NoticeEntity updatedNotice = noticeRepository.save(notice); 
+        notice.setUpdatedAt(LocalDateTime.now());
+        NoticeEntity updatedNotice = noticeRepository.save(notice);
         return convertToDTO(updatedNotice);
     }
 
@@ -73,8 +78,12 @@ public class NoticeSerivce {
         notice.setNoticeTitle(noticeDTO.getNoticeTitle());
         notice.setNoticeContent(noticeDTO.getNoticeContent());
         notice.setNoticeHit(noticeDTO.getNoticeHit());
-        notice.setCreatedAt(noticeDTO.getCreatedAt());
-        notice.setUpdatedAt(noticeDTO.getUpdatedAt());
+        if (noticeDTO.getCreatedAt() != null) {
+            notice.setCreatedAt(noticeDTO.getCreatedAt());
+        }
+        if (noticeDTO.getUpdatedAt() != null) {
+            notice.setUpdatedAt(noticeDTO.getUpdatedAt());
+        }
         return notice;
     }
 }

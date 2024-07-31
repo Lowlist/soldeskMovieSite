@@ -51,3 +51,14 @@ export const deleteQuestion = async (id) => {
     throw error;
   }
 };
+
+// 댓글 추가하기
+export const addReply = async (questionNo, replyData) => {
+  try {
+    const response = await axios.post(`${API_URL}/${questionNo}/replies`, replyData);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding reply:', error);
+    throw error;
+  }
+};

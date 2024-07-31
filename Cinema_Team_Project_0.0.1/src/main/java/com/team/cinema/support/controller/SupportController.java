@@ -118,4 +118,41 @@ public class SupportController {
         questionService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
+    // 댓글 목록 조회
+    @GetMapping("/question/{questionNo}/replies")
+    public ResponseEntity<List<ReplyDTO>> getReplies(@PathVariable("questionNo") int questionNo) {
+        List<ReplyDTO> replies = replyService.getList(questionNo);
+        return ResponseEntity.ok(replies);
+    }
+
+    // 댓글 작성
+    @PostMapping("/question/{questionNo}/replies")
+    public ResponseEntity<ReplyDTO> writeReply(@PathVariable("questionNo") int questionNo, @RequestBody ReplyDTO replyDTO) {
+        replyDTO.setQuestionNo(questionNo); // Set questionNo for the reply
+        ReplyDTO createdReply = replyService.write(replyDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdReply);
+    }
+
+    // 댓글 수정
+    @PostMapping("/replies/{replyNo}/modify")
+    public ResponseEntity<ReplyDTO> modifyReply(@PathVariable("replyNo") int replyNo, @RequestBody ReplyDTO replyDTO) {
+        try {
+            ReplyDTO updatedReply = replyService.modify(replyNo, replyDTO);
+            return ResponseEntity.ok(updatedReply);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    // 댓글 삭제
+    @DeleteMapping("/replies/{replyNo}")
+    public ResponseEntity<Void> deleteReply(@PathVariable("replyNo") int replyNo) {
+        try {
+            replyService.delete(replyNo);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }

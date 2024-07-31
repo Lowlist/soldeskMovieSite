@@ -32,6 +32,10 @@ function Notice() {
     navigate(`/support/notice/${id}`);
   };
 
+  const handleCreateNotice = () => {
+    navigate('/support/notice/write');
+  };
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -89,6 +93,7 @@ function Notice() {
           ))}
         </ul>
       </div>
+      <button onClick={handleCreateNotice}>공지사항 추가</button>
     </div>
   );
 }

@@ -31,6 +31,10 @@ function Question() {
     setCurrentPage(pageNumber);
   };
 
+  const handleCreateQuestion = () => {
+    navigate('/support/question/write');
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = questions.slice(indexOfFirstItem, indexOfLastItem);
@@ -90,6 +94,7 @@ function Question() {
             </li>
           ))}
         </ul>
+        <button onClick={handleCreateQuestion}>공지사항 추가</button>
       </div>
     </div>
   );

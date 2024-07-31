@@ -41,4 +41,9 @@ public class NoticeEntity {
 	 * @JoinColumn(name = "adminId", referencedColumnName = "adminId") private Admin
 	 * admin;
 	 */
+    
+    public NoticeEntity() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 }

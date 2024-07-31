@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { getQuestionById } from './QuestionApi';
+import { getQuestionById, addReply } from './QuestionApi';
 import styles from '../style/Support.module.css'; 
 
 function QuestionDetail() {
@@ -23,10 +23,15 @@ function QuestionDetail() {
         fetchQuestion();
     }, [id]);
 
-    const handleAddComment = () => {
+    const handleAddComment = async () => {
         if (newComment.trim() !== '') {
-            setComments([...comments, { text: newComment, date: new Date().toISOString() }]);
-            setNewComment('');
+            try {
+                const addedReply = await addReply(id, { replyContent: newComment });
+                setComments([...comments, addedReply]);
+                setNewComment('');
+            } catch (error) {
+                console.error('Error adding comment:', error);
+            }
         }
     };
 
