@@ -70,7 +70,7 @@ function App() {
 
             <Route path="/movie" element={<Outlet/>}>
               <Route path="main" element={<MovieList/>}></Route>
-              <Route path="info" element={<Movie/>}>
+              <Route path="info/:DOCID" element={<Movie/>}>
                 <Route path="schedule" element={<>/ 해당 영화에 대한 상영관 스케줄</>}></Route>
                 <Route path="review" element={<>/ 해당 영화에 대한 리뷰 게시판</>}></Route>
               </Route>

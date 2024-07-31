@@ -1,18 +1,27 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './style/Movie.module.css';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Movie() {
-
+    const { DOCID } = useParams(); // useParams로 DOCID를 받아옴
     let [data, setData] = useState(null);
 
     useEffect(() => {
-        const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&movieId=k&movieSeq=36201&ServiceKey=BOC8E6E947M11OX4WO71";
+        // const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&movieId=k&movieSeq=36201&ServiceKey=BOC8E6E947M11OX4WO71";
 
-        axios.get(url).then((response) => {
-            setData(response.data.Data[0].Result[0]);
+        axios.get('/movie/info', { params: { DOCID } }).then((response) => {
+            console.log(response.data); // 데이터 구조를 확인하기 위해 콘솔에 출력
+            const data = response.data;
+
+            // Data 배열이 비어있거나, 그 안에 Result 배열이 없는지 확인
+            if (data && data.Data && data.Data.length > 0 && data.Data[0].Result && data.Data[0].Result.length > 0) {
+                setData(data.Data[0].Result[0]);
+            } else {
+                console.error("Unexpected data structure or no data found");
+            }
         }).catch(error => {
             console.error("Error fetching data: ", error);
         })
