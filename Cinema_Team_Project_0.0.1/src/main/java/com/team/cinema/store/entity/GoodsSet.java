@@ -61,4 +61,92 @@ public class GoodsSet {
 		updatedAt = LocalDateTime.now();
 	}
 
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
+	public int getSetNoOne() {
+		return setNoOne;
+	}
+
+	public void setSetNoOne(int setNoOne) {
+		this.setNoOne = setNoOne;
+	}
+
+	public int getSetNoTwo() {
+		return setNoTwo;
+	}
+
+	public void setSetNoTwo(int setNoTwo) {
+		this.setNoTwo = setNoTwo;
+	}
+
+	public int getSetNoThree() {
+		return setNoThree;
+	}
+
+	public void setSetNoThree(int setNoThree) {
+		this.setNoThree = setNoThree;
+	}
+
+	public int getSetNoFour() {
+		return setNoFour;
+	}
+
+	public void setSetNoFour(int setNoFour) {
+		this.setNoFour = setNoFour;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	
 }
