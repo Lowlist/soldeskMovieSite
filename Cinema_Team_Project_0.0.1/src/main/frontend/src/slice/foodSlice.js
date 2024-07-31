@@ -1,41 +1,40 @@
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
-export const axiosData = createAsyncThunk(
-    'dummy/axiosData',
+export const foodData = createAsyncThunk(
+    'food/foodData',
     async () => {
         let response = await axios.get('/store/food');
         return response.data;
   });
 
-let dummy = createSlice({
-    name: 'dummy',
+let food = createSlice({
+    name: 'food',
     initialState:{
         data: [],
         loading: false,
-        error: null
+        error: false
     },
     reducers: {
         
     },
     extraReducers: (builder) => {
         builder
-          .addCase(axiosData.pending, (state) => {
+          .addCase(foodData.pending, (state) => {
             state.loading = true;
             state.error = null;
           })
-          .addCase(axiosData.fulfilled, (state, action) => {
+          .addCase(foodData.fulfilled, (state, action) => {
             state.loading = false;
             state.data = action.payload;
           })
-          .addCase(axiosData.rejected, (state, action) => {
+          .addCase(foodData.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
           });
       },
 })
 
-export let { changeMain } = dummy.actions
+export let {  } = food.actions
 
-export default dummy;
+export default food;

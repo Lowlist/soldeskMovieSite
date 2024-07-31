@@ -34,12 +34,13 @@ function DrinkFood() {
                         return (
                             <div className={style.cardBox} key={i}>
                                 <Card style={{ width: '28rem', border: '0px' }}>
-                                    <Card.Body className={style.cardBody} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
-                                        <img className={style.cardImg} src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} alt='이미지 로딩 실패' />
+                                    <Card.Body className={style.cardBody} onClick={() => navigate(`/store/${state.food.data[i].no}`)}>
+                                        <img className={style.cardImg} src={state.food.data[i].img} alt='이미지 로딩 실패' />
                                         <div className={style.cardContent}>
-                                            <Card.Title>{state.shop[i].title}</Card.Title>
+                                            <Card.Title>{state.food.data[i].title}</Card.Title>
                                             <Card.Text>
-                                                {state.shop[i].content}
+                                                {state.food.data[i].content}
+                                                <div>{state.food.data[i].price.toLocaleString("ko-KR")}원</div>
                                             </Card.Text>
                                         </div>
                                     </Card.Body>
@@ -63,13 +64,13 @@ function DrinkFood() {
                 <hr className={style.hrCenter} />
                 <Row>
                     {
-                        state.shop.map((a, i) =>
-                            <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
+                        state.food.data.map((a, i) =>
+                            <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.food.data[i].no}`)}>
                                 <div className={style.packageImg}>
-                                    <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" alt='이미지 로딩 실패' />
+                                    <img src={state.food.data[i].img} width="300px" alt='이미지 로딩 실패' />
                                 </div>
-                                <h4>{state.shop[i].title}</h4>
-                                <div>{state.shop[i].price}</div>
+                                <h4>{state.food.data[i].title}</h4>
+                                <div>{state.food.data[i].price.toLocaleString("ko-KR")}원</div>
                             </Col>
                         )
                     }

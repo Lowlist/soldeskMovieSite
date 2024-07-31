@@ -151,6 +151,7 @@ CREATE TABLE `payment` (
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
 ) ENGINE=InnoDB;
 
+use movies;
 -- 음식
 CREATE TABLE `food` (
 	`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 음식 KEY값 -- 
@@ -158,10 +159,26 @@ CREATE TABLE `food` (
 	`content` VARCHAR(255), -- 내용 -- 
 	`price` INT NOT NULL, -- 가격 -- 
 	`salePrice` INT, -- 할인가격 -- 
-    `conut` INT NOT NULL , -- 재고 -- 
+    `count` INT NOT NULL , -- 재고 -- 
+    `img` TEXT, -- 음식 이미지 -- 
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
 ) ENGINE=InnoDB;
+drop table food;
+drop table goods;
+drop table goodsSet;
+drop table storeBasket;
+
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "고소 팝콘", "팝콘(M)1", '6000', '5500','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16932099670660.jpg', NOW(), NOW() );
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "고소 팝콘", "팝콘(L)1", '8000', '7500','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/17169684033160.jpg', NOW(), NOW() );
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "달콤 팝콘", "팝콘(M)1", '6500', '6000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16932100345730.jpg', NOW(), NOW() );
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "달콤 팝콘", "팝콘(L)1", '8500', '8000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/17169691831430.jpg', NOW(), NOW() );
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "탄산 음료", "음료(M)1", '2500', '2300','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16988126323700.jpg', NOW(), NOW() );
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "탄산 음료", "음료(L)1", '3000', '2800','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16988138774790.jpg', NOW(), NOW() );
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "아메리카노", "아메리카노(ICE)1", '4000', '3500','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16989243001120.jpg', NOW(), NOW() );
+insert into food (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "아메리카노", "아메리카노(HOT)1", '4000', '3500','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16988142885670.jpg', NOW(), NOW() );
+
+
 
 -- 굿즈(관람권 등)
 CREATE TABLE `goods` (
@@ -170,7 +187,8 @@ CREATE TABLE `goods` (
 	`content` VARCHAR(255), -- 내용 -- 
 	`price` INT NOT NULL, -- 가격 -- 
 	`salePrice` INT, -- 할인가격 -- 
-    `conut` INT NOT NULL , -- 재고 -- 
+    `count` INT NOT NULL , -- 재고 --
+    `img` TEXT, -- 음식 이미지 -- 
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
 ) ENGINE=InnoDB;
@@ -184,7 +202,8 @@ CREATE TABLE `goodsSet` (
     `setNoFour` TINYINT, -- 세트번호 4 (food or goods TABLE 외래키) --
 	`price` INT NOT NULL,  -- 가격 -- 
 	`salePrice` INT, -- 할인가격 -- 
-    `conut` INT NOT NULL , -- 재고 --  
+    `count` INT NOT NULL , -- 재고 --  
+    `img` TEXT, -- 음식 이미지 -- 
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
 ) ENGINE=InnoDB;
@@ -204,6 +223,7 @@ CREATE TABLE `storeBasket` (
 	`giftTicketNo` INT, -- 관람권번호 ( giftTicket TALBE 외래키 ) -- 
     `checkBox` BOOLEAN DEFAULT FALSE NOT NULL, -- 상품 선택 -- 
     `checkBoxAll` BOOLEAN DEFAULT FALSE, -- 상품 전체선택 -- 
+    `img` TEXT, -- 음식 이미지 -- 
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
 ) ENGINE=InnoDB;
