@@ -11,14 +11,13 @@ function QuestionCreate() {
     e.preventDefault();
     try {
       const questionData = {
-        questionTitle: title.trim() !== "" ? title : "", // 백엔드와 일치하도록 변경
-        questionContent: content.trim() !== "" ? content : "", // 백엔드와 일치하도록 변경
+        questionTitle: title.trim() !== "" ? title : "",
+        questionContent: content.trim() !== "" ? content : "",
       };
       await createQuestion(questionData);
       navigate('/support/question');
     } catch (error) {
       console.error('Error creating question:', error);
-      // 에러 처리 로직 추가 가능
     }
   };
 
@@ -26,18 +25,22 @@ function QuestionCreate() {
     <div>
       <h2>질문 추가</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>제목</label>
+        <div style={{ marginBottom: '20px' }}>
+          <label style={{ fontWeight: 'bold', fontSize: '20px' }}>제목</label>
+          <br />
           <input 
+            style={{ width: '80%', resize: 'vertical', padding: '10px', boxSizing: 'border-box' }}
             type="text" 
             value={title} 
             onChange={(e) => setTitle(e.target.value)} 
             required 
           />
         </div>
-        <div>
-          <label>내용</label>
+        <div style={{ marginBottom: '20px' }}>
+          <label style={{ fontWeight: 'bold', fontSize: '20px' }}>내용</label>
+          <br />
           <textarea 
+            style={{ width: '80%', height: '400px', resize: 'vertical', padding: '10px', boxSizing: 'border-box', border: '5px solid #ccc', resize: 'none'}}
             value={content} 
             onChange={(e) => setContent(e.target.value)} 
             required 

@@ -21,13 +21,24 @@ function NoticeCreate() {
     <div>
       <h2>공지사항 추가</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>제목</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <div style={{ marginBottom: '20px' }}>
+          <label style={{ fontWeight: 'bold', fontSize: '20px' }}>제목</label>
+          <br />
+          <input 
+          style={{ width: '80%', resize: 'vertical', padding: '10px', boxSizing: 'border-box' }}
+          type="text" 
+          value={title} onChange={(e) => setTitle(e.target.value)} 
+          required />
         </div>
-        <div>
-          <label>내용</label>
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} required />
+        <div style={{ marginBottom: '20px' }}>
+          <label style={{ fontWeight: 'bold', fontSize: '20px' }}>내용</label>
+          <br />
+          <textarea
+            style={{ width: '80%', height: '400px', resize: 'vertical', padding: '10px', boxSizing: 'border-box', border: '5px solid #ccc', resize: 'none'}}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            required
+          />
         </div>
         <button type="submit">저장</button>
       </form>
@@ -35,4 +46,4 @@ function NoticeCreate() {
   );
 }
 
-  export default NoticeCreate;
+export default NoticeCreate;
