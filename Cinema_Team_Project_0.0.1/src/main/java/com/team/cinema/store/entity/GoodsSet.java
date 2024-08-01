@@ -19,17 +19,41 @@ public class GoodsSet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int no;
 
-	@Column(name = "setNoOne")
-	private int setNoOne;
+	@Column(name = "title")
+	private String title;
+	
+	@Column(name = "foodNoOne")
+	private int foodNoOne;
+	
+	@Column(name = "foodNoOneCount")
+	private int foodNoOneCount;
 
-	@Column(name = "setNoTwo")
-	private int setNoTwo;
+	@Column(name = "foodNoTwo", nullable = true)
+	private Integer foodNoTwo;
 	
-	@Column(name = "setNoThree")
-	private int setNoThree;
+	@Column(name = "foodNoTwoCount", nullable = true)
+	private Integer foodNoTwoCount;
 	
-	@Column(name = "setNoFour")
-	private int setNoFour;
+	@Column(name = "drinkNoOne")
+	private int drinkNoOne;
+	
+	@Column(name = "drinkNoOneCount")
+	private int drinkNoOneCount;
+	
+	@Column(name = "giftNoOne", nullable = true)
+	private Integer giftNoOne;
+	
+	@Column(name = "giftNoOneCount", nullable = true)
+	private Integer giftNoOneCount;
+	
+	@Column(name = "giftNoTwo", nullable = true)
+	private Integer giftNoTwo;
+	
+	@Column(name = "giftNoTwoCount", nullable = true)
+	private Integer giftNoTwoCount;
+
+	@Column(name = "content")
+	private String content;
 
 	@Column(name = "price")
 	private int price;
@@ -69,36 +93,100 @@ public class GoodsSet {
 		this.no = no;
 	}
 
-	public int getSetNoOne() {
-		return setNoOne;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setSetNoOne(int setNoOne) {
-		this.setNoOne = setNoOne;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public int getSetNoTwo() {
-		return setNoTwo;
+	public int getFoodNoOne() {
+		return foodNoOne;
 	}
 
-	public void setSetNoTwo(int setNoTwo) {
-		this.setNoTwo = setNoTwo;
+	public void setFoodNoOne(int foodNoOne) {
+		this.foodNoOne = foodNoOne;
 	}
 
-	public int getSetNoThree() {
-		return setNoThree;
+	public int getFoodNoOneCount() {
+		return foodNoOneCount;
 	}
 
-	public void setSetNoThree(int setNoThree) {
-		this.setNoThree = setNoThree;
+	public void setFoodNoOneCount(int foodNoOneCount) {
+		this.foodNoOneCount = foodNoOneCount;
 	}
 
-	public int getSetNoFour() {
-		return setNoFour;
+	public Integer getFoodNoTwo() {
+		return foodNoTwo;
 	}
 
-	public void setSetNoFour(int setNoFour) {
-		this.setNoFour = setNoFour;
+	public void setFoodNoTwo(Integer foodNoTwo) {
+		this.foodNoTwo = foodNoTwo;
+	}
+
+	public Integer getFoodNoTwoCount() {
+		return foodNoTwoCount;
+	}
+
+	public void setFoodNoTwoCount(Integer foodNoTwoCount) {
+		this.foodNoTwoCount = foodNoTwoCount;
+	}
+
+	public int getDrinkNoOne() {
+		return drinkNoOne;
+	}
+
+	public void setDrinkNoOne(int drinkNoOne) {
+		this.drinkNoOne = drinkNoOne;
+	}
+
+	public int getDrinkNoOneCount() {
+		return drinkNoOneCount;
+	}
+
+	public void setDrinkNoOneCount(int drinkNoOneCount) {
+		this.drinkNoOneCount = drinkNoOneCount;
+	}
+
+	public Integer getGiftNoOne() {
+		return giftNoOne;
+	}
+
+	public void setGiftNoOne(Integer giftNoOne) {
+		this.giftNoOne = giftNoOne;
+	}
+
+	public Integer getGiftNoOneCount() {
+		return giftNoOneCount;
+	}
+
+	public void setGiftNoOneCount(Integer giftNoOneCount) {
+		this.giftNoOneCount = giftNoOneCount;
+	}
+
+	public Integer getGiftNoTwo() {
+		return giftNoTwo;
+	}
+
+	public void setGiftNoTwo(Integer giftNoTwo) {
+		this.giftNoTwo = giftNoTwo;
+	}
+
+	public Integer getGiftNoTwoCount() {
+		return giftNoTwoCount;
+	}
+
+	public void setGiftNoTwoCount(Integer giftNoTwoCount) {
+		this.giftNoTwoCount = giftNoTwoCount;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public int getPrice() {

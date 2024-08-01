@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import style from './style/GoodsBasket.module.css';
 import { useDispatch, useSelector} from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { plusCount, minusCount, checkBox, checkBoxAll } from '../../slice/shopCartSlice';
+import { plusCount, minusCount, checkBox, checkBoxAll,allPrice } from '../../slice/shopCartSlice';
 
 function GoodsBasket(){
 
@@ -13,9 +13,22 @@ function GoodsBasket(){
     let activateBasket = false;
     let activatePayment = false;
     let activateResult = false;
+    let [checkAll, setCheckAll] = useState(true);
+    useEffect(()=>{
+       disPatch(allPrice());
+    },[])
 
-    {console.log(state.shop)};
+    // 장바구니 버튼 전부 클릭되면 전체도 on 되야됨
+    // 토탈 계산식 짜야됨 price / saleprice / totalprice
+    // DB에 인서트 Param 식 만들어야됨
+    // 멤버 세션값 받아와서 체킹해야됨
 
+    let handleClick = () => {
+        setCheckAll(prevState => !prevState);
+        disPatch(checkBoxAll({ checkAll: !checkAll }));
+    };
+
+    console.log(state.shopCart)
     switch (location.pathname) {
         case "/store/basket":
             activateBasket = true;
@@ -67,8 +80,8 @@ function GoodsBasket(){
                     <div className={style.basketListCheckBoxLine}>
                     {   
                         activateBasket &&
-                        <div className={state.shopCart[0]?.checkBoxAll ?? true ? style.basketListAllCheckBox : style.basketListAllCheckBoxAfter}
-                            onClick={ ()=>{ disPatch(checkBoxAll()) } }>
+                        <div className={ checkAll === true ? style.basketListAllCheckBoxAfter : style.basketListAllCheckBox }
+                            onClick={ ()=>{ handleClick(); } }>
                         </div>
                     }
                     </div>
@@ -86,17 +99,16 @@ function GoodsBasket(){
                             {
                                 activateBasket &&
                                 <div className={style.basketListItemCheckBoxLine}>
-                                    {console.log(state.shopCart[i].checkBox)}
-                                    <div className={state.shopCart[i].checkBox === true ? style.basketListCheckBox : style.basketListCheckBoxAfter}
+                                    <div className={state.shopCart[i].checkBox === false ? style.basketListCheckBox : style.basketListCheckBoxAfter}
                                         onClick={() => { disPatch(checkBox({data : state.shopCart[i]})) }}></div>
                                 </div>
                             }
                             <div className={activateBasket === true ? style.basketListItemContentLine : style.basketListItemContentLineAct}>
-                                <img className={style.basketListItemImg} src={'https://codingapple1.github.io/shop/shoes2.jpg'}></img>
+                                <img className={style.basketListItemImg} src={state.shopCart[i].img}></img>
                                 <div className={style.basketListItemContent}>
                                     <b className={style.basketListItemContentName}>{state.shopCart[i].title}</b>
                                     <div className={style.basketListItemContentNotice}>
-                                        {state.shop[i].content}
+                                        {state.shopCart[i].content}
                                     </div>
                                 </div>
                                 <div className={style.basketListItemPriceLine}>
@@ -148,7 +160,7 @@ function GoodsBasket(){
                     <div className={style.basketTotalHeadResult}>총 결제 예정금액</div>
                 </div>
                 <div className={style.basketTotalResultLine}>
-                    <div className={style.basketTotalResult}>300,000원</div>
+                    <div className={style.basketTotalResult}>10,000원</div>
                     <div className={style.basketTotalResultMinus}></div>
                     <div className={style.basketTotalResultSale}>10,000원</div>
                     <div className={style.basketTotalResultPlus}></div>

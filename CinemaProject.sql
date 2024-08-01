@@ -183,8 +183,47 @@ insert into goods (title,content,price,salePrice,count,img,createdAt,updatedAt) 
 insert into goods (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "4DX영화관람권", "4DX영화관람권", '19000', '18000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16105061094000.jpg', NOW(), NOW() );
 insert into goods (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "씨네드쉐프 영화관람권", "씨네드쉐프 영화관람권", '13000', '12000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/15458907785230.jpg', NOW(), NOW() );
 
-insert into goodsSet (title,content,price,salePrice,count,img,createdAt,updatedAt) VALUES ( "씨네드쉐프 영화관람권", "씨네드쉐프 영화관람권", '13000', '12000','999','https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16678839682990.jpg', NOW(), NOW() );
+insert into goodsSet (
+title,foodNoOne,foodNoOneCount,drinkNoOne,drinkNoOneCount,
+content,price,salePrice,count,img,createdAt,updatedAt) VALUES
+("라지 콤보", "2", '2', '6', '2', '팝콘(L)2+탄산음료(L)2', 16000, 15000, 999, 'https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/17169719101290.jpg', NOW(), NOW() );
 
+insert into goodsSet (
+title,foodNoOne,foodNoOneCount,drinkNoOne,drinkNoOneCount,
+content,price,salePrice,count,img,createdAt,updatedAt) VALUES
+("더블 콤보", "1", '2', '5', '2', '팝콘(M)2+탄산음료(M)2', 14000, 13000, 999, 'https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/17169712593440.jpg', NOW(), NOW() );
+
+insert into goodsSet (
+title,foodNoOne,foodNoOneCount,drinkNoOne,drinkNoOneCount,
+content,price,salePrice,count,img,createdAt,updatedAt) VALUES
+("DTO 콤보", "2", '1', '5', '2', '팝콘(L)1+탄산음료(M)2', 11000, 10000, 999, 'https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/17169710147590.jpg', NOW(), NOW() );
+
+insert into goodsSet (
+title,foodNoOne,foodNoOneCount,drinkNoOne,drinkNoOneCount,
+content,price,salePrice,count,img,createdAt,updatedAt) VALUES
+("스몰 콤보", "2", '1', '5', '1', '팝콘(M)1+탄산음료(M)1', 7000, 6500, 999, 'https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16678839682990.jpg', NOW(), NOW() );
+
+insert into goodsSet (
+title,foodNoOne,foodNoOneCount,foodNoTwo,foodNoTwoCount,drinkNoOne,drinkNoOneCount,
+giftNoOne,giftNoOneCount,giftNoTwo,giftNoTwoCount,content,price,salePrice,count,img,
+createdAt,updatedAt) VALUES
+("우리 패키지", "1", '2', null, null, '5', '2', '1', '4', null, null,'일반 영화 관람권 4매 + 더블 콤보 1개', 66000, 62000, 999, 'https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/17170521000740.jpg', NOW(), NOW() );
+
+insert into goodsSet (
+title,foodNoOne,foodNoOneCount,foodNoTwo,foodNoTwoCount,drinkNoOne,drinkNoOneCount,
+giftNoOne,giftNoOneCount,giftNoTwo,giftNoTwoCount,content,price,salePrice,count,img,
+createdAt,updatedAt) VALUES
+("나랑너 패키지", "2", '1', null, null, '5', '2', '1', '2', null, null,'일반 영화 관람권 2매 + DTO 콤보 1개', 37000, 35000, 999, 'https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/17170513233850.jpg', NOW(), NOW() );
+
+insert into goodsSet (
+title,foodNoOne,foodNoOneCount,foodNoTwo,foodNoTwoCount,drinkNoOne,drinkNoOneCount,
+giftNoOne,giftNoOneCount,giftNoTwo,giftNoTwoCount,content,price,salePrice,count,img,
+createdAt,updatedAt) VALUES
+("좋은날 패키지", "2", '1', null, null, '5', '1', '1', '1', null, null,'일반 영화 관람권 1매 + 스몰 콤보 1개', 20000, 18000, 999, 'https://img.cgv.co.kr/GiftStore/Product/Pc/Detail/16778206770810.jpg', NOW(), NOW() );
+
+select *from goods;
+select *from food;
+select *from goodsSet;
 
 -- 굿즈(관람권 등)
 CREATE TABLE `goods` (
@@ -201,11 +240,19 @@ CREATE TABLE `goods` (
 
 -- 음식,굿즈 세트 or 음식세트
 CREATE TABLE `goodsSet` (
-	`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 음식,굿즈 세트 KEY값 -- 
-	`setNoOne` TINYINT NOT NULL, -- 세트번호 1 (food or goods TABLE 외래키) --
-	`setNoTwo` TINYINT NOT NULL, -- 세트번호 2 (food or goods TABLE 외래키) --
-    `setNoThree` TINYINT, -- 세트번호 3 (food or goods TABLE 외래키) --
-    `setNoFour` TINYINT, -- 세트번호 4 (food or goods TABLE 외래키) --
+	`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 음식,굿즈 세트 KEY값 --
+    `title` VARCHAR(255), -- 제목 -- 
+	`foodNoOne` INT NOT NULL, -- 세트번호음식 1 (food TABLE 외래키) --
+    `foodNoOneCount` INT NOT NULL, -- 세트번호음식 1 갯수 --  
+    `foodNoTwo` INT, -- 세트번호음식 2 (food TABLE 외래키) --
+    `foodNoTwoCount` INT, -- 세트번호음식 2 갯수 --  
+	`drinkNoOne` INT NOT NULL, -- 세트번호음료 1 (food TABLE 외래키) --
+    `drinkNoOneCount` INT NOT NULL, -- 세트번호음료 1 갯수 --  
+    `giftNoOne` INT, -- 세트번호티켓 1 (goods TABLE 외래키) --
+    `giftNoOneCount` INT, -- 세트번호티켓 1 갯수 --  
+    `giftNoTwo` INT, -- 세트번호티켓 1 (goods TABLE 외래키) --
+    `giftNoTwoCount` INT, -- 세트번호티켓 1 갯수 --  
+    `content` VARCHAR(255), -- 내용 -- 
 	`price` INT NOT NULL,  -- 가격 -- 
 	`salePrice` INT, -- 할인가격 -- 
     `count` INT NOT NULL , -- 재고 --  
@@ -240,7 +287,7 @@ CREATE TABLE `productLog` (
 	`productTitle` VARCHAR(100) NOT NULL, -- 상품 이름 -- 			
 	`productContent` TEXT, -- 상품 설명 --
 	`productState` TINYINT NOT NULL, -- 상품 상태 0이면 삭제 1이면 생성 --	
-	`adminNo` VARCHAR(30), -- 상품을 추가한 관리자 ID --		
+	`adminNo` VARCHAR(30), 상품을 추가한 관리자 ID --		
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 					
 ) ENGINE=InnoDB; 

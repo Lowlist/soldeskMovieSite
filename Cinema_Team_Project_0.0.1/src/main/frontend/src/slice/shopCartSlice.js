@@ -7,19 +7,19 @@ let shopCart = createSlice({
     reducers:{
         // DB랑 연동시켜야함.
         addCart(state,action) {
-            let item = state.find(item => item.id === action.payload.data.id)
+            let item = state.find(item => item.id === action.payload.id)
             if(item){
                 if(item.count === 0){
                     item.count += 1;
-                }else{
+                } else {
                     alert("이미 장바구니에 담겨있습니다!");
                 }
-            }else{
+            } else {
                 //push문을 parameter 전송 후 DB에 추가하면 될듯?
                 state.push({ 
-                    id : action.payload.data.id, title: action.payload.data.title, content: action.payload.data.content,
+                    id : action.payload.id, title: action.payload.data.title, content: action.payload.data.content,
                     count : action.payload.counts , price: action.payload.data.price, salePrice: action.payload.data.salePrice,
-                    checkBox: true,checkBoxAll: true
+                    img: action.payload.data.img , checkBox: true, checkBoxAll: true, allPrice : 0, allSalePrice : 0 , totalPrice : 0
                 });
             }
         },
@@ -27,18 +27,16 @@ let shopCart = createSlice({
             let item = state.find(item => item.id === action.payload.data.id)
             if(item.checkBox){
                 item.checkBox = false;
-            }else{
+            } else {
                 item.checkBox = true;
             }
         },
-        checkBoxAll(state){
+        checkBoxAll(state,action){
             for(let i=0 ; i < state.length ; i++){
-                if(state[i].checkBox){
-                    state[i].checkBox = false;
-                    state[i].checkBoxAll = false;
-                }else{
+                if(action.payload.checkAll){
                     state[i].checkBox = true;
-                    state[i].checkBoxAll = true;
+                }else{
+                    state[i].checkBox = false;
                 }
             }
         },
@@ -60,9 +58,24 @@ let shopCart = createSlice({
                 item = state.findIndex(item => item.id === action.payload.id)
                 state.splice(item , 1);
             }
+        },
+        allPrice(state){
+            for(let i=0 ; i<state.length ; i++){
+                if(state[i].checkBox || state[i].checkBoxAll){
+                    state[i].allPrice = state[i].price;
+                }else if(!state[i].checkBox || !state[i].checkBoxAll){
+                    state[i].allPrice = 0;
+                }
+            }
+        },
+        allSalePrice(state){
+
+        },
+        totalPrice(state){
+
         }
     }
 })
-export let { addCart, plusCount, minusCount, checkBox, checkBoxAll } = shopCart.actions
+export let { addCart, plusCount, minusCount, checkBox, checkBoxAll, allPrice, allSalePrice, totalPrice } = shopCart.actions
 
 export default shopCart;

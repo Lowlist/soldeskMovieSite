@@ -8,28 +8,41 @@ function GoodsDetail(){
 
     let disPatch = useDispatch();
     let {id} = useParams();
+    let [idCheck] = useState(id);
     let state = useSelector( (state)=>{ return state } );
     let [count,setCount] = useState(1);
     let location = useLocation();
     let navigate = useNavigate();
     let findData;
+    let checkLength = state.food.data.length + state.goods.data.length;
     
-    if(state.food.data.length > id){
+    // 접속된 id param 값을 가져와서 백엔드에서 가져온 데이터의 길이와 비교후 데이터.find로 id값을 찾은후 바인딩
+    if(state.food.data.length >= idCheck){
         if(location.pathname.indexOf("/store/") !== -1){
             findData = state.food.data.find(
                 function(x){
-                    return x.no == id;
+                    return x.no == idCheck;
                 }
             );
         }
     }
-
-    if(state.food.data.length < id){
-        id = id - state.food.data.length;
+    if(state.food.data.length < idCheck && state.food.data.length + state.goods.data.length >= idCheck){
+        idCheck = id - state.food.data.length;
         if(location.pathname.indexOf("/store/") !== -1){
             findData = state.goods.data.find(
                 function(x){
-                    return x.no == id;
+                    return x.no == idCheck;
+                }
+            );
+        }
+    }
+    
+    if(checkLength < idCheck){
+        idCheck = id - checkLength;
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.goodsSet.data.find(
+                function(x){
+                    return x.no == idCheck;
                 }
             );
         }
@@ -51,7 +64,8 @@ function GoodsDetail(){
             <div className={style.detailName}>
                 {findData.title}
             </div>
-            
+            {console.log(id)}
+            {console.log(idCheck)}
             <hr className={style.hrOne}/>
 
                 {/* Detail Start */}
@@ -138,7 +152,7 @@ function GoodsDetail(){
                         {/* Button Start */}
 
                         <div className={style.detailButtonLine}>
-                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count }))  }}></div>
+                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count , id : id }))  }}></div>
                             <div className={style.detailBuyButton}>구매하기</div>
                         </div>
                         

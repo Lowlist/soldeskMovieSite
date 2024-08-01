@@ -5,25 +5,30 @@ import Main,{MovieHeader} from '../main/Main.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { foodData } from '../../slice/foodSlice.js';
 import { goodsData } from '../../slice/goodsSlice.js';
+import { goodsSetData } from '../../slice/goodsSetSlice.js';
 
 // Store 전체 관리 컴포넌트
 function Shop() {
     let disPatch = useDispatch();
-    let state = useSelector( (state)=>{ return state } );
-    let { data, loading, error } = useSelector((state) => state.food);
+    let foodState = useSelector((state) => state.food);
+    let goodsState = useSelector((state) => state.goods);
+    let goodsSetState = useSelector((state) => state.goodsSet);
 
     useEffect(()=>{
         disPatch(foodData());
         disPatch(goodsData());
+        disPatch(goodsSetData());
     },[disPatch])
 
-    if (loading) {
+    if (foodState.loading || goodsState.loading || goodsSetState.loading) {
         return <div>로딩창</div>;
     }
-    if (error) {
+
+    if (foodState.error || goodsState.error || goodsSetState.error) {
         return <div>에러메세지</div>;
     }
-    if (!data || data.length === 0) {
+
+    if (!foodState.data || foodState.data.length === 0) {
         return <div>데이터가 없습니다!</div>;
     }
 
