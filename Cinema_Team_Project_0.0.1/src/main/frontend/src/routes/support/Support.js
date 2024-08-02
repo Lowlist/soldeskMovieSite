@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './style/Support.module.css';
 import { Link, Outlet, Route, Routes, useNavigate, useLocation } from 'react-router-dom'
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
-
+import {MovieHeader} from '../main/Main.js';
 
 function Support(){
     let navigate = useNavigate();
@@ -12,23 +12,7 @@ function Support(){
     return(
         <div className={styles.supportMain}>
         <div className={styles.nav}>
-          <Navbar className={styles['wrapper-header-category']} data-bs-theme="light">
-              <Container className={styles['category-left']}>
-                <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
-                <Nav.Link onClick={ ()=>{ navigate('/store') } }>shop</Nav.Link>
-                <Nav.Link onClick={ ()=>{ navigate('/ticket') } }>ticketing</Nav.Link>
-                <Nav.Link onClick={ ()=>{ navigate('/map') } }>카카오맵</Nav.Link>
-                <Nav.Link onClick={ ()=>{ navigate('/support') } }>고객센터</Nav.Link>
-              </Container>
-              <div className={styles['category-right']}>
-	              <div className={styles['search-box']}>
-	                <input id={styles['searchBox']} type="text" placeholder="영화 검색"></input>
-	              </div>
-	              <div className={styles['search-btn']}>
-	                {/* <img id="searchBtn" src={search}></img> */}
-	              </div>
-	            </div>
-          </Navbar>
+          <MovieHeader />
           <div className={styles.contents}>
             <div className={styles.colsContent}>
               <div className={styles.colAside}>

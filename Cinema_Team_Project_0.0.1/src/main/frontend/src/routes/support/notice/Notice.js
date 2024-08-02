@@ -55,13 +55,13 @@ function Notice() {
   return (
     <div>
       <h2>공지사항</h2>
-      <div className={styles.sTabWrap}>
+      {/* <div className={styles.sTabWrap}>
         <ul className={styles.sTab}>
           <li className="on"><a href="/support/notice?type=movie&searchtext=" title="선택된 탭메뉴">영화</a></li>
           <li><a href="/support/notice?type=store&searchtext=">스토어</a></li>
           <li><a href="/support/notice?type=member&searchtext=">회원</a></li>
         </ul>
-      </div>
+      </div> */}
       <div className={styles.tableArea}>
         <table>
           <thead>
