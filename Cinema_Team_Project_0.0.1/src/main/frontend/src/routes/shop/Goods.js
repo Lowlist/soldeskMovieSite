@@ -16,6 +16,7 @@ function Goods() {
     if (id.pathname === "/store") {
         viewGoods = true;
     }
+    
     return (
         <div>
             <div className={style.goodsMain}>
@@ -37,11 +38,10 @@ function Goods() {
 
                     {
                         viewGoods &&
-                        <div>
+                        <div className={style.shopLine}>
                             {/* PackageGoods Start */}
 
                             <PackageGoods/> 
-                            
 
                             <div className={style.goodsLine}>
                                 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './style/SeatSelection.module.css';
 import SeatHeader from './SeatHeader';
@@ -8,6 +8,7 @@ import SelectionComplete from './SelectionComplete';
 
 function SeatSelection() {
     const location = useLocation();
+    const navigate = useNavigate();
     const { selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall } = location.state || {};
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [numPeople, setNumPeople] = useState(1);
@@ -111,13 +112,26 @@ function SeatSelection() {
         }
     };
 
-
     const handlePeopleChange = (increment) => {
         const newNumPeople = numPeople + increment;
         if (newNumPeople >= 1 && newNumPeople <= 4) {
             setSelectedSeats([]);
             setNumPeople(newNumPeople);
         }
+    };
+
+    const handlePaymentClick = () => {
+        navigate('/PaymentPage', {
+            state: {
+                selectedMovie,
+                selectedTheater,
+                selectedDateString,
+                selectedTime,
+                selectedHall,
+                selectedSeats,
+                totalAmount: totalPrice
+            }
+        });
     };
 
     return (
@@ -151,6 +165,8 @@ function SeatSelection() {
                 seatNumbers={selectedSeats.join(', ')}
                 ticketPrice={`${ticketPrice.toLocaleString()} 원`}
                 totalPrice={`${totalPrice.toLocaleString()} 원`}
+                isButtonEnabled={selectedSeats.length === numPeople}
+                onButtonClick={handlePaymentClick}
             />
         </div>
     );

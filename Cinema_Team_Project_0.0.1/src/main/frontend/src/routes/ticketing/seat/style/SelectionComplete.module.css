@@ -89,6 +89,20 @@
     font-size: 20px;
 }
 
+.button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.button.enabled {
+    background-color: #d9534f;
+    cursor: pointer;
+}
+
+.button:hover:enabled {
+    background-color: #c9302c;
+}
+
 .button:hover {
     background-color: #c9302c;
 }

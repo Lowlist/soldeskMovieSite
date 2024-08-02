@@ -15,7 +15,7 @@ function PackageGoods() {
     }
 
     return (
-        <div>
+        <div className={style.packageLine}>
             <div className={style.goodsName}>
                 패키지 상품
                 { 
@@ -27,16 +27,29 @@ function PackageGoods() {
                 }
             </div>
             <hr className={style.hrCenter} />
-            <Row>
+            <Row className={style.packageRow}>
                 {
-                    state.shop.map((a, i) =>
-                        <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
+                    buttons === true ?
+                    [1,2,3].map((a, i) =>
+                        <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.food.data.length+state.goods.data.length+state.goodsSet.data[i].no}`)}>
                             <div className={style.packageImg}>
-                                <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" alt='이미지 로딩 실패'/>
+                                <img src={state.goodsSet.data[i].img} width="300px" alt='이미지 로딩 실패'/>
                             </div>
                             <div>
-                                <h4>{state.shop[i].title}</h4>
-                                <div>{state.shop[i].price}</div>
+                                <h4>{state.goodsSet.data[i].title}</h4>
+                                <div>{state.goodsSet.data[i].price.toLocaleString("ko-KR")}원</div>
+                            </div>
+                        </Col>
+                    )
+                    :
+                    state.goodsSet.data.map((a, i) =>
+                        <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.food.data.length+state.goods.data.length+state.goodsSet.data[i].no}`)}>
+                            <div className={style.packageImg}>
+                                <img src={state.goodsSet.data[i].img} width="300px" alt='이미지 로딩 실패'/>
+                            </div>
+                            <div>
+                                <h4>{state.goodsSet.data[i].title}</h4>
+                                <div>{state.goodsSet.data[i].price.toLocaleString("ko-KR")}원</div>
                             </div>
                         </Col>
                     )

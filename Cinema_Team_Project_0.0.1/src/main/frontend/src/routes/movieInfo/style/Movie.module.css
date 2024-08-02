@@ -5,7 +5,8 @@
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 중앙 정렬 */
+    /* 중앙 정렬 */
+    align-items: center; 
 }
 
 .contents {
@@ -56,6 +57,7 @@
     font-size: 16px;
     color: #666;
     margin-bottom: 10px;
+    text-align: left;
 }
 
 .ticketing {
@@ -64,7 +66,6 @@
     background-color: #007bff;
     color: #fff;
     border-radius: 4px;
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -90,6 +91,10 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+.sect-story-movie {
+    text-align: left;
 }
 
 .movie-grade,

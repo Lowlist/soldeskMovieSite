@@ -20,6 +20,10 @@ import QuestionDetail from './routes/support/QuestionDetail.js';
 import Login from './routes/login/login.js';
 import Page from './routes/login/page.js';
 import Re from './routes/login/register.js';
+import PaymentPage from './routes/ticketing/payments/PaymentPage.js';
+import GoodsBasket from './routes/shop/GoodsBasket.js';
+import SignUp from './routes/member/SignUp.js';
+
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -48,14 +52,18 @@ function App() {
 
             <Route path="/ticket" element={ <Ticket/> }></Route>
             <Route path="/seat" element={ <Seat/> }></Route>
-
+            <Route path="/PaymentPage" element={<PaymentPage/>} ></Route>
+            
+            {/* 재원이형이랑 공용으로 쓸 예정 */}
             <Route path="/order" element={<>결제창</>}></Route>
-            <Route path="/basket" element={<>장바구니</>}></Route>
 
             <Route path="/store" element={<Shop/>}>
               <Route path="package" element={<PackageGoods/>}></Route>
               <Route path="food" element={<DrinkFood/>}></Route>
               <Route path="giftTicket" element={<GiftTicket/>}></Route>
+              <Route path="basket" element={<GoodsBasket/>}></Route>
+              <Route path="payment" element={<GoodsBasket/>}></Route>
+              <Route path="result" element={<GoodsBasket/>}></Route>
               <Route path=':id' element={<GoodsDetail/>}></Route>
               <Route path="search" element={<> 검색임 </>}></Route>
             </Route>
@@ -70,10 +78,10 @@ function App() {
               <Route path="search" element={<>/ 영화 검색정보 URL </>}></Route>
             </Route>
 
-            <Route path="/member" element={<> <Outlet></Outlet> </>}>
-              <Route path="signUp" element={<Re/>}></Route>
+            <Route path="/member" element={<Outlet/>}>
+              <Route path="signUp" element={<SignUp/>}></Route>
               <Route path="signIn" element={<Login/>}></Route>
-              <Route path="myPage" element={<Page/>}></Route>
+              <Route path="myPage" element={<>마이페이지임</>}></Route>
               {/* 여기 아래부분은 ver2 에서 해도 됨 */}
               <Route path="find" element={<>아이디/비밀번호 찾기</>}></Route>
               <Route path="findId" element={<>아이디 찾기</>}></Route>

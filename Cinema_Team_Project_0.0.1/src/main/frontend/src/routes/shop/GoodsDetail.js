@@ -1,21 +1,56 @@
-import { useLocation, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './style/GoodsDetail.module.css';
+import { useEffect, useState } from 'react';
+import { addCart } from '../../slice/shopCartSlice';
 
 function GoodsDetail(){
+
+    let disPatch = useDispatch();
     let {id} = useParams();
-    let state = useSelector((state)=>{ return state })
+    let [idCheck] = useState(id);
+    let state = useSelector( (state)=>{ return state } );
+    let [count,setCount] = useState(1);
     let location = useLocation();
+    let navigate = useNavigate();
     let findData;
+    let checkLength = state.food.data.length + state.goods.data.length;
     
-    if(location.pathname.indexOf("/store/") !== -1){
-        findData = state.shop.find(
-            function(x){
-                return x.id == id;
-            }
-        );
+    // 접속된 id param 값을 가져와서 백엔드에서 가져온 데이터의 길이와 비교후 데이터.find로 id값을 찾은후 바인딩
+    if(state.food.data.length >= idCheck){
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.food.data.find(
+                function(x){
+                    return x.no == idCheck;
+                }
+            );
+        }
+    }
+    if(state.food.data.length < idCheck && state.food.data.length + state.goods.data.length >= idCheck){
+        idCheck = id - state.food.data.length;
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.goods.data.find(
+                function(x){
+                    return x.no == idCheck;
+                }
+            );
+        }
+    }
+    
+    if(checkLength < idCheck){
+        idCheck = id - checkLength;
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.goodsSet.data.find(
+                function(x){
+                    return x.no == idCheck;
+                }
+            );
+        }
     }
 
+    let [price] = useState(findData.price);
+    let [salePrice] = useState(findData.salePrice);
+    
     if(findData == undefined){
         return(
             <div>
@@ -29,8 +64,9 @@ function GoodsDetail(){
             <div className={style.detailName}>
                 {findData.title}
             </div>
-
-            <hr/>
+            {console.log(id)}
+            {console.log(idCheck)}
+            <hr className={style.hrOne}/>
 
                 {/* Detail Start */}
 
@@ -39,7 +75,7 @@ function GoodsDetail(){
                     {/* Img Start */}
 
                     <div className={style.detailImgLine}>
-                        <img className={style.detailImg} src={'https://codingapple1.github.io/shop/shoes' + (findData.id + 1) + '.jpg'}></img>
+                        <img className={style.detailImg} src={findData.img}></img>
                     </div>
 
                     {/* Text Start */}
@@ -49,8 +85,8 @@ function GoodsDetail(){
                         {/* Title Start */}
 
                         <div className={style.detailTitleLine}>
-                            <div className={style.detailTitle}></div>
-                            <div className={style.detailTitleSale}></div>
+                            <div className={style.detailTitle}>{salePrice.toLocaleString("ko-KR")}원</div>
+                            { <div className={style.detailTitleSale}>{price.toLocaleString("ko-KR")}원</div>}
                         </div>
 
                         {/* Content Start */}
@@ -60,23 +96,26 @@ function GoodsDetail(){
                         <div className={style.detailContentLine}>
 
                             <div className={style.detailContentProductLine}>
-                                <div className={style.detailContentProductName}></div>
-                                <div className={style.detailContentProduct}></div>
+                                <b className={style.detailContentProductName}>상품구성</b>
+                                <div className={style.detailContentProduct}>{findData.content}</div>
                             </div>
 
                             <div className={style.detailContentPeriodLine}>
-                                <div className={style.detailContentPeriodName}></div>
-                                <div className={style.detailContentPeriod}></div>
+                                <b className={style.detailContentPeriodName}>유효기간</b>
+                                <div className={style.detailContentPeriod}>
+                                영화관람권 : 구매일로부터 24개월 이내<br/>
+                                팝콘,음료 : 구매일로부터 6개월 이내
+                                </div>
                             </div>
 
                             <div className={style.detailContentOriginLine}>
-                                <div className={style.detailContentOriginName}></div>
-                                <div className={style.detailContentOrigin}></div>
+                                <b className={style.detailContentOriginName}>원산지</b>
+                                <div className={style.detailContentOrigin}>팝콘(팍콘 머그러가는 재열)</div>
                             </div>
 
                             <div className={style.detailContentPlaceLine}>
-                                <div className={style.detailContentPlaceName}></div>
-                                <div className={style.detailContentPlace}></div>
+                                <b className={style.detailContentPlaceName}>상품교환</b>
+                                <div className={style.detailContentPlace}>사용가능 DTO 보기</div>
                             </div>
 
                         </div>
@@ -87,12 +126,13 @@ function GoodsDetail(){
 
                         <div className={style.detailNumberLine}>
                             <div className={style.detailPriceBox}>
-                                <div className={style.detailPriceMinus}></div>
-                                <div className={style.detailPriceText}></div>
-                                <div className={style.detailPricePlus}></div>
+                                <div className={style.detailPriceMinus} onClick={ ()=>count !== 1 ? setCount(count-1) : setCount(1)}>-</div>
+                                <div className={style.detailPriceText}>{count}</div>
+                                <div className={style.detailPricePlus} onClick={ ()=>{ setCount(count+1) } } >+</div>
                             </div>
 
                             <div className={style.detailPrice}>
+                                {(price*count).toLocaleString("ko-KR")}원
                             </div>
                         </div>
                         
@@ -101,27 +141,26 @@ function GoodsDetail(){
                         {/* Total Start */}
 
                         <div className={style.detailTotalLine}>
-                            <div className={style.detailTotalText}>
+                            <b className={style.detailTotalText}>
                                 총 구매금액
-                            </div>
-
+                            </b>
                             <div className={style.detailTotal}>
-
+                                {(salePrice*count).toLocaleString("ko-KR")}원
                             </div>
                         </div>
 
                         {/* Button Start */}
 
                         <div className={style.detailButtonLine}>
-                            <div className={style.detailBasketButton}></div>
-                            <div className={style.detailBuyButton}></div>
+                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count , id : id }))  }}></div>
+                            <div className={style.detailBuyButton}>구매하기</div>
                         </div>
                         
                     </div>
 
                 </div>
 
-            <hr/>
+            <hr className={style.hrOne}/>
 
             {/* 경고창 및 그런거 쏼라쏼라 */}
 
