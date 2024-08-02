@@ -9,5 +9,5 @@ import com.team.cinema.member.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findByNo(int no);
+    User findById(String id);
 }
-
