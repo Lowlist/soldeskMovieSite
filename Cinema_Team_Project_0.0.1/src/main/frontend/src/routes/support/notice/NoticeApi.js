@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/support/notice';
+const API_URL = 'http://localhost:7080/support/notice';
 
 // 공지사항 목록을 가져오는 함수
 export const getNotices = async () => {
