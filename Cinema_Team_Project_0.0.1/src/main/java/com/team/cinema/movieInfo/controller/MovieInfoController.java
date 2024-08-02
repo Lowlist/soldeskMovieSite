@@ -21,7 +21,7 @@ public class MovieInfoController {
 	}
 	
 	@GetMapping("/info")
-	public String getMovieInfo(@RequestParam("DOCID") String DOCID) {
-		return movieInfoService.getMovieInfo(DOCID);
+	public String getMovieInfo(@RequestParam("movieId") String movieId, @RequestParam("movieSeq") String movieSeq) {
+		return movieInfoService.getMovieInfo(movieId, movieSeq);
 	}
 }

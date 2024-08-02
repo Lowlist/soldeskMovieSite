@@ -6,26 +6,25 @@ import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Movie() {
-    const { DOCID } = useParams(); // useParams로 DOCID를 받아옴
+    const { movieId, movieSeq } = useParams(); // useParams로 DOCID를 받아옴
     let [data, setData] = useState(null);
 
     useEffect(() => {
-        // const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&movieId=k&movieSeq=36201&ServiceKey=BOC8E6E947M11OX4WO71";
-
-        axios.get('/movie/info', { params: { DOCID } }).then((response) => {
-            console.log(response.data); // 데이터 구조를 확인하기 위해 콘솔에 출력
-            const data = response.data;
-
-            // Data 배열이 비어있거나, 그 안에 Result 배열이 없는지 확인
-            if (data && data.Data && data.Data.length > 0 && data.Data[0].Result && data.Data[0].Result.length > 0) {
-                setData(data.Data[0].Result[0]);
-            } else {
-                console.error("Unexpected data structure or no data found");
-            }
-        }).catch(error => {
-            console.error("Error fetching data: ", error);
-        })
-    }, []);
+        axios.get('/movie/info',   { params: { movieId : movieId, movieSeq : movieSeq } } )
+            .then((response) => {
+                console.log(response.data); // 데이터 구조 확인
+                const movieData = response.data.Data[0].Result[0];
+                if (movieData) {
+                    setData(movieData);
+                } else {
+                    console.error("영화 데이터를 불러오지 못했습니다.");
+                    setData(null); // 데이터가 없을 때 null로 설정하여 로딩 상태를 끝냄
+                }
+            })
+            .catch((error) => {
+                console.error("데이터 로딩 중 오류 발생:", error);
+            });
+    }, [movieId, movieSeq]);
 
     if (!data) {
         return <div>Loading...</div>; // 데이터가 로드되기 전 로딩 메시지 표시

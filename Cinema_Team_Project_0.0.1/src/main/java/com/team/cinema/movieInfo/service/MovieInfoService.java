@@ -42,15 +42,19 @@ public class MovieInfoService {
     }
     
     //영화 상세정보
-    public String getMovieInfo(String DOCID) {
+    public String getMovieInfo(String movieId, String movieSeq) {
     	try {
     		String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
-    				.queryParam("DOCID", URLEncoder.encode(DOCID, StandardCharsets.UTF_8))
-    				.queryParam("detail", "Y")
-                    .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
-    				.toString();
+    			    .queryParam("detail", "Y")
+    			    .queryParam("movieId", URLEncoder.encode(movieId, StandardCharsets.UTF_8))
+    			    .queryParam("movieSeq", URLEncoder.encode(movieSeq, StandardCharsets.UTF_8))
+    			    .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
+    			    .toUriString(); // toString() 대신 toUriString() 사용
+    		System.out.println(requestUrl);
+//    		https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&movieId=k&movieSeq=36201&ServiceKey=BOC8E6E947M11OX4WO71
     		
     		 URI uri = new URI(requestUrl);
+    		 System.out.println(requestUrl);
              RestTemplate restTemplate = new RestTemplate();
              String response = restTemplate.getForObject(uri, String.class);
              return response;
