@@ -26,6 +26,7 @@ function GoodsDetail(){
             );
         }
     }
+    
     if(state.food.data.length < idCheck && state.food.data.length + state.goods.data.length >= idCheck){
         idCheck = id - state.food.data.length;
         if(location.pathname.indexOf("/store/") !== -1){

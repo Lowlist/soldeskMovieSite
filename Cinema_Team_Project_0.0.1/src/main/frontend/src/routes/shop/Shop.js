@@ -18,6 +18,7 @@ function Shop() {
         disPatch(foodData());
         disPatch(goodsData());
         disPatch(goodsSetData());
+        // 여기에다가 엑시오스 부분 넣으면됨
     },[disPatch])
 
     if (foodState.loading || goodsState.loading || goodsSetState.loading) {

@@ -19,7 +19,7 @@ let shopCart = createSlice({
                 state.push({ 
                     id : action.payload.id, title: action.payload.data.title, content: action.payload.data.content,
                     count : action.payload.counts , price: action.payload.data.price, salePrice: action.payload.data.salePrice,
-                    img: action.payload.data.img , checkBox: true, checkBoxAll: true, allPrice : 0, allSalePrice : 0 , totalPrice : 0
+                    img: action.payload.data.img , checkBox: true
                 });
             }
         },
@@ -59,23 +59,24 @@ let shopCart = createSlice({
                 state.splice(item , 1);
             }
         },
-        allPrice(state){
-            for(let i=0 ; i<state.length ; i++){
-                if(state[i].checkBox || state[i].checkBoxAll){
-                    state[i].allPrice = state[i].price;
-                }else if(!state[i].checkBox || !state[i].checkBoxAll){
-                    state[i].allPrice = 0;
+        delBasket(state, action){
+            let item = state.findIndex(item => item.id === action.payload.data.id)
+            state.splice(item , 1);
+        },
+        delCheckBoxList(state){
+            let hasChecked = state.some(item => item.checkBox);
+            if(hasChecked){
+                for (let i=0 ; i<state.length ; i++){
+                    if(state[i].checkBox){
+                        state.splice(i,1);
+                    }
                 }
+            } else {
+                alert("삭제 할 상품이 선택되지 않았습니다!");
             }
-        },
-        allSalePrice(state){
-
-        },
-        totalPrice(state){
-
         }
     }
 })
-export let { addCart, plusCount, minusCount, checkBox, checkBoxAll, allPrice, allSalePrice, totalPrice } = shopCart.actions
+export let { addCart, plusCount, minusCount, checkBox, checkBoxAll, delBasket , delCheckBoxList } = shopCart.actions
 
 export default shopCart;
