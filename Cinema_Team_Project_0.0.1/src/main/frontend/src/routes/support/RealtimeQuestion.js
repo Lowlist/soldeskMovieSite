@@ -1,18 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import styles from './style/Support.module.css';
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 
-function RealtimeQuestion(){
-  let navigate = useNavigate();
+function RealtimeQuestion() {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
+  const [ws, setWs] = useState(null);
+
+  useEffect(() => {
+    const socket = new WebSocket('ws://localhost:8080/ws/support/question/realtime');
+    socket.onopen = () => {
+      console.log('WebSocket connected');
+    };
+    socket.onmessage = (event) => {
+      const newMessage = JSON.parse(event.data);
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+    };
+    socket.onclose = () => {
+      console.log('WebSocket disconnected');
+    };
+    setWs(socket);
+
+    return () => {
+      socket.close();
+    };
+  }, []);
 
   const handleSendMessage = () => {
     if (inputMessage.trim() !== '') {
-      setMessages([...messages, { sender: 'user', text: inputMessage }]);
+      const message = { sender: 'user', text: inputMessage };
+      setMessages((prevMessages) => [...prevMessages, message]); // Add the message immediately to the state
+      ws.send(JSON.stringify(message));
       setInputMessage('');
-      // 여기에 서버로 메시지를 전송하는 로직을 추가할 수 있습니다.
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSendMessage();
     }
   };
 
@@ -21,7 +49,10 @@ function RealtimeQuestion(){
       <h2>실시간 문의 페이지</h2>
       <div className={styles.chatWindow}>
         {messages.map((message, index) => (
-          <div key={index} className={message.sender === 'user' ? styles.userMessage : styles.botMessage}>
+          <div
+            key={index}
+            className={message.sender === 'user' ? styles.userMessage : styles.botMessage}
+          >
             {message.text}
           </div>
         ))}
@@ -31,6 +62,7 @@ function RealtimeQuestion(){
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
           placeholder="메시지를 입력하세요"
           className={styles.chatInput}
         />
@@ -39,7 +71,7 @@ function RealtimeQuestion(){
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default RealtimeQuestion;

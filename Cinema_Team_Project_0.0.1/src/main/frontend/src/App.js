@@ -11,12 +11,14 @@ import Ticket from './routes/ticketing/ticket/Ticketing.js';
 import Seat from './routes/ticketing/seat/SeatSelection.js';
 import MovieList from './routes/movieInfo/MovieList.js';
 import Movie from './routes/movieInfo/Movie.js';
-import Notice from './routes/support/Notice.js';
+import Notice from './routes/support/notice/Notice.js';
 import Support from './routes/support/Support.js';
 import RealtimeQuestion from './routes/support/RealtimeQuestion.js';
-import Question from './routes/support/Question.js';
-import NoticeDetail from './routes/support/NoticeDetail.js';
-import QuestionDetail from './routes/support/QuestionDetail.js';
+import Question from './routes/support/question/Question.js';
+import NoticeDetail from './routes/support/notice/NoticeDetail.js';
+import QuestionDetail from './routes/support/question/QuestionDetail.js';
+import NoticeCrate from './routes/support/notice/NoticeCreate.js';
+import QuestionCreate from './routes/support/question/QuestionCreate.js';
 import Login from './routes/login/login.js';
 import Page from './routes/login/page.js';
 import Re from './routes/login/register.js';
@@ -95,11 +97,13 @@ function App() {
               <Route path='notice' element={<><Outlet /></>}>
                 <Route index element={<Notice />} />
                 <Route path=':id' element={<NoticeDetail />} />
+                <Route path='write' element={<NoticeCrate />} />
               </Route>
               <Route path='question' element={<><Outlet /></>}>
                 <Route index element={<Question />} />
                 <Route path=':id' element={<QuestionDetail />} />
                 <Route path='realtime' element={<RealtimeQuestion />} />
+                <Route path='write' element={<QuestionCreate />} />
               </Route>
             </Route>
 
