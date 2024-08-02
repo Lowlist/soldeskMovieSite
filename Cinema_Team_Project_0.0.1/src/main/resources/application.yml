@@ -1,6 +1,6 @@
 # 포트설정
 server:
-  port: 8080
+  port: 8082
   
 # DB설정
 spring:
@@ -13,12 +13,12 @@ spring:
       suffix: .jsp
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/movies
+    url: jdbc:mysql://localhost:3307/movies
     username: root
     password: root
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
