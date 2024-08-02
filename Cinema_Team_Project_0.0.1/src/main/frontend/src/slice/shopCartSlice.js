@@ -15,7 +15,11 @@ let shopCart = createSlice({
                     alert("이미 장바구니에 담겨있습니다!");
                 }
             } else {
-                //push문을 parameter 전송 후 DB에 추가하면 될듯?
+
+                // push문을 parameter 전송 후 DB에 추가하면 될듯? ver1
+                // axios요청으로 파라미터 전송 후 리덕스 청크로 받아와야 할듯?
+                // 비동기 방식이 되는지 잘 모르겠음
+                
                 state.push({ 
                     id : action.payload.id, title: action.payload.data.title, content: action.payload.data.content,
                     count : action.payload.counts , price: action.payload.data.price, salePrice: action.payload.data.salePrice,
@@ -63,6 +67,7 @@ let shopCart = createSlice({
             let item = state.findIndex(item => item.id === action.payload.data.id)
             state.splice(item , 1);
         },
+        // 로직 수정해야됨 체크 많이되있는데 3개까지밖에 삭제안됨 버그임
         delCheckBoxList(state){
             let hasChecked = state.some(item => item.checkBox);
             if(hasChecked){
