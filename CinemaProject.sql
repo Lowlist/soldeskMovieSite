@@ -287,7 +287,7 @@ CREATE TABLE `productLog` (
 	`productTitle` VARCHAR(100) NOT NULL, -- 상품 이름 -- 			
 	`productContent` TEXT, -- 상품 설명 --
 	`productState` TINYINT NOT NULL, -- 상품 상태 0이면 삭제 1이면 생성 --	
-	`adminNo` VARCHAR(30), 상품을 추가한 관리자 ID --		
+	`adminNo` VARCHAR(30), -- 상품을 추가한 관리자 ID --		
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 					
 ) ENGINE=InnoDB; 
@@ -330,6 +330,39 @@ CREATE TABLE `inquiryResponse` (
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 			
 ) ENGINE=InnoDB;				
 
+create table notice(
+   `noticeNo` int primary key auto_increment, -- 공지 번호
+   `noticeTitle` varchar(50) not null default "", -- 공지 제목
+   `noticeContent` varchar(255) not null default "", -- 공지 내용
+   `noticeHit` int not null default 0, -- 공지 조회수
+   `createdAt` DATETIME NOT NULL DEFAULT NOW(), -- 공지 생성 시간
+   `updatedAt` DATETIME NOT NULL DEFAULT NOW() ON UPDATE NOW(), -- 공지 업데이트 시간
+   `adminId` VARCHAR(30), -- 공지을 추가한 관리자 ID
+   FOREIGN KEY (`adminId`) REFERENCES `admin`(`no`) -- 외래키 설정
+);
+
+create table question(
+   `questionNo` int primary key auto_increment, -- 질문 번호
+   `questionTitle` varchar(50) not null default "", -- 질문 제목
+   `questionContent` varchar(255) not null default "", -- 질문 내용
+   `questionHit` int not null default 0, -- 질문 조회수
+   `createdAt` DATETIME NOT NULL DEFAULT NOW(), -- 질문 생성 시간
+   `updatedAt` DATETIME NOT NULL DEFAULT NOW() ON UPDATE NOW(), -- 질문 업데이트 시간
+   `no` int, -- 질문을 한 유저 번호
+   `replyNo` int, -- 답변 번호
+   FOREIGN KEY (`no`) REFERENCES `member`(`no`), -- 외래키 설정
+   FOREIGN KEY (`replyNo`) REFERENCES `questionReply`(`replyNo`) -- 외래키 설정
+);
+
+create table questionReply(
+   `replyNo` int primary key auto_increment, -- 답변 번호
+   `replyContent` varchar(255) not null default "", -- 답변 내용
+   `createdAt` DATETIME NOT NULL DEFAULT NOW(), -- 답변 생성 시간
+   `updatedAt` DATETIME NOT NULL DEFAULT NOW() ON UPDATE NOW(), -- 답변 업데이트 시간
+   `adminId` VARCHAR(30), -- 답변을 추가한 관리자 ID
+    `questionNo` int,
+   FOREIGN KEY (`adminId`) REFERENCES `admin`(`no`) -- 외래키 설정
+);
 
 INSERT INTO cinema (name, area, region, createdAt, updatedAt) VALUES ('씨네-망가', '서울', '강남', NOW(), NOW());
 
