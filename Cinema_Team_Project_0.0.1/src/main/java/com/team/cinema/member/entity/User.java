@@ -51,11 +51,8 @@ public class User {
     @Column(name = "addr", nullable = false)
     private String address;
     
-<<<<<<< HEAD
-=======
 //    private String memPasswordConfirm;
     
->>>>>>> 4923cb16b70a4e5c30670cbe98fbcea076bd7029
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
     
