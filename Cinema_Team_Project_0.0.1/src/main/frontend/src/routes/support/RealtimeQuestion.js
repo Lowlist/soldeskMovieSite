@@ -10,7 +10,7 @@ function RealtimeQuestion() {
   const [ws, setWs] = useState(null);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:8080/ws/support/question/realtime');
+    const socket = new WebSocket('ws://localhost:7080/ws/support/question/realtime');
     socket.onopen = () => {
       console.log('WebSocket connected');
     };
