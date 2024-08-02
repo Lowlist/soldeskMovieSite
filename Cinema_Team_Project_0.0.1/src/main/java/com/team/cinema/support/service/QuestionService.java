@@ -58,8 +58,8 @@ public class QuestionService {
         questionDTO.setReplies(replies);
         
         return questionDTO;
-    }
-
+    } 
+    
     public void delete(int questionNo) {
         questionRepository.deleteById(questionNo);
     }
