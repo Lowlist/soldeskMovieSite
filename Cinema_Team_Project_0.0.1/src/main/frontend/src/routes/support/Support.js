@@ -17,7 +17,7 @@ function Support(){
                 <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
                 <Nav.Link onClick={ ()=>{ navigate('/store') } }>shop</Nav.Link>
                 <Nav.Link onClick={ ()=>{ navigate('/ticket') } }>ticketing</Nav.Link>
-                <Nav.Link onClick={ ()=>{ navigate('/map') } }>카카오맵</Nav.Link>
+                <Nav.Link onClick={ ()=>{ navigate('/gps/map') } }>카카오맵</Nav.Link>
                 <Nav.Link onClick={ ()=>{ navigate('/support') } }>고객센터</Nav.Link>
               </Container>
               <div className={styles['category-right']}>
