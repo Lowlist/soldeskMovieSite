@@ -21,16 +21,11 @@ function SignUp() {
     const [errorClasses, setErrorClasses] = useState(Array(8).fill(''));
     // const [role, setRole] = useState('');
     // const [profile, setProfile] = useState('');
-    const [addr, setAddr] = useState('');
+    const [address, setAddress] = useState('');
     const [Image, setImage] = useState(null)
-    const [InputAddressValue, setInputAddressValue] = useState('');
 
     const navigate = useNavigate();
     
-    useEffect(() => {
-        const newErrorClasses = errors.map(error => error ? styles.error : '');
-        setErrorClasses(newErrorClasses); 
-    }, [errors]);
     
     // //사진업로드
     // const inputRef = useRef(null);
@@ -61,11 +56,20 @@ function SignUp() {
     //     }
     // }
 
+    
 
-    const onCompletePost = data => {
-        setInputAddressValue(data.address);
-      }; // onCompletePost 함수
+    //주소 찾기 함수
+      const handlePostcode = () => {
+          new window.daum.Postcode({
+              oncomplete: function(data) {
+                  // 선택된 주소 정보 처리
+                  setAddress(data.address);
+                  console.log(data);
+              }
+          }).open();
+      };
 
+      
     const checkId = () => {
         if (id === '') {
             setErrors(prev => { prev[0] = '필수 정보입니다.'; return [...prev]; });
@@ -224,7 +228,7 @@ function SignUp() {
                 email: emailValue,
                 mobile: phoneValue,
                 profile: '사진',
-                address: 'why',
+                address: address,
             };
             // JSON 형태로 서버에 POST 요청 전송
             axios.post('/member/signUp', user)
@@ -496,15 +500,14 @@ function SignUp() {
                             <h3 className="join_title">
                                 <label htmlFor="address">주소</label>
                             </h3>
-                            <button type="button" id={styles.addressCheck} >
-                                <span>주소 확인</span>
-                            </button>
-                            {/* <span className={styles.address}>
-                                <DaumPostcode
-                                    onComplete={onCompletePost}
-                                ></DaumPostcode>
-                                {InputAddressValue}
-                            </span> */}
+                            <input
+                                type="button"
+                                onClick={handlePostcode}
+                                className="addressCheck"
+                                value="주소검색"
+                            />
+                            <p>{address}</p>
+                            
                             <span className={styles.errorNextBox}></span>
                         </div>
                         
