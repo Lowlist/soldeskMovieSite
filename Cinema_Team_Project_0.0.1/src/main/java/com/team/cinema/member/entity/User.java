@@ -45,10 +45,7 @@ public class User {
     @Column(name = "profile", nullable = false)
     private String profile;
     
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    @Column(name = "addr", nullable = false)
+    @Column(name = "address", nullable = false)
     private String address;
     
     @Column(name = "createdAt", nullable = false)
@@ -56,6 +53,9 @@ public class User {
     
     @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
+    
+//    @Column(name = "role", nullable = false)
+//    private String role;
     
     public int getNo() {
 		return no;
@@ -121,13 +121,13 @@ public class User {
 		this.profile = profile;
 	}
 	
-	//관리자
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+//	//관리자
+//	public String getRole() {
+//		return role;
+//	}
+//	public void setRole(String role) {
+//		this.role = role;
+//	}
 	public String getAddress() {
 		return address;
 	}
@@ -173,7 +173,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", profile='" + profile + '\'' +
-                ", role='" + role + '\'' +
+//                ", role='" + role + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }

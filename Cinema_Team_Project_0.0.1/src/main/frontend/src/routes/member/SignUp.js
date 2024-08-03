@@ -1,7 +1,9 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './style/SignUp.module.css';
 import { useNavigate } from 'react-router-dom';
+import DaumPostcode from 'react-daum-postcode';
+import cinema from '../../image/cinema.jpg';
 
 function SignUp() {
     const [id, setId] = useState('');
@@ -17,16 +19,52 @@ function SignUp() {
     const [mobile, setMobile] = useState('');
     const [errors, setErrors] = useState(Array(8).fill(''));
     const [errorClasses, setErrorClasses] = useState(Array(8).fill(''));
-    const [role, setRole] = useState('');
-    const [profile, setProfile] = useState('');
+    // const [role, setRole] = useState('');
+    // const [profile, setProfile] = useState('');
     const [addr, setAddr] = useState('');
+    const [Image, setImage] = useState(null)
+    const [InputAddressValue, setInputAddressValue] = useState('');
 
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const newErrorClasses = errors.map(error => error ? styles.error : '');
         setErrorClasses(newErrorClasses); 
     }, [errors]);
+    
+    // //사진업로드
+    // const inputRef = useRef(null);
+    // const handleFileClick = () => {
+    //     inputRef.current.click(); //input 엘리먼트 클릭 => 인풋 실행
+    // }
+
+    // const handleFileChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file){
+    //         uploadFile(file); // 파일을 서버에 업로드
+    //     }
+    //   };
+
+    // const uploadFile= async (file) => {
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('file', file); // 파일을 FormData에 추가
+    //         console.log('유저 이미지 교체 중');
+    //         const response = await axios.post('/member/signUp', formData, {
+    //             header: {
+    //                 'Content-Type': 'multipart/form-data', //필수
+    //             },
+    //         })
+
+    //     } catch (error){
+    //         console.error('Error uploading file:', error);
+    //     }
+    // }
+
+
+    const onCompletePost = data => {
+        setInputAddressValue(data.address);
+      }; // onCompletePost 함수
 
     const checkId = () => {
         if (id === '') {
@@ -175,7 +213,7 @@ function SignUp() {
         const nickNameValue = checkNickName();
     
         // 모든 검증이 통과한 경우
-        if (idValue && pwValue && pwMatched && nameValue && birthValue && emailValue && phoneValue && nickNameValue) {
+        if (idValue && pwValue && pwMatched && nameValue && birthValue && emailValue && phoneValue && nickNameValue ) {
             const user = {
                 id: idValue,
                 password: pwValue,
@@ -185,18 +223,18 @@ function SignUp() {
                 gender,
                 email: emailValue,
                 mobile: phoneValue,
-                role: 'user',
                 profile: '사진',
                 address: 'why',
             };
             // JSON 형태로 서버에 POST 요청 전송
-            axios.post('/member/signUp',  
-                user)
-                    .then((response) => {console.log(response);})
+            axios.post('/member/signUp', user)
+                    .then((response) => {console.log(response);
+                        if (response.status===200){
+                            navigate('/member/signIn');
+                        }
+                    })
                     .catch((error) => {
-                        console.error(user);
                         console.error('에러 발생:', error);
-                        console.error('에러 응답 데이터:', error.response ? error.response.data : '응답 없음');
                     });
         } else {
             console.error('Validation failed');
@@ -205,7 +243,18 @@ function SignUp() {
 
     return (
         <>
-        <h3>회원가입</h3>
+        <div className={styles.wrapperheader}>
+            <div className={styles.wrapperheadertop}>
+              <div className={styles.headertopleft}>
+                <img className={styles.headertoplogo} src={cinema} alt="로고" 
+                onClick={()=>{
+                    navigate('/');
+                }}/>
+                <div className={styles.headertoptitle}><h1>Red Green Blue</h1></div>
+              </div>
+            </div>
+        </div>
+        <h3></h3>
             <div className={styles.signupContainer}>
                 <div className={styles.wrapper}>
                     <div className={styles.content}>
@@ -213,16 +262,19 @@ function SignUp() {
                             <h3 className="join_title">
                                 <label htmlFor="id">아이디</label>
                             </h3>
+                            
                             <span className={styles.boxIntId}>
                                 <input 
                                     type="text" 
                                     id="id" 
-                                    className={styles.int} 
+                                    className={styles.intId} 
                                     maxLength="20" 
                                     value={id}
                                     onChange={(e) => setId(e.target.value)}
                                     onBlur={checkId}
-                                />
+                                /><button type="button" id={styles.idCheck} >
+                                <span>아이디 확인</span>
+                            </button>
                                 <span className={styles.stepUrl}></span>
                             </span> 
                             <span className={styles.errorNextBox}>{errors[0]}</span>
@@ -242,7 +294,6 @@ function SignUp() {
                                     onChange={(e) => setPw1(e.target.value)}
                                     onBlur={checkPw}
                                 />
-                                <span className={styles.alertTxt}>{errors[1]}</span>
                             </span>
                             <span className={styles.errorNextBox}>{errors[1]}</span>
                         </div>
@@ -267,8 +318,21 @@ function SignUp() {
 
                         <div>
                             <h3 className="join_title">
+                                <label htmlFor="profile">프로필</label>
+                            </h3>
+                            <span className={styles.errorNextBox}>{errors[9]}</span>
+                        
+                        </div>
+                        <input
+                            type="file"
+                            className={styles.boxProfileCheck}>
+
+                        </input>
+                        <div>
+                            <h3 className="join_title">
                                 <label htmlFor="name">이름</label>
                             </h3>
+                            
                             <span className={styles.boxIntName}>
                                 <input 
                                     type="text" 
@@ -280,6 +344,7 @@ function SignUp() {
                                     onBlur={checkName}
                                 />
                             </span>
+                            
                             <span className={styles.errorNextBox}>{errors[3]}</span>
                         </div>
                         
@@ -287,18 +352,22 @@ function SignUp() {
                             <h3 className="join_title">
                                 <label htmlFor="nickName">닉네임</label>
                             </h3>
+                            
                             <span className={styles.boxIntName}>
                                 <input
                                     type="text"
                                     id="nickName"
-                                    className={styles.int}
+                                    className={styles.intId}
                                     maxLength="20"
                                     value={nickName}
                                     onChange={(e) => setNickName(e.target.value)}
                                     onBlur={checkNickName} // 유효성 검사 함수 추가
                                 />
-                            </span>
-                            <span className={styles.errorNextBox}>{errors[8]}</span>
+                            </span><button type="button" id={styles.nickNameCheck} >
+                                <span>닉네임 확인</span>
+                            </button>
+                            
+                            <span className={styles.errorNextBox}>{errors[7]}</span>
                         </div>
 
                         <div>
@@ -423,14 +492,34 @@ function SignUp() {
                             <span className={styles.errorNextBox}>{errors[6]}</span>
                         </div>
 
+                        <div>
+                            <h3 className="join_title">
+                                <label htmlFor="address">주소</label>
+                            </h3>
+                            <button type="button" id={styles.addressCheck} >
+                                <span>주소 확인</span>
+                            </button>
+                            {/* <span className={styles.address}>
+                                <DaumPostcode
+                                    onComplete={onCompletePost}
+                                ></DaumPostcode>
+                                {InputAddressValue}
+                            </span> */}
+                            <span className={styles.errorNextBox}></span>
+                        </div>
+                        
+
                         <div className={styles.btnArea}>
                             <button type="button" id={styles.btnJoin} onClick={handleSubmit}>
                                 <span>가입하기</span>
                             </button>
                         </div>
                     </div>
+                    <div className={styles.bottomArea}>
+
+                    </div>
                 </div>
-            </div>
+                </div>
         </>
     );
 }
