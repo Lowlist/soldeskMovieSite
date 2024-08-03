@@ -33,9 +33,10 @@ function Login() {
         };
             // JSON 형태로 서버에 POST 요청 전송
             axios.post('/member/signIn',  
-                user)
+                user, { withCredentials: true })
                     .then((response) => {
 					 alert("로그인 성공!");
+                   	 localStorage.setItem('userId', response.data.userId); // 로그인 정보 저장
                     navigate('/'); // 메인 페이지로 이동
                     })
                     .catch((error) => {

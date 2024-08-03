@@ -1,10 +1,11 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './style/Main.module.css';
 import ReactPlayer from 'react-player';
 import Button from 'react-bootstrap/Button';
 import search from '../../images/search.png';
+import axios from 'axios';
 import login from '../../images/login.png';
 import logout from '../../images/logout.png';
 import mypage from '../../images/mypage.png';
@@ -47,7 +48,7 @@ function Main() {
 
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [totalSlides, setTotalSlides] = useState(movieChartData.length);
-
+	
 	// React-slick 세팅
 	const settings = {
 		variableWidth: false,
@@ -61,7 +62,7 @@ function Main() {
 		prevArrow: <Prev hidden={currentSlide === 0} />,
 		beforeChange: (current, next) => setCurrentSlide(next)
 	};
-
+	
 	return (
 		<div className={styles['wrapper']}>
 			<MovieHeader></MovieHeader>
@@ -286,7 +287,29 @@ function MovieChart(props) {
 
 function MovieHeader() {
 	let navigate = useNavigate();
-	let [session, setSession] = useState(false);
+	const [session, setSession] = useState(false);
+  	const [userId, setUserId] = useState('');
+	
+	useEffect(() => {
+        // 로컬 스토리지에서 로그인 정보 확인
+        const id = localStorage.getItem('userId');
+        if (id) {
+            setSession(true);
+            setUserId(id);
+        } else {
+            setSession(false);
+            setUserId('');
+        }
+    }, []);
+	
+	const handleLogout = () => {
+        localStorage.removeItem('userId');
+        setSession(false);
+        setUserId('');
+        navigate('/'); // 메인 페이지로 이동
+    };
+	
+	
 	return (
 		<div className={styles['wrapper-header']}>
 			<div className={styles['wrapper-header-top']}>
@@ -299,18 +322,29 @@ function MovieHeader() {
 					</div>
 				</div>
 				<div className={session ? styles['header-top-right-login'] : styles['header-top-right-logout']}>
-					<div className={styles['top-user']} onClick={() => { navigate('/member/signIn') }} style={{ cursor: 'pointer' }}>
-						<img className={styles['top-user-img']} src={login}></img>
-						<div className={styles['top-user-btn']}>로그인</div>
-					</div>
-					<div className={styles['top-user']} onClick={() => { navigate('/member/signUp') }} style={{ cursor: 'pointer' }}>
-						<img className={styles['top-user-img']} src={join}></img>
-						<div className={styles['top-user-btn']}>회원가입</div>
-					</div>
-					<div className={styles['top-user']} onClick={() => { navigate('/member/mypage') }} style={{ cursor: 'pointer' }}>
-						<img className={styles['top-user-img']} src={mypage}></img>
-						<div className={styles['top-user-btn']}>마이페이지</div>
-					</div>
+					{!session ? (
+                        <>
+                            <div className={styles['top-user']} onClick={() => { navigate('/member/signIn') }} style={{ cursor: 'pointer' }}>
+                                <img className={styles['top-user-img']} src={login} alt="로그인" />
+                                <div className={styles['top-user-btn']}>로그인</div>
+                            </div>
+                            <div className={styles['top-user']} onClick={() => { navigate('/member/signUp') }} style={{ cursor: 'pointer' }}>
+                                <img className={styles['top-user-img']} src={join} alt="회원가입" />
+                                <div className={styles['top-user-btn']}>회원가입</div>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className={styles['top-user']} onClick={() => { navigate('/member/mypage') }} style={{ cursor: 'pointer' }}>
+                                <img className={styles['top-user-img']} src={mypage} alt="마이페이지" />
+                                <div className={styles['top-user-btn']}>{userId}</div>
+                            </div>
+                            <div className={styles['top-user']} onClick={handleLogout} style={{ cursor: 'pointer' }}>
+                                <img className={styles['top-user-img']} src={logout} alt="로그아웃" />
+                                <div className={styles['top-user-btn']}>로그아웃</div>
+                            </div>
+                        </>
+                    )}
 				</div>
 			</div>
 			<Navbar className={styles['wrapper-header-line']} data-bs-theme="light">
