@@ -5,20 +5,52 @@ import { useEffect, useState } from 'react';
 import { addCart } from '../../slice/shopCartSlice';
 
 function GoodsDetail(){
+
     let disPatch = useDispatch();
     let {id} = useParams();
+    let [idCheck] = useState(id);
     let state = useSelector( (state)=>{ return state } );
     let [count,setCount] = useState(1);
     let location = useLocation();
     let navigate = useNavigate();
+    let [types] =useState("food");
     let findData;
+    let checkLength = state.food.data.length + state.goods.data.length;
     
-    if(location.pathname.indexOf("/store/") !== -1){
-        findData = state.shop.find(
-            function(x){
-                return x.id == id;
-            }
-        );
+    // 접속된 id param 값을 가져와서 백엔드에서 가져온 데이터의 길이와 비교후 데이터.find로 id값을 찾은후 바인딩
+    if(state.food.data.length >= idCheck){
+        types = "food";
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.food.data.find(
+                function(x){
+                    return x.no == idCheck;
+                }
+            );
+        }
+    }
+    
+    if(state.food.data.length < idCheck && state.food.data.length + state.goods.data.length >= idCheck){
+        idCheck = id - state.food.data.length;
+        types = "goods";
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.goods.data.find(
+                function(x){
+                    return x.no == idCheck;
+                }
+            );
+        }
+    }
+    
+    if(checkLength < idCheck){
+        idCheck = id - checkLength;
+        types = "goodsSet";
+        if(location.pathname.indexOf("/store/") !== -1){
+            findData = state.goodsSet.data.find(
+                function(x){
+                    return x.no == idCheck;
+                }
+            );
+        }
     }
 
     let [price] = useState(findData.price);
@@ -32,12 +64,12 @@ function GoodsDetail(){
         )
     }
 
+
     return(
         <div>
             <div className={style.detailName}>
                 {findData.title}
             </div>
-            
             <hr className={style.hrOne}/>
 
                 {/* Detail Start */}
@@ -47,7 +79,7 @@ function GoodsDetail(){
                     {/* Img Start */}
 
                     <div className={style.detailImgLine}>
-                        <img className={style.detailImg} src={'https://codingapple1.github.io/shop/shoes' + (findData.id + 1) + '.jpg'}></img>
+                        <img className={style.detailImg} src={findData.img}></img>
                     </div>
 
                     {/* Text Start */}
@@ -69,14 +101,14 @@ function GoodsDetail(){
 
                             <div className={style.detailContentProductLine}>
                                 <b className={style.detailContentProductName}>상품구성</b>
-                                <div className={style.detailContentProduct}>일반 영화 관람권 4매+더블콤보 1개</div>
+                                <div className={style.detailContentProduct}>{findData.content}</div>
                             </div>
 
                             <div className={style.detailContentPeriodLine}>
                                 <b className={style.detailContentPeriodName}>유효기간</b>
                                 <div className={style.detailContentPeriod}>
-                                CGV 영화관람권 : 구매일로부터 24개월 이내<br/>
-                                더블콤보 : 구매일로부터 6개월 이내
+                                영화관람권 : 구매일로부터 24개월 이내<br/>
+                                팝콘,음료 : 구매일로부터 6개월 이내
                                 </div>
                             </div>
 
@@ -124,7 +156,7 @@ function GoodsDetail(){
                         {/* Button Start */}
 
                         <div className={style.detailButtonLine}>
-                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count }))  }}></div>
+                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count , id : id , type : types , idUniq : idCheck }))  }}></div>
                             <div className={style.detailBuyButton}>구매하기</div>
                         </div>
                         

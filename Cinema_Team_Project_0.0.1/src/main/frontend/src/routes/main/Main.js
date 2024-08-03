@@ -25,6 +25,8 @@ import {
 // 2.상점 (푸드,굿즈,영화관람권)
 // 3.고객센터에 공지사항 1줄
 
+// 헤더부분 영어로 통일 한글로 통일할지 결정
+
 function Main() {
 	let navigate = useNavigate();
 	let state = useSelector((state) => { return state });
@@ -128,8 +130,8 @@ function Main() {
 											<div className={styles['body-wrapper']}>
 												<div className={styles['store-img']}>팝콘이미지</div>
 												<div className={styles['store-sub']}>
-													<div className={styles['store-subtitle']}>{state.shop[i].title}</div>
-													<div className={styles['store-price']}><strong>{state.shop[i].price.toLocaleString("ko-KR")}원</strong></div>
+													<div className={styles['store-subtitle']}>{state.food.data[i].title}</div>
+													<div className={styles['store-price']}><strong>{state.food.data[i].price.toLocaleString("ko-KR")}원</strong></div>
 												</div>
 											</div>
 										)
@@ -137,6 +139,8 @@ function Main() {
 								}
 							</div>
 						</div>
+						
+						{/* 여기 패키지로 수정해도 괜찮을듯 */}
 
 						<div className={styles['store-wrapper']}>
 							<div className={styles['store-header']}>
@@ -150,8 +154,8 @@ function Main() {
 											<div className={styles['body-wrapper']}>
 												<div className={styles['store-img']}>굿즈이미지</div>
 												<div className={styles['store-sub']}>
-													<div className={styles['store-subtitle']}>{state.shop[i].title}</div>
-													<div className={styles['store-price']}><strong>{state.shop[i].price.toLocaleString("ko-KR")}원</strong></div>
+													<div className={styles['store-subtitle']}>{state.goodsSet.data[i].title}</div>
+													<div className={styles['store-price']}><strong>{state.goodsSet.data[i].price.toLocaleString("ko-KR")}원</strong></div>
 												</div>
 											</div>
 										)
@@ -171,8 +175,8 @@ function Main() {
 											<div className={styles['body-wrapper']}>
 												<div className={styles['store-img']}>팝콘이미지</div>
 												<div className={styles['store-sub']}>
-													<div className={styles['store-subtitle']}>{state.shop[i].title}</div>
-													<div className={styles['store-price']}><strong>{state.shop[i].price.toLocaleString("ko-KR")}원</strong></div>
+													<div className={styles['store-subtitle']}>{state.goods.data[i].title}</div>
+													<div className={styles['store-price']}><strong>{state.goods.data[i].price.toLocaleString("ko-KR")}원</strong></div>
 												</div>
 											</div>
 										)
@@ -334,5 +338,6 @@ function MovieHeader() {
 	)
 }
 
-
 export default Main;
+
+export {MovieHeader,MovieChart};

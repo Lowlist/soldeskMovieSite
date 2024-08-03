@@ -192,12 +192,17 @@ function SignUp() {
             // JSON 형태로 서버에 POST 요청 전송
             axios.post('/member/signUp',  
                 user)
-                    .then((response) => {console.log(response);})
+                    .then((response) => {
+						//console.log("회원가입성공");
+                    })
                     .catch((error) => {
                         console.error(user);
                         console.error('에러 발생:', error);
                         console.error('에러 응답 데이터:', error.response ? error.response.data : '응답 없음');
                     });
+                    alert("가입성공!")
+                    navigate('/member/signIn');
+                    
         } else {
             console.error('Validation failed');
         }
