@@ -261,9 +261,14 @@ CREATE TABLE `goodsSet` (
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
 ) ENGINE=InnoDB;
 
+drop table storeBasket;
+
+select *from storeBasket;
+
 -- 장바구니
 CREATE TABLE `storeBasket` (
 	`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 장바구니 KEY값 -- 
+    `id` VARCHAR(255),
 	`title` VARCHAR(255) NOT NULL, -- 장바구니 상품정보 ( 외래키로 가져올 예정 ) -- 
 	`content` VARCHAR(255) NOT NULL, -- 장바구니 상품내용 -- 
 	`price` INT NOT NULL, -- 장바구니 가격정보 -- 
@@ -273,9 +278,7 @@ CREATE TABLE `storeBasket` (
 	`foodNo` INT, -- 음식번호 ( food TABLE 외래키 ) -- 
 	`setNo` INT, -- 세트번호 ( goodsSet TABLE 외래키 ) -- 
 	`goodsNo` INT, -- 굿즈번호 ( goods TABLE 외래키 ) -- 
-	`giftTicketNo` INT, -- 관람권번호 ( giftTicket TALBE 외래키 ) -- 
     `checkBox` BOOLEAN DEFAULT FALSE NOT NULL, -- 상품 선택 -- 
-    `checkBoxAll` BOOLEAN DEFAULT FALSE, -- 상품 전체선택 -- 
     `img` TEXT, -- 음식 이미지 -- 
 	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 

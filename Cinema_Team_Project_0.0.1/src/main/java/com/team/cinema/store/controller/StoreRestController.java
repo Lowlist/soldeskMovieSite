@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.cinema.store.entity.Food;
 import com.team.cinema.store.entity.Goods;
 import com.team.cinema.store.entity.GoodsSet;
+import com.team.cinema.store.entity.StoreBasket;
 import com.team.cinema.store.service.StoreService;
 
 @RestController
@@ -34,9 +37,18 @@ public class StoreRestController {
 		return storeSevice.getGoodsSetList();
 	}
 	
+	@PostMapping("/basket")
+	public void saveBasket(@RequestBody StoreBasket basketData) {
+		storeSevice.insertBasket(basketData);
+	}
+	
+	public void deleteBasket(@RequestBody StoreBasket basketData) {
+		storeSevice.deleteBasket(basketData);
+	}
+	
 	@GetMapping("/basket")
-	public String basket() {
-		return "asdf";
+	public List<StoreBasket> basket() {
+		return storeSevice.getBasketList();
 	}
 	
 }

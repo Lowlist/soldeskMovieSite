@@ -29,6 +29,7 @@ import SignUp from './routes/member/SignUp.js';
 import { foodData } from './slice/foodSlice.js';
 import { goodsData } from './slice/goodsSlice.js';
 import { goodsSetData } from './slice/goodsSetSlice.js';
+import { basketData } from './slice/shopCartSlice.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -46,25 +47,27 @@ function App() {
   let foodState = useSelector((state) => state.food);
   let goodsState = useSelector((state) => state.goods);
   let goodsSetState = useSelector((state) => state.goodsSet);
+  let basketState = useSelector((state) => state.shopCart);
 
   useEffect(() => {
     disPatch(foodData());
     disPatch(goodsData());
     disPatch(goodsSetData());
+    disPatch(basketData());
   }, [disPatch]);
 
-  if (foodState.loading || goodsState.loading || goodsSetState.loading) {
+  if (foodState.loading || goodsState.loading || goodsSetState.loading || basketState.loading) {
     return <div>로딩창</div>;
   }
 
-  if (foodState.error || goodsState.error || goodsSetState.error) {
+  if (foodState.error || goodsState.error || goodsSetState.error || basketState.error) {
     return <div>에러메세지</div>;
   }
 
   if (!foodState.data || foodState.data.length === 0) {
     return <div>데이터가 없습니다!</div>;
   }
-
+  console.log(basketState);
   return (
     <div className="App">
       

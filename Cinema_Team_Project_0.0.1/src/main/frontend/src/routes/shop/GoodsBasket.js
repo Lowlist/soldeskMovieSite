@@ -8,7 +8,7 @@ function GoodsBasket(){
 
     let navigate = useNavigate();
     let location = useLocation();
-    let state = useSelector( (state)=>{ return state } );
+    let state = useSelector( (state)=>{ return state.shopCart } );
     let disPatch = useDispatch();
     let activateBasket = false;
     let activatePayment = false;
@@ -28,7 +28,15 @@ function GoodsBasket(){
         let saleResult = 0;
         let totalResult = 0;
 
-        // 포문으로 장바구니 돌린 후 1개라도 false일 경우 break
+        // 다함
+        // 체크박스따라 계산로직 구현 완료
+        // 선택삭제부분 구현 삭제부분 구현
+
+        // todo
+        // DB에 인서트 Param 식 만들어야됨
+        // 멤버 세션값 받아와서 체킹해야됨
+
+        // 반복문으로 장바구니 돌린 후 1개라도 false일 경우 break
         for(let i = 0; i < state.shopCart.length; i++) {
             if (!state.shopCart[i].checkBox) {
                 allChecked = false;
@@ -53,14 +61,6 @@ function GoodsBasket(){
         setTotalPrice(totalResult);
 
     }, [state.shopCart, disPatch]);
-
-    // 다함
-    // 체크박스따라 계산로직 구현 완료
-    // 선택삭제부분 구현 삭제부분 구현
-
-    // todo
-    // DB에 인서트 Param 식 만들어야됨
-    // 멤버 세션값 받아와서 체킹해야됨
 
     let handleClick = () => {
         setCheckAll(prevState => !prevState);
