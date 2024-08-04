@@ -101,6 +101,7 @@ let shopCart = createSlice({
             }
         },
         // 여기 데이터 베이스 연동시키면됨 일요일에 하면 끝 그럼 아예 끝
+        // 삭제관련로직 + 복구로직 만들어야됨
         delBasket(state, action){
             //여기에 axios 포스트 요청해서 삭제하면 될듯?
             let item = state.shopCart.findIndex(item => item.id === action.payload.data.id)
