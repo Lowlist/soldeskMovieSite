@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Nav, Navbar } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
@@ -12,7 +11,9 @@ import login from '../../images/login.png';
 import mypage from '../../images/mypage.png';
 import search from '../../images/search.png';
 import styles from './style/Main.module.css';
-import axios from "axios";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import {
    NextTo,
    Prev,
@@ -21,8 +22,7 @@ import {
 
 // 0.영화예고편 (하드코딩) 관리자기능에 추가하면 괜찮을지도?
 // 1.영화정보 (제목,포스터,평점,예매율(하드코딩))
-// 2.상점 (푸드,굿즈,영화관람권)
-// 3.고객센터에 공지사항 1줄
+// 2.고객센터에 공지사항 1줄(제목만)
 
 function Main() {
    let navigate = useNavigate();
@@ -115,7 +115,7 @@ function Main() {
                   <div className={styles['store-wrapper']}>
                      <div className={styles['store-header']}>
                         <div className={styles['store-title']}><strong>푸드</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+                        <button className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</button>
                      </div>
                      {/* 음식 이미지,굿즈 이미지,관람권 이미지 제목,가격 바인딩 */}
                      {/* 이미지 URL은 리덕스에 넣을 예정이니 그거 가져가서 바인딩 하면 됨 */}
@@ -126,7 +126,7 @@ function Main() {
                            [1, 2, 3].map((foods, i) => {
                               return (
                                  <div className={styles['body-wrapper']}>
-                                    <img className={styles['store-img']} src={state.food.data[i].img}/>
+                                    <img className={styles['store-img']} src={state.food.data[i].img}></img>
                                     <div className={styles['store-sub']}>
                                        <div className={styles['store-subtitle']}>{state.food.data[i].title}</div>
                                        <div className={styles['store-price']}><strong>{state.food.data[i].price.toLocaleString("ko-KR")}원</strong></div>
@@ -140,15 +140,15 @@ function Main() {
 
                   <div className={styles['store-wrapper']}>
                      <div className={styles['store-header']}>
-                        <div className={styles['store-title']}><strong>굿즈</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+                        <div className={styles['store-title']}><strong>패키지</strong></div>
+                        <button className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</button>
                      </div>
                      <div className={styles['store-body']}>
                         {
                            [1, 2, 3].map((foods, i) => {
                               return (
                                  <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>굿즈이미지</div>
+                                    <img className={styles['store-img']} src={state.goodsSet.data[i].img}></img>
                                     <div className={styles['store-sub']}>
                                        <div className={styles['store-subtitle']}>{state.goodsSet.data[i].title}</div>
                                        <div className={styles['store-price']}><strong>{state.goodsSet.data[i].price.toLocaleString("ko-KR")}원</strong></div>
@@ -162,14 +162,14 @@ function Main() {
                   <div className={styles['store-wrapper']}>
                      <div className={styles['store-header']}>
                         <div className={styles['store-title']}><strong>영화관람권</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+                        <button className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</button>
                      </div>
                      <div className={styles['store-body']}>
                         {
                            [1, 2, 3].map((foods, i) => {
                               return (
                                  <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>팝콘이미지</div>
+                                    <img className={styles['store-img']} src={state.goods.data[i].img}></img>
                                     <div className={styles['store-sub']}>
                                        <div className={styles['store-subtitle']}>{state.goods.data[i].title}</div>
                                        <div className={styles['store-price']}><strong>{state.goods.data[i].price.toLocaleString("ko-KR")}원</strong></div>
@@ -194,9 +194,9 @@ function Main() {
                            공지사항 리스트 1
                         </div>
                         <div className={styles['announcement-button']}>
-                           <div className={styles['announcement-button-click']}>
+                           <button className={styles['announcement-button-click']}>
                               더보기
-                           </div>
+                           </button>
                         </div>
                      </div>
                      <div className={styles['service-center']}>
@@ -283,55 +283,56 @@ function MovieChart(props) {
 }
 
 function MovieHeader() {
-   let navigate = useNavigate();
-   let [session, setSession] = useState(false);
-   return (
-      <div className={styles['wrapper-header']}>
-         <div className={styles['wrapper-header-top']}>
-            <div className={styles['header-top-left']}>
-               {/* <img className="header-top-logo" src={movie}></img> */}
-               <div className={styles['header-top-title']}>
-                  <p onClick={() => { navigate('/') }}>
-                     씨네 망가
-                  </p>
-               </div>
-            </div>
-            <div className={session ? styles['header-top-right-login'] : styles['header-top-right-logout']}>
-               <div className={styles['top-user']} onClick={() => { navigate('/member/signIn') }} style={{ cursor: 'pointer' }}>
-                  <img className={styles['top-user-img']} src={login}></img>
-                  <div className={styles['top-user-btn']}>로그인</div>
-               </div>
-               <div className={styles['top-user']} onClick={() => { navigate('/member/signUp') }} style={{ cursor: 'pointer' }}>
-                  <img className={styles['top-user-img']} src={join}></img>
-                  <div className={styles['top-user-btn']}>회원가입</div>
-               </div>
-               <div className={styles['top-user']} onClick={() => { navigate('/member/mypage') }} style={{ cursor: 'pointer' }}>
-                  <img className={styles['top-user-img']} src={mypage}></img>
-                  <div className={styles['top-user-btn']}>마이페이지</div>
-               </div>
-            </div>
-         </div>
-         <Navbar className={styles['wrapper-header-line']} data-bs-theme="light">
-            <div className={styles['wrapper-header-category']}>
-               <div className={styles['category-left']}>
-                  <Nav.Link onClick={() => { navigate('/') }}>Home</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/store') }}>shop</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/ticket') }}>ticketing</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/gps/map') }}>카카오맵</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/support') }}>고객센터</Nav.Link>
-               </div>
-               <div className={styles['category-right']}>
-                  <div className={styles['search-box']}>
-                     <input id={styles['searchBox']} type="text" placeholder="영화 검색"></input>
-                  </div>
-                  <div className={styles['search-btn']}>
-                     <img className={styles['searchBtn']} src={search}></img>
-                  </div>
-               </div>
-            </div>
-         </Navbar>
-      </div>
-   )
+   	let navigate = useNavigate();
+   	let [session, setSession] = useState(false);
+
+   	return (
+      	<div className={styles['wrapper-header']}>
+         	<div className={styles['wrapper-header-top']}>
+            	<div className={styles['header-top-left']}>
+               		{/* <img className="header-top-logo" src={movie}></img> */}
+               		<div className={styles['header-top-title']} onClick={() => { navigate('/') }}>
+						Dream Ticket Office
+               		</div>
+            	</div>
+            	<div className={session ? styles['header-top-right-login'] : styles['header-top-right-logout']}>
+               		<div className={styles['top-user']} onClick={() => { navigate('/member/signIn') }} style={{ cursor: 'pointer' }}>
+                	  	<img className={styles['top-user-img']} src={login}></img>
+                	  	<div className={styles['top-user-btn']}>로그인</div>
+               		</div>
+               		<div className={styles['top-user']} onClick={() => { navigate('/member/signUp') }} style={{ cursor: 'pointer' }}>
+                  		<img className={styles['top-user-img']} src={join}></img>
+                  		<div className={styles['top-user-btn']}>회원가입</div>
+               		</div>
+               		<div className={styles['top-user']} onClick={() => { navigate('/member/mypage') }} style={{ cursor: 'pointer' }}>
+                  		<img className={styles['top-user-img']} src={mypage}></img>
+                  		<div className={styles['top-user-btn']}>마이페이지</div>
+               		</div>
+            	</div>
+        	</div>
+         	<Navbar className={styles['wrapper-header-line']} data-bs-theme="light">
+            	<Container className={styles['wrapper-header-category']}>
+               		<div className={styles['category-left']}>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/') }}>홈</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/movie/main') }}>영화</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/store') }}>스토어</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/ticket') }}>예매</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/gps/map') }}>카카오맵</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/support') }}>고객센터</button>
+               		</div>
+               		<div className={styles['category-right']}>
+                  		<div className={styles['search-box']}>
+                     		<input id={styles['searchBox']} type="text" placeholder="영화 검색"></input>
+                  		</div>
+                  		<div className={styles['search-btn']}>
+							{/* 영화제목 조건걸어서 검색하게끔 데이터 바인딩 */}
+                     		<img className={styles['searchBtn']} src={search} onClick={()=>{}}></img>
+                  		</div>
+               		</div>
+            	</Container>
+         	</Navbar>
+      	</div>
+   	)
 }
 
 export default Main;
