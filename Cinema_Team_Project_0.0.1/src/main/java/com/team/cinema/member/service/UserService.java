@@ -1,6 +1,5 @@
 package com.team.cinema.member.service;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 
@@ -9,25 +8,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
 
 import com.team.cinema.member.entity.User;
 import com.team.cinema.member.repository.UserRepository;
 
 @Service
 public class UserService {
-<<<<<<< HEAD
 	
 	@Value("${file.upload-dir}")
     private String uploadDir;
 	 
-=======
 
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     @Autowired
     private UserRepository userRepository;
 
@@ -38,7 +29,6 @@ public class UserService {
         // 비밀번호 해싱
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-<<<<<<< HEAD
         System.out.print("확인 : saveUser");
 //        // 사용자 저장
         userRepository.save(user);
@@ -82,11 +72,5 @@ public class UserService {
         return fileName;
     }
 
-
-=======
-
-        // 사용자 저장
-        userRepository.save(user);
-    }
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
+    
 }

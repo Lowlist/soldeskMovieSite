@@ -21,29 +21,19 @@ function SignUp() {
     const [errorClasses, setErrorClasses] = useState(Array(8).fill(''));
     // const [role, setRole] = useState('');
     // const [profile, setProfile] = useState('');
-<<<<<<< HEAD
-    const [addr, setAddr] = useState('');
-    const [Image, setImage] = useState(null)
-    const [InputAddressValue, setInputAddressValue] = useState('');
-	const [idAvailable, setIdAvailable] = useState(null);
-    const [nickNameAvailable, setNickNameAvailable] = useState(null);
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState('');
 
-
-    const navigate = useNavigate();
     
     useEffect(() => {
         const newErrorClasses = errors.map(error => error ? styles.error : '');
         setErrorClasses(newErrorClasses); 
     }, [errors]);
-=======
     const [address, setAddress] = useState('');
     const [Image, setImage] = useState(null)
 
     const navigate = useNavigate();
     
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     
     // //사진업로드
     // const inputRef = useRef(null);
@@ -73,14 +63,6 @@ function SignUp() {
     //         console.error('Error uploading file:', error);
     //     }
     // }
-
-<<<<<<< HEAD
-
-    const onCompletePost = data => {
-        setInputAddressValue(data.address);
-      }; // onCompletePost 함수
-
-=======
     
 
     //주소 찾기 함수
@@ -95,7 +77,6 @@ function SignUp() {
       };
 
       
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     const checkId = () => {
         if (id === '') {
             setErrors(prev => { prev[0] = '필수 정보입니다.'; return [...prev]; });
@@ -231,7 +212,6 @@ function SignUp() {
             return nickName; // 검증 성공 시 nickName 리턴
         }
     };
-<<<<<<< HEAD
 	
 	 const handleFileChange = (event) => {
         setFile(event.target.files[0]);
@@ -261,9 +241,7 @@ function SignUp() {
     };
 
     
-=======
 
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     const handleSubmit = () => {
         const idValue = checkId();
         const pwValue = checkPw();
@@ -273,11 +251,8 @@ function SignUp() {
         const emailValue = isEmailCorrect();
         const phoneValue = checkPhoneNum();
         const nickNameValue = checkNickName();
-<<<<<<< HEAD
        
-=======
     
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
         // 모든 검증이 통과한 경우
         if (idValue && pwValue && pwMatched && nameValue && birthValue && emailValue && phoneValue && nickNameValue ) {
             const user = {
@@ -290,29 +265,18 @@ function SignUp() {
                 email: emailValue,
                 mobile: phoneValue,
                 profile: '사진',
-<<<<<<< HEAD
-        //        address: 'why',
-            };
-            // JSON 형태로 서버에 POST 요청 전송
-             axios.post('/member/signUp', user)
-                    .then((response) => {console.log(response);
-                        if (response.status===200){
-
-=======
                 address: address,
             };
             // JSON 형태로 서버에 POST 요청 전송
             axios.post('/member/signUp', user)
                     .then((response) => {console.log(response);
                         if (response.status===200){
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                             navigate('/member/signIn');
                         }
                     })
                     .catch((error) => {
                         console.error('에러 발생:', error);
                     });
-<<<<<<< HEAD
         		alert("가입성공");
         			} else {
             			console.error('Validation failed');
@@ -334,13 +298,6 @@ function SignUp() {
                     });
         					};
     
-=======
-        } else {
-            console.error('Validation failed');
-        }
-    };
-
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     return (
         <>
         <div className={styles.wrapperheader}>
@@ -367,23 +324,14 @@ function SignUp() {
                                 <input 
                                     type="text" 
                                     id="id" 
-<<<<<<< HEAD
                                     name="id"
-=======
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                                     className={styles.intId} 
                                     maxLength="20" 
                                     value={id}
                                     onChange={(e) => setId(e.target.value)}
-<<<<<<< HEAD
                                  // onBlur={registerCheck}
                                 /><button type="button" id={styles.idCheck} onClick={registerCheck} >
                                 <span>중복 확인</span>
-=======
-                                    onBlur={checkId}
-                                /><button type="button" id={styles.idCheck} >
-                                <span>아이디 확인</span>
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                             </button>
                                 <span className={styles.stepUrl}></span>
                             </span> 
@@ -431,7 +379,6 @@ function SignUp() {
                                 <label htmlFor="profile">프로필</label>
                             </h3>
                             <span className={styles.errorNextBox}>{errors[9]}</span>
-<<<<<<< HEAD
                         </div>
                         <input
                             type="file"
@@ -441,15 +388,6 @@ function SignUp() {
                             className={styles.boxProfileCheck}>
                         </input>
                         <button onClick={uploadFile}>업로드</button>
-=======
-                        
-                        </div>
-                        <input
-                            type="file"
-                            className={styles.boxProfileCheck}>
-
-                        </input>
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                         <div>
                             <h3 className="join_title">
                                 <label htmlFor="name">이름</label>
@@ -482,19 +420,11 @@ function SignUp() {
                                     className={styles.intId}
                                     maxLength="20"
                                     value={nickName}
-<<<<<<< HEAD
                                     onChange={(e) => setNickName(e.target.value) }
                                     onBlur={checkNickName} // 유효성 검사 함수 추가
                                 />
                             </span><button type="button" id={styles.nickNameCheck}>
                                 <span>중복 확인</span>
-=======
-                                    onChange={(e) => setNickName(e.target.value)}
-                                    onBlur={checkNickName} // 유효성 검사 함수 추가
-                                />
-                            </span><button type="button" id={styles.nickNameCheck} >
-                                <span>닉네임 확인</span>
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                             </button>
                             
                             <span className={styles.errorNextBox}>{errors[7]}</span>
@@ -622,8 +552,6 @@ function SignUp() {
                             <span className={styles.errorNextBox}>{errors[6]}</span>
                         </div>
 
-<<<<<<< HEAD
-=======
                         <div>
                             <h3 className="join_title">
                                 <label htmlFor="address">주소</label>
@@ -640,7 +568,6 @@ function SignUp() {
                         </div>
                         
 
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                         <div className={styles.btnArea}>
                             <button type="button" id={styles.btnJoin} onClick={handleSubmit}>
                                 <span>가입하기</span>

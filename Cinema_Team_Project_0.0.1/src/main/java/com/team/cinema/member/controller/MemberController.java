@@ -1,6 +1,5 @@
 package com.team.cinema.member.controller;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,28 +19,14 @@ import com.team.cinema.member.entity.User;
 import com.team.cinema.member.repository.UserRepository;
 import com.team.cinema.member.service.UserService;
 
-import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.team.cinema.member.entity.User;
-import com.team.cinema.member.service.UserService;
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	private UserService userService;
-<<<<<<< HEAD
 	
 	 @Autowired
 	private UserRepository userRepository;
@@ -48,9 +34,6 @@ public class MemberController {
 	 @Autowired
 	 private BCryptPasswordEncoder pwEncoder;
 	
-	@PostMapping("/signUp")
-	@Operation(summary = "회원가입", description = "유저 회원가입시 등록 API", tags = {"User"})
-=======
 	 
 	@GetMapping("/signIn")
 	public void helloWorld() {
@@ -62,23 +45,18 @@ public class MemberController {
 	}
 	
 	@PostMapping("/signUp")
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
 	public ResponseEntity<String> signUp(@RequestBody User user) {
 	    
 	    // 디버깅을 위해 user 객체의 필드를 확인
 	    System.out.println("Received user: " + user);
 
 	    userService.saveUser(user);
-<<<<<<< HEAD
 	    
 	    System.out.println("확인 : signUp");
-=======
->>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
 	    return ResponseEntity.ok("회원가입 성공");
 	}
 	
 	@PostMapping("/signIn")
-	@Operation(summary = "로그인", description = "유저 로그인 시도 API", tags = {"User"})
     public ResponseEntity<Map<String, String>> signIn(@RequestBody User user, HttpServletRequest request) {
         if (user.getId() == null || user.getId().isEmpty() ||
             user.getPassword() == null || user.getPassword().isEmpty()) {
@@ -103,7 +81,6 @@ public class MemberController {
     }
 	
 	@PostMapping(value = "/registerCheck")
-	@Operation(summary = "ID 중복체크", description = "회원가입시 ID 중복 체크 API", tags = {"User"})
 	public ResponseEntity<Integer> registerCheck(@RequestBody User user) {
 		// user 객체 또는 ID 값 검증
 		//System.out.println("resterCheck" + user);
