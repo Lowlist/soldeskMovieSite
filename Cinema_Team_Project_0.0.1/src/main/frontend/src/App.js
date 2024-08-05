@@ -23,6 +23,7 @@ import Re from './routes/login/register.js';
 import PaymentPage from './routes/ticketing/payments/PaymentPage.js';
 import GoodsBasket from './routes/shop/GoodsBasket.js';
 import SignUp from './routes/member/SignUp.js';
+import MovieTop from './routes/movieInfo/MovieTop.js';
 
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
@@ -70,6 +71,7 @@ function App() {
 
             <Route path="/movie" element={<Outlet/>}>
               <Route path="main" element={<MovieList/>}></Route>
+              <Route path="top" element={<MovieTop/>}></Route>
               <Route path="info/:movieId/:movieSeq" element={<Movie/>}>
                 <Route path="schedule" element={<>/ 해당 영화에 대한 상영관 스케줄</>}></Route>
                 <Route path="review" element={<>/ 해당 영화에 대한 리뷰 게시판</>}></Route>

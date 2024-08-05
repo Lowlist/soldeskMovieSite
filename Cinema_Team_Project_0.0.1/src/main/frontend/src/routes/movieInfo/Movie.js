@@ -50,7 +50,7 @@ function Movie() {
                 <div className={styles.select_main}>
                     <div className={styles['sect-base-movie']}>
                         <div className={styles['box-imge']}>
-                            <img src={data.posters.split('|')[0]} alt="포스터" />
+                            <img src={data.posters.split('|')[0]} alt="포스터" className={styles['box-poster']} />
                         </div>
                         <div className={styles['box-contents']}>
                             <div className={styles.title}>
