@@ -5,6 +5,7 @@ import styles from './style/SeatSelection.module.css';
 import SeatHeader from './SeatHeader';
 import SeatMap from './SeatMap';
 import SelectionComplete from './SelectionComplete';
+import Main,{MovieHeader} from '../../main/Main.js'
 
 function SeatSelection() {
     const location = useLocation();
@@ -136,6 +137,7 @@ function SeatSelection() {
 
     return (
         <div className={styles.container}>
+            <MovieHeader/>
             <SeatHeader
                 selectedMovie={selectedMovie}
                 selectedTheater={selectedTheater}

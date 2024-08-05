@@ -5,6 +5,7 @@ import MovieSelection from './MovieSelection';
 import TheaterSelection from './TheaterSelection';
 import DateSelection from './DateSelection';
 import TimeSelection from './TimeSelection';
+import Main,{MovieHeader} from '../../main/Main.js';
 import TicketingFooter from './TicketingFooter';
 import styles from './style/Ticketing.module.css';
 
@@ -78,21 +79,24 @@ function Ticketing() {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.selectionContainer}>
-                <MovieSelection movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
-                <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} setSelectedTheaterNo={setSelectedTheaterNo} />
-                <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-                <TimeSelection selectedMovie={selectedMovie} selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedDateString={selectedDateString} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
+        <div>
+            <MovieHeader/>
+            <div className={styles.container}>
+                <div className={styles.selectionContainer}>
+                    <MovieSelection movies={movies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
+                    <TheaterSelection selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} theaters={theaters} selectedTheater={selectedTheater} setSelectedTheater={setSelectedTheater} setSelectedTheaterNo={setSelectedTheaterNo} />
+                    <DateSelection dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+                    <TimeSelection selectedMovie={selectedMovie} selectedTheater={selectedTheater} theaterNo={selectedTheaterNo} selectedDateString={selectedDateString} selectedTime={selectedTime} selectedHall={selectedHall} setSelectedTime={setSelectedTime} setSelectedHall={setSelectedHall} />
+                </div>
+                <TicketingFooter
+                    selectedMovie={selectedMovie}
+                    selectedTheater={selectedTheater}
+                    selectedDateString={selectedDateString}
+                    selectedTime={selectedTime}
+                    selectedHall={selectedHall}
+                    handleSeatSelection={handleSeatSelection}
+                />
             </div>
-            <TicketingFooter
-                selectedMovie={selectedMovie}
-                selectedTheater={selectedTheater}
-                selectedDateString={selectedDateString}
-                selectedTime={selectedTime}
-                selectedHall={selectedHall}
-                handleSeatSelection={handleSeatSelection}
-            />
         </div>
     );
 }
