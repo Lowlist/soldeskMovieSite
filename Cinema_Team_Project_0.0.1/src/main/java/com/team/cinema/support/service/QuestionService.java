@@ -1,5 +1,6 @@
 package com.team.cinema.support.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team.cinema.support.dto.QuestionDTO;
+import com.team.cinema.support.dto.ReplyDTO;
 import com.team.cinema.support.entity.QuestionEntity;
+import com.team.cinema.support.entity.ReplyEntity;
 import com.team.cinema.support.repository.QuestionRepository;
+import com.team.cinema.support.repository.ReplyRepository;
 
 
 
@@ -16,6 +20,9 @@ import com.team.cinema.support.repository.QuestionRepository;
 public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
 
     public List<QuestionDTO> getList() {
         List<QuestionEntity> questions = questionRepository.findAll();
@@ -33,6 +40,8 @@ public class QuestionService {
 
     public QuestionDTO write(QuestionDTO questionDTO) {
         QuestionEntity question = convertToEntity(questionDTO);
+        question.setCreatedAt(LocalDateTime.now());
+        question.setUpdatedAt(LocalDateTime.now());
         QuestionEntity savedQuestion = questionRepository.save(question);
         return convertToDTO(savedQuestion);
     }
@@ -40,9 +49,17 @@ public class QuestionService {
     public QuestionDTO read(int questionNo) {
         QuestionEntity question = questionRepository.findById(questionNo)
                 .orElseThrow(() -> new RuntimeException("Question not found"));
-        return convertToDTO(question);
-    }
-
+        QuestionDTO questionDTO = convertToDTO(question);
+        
+        List<ReplyDTO> replies = replyRepository.findByQuestion_QuestionNo(questionNo)
+                .stream()
+                .map(this::convertReplyToDTO)
+                .collect(Collectors.toList());
+        questionDTO.setReplies(replies);
+        
+        return questionDTO;
+    } 
+    
     public void delete(int questionNo) {
         questionRepository.deleteById(questionNo);
     }
@@ -53,6 +70,7 @@ public class QuestionService {
         question.setQuestionTitle(questionDTO.getQuestionTitle());
         question.setQuestionContent(questionDTO.getQuestionContent());
         question.setQuestionHit(questionDTO.getQuestionHit());
+        question.setUpdatedAt(LocalDateTime.now());
         QuestionEntity updatedQuestion = questionRepository.save(question);
         return convertToDTO(updatedQuestion);
     }
@@ -76,10 +94,20 @@ public class QuestionService {
         question.setQuestionTitle(questionDTO.getQuestionTitle());
         question.setQuestionContent(questionDTO.getQuestionContent());
         question.setQuestionHit(questionDTO.getQuestionHit());
-        question.setCreatedAt(questionDTO.getCreatedAt());
-        question.setUpdatedAt(questionDTO.getUpdatedAt());
+        question.setCreatedAt(questionDTO.getCreatedAt() != null ? questionDTO.getCreatedAt() : LocalDateTime.now());
+        question.setUpdatedAt(questionDTO.getUpdatedAt() != null ? questionDTO.getUpdatedAt() : LocalDateTime.now());
         // question.setMember(member); 
         // question.setQuestionReply(replyEntity); 
         return question;
+    }
+
+    private ReplyDTO convertReplyToDTO(ReplyEntity reply) {
+        ReplyDTO replyDTO = new ReplyDTO();
+        replyDTO.setReplyNo(reply.getReplyNo());
+        replyDTO.setReplyContent(reply.getReplyContent());
+        replyDTO.setCreatedAt(reply.getCreatedAt());
+        replyDTO.setUpdatedAt(reply.getUpdatedAt());
+        //replyDTO.setAdminId(reply.getAdmin() != null ? reply.getAdmin().getAdminId() : null);
+        return replyDTO;
     }
 }

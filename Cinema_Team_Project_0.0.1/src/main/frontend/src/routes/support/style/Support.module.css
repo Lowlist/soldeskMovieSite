@@ -324,21 +324,41 @@ ol, ul {
 }
 
 .userMessage {
-  background-color: #dcf8c6;
+  background-color: #dcf8c6; /* 연한 초록색 배경 */
   padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
-  align-self: flex-end;
+  align-self: flex-end; /* 오른쪽 정렬 */
   max-width: 80%;
+  position: relative;
+}
+
+.userMessage::after {
+  content: 'User';
+  font-size: 12px;
+  color: #333;
+  position: absolute;
+  bottom: -18px;
+  right: 10px;
 }
 
 .botMessage {
-  background-color: #f1f0f0;
+  background-color: #f1f0f0; /* 연한 회색 배경 */
   padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
-  align-self: flex-start;
+  align-self: flex-start; /* 왼쪽 정렬 */
   max-width: 80%;
+  position: relative;
+}
+
+.botMessage::after {
+  content: 'Bot';
+  font-size: 12px;
+  color: #333;
+  position: absolute;
+  bottom: -18px;
+  left: 10px;
 }
 
 .chatInputContainer {
@@ -378,3 +398,4 @@ ol, ul {
   border-top: 1px solid gray;
   border-bottom: 2px solid red;
 }
+

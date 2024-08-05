@@ -10,6 +10,7 @@ function GiftTicket() {
     let state = useSelector((state)=>{ return state })
     let id = useLocation();
     let buttons = true;
+
     if (id.pathname === "/store/giftTicket"){
         buttons = false;
     }
@@ -34,12 +35,13 @@ function GiftTicket() {
                         return (
                             <div className={style.cardBox} key={i}>
                                 <Card style={{ width: '28rem', border: '0px' }}>
-                                    <Card.Body className={style.cardBody} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
-                                        <img className={style.cardImg} src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} alt='이미지 로딩 실패' />
+                                    <Card.Body className={style.cardBody} onClick={() => navigate(`/store/${state.food.data.length+state.goods.data[i].no}`)}>
+                                        <img className={style.cardImg} src={state.goods.data[i].img} alt='이미지 로딩 실패' />
                                         <div className={style.cardContent}>
-                                            <Card.Title >{state.shop[i].title}</Card.Title>
+                                            <Card.Title >{state.goods.data[i].title}</Card.Title>
                                             <Card.Text>
-                                                {state.shop[i].content}
+                                                {state.goods.data[i].content}
+                                                <div>{state.goods.data[i].price.toLocaleString("ko-KR")}원</div>
                                             </Card.Text>
                                         </div>
                                     </Card.Body>
@@ -63,13 +65,13 @@ function GiftTicket() {
                 <hr className={style.hrCenter} />
                 <Row>
                     {
-                        state.shop.map((a, i) =>
-                            <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
+                        state.goods.data.map((a, i) =>
+                            <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.food.data.length + state.goods.data[i].no}`)}>
                                 <div className={style.packageImg}>
-                                    <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" alt='이미지 로딩 실패' />
+                                    <img src={state.goods.data[i].img} width="300px" alt='이미지 로딩 실패' />
                                 </div>
-                                <h4>{state.shop[i].title}</h4>
-                                <div>{state.shop[i].price}</div>
+                                <h4>{state.goods.data[i].title}</h4>
+                                <div>{state.goods.data[i].price.toLocaleString("ko-KR")}원</div>
                             </Col>
                         )
                     }

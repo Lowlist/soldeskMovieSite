@@ -1,5 +1,6 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet, Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import Main from './routes/main/Main.js';
 import DrinkFood from './routes/shop/DrinkFood.js';
@@ -11,19 +12,24 @@ import Ticket from './routes/ticketing/ticket/Ticketing.js';
 import Seat from './routes/ticketing/seat/SeatSelection.js';
 import MovieList from './routes/movieInfo/MovieList.js';
 import Movie from './routes/movieInfo/Movie.js';
-import Notice from './routes/support/Notice.js';
+import Notice from './routes/support/notice/Notice.js';
 import Support from './routes/support/Support.js';
 import RealtimeQuestion from './routes/support/RealtimeQuestion.js';
-import Question from './routes/support/Question.js';
-import NoticeDetail from './routes/support/NoticeDetail.js';
-import QuestionDetail from './routes/support/QuestionDetail.js';
+import Question from './routes/support/question/Question.js';
+import NoticeDetail from './routes/support/notice/NoticeDetail.js';
+import QuestionDetail from './routes/support/question/QuestionDetail.js';
+import NoticeCrate from './routes/support/notice/NoticeCreate.js';
+import QuestionCreate from './routes/support/question/QuestionCreate.js';
 import Login from './routes/login/login.js';
 import Page from './routes/login/page.js';
 import Re from './routes/login/register.js';
 import PaymentPage from './routes/ticketing/payments/PaymentPage.js';
 import GoodsBasket from './routes/shop/GoodsBasket.js';
 import SignUp from './routes/member/SignUp.js';
-
+import { foodData } from './slice/foodSlice.js';
+import { goodsData } from './slice/goodsSlice.js';
+import { goodsSetData } from './slice/goodsSetSlice.js';
+import { basketData } from './slice/shopCartSlice.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -35,13 +41,32 @@ import SignUp from './routes/member/SignUp.js';
 
 function App() {
 
-  // let navigate = useNavigate();
-  // useEffect(() => {
-  //   axios.get('/api/hello')
-  //   .then(response => setHello(response.data))
-  //   .catch(error => console.log(error))
-  // }, []);
+  // 리덕스 Axios 는 최상위에 불러와서 내려받는게 최고라서 이렇게 할수밖에 없었음...
 
+  let disPatch = useDispatch();
+  let foodState = useSelector((state) => state.food);
+  let goodsState = useSelector((state) => state.goods);
+  let goodsSetState = useSelector((state) => state.goodsSet);
+  let basketState = useSelector((state) => state.shopCart);
+
+  useEffect(() => {
+    disPatch(foodData());
+    disPatch(goodsData());
+    disPatch(goodsSetData());
+    disPatch(basketData());
+  }, [disPatch]);
+
+  if (foodState.loading || goodsState.loading || goodsSetState.loading || basketState.loading) {
+    return <div>로딩창</div>;
+  }
+
+  if (foodState.error || goodsState.error || goodsSetState.error || basketState.error) {
+    return <div>에러메세지</div>;
+  }
+
+  if (!foodState.data || foodState.data.length === 0) {
+    return <div>데이터가 없습니다!</div>;
+  }
   return (
     <div className="App">
       
@@ -95,11 +120,13 @@ function App() {
               <Route path='notice' element={<><Outlet /></>}>
                 <Route index element={<Notice />} />
                 <Route path=':id' element={<NoticeDetail />} />
+                <Route path='write' element={<NoticeCrate />} />
               </Route>
               <Route path='question' element={<><Outlet /></>}>
                 <Route index element={<Question />} />
                 <Route path=':id' element={<QuestionDetail />} />
                 <Route path='realtime' element={<RealtimeQuestion />} />
+                <Route path='write' element={<QuestionCreate />} />
               </Route>
             </Route>
 

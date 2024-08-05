@@ -38,3 +38,8 @@
     display: inline;
     text-align: center;
 }
+
+.link {
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    color: inherit; /* 링크 색상 기본으로 설정 (원하는 색상으로 변경 가능) */
+}

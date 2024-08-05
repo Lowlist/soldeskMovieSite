@@ -2,13 +2,17 @@ package com.team.cinema.support.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team.cinema.support.dto.NoticeDTO;
@@ -23,114 +27,132 @@ import lombok.AllArgsConstructor;
 @Controller
 @RequestMapping("/support/*")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class SupportController {
 	private NoticeSerivce noticeService;
 	private QuestionService questionService;
 	private ReplyService replyService;
 	
-    // 공지사항 목록 조회
+	// 공지사항 목록 조회
     @GetMapping("/notice")
-    public String getNoticeList(Model model) {
+    public ResponseEntity<List<NoticeDTO>> getNoticeList() {
         List<NoticeDTO> notices = noticeService.getList();
-        model.addAttribute("notices", notices);
-        return "support/notice";
-    }
-
-    // 공지사항 작성 폼 이동
-    @GetMapping("/notice/write")
-    public String writeNoticeForm(Model model) {
-        model.addAttribute("notice", new NoticeDTO());
-        return "support/noticeWrite";
+        return ResponseEntity.ok(notices);
     }
 
     // 공지사항 작성
     @PostMapping("/notice/write")
-    public String writeNotice(@ModelAttribute NoticeDTO noticeDTO) {
+    public ResponseEntity<Void> writeNotice(@RequestBody NoticeDTO noticeDTO) {
         noticeService.write(noticeDTO);
-        return "redirect:/support/notice";
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // 공지사항 상세 조회
     @GetMapping("/notice/{id}")
-    public String getNotice(@PathVariable int id, Model model) {
+    public ResponseEntity<NoticeDTO> getNotice(@PathVariable("id") int id) {
         NoticeDTO notice = noticeService.read(id);
-        model.addAttribute("notice", notice);
-        return "support/noticeDetail";
+        return ResponseEntity.ok(notice);
     }
 
     // 공지사항 수정 폼 이동
     @GetMapping("/notice/modify/{id}")
-    public String modifyNoticeForm(@PathVariable int id, Model model) {
+    public ResponseEntity<NoticeDTO> modifyNoticeForm(@PathVariable("id") int id) {
         NoticeDTO notice = noticeService.read(id);
-        model.addAttribute("notice", notice);
-        return "support/noticeModify";
+        return ResponseEntity.ok(notice);
     }
 
     // 공지사항 수정
     @PostMapping("/notice/modify/{id}")
-    public String modifyNotice(@PathVariable int id, @ModelAttribute NoticeDTO noticeDTO) {
+    public ResponseEntity<Void> modifyNotice(@PathVariable("id") int id, @RequestBody NoticeDTO noticeDTO) {
         noticeService.modify(id, noticeDTO);
-        return "redirect:/support/notice";
+        return ResponseEntity.ok().build();
     }
 
     // 공지사항 삭제
     @DeleteMapping("/notice/{id}")
-    public String deleteNotice(@PathVariable int id) {
+    public ResponseEntity<Void> deleteNotice(@PathVariable("id") int id) {
         noticeService.delete(id);
-        return "redirect:/support/notice";
+        return ResponseEntity.noContent().build();
     }
 
     // 질문 목록 조회
     @GetMapping("/question")
-    public String getQuestionList(Model model) {
+    public ResponseEntity<List<QuestionDTO>> getQuestionList() {
         List<QuestionDTO> questions = questionService.getList();
-        model.addAttribute("questions", questions);
-        return "support/question";
-    }
-
-    // 질문 작성 폼 이동
-    @GetMapping("/question/write")
-    public String writeQuestionForm(Model model) {
-        model.addAttribute("question", new QuestionDTO());
-        return "support/questionWrite";
+        return ResponseEntity.ok(questions);
     }
 
     // 질문 작성
     @PostMapping("/question/write")
-    public String writeQuestion(@ModelAttribute QuestionDTO questionDTO) {
+    public ResponseEntity<Void> writeQuestion(@RequestBody QuestionDTO questionDTO) {
         questionService.write(questionDTO);
-        return "redirect:/support/question";
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // 질문 상세 조회 및 답변 목록 조회
     @GetMapping("/question/{id}")
-    public String getQuestion(@PathVariable int id, Model model) {
+    public ResponseEntity<QuestionDTO> getQuestion(@PathVariable("id") int id) {
         QuestionDTO question = questionService.read(id);
         List<ReplyDTO> replies = replyService.getList(id);
-        model.addAttribute("question", question);
-        model.addAttribute("replies", replies);
-        return "support/questionDetail";
+        question.setReplies(replies);
+        return ResponseEntity.ok(question);
     }
 
     // 질문 수정 폼 이동
     @GetMapping("/question/modify/{id}")
-    public String modifyQuestionForm(@PathVariable int id, Model model) {
+    public ResponseEntity<QuestionDTO> modifyQuestionForm(@PathVariable("id") int id) {
         QuestionDTO question = questionService.read(id);
-        model.addAttribute("question", question);
-        return "support/questionModify";
+        return ResponseEntity.ok(question);
     }
 
     // 질문 수정
     @PostMapping("/question/modify/{id}")
-    public String modifyQuestion(@PathVariable int id, @ModelAttribute QuestionDTO questionDTO) {
+    public ResponseEntity<Void> modifyQuestion(@PathVariable("id") int id, @RequestBody QuestionDTO questionDTO) {
         questionService.modify(id, questionDTO);
-        return "redirect:/support/question";
+        return ResponseEntity.ok().build();
     }
 
     // 질문 삭제
     @DeleteMapping("/question/{id}")
-    public String deleteQuestion(@PathVariable int id) {
+    public ResponseEntity<Void> deleteQuestion(@PathVariable("id") int id) {
         questionService.delete(id);
-        return "redirect:/support/question";
+        return ResponseEntity.noContent().build();
+    }
+    
+    // 댓글 목록 조회
+    @GetMapping("/question/{questionNo}/replies")
+    public ResponseEntity<List<ReplyDTO>> getReplies(@PathVariable("questionNo") int questionNo) {
+        List<ReplyDTO> replies = replyService.getList(questionNo);
+        return ResponseEntity.ok(replies);
+    }
+
+    // 댓글 작성
+    @PostMapping("/question/{questionNo}/replies")
+    public ResponseEntity<ReplyDTO> writeReply(@PathVariable("questionNo") int questionNo, @RequestBody ReplyDTO replyDTO) {
+        replyDTO.setQuestionNo(questionNo); // Set questionNo for the reply
+        ReplyDTO createdReply = replyService.write(replyDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdReply);
+    }
+
+    // 댓글 수정
+    @PostMapping("/replies/{replyNo}/modify")
+    public ResponseEntity<ReplyDTO> modifyReply(@PathVariable("replyNo") int replyNo, @RequestBody ReplyDTO replyDTO) {
+        try {
+            ReplyDTO updatedReply = replyService.modify(replyNo, replyDTO);
+            return ResponseEntity.ok(updatedReply);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    // 댓글 삭제
+    @DeleteMapping("/replies/{replyNo}")
+    public ResponseEntity<Void> deleteReply(@PathVariable("replyNo") int replyNo) {
+        try {
+            replyService.delete(replyNo);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
