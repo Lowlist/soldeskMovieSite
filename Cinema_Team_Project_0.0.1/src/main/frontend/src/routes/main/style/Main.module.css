@@ -1,4 +1,33 @@
+@font-face {
+    font-family: "TheJamsilLight";
+    font-style: normal;
+    font-weight: 100;
+    src: url("../../../font/TheJamsilLight.woff") format("woff");
+}
+  
+@font-face {
+    font-family: "TheJamsilRegular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../../../font/TheJamsilRegular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "TheJamsilBold";
+    font-style: normal;
+    font-weight: bold;
+    src: url("../../../font/TheJamsilBold.woff") format("woff");
+}
+  
+@font-face {
+    font-family: "TheJamsilThin";
+    font-style: normal;
+    font-weight: lighter;
+    src: url("../../../font/TheJamsilThin.woff") format("woff");
+}
+
 * {
+    font-family: "TheJamsilRegular";
     box-sizing: border-box;
     margin: 0px;
 }
@@ -6,7 +35,6 @@
 html, body {
     width: 100vw;
     height: 100%;
-    
 }
 
 .wrapper {
@@ -54,7 +82,11 @@ html, body {
 }
 
 .header-top-title {
+    font-family: "TheJamsilBold";
     font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -129,6 +161,16 @@ html, body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.category-button {
+    height: 100%;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    &:hover {
+        color: rgb(243, 50, 50);
+    }
 }
 
 .category-btn {

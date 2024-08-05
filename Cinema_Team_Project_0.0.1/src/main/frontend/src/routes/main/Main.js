@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Nav, Navbar } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
@@ -12,7 +11,9 @@ import login from '../../images/login.png';
 import mypage from '../../images/mypage.png';
 import search from '../../images/search.png';
 import styles from './style/Main.module.css';
-import axios from "axios";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import {
    NextTo,
    Prev,
@@ -282,55 +283,56 @@ function MovieChart(props) {
 }
 
 function MovieHeader() {
-   let navigate = useNavigate();
-   let [session, setSession] = useState(false);
-   return (
-      <div className={styles['wrapper-header']}>
-         <div className={styles['wrapper-header-top']}>
-            <div className={styles['header-top-left']}>
-               {/* <img className="header-top-logo" src={movie}></img> */}
-               <div className={styles['header-top-title']}>
-                  <p onClick={() => { navigate('/') }}>
-                     씨네 망가
-                  </p>
-               </div>
-            </div>
-            <div className={session ? styles['header-top-right-login'] : styles['header-top-right-logout']}>
-               <div className={styles['top-user']} onClick={() => { navigate('/member/signIn') }} style={{ cursor: 'pointer' }}>
-                  <img className={styles['top-user-img']} src={login}></img>
-                  <div className={styles['top-user-btn']}>로그인</div>
-               </div>
-               <div className={styles['top-user']} onClick={() => { navigate('/member/signUp') }} style={{ cursor: 'pointer' }}>
-                  <img className={styles['top-user-img']} src={join}></img>
-                  <div className={styles['top-user-btn']}>회원가입</div>
-               </div>
-               <div className={styles['top-user']} onClick={() => { navigate('/member/mypage') }} style={{ cursor: 'pointer' }}>
-                  <img className={styles['top-user-img']} src={mypage}></img>
-                  <div className={styles['top-user-btn']}>마이페이지</div>
-               </div>
-            </div>
-         </div>
-         <Navbar className={styles['wrapper-header-line']} data-bs-theme="light">
-            <div className={styles['wrapper-header-category']}>
-               <div className={styles['category-left']}>
-                  <Nav.Link onClick={() => { navigate('/') }}>Home</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/store') }}>shop</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/ticket') }}>ticketing</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/gps/map') }}>카카오맵</Nav.Link>
-                  <Nav.Link onClick={() => { navigate('/support') }}>고객센터</Nav.Link>
-               </div>
-               <div className={styles['category-right']}>
-                  <div className={styles['search-box']}>
-                     <input id={styles['searchBox']} type="text" placeholder="영화 검색"></input>
-                  </div>
-                  <div className={styles['search-btn']}>
-                     <img className={styles['searchBtn']} src={search}></img>
-                  </div>
-               </div>
-            </div>
-         </Navbar>
-      </div>
-   )
+   	let navigate = useNavigate();
+   	let [session, setSession] = useState(false);
+
+   	return (
+      	<div className={styles['wrapper-header']}>
+         	<div className={styles['wrapper-header-top']}>
+            	<div className={styles['header-top-left']}>
+               		{/* <img className="header-top-logo" src={movie}></img> */}
+               		<div className={styles['header-top-title']} onClick={() => { navigate('/') }}>
+						Dream Ticket Office
+               		</div>
+            	</div>
+            	<div className={session ? styles['header-top-right-login'] : styles['header-top-right-logout']}>
+               		<div className={styles['top-user']} onClick={() => { navigate('/member/signIn') }} style={{ cursor: 'pointer' }}>
+                	  	<img className={styles['top-user-img']} src={login}></img>
+                	  	<div className={styles['top-user-btn']}>로그인</div>
+               		</div>
+               		<div className={styles['top-user']} onClick={() => { navigate('/member/signUp') }} style={{ cursor: 'pointer' }}>
+                  		<img className={styles['top-user-img']} src={join}></img>
+                  		<div className={styles['top-user-btn']}>회원가입</div>
+               		</div>
+               		<div className={styles['top-user']} onClick={() => { navigate('/member/mypage') }} style={{ cursor: 'pointer' }}>
+                  		<img className={styles['top-user-img']} src={mypage}></img>
+                  		<div className={styles['top-user-btn']}>마이페이지</div>
+               		</div>
+            	</div>
+        	</div>
+         	<Navbar className={styles['wrapper-header-line']} data-bs-theme="light">
+            	<Container className={styles['wrapper-header-category']}>
+               		<div className={styles['category-left']}>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/') }}>홈</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/movie/main') }}>영화</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/store') }}>스토어</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/ticket') }}>예매</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/gps/map') }}>카카오맵</button>
+                  		<button className={styles['category-button']} onClick={() => { navigate('/support') }}>고객센터</button>
+               		</div>
+               		<div className={styles['category-right']}>
+                  		<div className={styles['search-box']}>
+                     		<input id={styles['searchBox']} type="text" placeholder="영화 검색"></input>
+                  		</div>
+                  		<div className={styles['search-btn']}>
+							{/* 영화제목 조건걸어서 검색하게끔 데이터 바인딩 */}
+                     		<img className={styles['searchBtn']} src={search} onClick={()=>{}}></img>
+                  		</div>
+               		</div>
+            	</Container>
+         	</Navbar>
+      	</div>
+   	)
 }
 
 export default Main;
