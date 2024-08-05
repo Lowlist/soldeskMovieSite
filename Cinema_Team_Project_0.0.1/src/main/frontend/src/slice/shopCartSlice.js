@@ -81,6 +81,7 @@ let shopCart = createSlice({
                 }
             }
         },
+        // 여기도 백엔드랑 연동시켜야됨
         plusCount(state, action) {
             let item = state.shopCart.find(item => item.id === action.payload.id)
             if(item){
@@ -106,6 +107,16 @@ let shopCart = createSlice({
             //여기에 axios 포스트 요청해서 삭제하면 될듯?
             let item = state.shopCart.findIndex(item => item.id === action.payload.data.id)
             state.shopCart.splice(item , 1);
+            let delItem = state.shopCart.find(item => item.id === action.payload.data.id)
+            axios.delete("/store/deleteBasket", delItem, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .catch((error)=>{
+                console.log(error+"ㅋㅋ 님 에러남")
+            });
+
         },
 
         // 로직 수정해야됨 체크 많이되있는데 3개까지밖에 삭제안됨 버그임

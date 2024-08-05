@@ -67,7 +67,6 @@ function App() {
   if (!foodState.data || foodState.data.length === 0) {
     return <div>데이터가 없습니다!</div>;
   }
-  console.log(basketState);
   return (
     <div className="App">
       
