@@ -3,6 +3,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import styles from '../style/Support.module.css'; 
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import { getNotices } from './NoticeApi';
+import NoticeData from './NoticeData';
 
 function Notice() {
   let navigate = useNavigate();
@@ -55,13 +56,6 @@ function Notice() {
   return (
     <div>
       <h2>공지사항</h2>
-      {/* <div className={styles.sTabWrap}>
-        <ul className={styles.sTab}>
-          <li className="on"><a href="/support/notice?type=movie&searchtext=" title="선택된 탭메뉴">영화</a></li>
-          <li><a href="/support/notice?type=store&searchtext=">스토어</a></li>
-          <li><a href="/support/notice?type=member&searchtext=">회원</a></li>
-        </ul>
-      </div> */}
       <div className={styles.tableArea}>
         <table>
           <thead>
@@ -72,16 +66,7 @@ function Notice() {
               <td>조회수</td>
             </tr>
           </thead>
-          <tbody>
-            {currentItems.map(notice => (
-              <tr key={notice.noticeNo}>
-                <td>{notice.noticeNo}</td>
-                <td onClick={() => handleClick(notice.noticeNo)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>{notice.noticeTitle}</td>
-                <td>{new Date(notice.createdAt).toLocaleDateString()}</td>
-                <td>{notice.noticeHit}</td>
-              </tr>
-            ))}
-          </tbody>
+          <NoticeData notices={currentItems} onNoticeClick={handleClick} />
         </table>
       </div>
       <div className={styles.paging}>

@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './style/Support.module.css';
 import { Link, Outlet, Route, Routes, useNavigate, useLocation } from 'react-router-dom'
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import {MovieHeader} from '../main/Main.js';
 import cinemaImage from '../../image/cinema.jpg';
+import NoticeData from '../support/notice/NoticeData.js';
 
 function Support() {
   let navigate = useNavigate();
   let location = useLocation();
 
   const isRootPath = location.pathname === '/support';
+
+  const [notices, setNotices] = useState([]);
+
+  useEffect(() => {
+    // 데이터 가져오기 예시
+    fetch('/support/notice') // 실제 API 엔드포인트로 변경 필요
+      .then(response => response.json())
+      .then(data => setNotices(data));
+  }, []);
+
+  const getFirstNoticeTitle = () => {
+    if (notices.length > 0) {
+      return notices[0].noticeTitle;
+    }
+    return '공지사항이 없습니다';
+  };
+
+  const handleNoticeClick = (noticeNo) => {
+    console.log(`Notice clicked: ${noticeNo}`);
+  };
 
   return (
     <div className={styles.supportMain}>
@@ -51,7 +72,7 @@ function Support() {
                             <strong>공지사항</strong>
                           </div>
                           <div className={styles['announcement-list']}>
-                            공지사항 리스트 1
+                           {getFirstNoticeTitle()}
                           </div>
                           <div className={styles['announcement-button']}>
                             <div className={styles['announcement-button-click']}>
