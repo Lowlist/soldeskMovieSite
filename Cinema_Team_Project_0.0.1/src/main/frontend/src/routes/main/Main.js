@@ -1,24 +1,23 @@
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './style/Main.module.css';
-import ReactPlayer from 'react-player';
+import React, { useState, useEffect } from "react";
+import { Nav, Navbar } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import search from '../../images/search.png';
-import login from '../../images/login.png';
-import logout from '../../images/logout.png';
-import mypage from '../../images/mypage.png';
-import join from '../../images/join.png';
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import React from "react";
+import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import join from '../../images/join.png';
+import login from '../../images/login.png';
+import mypage from '../../images/mypage.png';
+import search from '../../images/search.png';
+import styles from './style/Main.module.css';
+import axios from "axios";
 import {
-   SliderContainer,
    NextTo,
-   Prev
-} from './style/styles.js'
+   Prev,
+   SliderContainer
+} from './style/styles.js';
 
 // 0.영화예고편 (하드코딩) 관리자기능에 추가하면 괜찮을지도?
 // 1.영화정보 (제목,포스터,평점,예매율(하드코딩))
@@ -28,6 +27,7 @@ import {
 function Main() {
    let navigate = useNavigate();
    let state = useSelector((state) => { return state });
+   let [movieList, setMovieList] = useState(null);
    // 유즈이펙트 사용후 데이터 바인딩 해도 괜찮을듯?
    // 포스터 URL도 여기안에다가 넣어도 좋을듯?
    let movieChartData = [
