@@ -40,8 +40,12 @@ function GiftTicket() {
                                         <div className={style.cardContent}>
                                             <Card.Title >{state.goods.data[i].title}</Card.Title>
                                             <Card.Text>
+<<<<<<< HEAD
                                                 {state.goods.data[i].content}
                                                 <div>{state.goods.data[i].price.toLocaleString("ko-KR")}원</div>
+=======
+                                                {state.shop[i].content}
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                                             </Card.Text>
                                         </div>
                                     </Card.Body>

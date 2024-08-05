@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import style from './style/GoodsBasket.module.css';
 import { useDispatch, useSelector} from 'react-redux';
@@ -6,6 +7,16 @@ import { plusCount, minusCount, checkBox, checkBoxAll,allPrice } from '../../sli
 
 function GoodsBasket(){
 
+=======
+import { useState } from 'react';
+import style from './style/GoodsBasket.module.css';
+import { useDispatch, useSelector} from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { plusCount, minusCount, checkBox, checkBoxAll } from '../../slice/shopCartSlice';
+
+
+function GoodsBasket(){
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     let navigate = useNavigate();
     let location = useLocation();
     let state = useSelector( (state)=>{ return state } );
@@ -13,6 +24,7 @@ function GoodsBasket(){
     let activateBasket = false;
     let activatePayment = false;
     let activateResult = false;
+<<<<<<< HEAD
     let [checkAll, setCheckAll] = useState(true);
     useEffect(()=>{
        disPatch(allPrice());
@@ -29,6 +41,9 @@ function GoodsBasket(){
     };
 
     console.log(state.shopCart)
+=======
+
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     switch (location.pathname) {
         case "/store/basket":
             activateBasket = true;
@@ -80,8 +95,13 @@ function GoodsBasket(){
                     <div className={style.basketListCheckBoxLine}>
                     {   
                         activateBasket &&
+<<<<<<< HEAD
                         <div className={ checkAll === true ? style.basketListAllCheckBoxAfter : style.basketListAllCheckBox }
                             onClick={ ()=>{ handleClick(); } }>
+=======
+                        <div className={state.shopCart[0]?.checkBoxAll ?? true ? style.basketListAllCheckBox : style.basketListAllCheckBoxAfter}
+                            onClick={ ()=>{ disPatch(checkBoxAll()) } }>
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                         </div>
                     }
                     </div>
@@ -99,16 +119,29 @@ function GoodsBasket(){
                             {
                                 activateBasket &&
                                 <div className={style.basketListItemCheckBoxLine}>
+<<<<<<< HEAD
                                     <div className={state.shopCart[i].checkBox === false ? style.basketListCheckBox : style.basketListCheckBoxAfter}
+=======
+                                    {console.log(state.shopCart[i].checkBox)}
+                                    <div className={state.shopCart[i].checkBox === true ? style.basketListCheckBox : style.basketListCheckBoxAfter}
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                                         onClick={() => { disPatch(checkBox({data : state.shopCart[i]})) }}></div>
                                 </div>
                             }
                             <div className={activateBasket === true ? style.basketListItemContentLine : style.basketListItemContentLineAct}>
+<<<<<<< HEAD
                                 <img className={style.basketListItemImg} src={state.shopCart[i].img}></img>
                                 <div className={style.basketListItemContent}>
                                     <b className={style.basketListItemContentName}>{state.shopCart[i].title}</b>
                                     <div className={style.basketListItemContentNotice}>
                                         {state.shopCart[i].content}
+=======
+                                <img className={style.basketListItemImg} src={'https://codingapple1.github.io/shop/shoes2.jpg'}></img>
+                                <div className={style.basketListItemContent}>
+                                    <b className={style.basketListItemContentName}>{state.shopCart[i].title}</b>
+                                    <div className={style.basketListItemContentNotice}>
+                                        {state.shop[i].content}
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                                     </div>
                                 </div>
                                 <div className={style.basketListItemPriceLine}>
@@ -160,7 +193,11 @@ function GoodsBasket(){
                     <div className={style.basketTotalHeadResult}>총 결제 예정금액</div>
                 </div>
                 <div className={style.basketTotalResultLine}>
+<<<<<<< HEAD
                     <div className={style.basketTotalResult}>10,000원</div>
+=======
+                    <div className={style.basketTotalResult}>300,000원</div>
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                     <div className={style.basketTotalResultMinus}></div>
                     <div className={style.basketTotalResultSale}>10,000원</div>
                     <div className={style.basketTotalResultPlus}></div>
@@ -169,9 +206,13 @@ function GoodsBasket(){
             </div>
 
             <div className={style.basketButtonLine}>
+<<<<<<< HEAD
                 {/* 선물하기 추가시 생성예정 */}
                 {/* <div className={style.basketPresentButton}>선물하기</div> */}
                 <div className={style.basketBuyButton} onClick={()=>{ navigate('/store/payment') }}>구매하기</div>
+=======
+                <div className={style.basketBuyButton}></div>
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
             </div>
 
         </div>

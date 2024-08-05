@@ -1,9 +1,13 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import shop from './slice/shopSlice.js';
 import shopCart from './slice/shopCartSlice.js';
+<<<<<<< HEAD
 import food from './slice/foodSlice.js';
 import goods from './slice/goodsSlice.js';
 import goodsSet from './slice/goodsSetSlice.js';
+=======
+
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
 
 /**
  * -리덕스 쓰는이유 
@@ -26,9 +30,13 @@ import goodsSet from './slice/goodsSetSlice.js';
 export default configureStore({
   reducer: { 
     shop : shop.reducer,
+<<<<<<< HEAD
     shopCart : shopCart.reducer,
     food: food.reducer,
     goods: goods.reducer,
     goodsSet: goodsSet.reducer
+=======
+    shopCart : shopCart.reducer
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
   }
 }) 

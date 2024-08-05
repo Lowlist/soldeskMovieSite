@@ -39,8 +39,12 @@ function DrinkFood() {
                                         <div className={style.cardContent}>
                                             <Card.Title>{state.food.data[i].title}</Card.Title>
                                             <Card.Text>
+<<<<<<< HEAD
                                                 {state.food.data[i].content}
                                                 <div>{state.food.data[i].price.toLocaleString("ko-KR")}원</div>
+=======
+                                                {state.shop[i].content}
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                                             </Card.Text>
                                         </div>
                                     </Card.Body>

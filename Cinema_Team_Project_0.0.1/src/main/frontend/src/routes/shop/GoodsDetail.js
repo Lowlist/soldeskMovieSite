@@ -5,10 +5,15 @@ import { useEffect, useState } from 'react';
 import { addCart } from '../../slice/shopCartSlice';
 
 function GoodsDetail(){
+<<<<<<< HEAD
 
     let disPatch = useDispatch();
     let {id} = useParams();
     let [idCheck] = useState(id);
+=======
+    let disPatch = useDispatch();
+    let {id} = useParams();
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
     let state = useSelector( (state)=>{ return state } );
     let [count,setCount] = useState(1);
     let location = useLocation();
@@ -64,8 +69,12 @@ function GoodsDetail(){
             <div className={style.detailName}>
                 {findData.title}
             </div>
+<<<<<<< HEAD
             {console.log(id)}
             {console.log(idCheck)}
+=======
+            
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
             <hr className={style.hrOne}/>
 
                 {/* Detail Start */}
@@ -97,14 +106,23 @@ function GoodsDetail(){
 
                             <div className={style.detailContentProductLine}>
                                 <b className={style.detailContentProductName}>상품구성</b>
+<<<<<<< HEAD
                                 <div className={style.detailContentProduct}>{findData.content}</div>
+=======
+                                <div className={style.detailContentProduct}>일반 영화 관람권 4매+더블콤보 1개</div>
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                             </div>
 
                             <div className={style.detailContentPeriodLine}>
                                 <b className={style.detailContentPeriodName}>유효기간</b>
                                 <div className={style.detailContentPeriod}>
+<<<<<<< HEAD
                                 영화관람권 : 구매일로부터 24개월 이내<br/>
                                 팝콘,음료 : 구매일로부터 6개월 이내
+=======
+                                CGV 영화관람권 : 구매일로부터 24개월 이내<br/>
+                                더블콤보 : 구매일로부터 6개월 이내
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                                 </div>
                             </div>
 
@@ -152,7 +170,11 @@ function GoodsDetail(){
                         {/* Button Start */}
 
                         <div className={style.detailButtonLine}>
+<<<<<<< HEAD
                             <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count , id : id }))  }}></div>
+=======
+                            <div className={style.detailBasketButton} onClick={()=>{ navigate('/store/basket') ; disPatch( addCart({ data : findData , counts : count }))  }}></div>
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                             <div className={style.detailBuyButton}>구매하기</div>
                         </div>
                         

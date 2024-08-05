@@ -31,7 +31,23 @@ function PackageGoods() {
                 {
                     buttons === true ?
                     [1,2,3].map((a, i) =>
+<<<<<<< HEAD
                         <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.food.data.length+state.goods.data.length+state.goodsSet.data[i].no}`)}>
+=======
+                        <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
+                            <div className={style.packageImg}>
+                                <img src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'} width="300px" alt='이미지 로딩 실패'/>
+                            </div>
+                            <div>
+                                <h4>{state.shop[i].title}</h4>
+                                <div>{state.shop[i].price}</div>
+                            </div>
+                        </Col>
+                    )
+                    :
+                    state.shop.map((a, i) =>
+                        <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.shop[i].id}`)}>
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
                             <div className={style.packageImg}>
                                 <img src={state.goodsSet.data[i].img} width="300px" alt='이미지 로딩 실패'/>
                             </div>

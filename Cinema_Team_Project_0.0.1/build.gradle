@@ -34,8 +34,11 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+<<<<<<< HEAD
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
 
+=======
+>>>>>>> 149821878f5ca46dcc2bb3d810daef2375cfcae5
 }
 
 def webappDir = "$projectDir/src/main/frontend"
