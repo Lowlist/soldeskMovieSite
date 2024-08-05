@@ -4,8 +4,6 @@
   min-width: 1040px;
 }
 
-
-
 .contents {
   clear: both;
   padding-bottom: 50px;
@@ -16,7 +14,16 @@
   padding-top: 25px;
   display: flex;
   align-items: flex-start; /* colAside가 colContent에 맞춰 늘어나지 않도록 */
+  flex-direction: row; 
 }
+
+.colAsideImageContainerWrapper {
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  align-items: flex-start; /* 왼쪽 정렬 */
+  margin-right: 20px; /* colAside와 imageContainer 사이의 간격 설정 */
+}
+
 
 .colAside {
   width: 160px;
@@ -46,6 +53,18 @@
 
 .colAside ul li a:hover {
   text-decoration: underline;
+}
+
+.imageContainer {
+  margin-left: 20px; /* colAside와의 간격 추가 */
+  display: flex;
+  flex-direction: column; /* 이미지 컨테이너 내부에서 세로 배치 */
+  justify-content: center; /* 이미지가 중앙에 배치되도록 설정 */
+}
+
+.imageContainer img {
+  max-width: 160px; /* 이미지가 colAside 너비를 넘지 않도록 설정 */
+  height: 300px; /* 이미지 비율을 유지하면서 높이를 자동으로 조정 */
 }
 
 .colContent {
@@ -96,7 +115,7 @@
 }
 
 .tableArea th, .tableArea td {
-  border: 1px solid #ddd;
+  border: none; /* 테이블 셀의 테두리 제거 */
   padding: 8px;
   text-align: left;
 }
@@ -104,6 +123,25 @@
 .tableArea th {
   background-color: #f2f2f2;
   font-weight: bold;
+}
+
+.tableArea thead {
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  word-break: break-all;
+  background-color: #f2f2f2; /* 배경색 회색으로 설정 */
+}
+
+.tableArea tbody {
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  word-break: break-all;
 }
 
 ol, ul {
@@ -390,5 +428,251 @@ ol, ul {
   align-items: center;
   border-top: 1px solid gray;
   border-bottom: 2px solid red;
+}
+
+.announcement-div {
+  width: 1520px;
+  height: 600px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.announcement-body {
+  width: 50%;
+  height: 240px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 0.5px solid gray;
+}
+
+.announcement-service {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  
+}
+
+.announcement-main {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 0.2px solid gray;
+}
+
+.announcement-title {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+.announcement-list {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+}
+
+.announcement-button {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.announcement-button-click {
+  width: 60px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border: 0.5px solid gray;
+  border-radius: 15px;
+}
+
+.service-center {
+  width: 100%;
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-body {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.service-title {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 18px;
+  
+}
+
+.service-subdiv {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.service-number {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+}
+
+.service-time {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+}
+.service-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+}
+
+.service-footer {
+  width: 50%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.service-button-div {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-button-div2 {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-button {
+  width: 85%;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.service-button2 {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.app-download {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 0.5px solid gray;
+  
+}
+
+.app-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.app-title {
+  width: 100%;
+  height: 20%;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.app-info {
+  width: 100%;
+  height: 10%;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-qr {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-info {
+  width: 100%;
+  height: 20%;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-footer {
+  width: 113%;
+  height: 200px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2e2e2;
 }
 
