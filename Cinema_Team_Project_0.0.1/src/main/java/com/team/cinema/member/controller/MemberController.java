@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+	
 	@Autowired
 	private UserService userService;
 	
@@ -32,7 +33,7 @@ public class MemberController {
 	private UserRepository userRepository;
 
 	 @Autowired
-	 private BCryptPasswordEncoder pwEncoder;
+	private BCryptPasswordEncoder pwEncoder;
 	
 	 
 	@GetMapping("/signIn")
@@ -49,12 +50,16 @@ public class MemberController {
 	    
 	    // 디버깅을 위해 user 객체의 필드를 확인
 	    System.out.println("Received user: " + user);
-
 	    userService.saveUser(user);
 	    
 	    System.out.println("확인 : signUp");
 	    return ResponseEntity.ok("회원가입 성공");
 	}
+	
+	// userId << 세션화를 id가 아닌 no << 번호로 세션화 시키기 
+	// 로그아웃버튼 누르거나 일정시간 지나면 로컬 스토리지 초기화 시키기
+ 	// 로그인 했을시 로그인 페이지 접근 막기
+	// 로그인 했을시 회원가입 페이지 접근 막기 리다이렉트로 마이페이지 가는거 괜찮은듯?
 	
 	@PostMapping("/signIn")
     public ResponseEntity<Map<String, String>> signIn(@RequestBody User user, HttpServletRequest request) {
@@ -72,8 +77,7 @@ public class MemberController {
             session.setAttribute("userId", storedUser.getId()); // 세션에 사용자 ID 저장
 //            session.setAttribute("userRole", storedUser.getRole()); // 세션에 사용자 역할 저장
             session.setAttribute("userPassword", storedUser.getPassword()); // 세션에 사용자 이메일 저장
-         //   System.out.println("세션 저장 완료: " + session.getAttribute("userId") + ", " + session.getAttribute("userPassword"));
-       
+            System.out.println("세션 저장 완료: " + session.getAttribute("userId") + ", " + session.getAttribute("userPassword"));
             return ResponseEntity.ok(Map.of("userId", storedUser.getId()));
         } else {
         	return ResponseEntity.status(401).body(Map.of("message", "아이디 또는 비밀번호가 올바르지 않습니다."));

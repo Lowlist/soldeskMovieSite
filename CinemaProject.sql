@@ -2,6 +2,7 @@ CREATE DATABASE movies default CHARACTER SET UTF8MB4;
 use movies;
 drop database movies;
 
+select *from member;
 -- 영화관
 CREATE TABLE `cinema` (
     `no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 상영관 key값 -- 
