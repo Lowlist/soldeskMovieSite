@@ -24,6 +24,8 @@ import {
 // 2.상점 (푸드,굿즈,영화관람권)
 // 3.고객센터에 공지사항 1줄
 
+// 헤더부분 영어로 통일 한글로 통일할지 결정
+
 function Main() {
    let navigate = useNavigate();
    let state = useSelector((state) => { return state });
@@ -75,181 +77,183 @@ function Main() {
                   muted={true}
                   controls={false} />
 
-               {
-                  // 예고편 데이터 바인딩
-               }
-               <div className={styles['video-div']}>
-                  <div className={styles['video-title']}>에스파 - 슈퍼노바</div>
-                  <div className={styles['video-info']}>에스파 윈터 vs 카리나 당신의 선택은???</div>
-                  <Button className={styles['video-button']} onClick={() => { navigate('/') }} variant="light">상세보기 {'>'}</Button>{' '}
-               </div>
-            </div>
-            <div className={styles['body-chart']}>
-               <div className={styles['chart-header']}>
-                  <div className={styles['chart-title']}><strong>무비 차트</strong></div>
-                  {/* 컴포넌트 전환 후 데이터 바인딩 로직 */}
-                  {/* 컴포넌트는 내부에있는 데이터만 3항연산자로 true or false 조건으로 가져오면 될듯? */}
-                  {/* 우리가 영화 정보자체를 데이터베이스에 담을예정인데 그걸 가져오면됨. */}
-                  <div className={styles['chart-subtitle1']} onClick={() => { }}>현재 상영작</div>
-                  {/* 상영예정작은 ver2에서 구현하기로함. */}
-                  <div className={styles['chart-subtitle2']} onClick={() => { }}>상영 예정작</div>
-                  <div className={styles['chart-button']}>
-                     <button className={styles['all-button']} onClick={() => { navigate('/ticketing') }}>전체보기 {'>'}</button>
-                  </div>
-               </div>
-               {/* 슬라이더 내부 데이터 바인딩 포스터,제목,평점,예매율 */}
-               <SliderContainer>
-                  <Slider {...settings}>
-                     {
-                        movieChartData.map((movie, i) => {
-                           return (
-                              <MovieChart key={i} i={i} movieData={movieChartData}></MovieChart>
-                           )
-                        })
-                     }
-                  </Slider>
-               </SliderContainer>
-            </div>
-            <div className={styles['body-store']}>
-               <div className={styles['body-store-wrapper']}>
-                  <div className={styles['store-wrapper']}>
-                     <div className={styles['store-header']}>
-                        <div className={styles['store-title']}><strong>푸드</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
-                     </div>
-                     {/* 음식 이미지,굿즈 이미지,관람권 이미지 제목,가격 바인딩 */}
-                     {/* 이미지 URL은 리덕스에 넣을 예정이니 그거 가져가서 바인딩 하면 됨 */}
-                     {/* js내부에서 할꺼면 img 태그를 사용하거나 새로운 스타일 변수를 만들어서 적용시키는 방법밖에 없슴.*/}
-                     {/* css에 리덕스 전송이 불가능 하기 때문 */}
-                     <div className={styles['store-body']}>
-                        {
-                           [1, 2, 3].map((foods, i) => {
-                              return (
-                                 <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>팝콘이미지</div>
-                                    <div className={styles['store-sub']}>
-                                       <div className={styles['store-subtitle']}>{state.shop[i].title}</div>
-                                       <div className={styles['store-price']}><strong>{state.shop[i].price.toLocaleString("ko-KR")}원</strong></div>
-                                    </div>
-                                 </div>
-                              )
-                           })
-                        }
-                     </div>
-                  </div>
+					{
+						// 예고편 데이터 바인딩
+					}
+					<div className={styles['video-div']}>
+						<div className={styles['video-title']}>에스파 - 슈퍼노바</div>
+						<div className={styles['video-info']}>에스파 윈터 vs 카리나 당신의 선택은???</div>
+						<Button className={styles['video-button']} onClick={() => { navigate('/') }} variant="light">상세보기 {'>'}</Button>{' '}
+					</div>
+				</div>
+				<div className={styles['body-chart']}>
+					<div className={styles['chart-header']}>
+						<div className={styles['chart-title']}><strong>무비 차트</strong></div>
+						{/* 컴포넌트 전환 후 데이터 바인딩 로직 */}
+						{/* 컴포넌트는 내부에있는 데이터만 3항연산자로 true or false 조건으로 가져오면 될듯? */}
+						{/* 우리가 영화 정보자체를 데이터베이스에 담을예정인데 그걸 가져오면됨. */}
+						<div className={styles['chart-subtitle1']} onClick={() => { }}>현재 상영작</div>
+						{/* 상영예정작은 ver2에서 구현하기로함. */}
+						<div className={styles['chart-subtitle2']} onClick={() => { }}>상영 예정작</div>
+						<div className={styles['chart-button']}>
+							<button className={styles['all-button']} onClick={() => { navigate('/ticketing') }}>전체보기 {'>'}</button>
+						</div>
+					</div>
+					{/* 슬라이더 내부 데이터 바인딩 포스터,제목,평점,예매율 */}
+					<SliderContainer>
+						<Slider {...settings}>
+							{
+								movieChartData.map((movie, i) => {
+									return (
+										<MovieChart key={i} i={i} movieData={movieChartData}></MovieChart>
+									)
+								})
+							}
+						</Slider>
+					</SliderContainer>
+				</div>
+				<div className={styles['body-store']}>
+					<div className={styles['body-store-wrapper']}>
+						<div className={styles['store-wrapper']}>
+							<div className={styles['store-header']}>
+								<div className={styles['store-title']}><strong>푸드</strong></div>
+								<div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+							</div>
+							{/* 음식 이미지,굿즈 이미지,관람권 이미지 제목,가격 바인딩 */}
+							{/* 이미지 URL은 리덕스에 넣을 예정이니 그거 가져가서 바인딩 하면 됨 */}
+							{/* js내부에서 할꺼면 img 태그를 사용하거나 새로운 스타일 변수를 만들어서 적용시키는 방법밖에 없슴.*/}
+							{/* css에 리덕스 전송이 불가능 하기 때문 */}
+							<div className={styles['store-body']}>
+								{
+									[1, 2, 3].map((foods, i) => {
+										return (
+											<div className={styles['body-wrapper']}>
+												<div className={styles['store-img']}>팝콘이미지</div>
+												<div className={styles['store-sub']}>
+													<div className={styles['store-subtitle']}>{state.food.data[i].title}</div>
+													<div className={styles['store-price']}><strong>{state.food.data[i].price.toLocaleString("ko-KR")}원</strong></div>
+												</div>
+											</div>
+										)
+									})
+								}
+							</div>
+						</div>
+						
+						{/* 여기 패키지로 수정해도 괜찮을듯 */}
 
-                  <div className={styles['store-wrapper']}>
-                     <div className={styles['store-header']}>
-                        <div className={styles['store-title']}><strong>굿즈</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
-                     </div>
-                     <div className={styles['store-body']}>
-                        {
-                           [1, 2, 3].map((foods, i) => {
-                              return (
-                                 <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>굿즈이미지</div>
-                                    <div className={styles['store-sub']}>
-                                       <div className={styles['store-subtitle']}>{state.shop[i].title}</div>
-                                       <div className={styles['store-price']}><strong>{state.shop[i].price.toLocaleString("ko-KR")}원</strong></div>
-                                    </div>
-                                 </div>
-                              )
-                           })
-                        }
-                     </div>
-                  </div>
-                  <div className={styles['store-wrapper']}>
-                     <div className={styles['store-header']}>
-                        <div className={styles['store-title']}><strong>영화관람권</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
-                     </div>
-                     <div className={styles['store-body']}>
-                        {
-                           [1, 2, 3].map((foods, i) => {
-                              return (
-                                 <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>팝콘이미지</div>
-                                    <div className={styles['store-sub']}>
-                                       <div className={styles['store-subtitle']}>{state.shop[i].title}</div>
-                                       <div className={styles['store-price']}><strong>{state.shop[i].price.toLocaleString("ko-KR")}원</strong></div>
-                                    </div>
-                                 </div>
-                              )
-                           })
-                        }
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div className={styles['announcement-div']}>
-               <div className={styles['announcement-body']}>
-                  <div className={styles['announcement-service']}>
-                     <div className={styles['announcement-main']}>
-                        <div className={styles['announcement-title']}>
-                           <strong>공지사항</strong>
-                        </div>
-                        {/* 공지사항 1줄 데이터 바인딩 */}
-                        <div className={styles['announcement-list']}>
-                           공지사항 리스트 1
-                        </div>
-                        <div className={styles['announcement-button']}>
-                           <div className={styles['announcement-button-click']}>
-                              더보기
-                           </div>
-                        </div>
-                     </div>
-                     <div className={styles['service-center']}>
-                        <div className={styles['service-body']}>
-                           <div className={styles['service-title']}>
-                              <strong>고객센터</strong>
-                           </div>
-                           <div className={styles['service-subdiv']}>
-                              <div className={styles['service-number']}>
-                                 1544-1122
-                              </div>
-                              <div className={styles['service-time']}>
-                                 고객센터 운영시간 {'('}평일 09:00 ~ 18:00{')'}
-                              </div>
-                              <div className={styles['service-info']}>
-                                 업무시간 외 자동응답 안내 가능합니다.
-                              </div>
-                           </div>
-                        </div>
-                        <div className={styles['service-footer']}>
-                           <div className={styles['service-button-div']}>
-                              <button className={styles['service-button']}>FAQ</button>
-                           </div>
-                           <div className={styles['service-button-div2']}>
-                              <button className={styles['service-button2']}>1:1문의</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div className={styles['app-download']}>
-                     <div className={styles['app-div']}>
-                        <div className={styles['app-title']}>
-                           <strong>앱 다운로드</strong>
-                        </div>
-                        <div className={styles['app-info']}>
-                           씨네망가앱에서 더 편리하게 이용하세요
-                        </div>
-                        <div className={styles['app-qr']}>
-                           대충 QR 이미지
-                        </div>
-                        <div className={styles['qr-info']}>
-                           QR코드를 스캔하고
-                           <br></br>
-                           앱설치 페이지로 바로 이동하세요
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div className={styles['wrapper-footer']}>@Dream Ticket Office Corp.</div>
-      </div>
-   )
+						<div className={styles['store-wrapper']}>
+							<div className={styles['store-header']}>
+								<div className={styles['store-title']}><strong>굿즈</strong></div>
+								<div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+							</div>
+							<div className={styles['store-body']}>
+								{
+									[1, 2, 3].map((foods, i) => {
+										return (
+											<div className={styles['body-wrapper']}>
+												<div className={styles['store-img']}>굿즈이미지</div>
+												<div className={styles['store-sub']}>
+													<div className={styles['store-subtitle']}>{state.goodsSet.data[i].title}</div>
+													<div className={styles['store-price']}><strong>{state.goodsSet.data[i].price.toLocaleString("ko-KR")}원</strong></div>
+												</div>
+											</div>
+										)
+									})
+								}
+							</div>
+						</div>
+						<div className={styles['store-wrapper']}>
+							<div className={styles['store-header']}>
+								<div className={styles['store-title']}><strong>영화관람권</strong></div>
+								<div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+							</div>
+							<div className={styles['store-body']}>
+								{
+									[1, 2, 3].map((foods, i) => {
+										return (
+											<div className={styles['body-wrapper']}>
+												<div className={styles['store-img']}>팝콘이미지</div>
+												<div className={styles['store-sub']}>
+													<div className={styles['store-subtitle']}>{state.goods.data[i].title}</div>
+													<div className={styles['store-price']}><strong>{state.goods.data[i].price.toLocaleString("ko-KR")}원</strong></div>
+												</div>
+											</div>
+										)
+									})
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className={styles['announcement-div']}>
+					<div className={styles['announcement-body']}>
+						<div className={styles['announcement-service']}>
+							<div className={styles['announcement-main']}>
+								<div className={styles['announcement-title']}>
+									<strong>공지사항</strong>
+								</div>
+								{/* 공지사항 1줄 데이터 바인딩 */}
+								<div className={styles['announcement-list']}>
+									공지사항 리스트 1
+								</div>
+								<div className={styles['announcement-button']}>
+									<div className={styles['announcement-button-click']}>
+										더보기
+									</div>
+								</div>
+							</div>
+							<div className={styles['service-center']}>
+								<div className={styles['service-body']}>
+									<div className={styles['service-title']}>
+										<strong>고객센터</strong>
+									</div>
+									<div className={styles['service-subdiv']}>
+										<div className={styles['service-number']}>
+											1544-1122
+										</div>
+										<div className={styles['service-time']}>
+											고객센터 운영시간 {'('}평일 09:00 ~ 18:00{')'}
+										</div>
+										<div className={styles['service-info']}>
+											업무시간 외 자동응답 안내 가능합니다.
+										</div>
+									</div>
+								</div>
+								<div className={styles['service-footer']}>
+									<div className={styles['service-button-div']}>
+										<button className={styles['service-button']}>FAQ</button>
+									</div>
+									<div className={styles['service-button-div2']}>
+										<button className={styles['service-button2']}>1:1문의</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className={styles['app-download']}>
+							<div className={styles['app-div']}>
+								<div className={styles['app-title']}>
+									<strong>앱 다운로드</strong>
+								</div>
+								<div className={styles['app-info']}>
+									씨네망가앱에서 더 편리하게 이용하세요
+								</div>
+								<div className={styles['app-qr']}>
+									대충 QR 이미지
+								</div>
+								<div className={styles['qr-info']}>
+									QR코드를 스캔하고
+									<br></br>
+									앱설치 페이지로 바로 이동하세요
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className={styles['wrapper-footer']}>@Dream Ticket Office Corp.</div>
+		</div>
+	)
 }
 
 function MovieChart(props) {
@@ -334,5 +338,6 @@ function MovieHeader() {
    )
 }
 
-
 export default Main;
+
+export {MovieHeader,MovieChart};
