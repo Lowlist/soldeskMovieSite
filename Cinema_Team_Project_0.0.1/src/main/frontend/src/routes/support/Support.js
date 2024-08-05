@@ -15,7 +15,6 @@ function Support() {
   const [notices, setNotices] = useState([]);
 
   useEffect(() => {
-    // 데이터 가져오기 예시
     fetch('/support/notice') // 실제 API 엔드포인트로 변경 필요
       .then(response => response.json())
       .then(data => setNotices(data));

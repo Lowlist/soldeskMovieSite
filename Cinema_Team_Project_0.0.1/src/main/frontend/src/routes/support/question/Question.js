@@ -55,13 +55,6 @@ function Question() {
   return (
     <div>
       <h2>질문 게시판</h2>
-      {/* <div className={styles.sTabWrap}>
-        <ul className={styles.sTab}>
-          <li className="on"><a href="/support/question?type=movie&searchtext=" title="선택된 탭메뉴">영화</a></li>
-          <li className=""><a href="/support/question?type=store&searchtext=">스토어</a></li>
-          <li className=""><a href="/support/question?type=member&searchtext=">회원</a></li>
-        </ul>
-      </div>  */}
       <div className={styles.tableArea}>
         <table>
           <thead>
