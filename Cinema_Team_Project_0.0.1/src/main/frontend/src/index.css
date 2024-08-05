@@ -1,10 +1,36 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "TheJamsilRegular";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: "TheJamsilLight";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./font/TheJamsilLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "TheJamsilRegular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/TheJamsilRegular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "TheJamsilBold";
+  font-style: normal;
+  font-weight: bold;
+  src: url("./font/TheJamsilBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "TheJamsilThin";
+  font-style: normal;
+  font-weight: lighter;
+  src: url("./font/TheJamsilThin.woff") format("woff");
 }
 
 code {
