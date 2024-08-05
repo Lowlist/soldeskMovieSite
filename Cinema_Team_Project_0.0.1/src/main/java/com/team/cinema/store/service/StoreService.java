@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.team.cinema.store.entity.Food;
 import com.team.cinema.store.entity.Goods;
@@ -53,8 +54,14 @@ public class StoreService {
 		storeBasketRepository.save(data);
 	}
 	
+	@Transactional
 	public void deleteBasket(StoreBasket data) {
 		storeBasketRepository.deleteByIdAndTitleAndContent(data.getId(), data.getTitle(), data.getContent());
+	}
+	
+	@Transactional
+	public void deleteBasketCheckBox(StoreBasket data) {
+		
 	}
 	
 }

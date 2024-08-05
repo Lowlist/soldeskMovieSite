@@ -20,6 +20,7 @@ import NoticeDetail from './routes/support/notice/NoticeDetail.js';
 import QuestionDetail from './routes/support/question/QuestionDetail.js';
 import NoticeCrate from './routes/support/notice/NoticeCreate.js';
 import QuestionCreate from './routes/support/question/QuestionCreate.js';
+import Maps from './routes/gps/NaverMap.js';
 import Login from './routes/login/login.js';
 import Page from './routes/login/page.js';
 import Re from './routes/login/register.js';
@@ -131,7 +132,7 @@ function App() {
             </Route>
 
             <Route path="/gps" element={<Outlet></Outlet>}>
-              <Route path="map" element={<>맵임</>}></Route>
+              <Route path="map" element={<Maps/>}></Route>
             </Route>
 
             {/* 어드민 nested는 추가 할 때 작성예정 */}

@@ -43,7 +43,7 @@ public class StoreRestController {
 		storeSevice.insertBasket(basketData);
 	}
 	
-	@DeleteMapping("/deleteBasket")
+	@PostMapping("/deleteBasket")
 	public void deleteBasket(@RequestBody StoreBasket basketData) {
 		storeSevice.deleteBasket(basketData);
 	}

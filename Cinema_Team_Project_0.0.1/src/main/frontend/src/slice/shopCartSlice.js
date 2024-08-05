@@ -81,7 +81,9 @@ let shopCart = createSlice({
                 }
             }
         },
+
         // 여기도 백엔드랑 연동시켜야됨
+        
         plusCount(state, action) {
             let item = state.shopCart.find(item => item.id === action.payload.id)
             if(item){
@@ -101,14 +103,15 @@ let shopCart = createSlice({
                 state.shopCart.splice(item , 1);
             }
         },
+
         // 여기 데이터 베이스 연동시키면됨 일요일에 하면 끝 그럼 아예 끝
         // 삭제관련로직 + 복구로직 만들어야됨
+
         delBasket(state, action){
             //여기에 axios 포스트 요청해서 삭제하면 될듯?
             let item = state.shopCart.findIndex(item => item.id === action.payload.data.id)
             state.shopCart.splice(item , 1);
-            let delItem = state.shopCart.find(item => item.id === action.payload.data.id)
-            axios.delete("/store/deleteBasket", delItem, {
+            axios.post("/store/deleteBasket", action.payload.data, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -129,7 +132,7 @@ let shopCart = createSlice({
             return produce(state, draft => {
                 let hasChecked = draft.shopCart.some(item => item.checkBox);
                 if (hasChecked) {
-                    //여기에 axios 포스트 요청해서 삭제하면 될듯?
+                    // ver2에서 체크박스 삭제로직 구현예정
                     draft.shopCart = draft.shopCart.filter(item => !item.checkBox);
                 } else {
                     alert("삭제 할 상품이 선택되지 않았습니다!");

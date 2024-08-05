@@ -126,7 +126,7 @@ function Main() {
                            [1, 2, 3].map((foods, i) => {
                               return (
                                  <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>팝콘이미지</div>
+                                    <img className={styles['store-img']} src={state.food.data[i].img}/>
                                     <div className={styles['store-sub']}>
                                        <div className={styles['store-subtitle']}>{state.food.data[i].title}</div>
                                        <div className={styles['store-price']}><strong>{state.food.data[i].price.toLocaleString("ko-KR")}원</strong></div>
