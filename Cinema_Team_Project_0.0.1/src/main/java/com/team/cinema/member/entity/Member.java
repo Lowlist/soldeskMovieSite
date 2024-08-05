@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "member")
+@Table(name = "members")
 @Data // getter, setter, toString, equals, hashCode 자동 생성
 @NoArgsConstructor // 기본 생성자 자동 생성
 @AllArgsConstructor // 모든 필드를 포함하는 생성자 자동 생성
