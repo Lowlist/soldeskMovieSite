@@ -434,8 +434,8 @@ html, body {
 }
 
 .store-more-button {
-    width: 25%;
-    height: 30px;
+    width: 20%;
+    height: 25px;
     margin-right: 20px;
     border: 0.5px solid gray;
     border-radius: 15px;
@@ -443,6 +443,9 @@ html, body {
     flex-direction: center;
     justify-content: center;
     align-items: center;
+    font-size: 13px;
+    box-shadow:2px 3px 5px 0px;
+    background-color: white;
 }
 
 .store-body {
@@ -469,8 +472,8 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .store-sub {
@@ -578,6 +581,7 @@ html, body {
     font-size: 12px;
     border: 0.5px solid gray;
     border-radius: 15px;
+    background-color: white;
 }
 
 .service-center {

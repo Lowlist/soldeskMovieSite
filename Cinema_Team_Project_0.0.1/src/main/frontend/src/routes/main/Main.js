@@ -21,8 +21,7 @@ import {
 
 // 0.영화예고편 (하드코딩) 관리자기능에 추가하면 괜찮을지도?
 // 1.영화정보 (제목,포스터,평점,예매율(하드코딩))
-// 2.상점 (푸드,굿즈,영화관람권)
-// 3.고객센터에 공지사항 1줄
+// 2.고객센터에 공지사항 1줄(제목만)
 
 function Main() {
    let navigate = useNavigate();
@@ -115,7 +114,7 @@ function Main() {
                   <div className={styles['store-wrapper']}>
                      <div className={styles['store-header']}>
                         <div className={styles['store-title']}><strong>푸드</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+                        <button className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</button>
                      </div>
                      {/* 음식 이미지,굿즈 이미지,관람권 이미지 제목,가격 바인딩 */}
                      {/* 이미지 URL은 리덕스에 넣을 예정이니 그거 가져가서 바인딩 하면 됨 */}
@@ -126,7 +125,7 @@ function Main() {
                            [1, 2, 3].map((foods, i) => {
                               return (
                                  <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>팝콘이미지</div>
+                                    <img className={styles['store-img']} src={state.food.data[i].img}></img>
                                     <div className={styles['store-sub']}>
                                        <div className={styles['store-subtitle']}>{state.food.data[i].title}</div>
                                        <div className={styles['store-price']}><strong>{state.food.data[i].price.toLocaleString("ko-KR")}원</strong></div>
@@ -140,15 +139,15 @@ function Main() {
 
                   <div className={styles['store-wrapper']}>
                      <div className={styles['store-header']}>
-                        <div className={styles['store-title']}><strong>굿즈</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+                        <div className={styles['store-title']}><strong>패키지</strong></div>
+                        <button className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</button>
                      </div>
                      <div className={styles['store-body']}>
                         {
                            [1, 2, 3].map((foods, i) => {
                               return (
                                  <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>굿즈이미지</div>
+                                    <img className={styles['store-img']} src={state.goodsSet.data[i].img}></img>
                                     <div className={styles['store-sub']}>
                                        <div className={styles['store-subtitle']}>{state.goodsSet.data[i].title}</div>
                                        <div className={styles['store-price']}><strong>{state.goodsSet.data[i].price.toLocaleString("ko-KR")}원</strong></div>
@@ -162,14 +161,14 @@ function Main() {
                   <div className={styles['store-wrapper']}>
                      <div className={styles['store-header']}>
                         <div className={styles['store-title']}><strong>영화관람권</strong></div>
-                        <div className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</div>
+                        <button className={styles['store-more-button']} onClick={() => { navigate('/store') }}>더보기</button>
                      </div>
                      <div className={styles['store-body']}>
                         {
                            [1, 2, 3].map((foods, i) => {
                               return (
                                  <div className={styles['body-wrapper']}>
-                                    <div className={styles['store-img']}>팝콘이미지</div>
+                                    <img className={styles['store-img']} src={state.goods.data[i].img}></img>
                                     <div className={styles['store-sub']}>
                                        <div className={styles['store-subtitle']}>{state.goods.data[i].title}</div>
                                        <div className={styles['store-price']}><strong>{state.goods.data[i].price.toLocaleString("ko-KR")}원</strong></div>
@@ -194,9 +193,9 @@ function Main() {
                            공지사항 리스트 1
                         </div>
                         <div className={styles['announcement-button']}>
-                           <div className={styles['announcement-button-click']}>
+                           <button className={styles['announcement-button-click']}>
                               더보기
-                           </div>
+                           </button>
                         </div>
                      </div>
                      <div className={styles['service-center']}>
