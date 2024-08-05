@@ -1,22 +1,30 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './style/Movie.module.css';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Movie() {
-
+    const { movieId, movieSeq } = useParams(); // useParams로 DOCID를 받아옴
     let [data, setData] = useState(null);
 
     useEffect(() => {
-        const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&movieId=k&movieSeq=36201&ServiceKey=BOC8E6E947M11OX4WO71";
-
-        axios.get(url).then((response) => {
-            setData(response.data.Data[0].Result[0]);
-        }).catch(error => {
-            console.error("Error fetching data: ", error);
-        })
-    }, []);
+        axios.get('/movie/info',   { params: { movieId : movieId, movieSeq : movieSeq } } )
+            .then((response) => {
+                console.log(response.data); // 데이터 구조 확인
+                const movieData = response.data.Data[0].Result[0];
+                if (movieData) {
+                    setData(movieData);
+                } else {
+                    console.error("영화 데이터를 불러오지 못했습니다.");
+                    setData(null); // 데이터가 없을 때 null로 설정하여 로딩 상태를 끝냄
+                }
+            })
+            .catch((error) => {
+                console.error("데이터 로딩 중 오류 발생:", error);
+            });
+    }, [movieId, movieSeq]);
 
     if (!data) {
         return <div>Loading...</div>; // 데이터가 로드되기 전 로딩 메시지 표시
@@ -42,7 +50,7 @@ function Movie() {
                 <div className={styles.select_main}>
                     <div className={styles['sect-base-movie']}>
                         <div className={styles['box-imge']}>
-                            <img src={data.posters.split('|')[0]} alt="포스터" />
+                            <img src={data.posters.split('|')[0]} alt="포스터" className={styles['box-poster']} />
                         </div>
                         <div className={styles['box-contents']}>
                             <div className={styles.title}>

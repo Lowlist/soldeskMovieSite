@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { useEffect, useState } from 'react';
-import styles from './style/MovieList.module.css';
+import { useNavigate } from 'react-router-dom';
+import styles from './style/MovieTop.module.css';
 import axios from 'axios';
-import image from './style/image.png'; // 이미지 경로 불러오기
 import all from './style/all.svg'
 import twelve from './style/12.svg'
 import fifteen from './style/15.svg'
@@ -10,16 +9,24 @@ import adult from './style/19.svg'
 
 function MovieTop() {
 
+    let navigate = useNavigate();
+    let [show, setShow] = useState(false);
     let [data, setData] = useState(null);
     const stringLimit = (str, n) => { //글자수 제한 함수
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
     };
 
     useEffect(() => {
-        const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=20240601&listCount=5&ServiceKey=BOC8E6E947M11OX4WO71";
+        const today = new Date();
+        const date = new Date(today);
+        date.setDate(today.getDate());
+        const formattedDate = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
 
-        axios.get(url).then((response) => {
-            setData(response.data.Data[0].Result);
+        axios.get('/movie/main', { params: { releaseDate: formattedDate } }).then((response) => {
+            const movies = response.data.Data[0].Result;
+            // 포스터가 없거나 장르가 '에로'인 영화를 필터링
+            const filteredMovies = movies.filter(movie => movie.posters !== "").filter(movie => movie.genre !== '에로') // '에로' 장르 제외
+            setData(filteredMovies);
         }).catch(error => {
             console.error("Error fetching data: ", error);
         })
@@ -54,20 +61,24 @@ function MovieTop() {
                 }
 
                 return (
-                    <div key={index} className={styles.movieItem}>
+                    <div key={index} className={styles['chart-body']}>
                         {/* 영화목록 */}
-                        <div className={styles.poster}>
+                        <div className={styles['chart-movie']} onMouseEnter={() => { setShow(true) }} onMouseLeave={() => { setShow(false) }}>
                             {/* 영화 포스터 */}
-                            {movie.posters ? (
-                                <img src={movie.posters.split('|')[0]} alt="포스터" className={styles.poster} />
-                            ) : (
-                                <img src={image} alt="이미지" className={styles.poster} />
-                            )}
+                            <img src={movie.posters.split('|')[0]} alt="포스터" className={styles.poster} />
+                            <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
+                                <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
+                                    {/* 네비게이트만 하면됨. */}
+                                    <button className={styles['chart-button1']} onClick={() => { navigate(`/movie/info/${movie.movieId}/${movie.movieSeq}`) }}>상세보기</button>
+                                    <button className={styles['chart-button2']} onClick={() => { navigate('/') }}>예매하기</button>
+                                </div>
+                            </div>
                         </div>
                         <div className={styles.textContainer}>
                             {/* 영화 제목 */}
                             {rating} <p className={styles.title}>{stringLimit(movie.title, 10)}</p>
                         </div>
+
                     </div>
                 );
             })}

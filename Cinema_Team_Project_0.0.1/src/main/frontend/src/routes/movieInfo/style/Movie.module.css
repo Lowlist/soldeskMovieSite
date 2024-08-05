@@ -38,6 +38,13 @@
     margin-right: 20px;
 }
 
+.box-poster {
+    width: 213px;
+    height: 304px;
+    object-fit: cover; /* 이미지를 잘라서 크기에 맞추기 */
+    position: relative;
+}
+
 .box-contents {
     flex: 1;
 }

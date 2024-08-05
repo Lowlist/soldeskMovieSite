@@ -31,6 +31,7 @@ import { foodData } from './slice/foodSlice.js';
 import { goodsData } from './slice/goodsSlice.js';
 import { goodsSetData } from './slice/goodsSetSlice.js';
 import { basketData } from './slice/shopCartSlice.js';
+import MovieTop from './routes/movieInfo/MovieTop.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -96,7 +97,8 @@ function App() {
 
             <Route path="/movie" element={<Outlet/>}>
               <Route path="main" element={<MovieList/>}></Route>
-              <Route path="info" element={<Movie/>}>
+              <Route path="top" element={<MovieTop/>}></Route>
+              <Route path="info/:movieId/:movieSeq" element={<Movie/>}>
                 <Route path="schedule" element={<>/ 해당 영화에 대한 상영관 스케줄</>}></Route>
                 <Route path="review" element={<>/ 해당 영화에 대한 리뷰 게시판</>}></Route>
               </Route>

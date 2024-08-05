@@ -20,8 +20,7 @@ function MovieList() {
         const date = new Date(today);
         date.setDate(today.getDate());
         const formattedDate = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
-        // const url = "https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=20240601&listCount=500&ServiceKey=BOC8E6E947M11OX4WO71";
-
+        
         axios.get('/movie/main', { params: { releaseDate: formattedDate } }).then((response) => {
             const movies = response.data.Data[0].Result;
             // 포스터가 없거나 장르가 '에로'인 영화를 필터링
@@ -62,7 +61,7 @@ function MovieList() {
 
                 return (
                     <div key={index} className={styles.movieItem}>
-                         <Link to={`/movie/info/${movie.DOCID}`} className={styles.link}>
+                         <Link to={`/movie/info/${movie.movieId}/${movie.movieSeq}`} className={styles.link}>
                         {/* 영화목록 */}
                         <div className={styles.poster}>
                             {/* 영화 포스터 */}
