@@ -1,7 +1,7 @@
 # 포트설정
 server:
   port: 7080
-  
+
 # DB설정
 spring:
   main:
@@ -18,13 +18,14 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-
-#  Spring Security 설정
-#  security:
-#    user:
-#      name: user
-#      password: password
+# Spring Security 설정 (주석 처리된 부분)
+# security:
+#   user:
+#     name: user
+#     password: password
+file:
+  upload-dir: /path/to/upload/dir

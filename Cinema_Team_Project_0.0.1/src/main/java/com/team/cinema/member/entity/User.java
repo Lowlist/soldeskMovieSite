@@ -17,139 +17,145 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
-    
-    @Column(name = "id", nullable = false)
+
+    @Column(name = "id", nullable = true)
     private String id;
-    
-    @Column(name = "pw", nullable = false)
+
+    @Column(name = "pw", nullable = true)
     private String password;
-    
-    @Column(name = "nickName", nullable = false)
+
+    @Column(name = "nickname", nullable = true)
     private String nickName;
-    
-    @Column(name = "name", nullable = false)
+
+    @Column(name = "name", nullable = true)
     private String userName;
-    
-    @Column(name = "birth", nullable = false)
+
+    @Column(name = "birth", nullable = true)
     private String birthDate;
-    
-    @Column(name = "gender", nullable = false)
+
+    @Column(name = "gender", nullable = true)
     private String gender;
-    
-    @Column(name = "email", nullable = false)
+
+    @Column(name = "email", nullable = true)
     private String email;
-    
-    @Column(name = "phone", nullable = false)
+
+    @Column(name = "phone", nullable = true)
     private String mobile;
-    
-    @Column(name = "profile", nullable = false)
+
+    @Column(name = "profile", nullable = true)
     private String profile;
-    
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    @Column(name = "addr", nullable = false)
-    private String address;
-    
-//    private String memPasswordConfirm;
-    
-    @Column(name = "createdAt", nullable = false)
+
+	@Column(name = "address", nullable = true) 
+	private String address;
+
+    @Column(name = "createdAt", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-    
+
     @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
-    
-    public int getNo() {
-		return no;
-	}
 
-	public void setNo(int no) {
-		this.no = no;
-	}
-	
+    // Getters and setters
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
     public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+	 public String getAddress() { return address; }
 	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-	public String getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getMobile() {
-		return mobile;
-	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-	public String getProfile() {
-		return profile;
-	}
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-	
-	//관리자
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	
-	@PrePersist
+	 public void setAddress(String address) { this.address = address; }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @PrePersist
     protected void onCreate() {
         LocalDateTime now = LocalDateTime.now();
         createdAt = now;
@@ -160,8 +166,7 @@ public class User {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
-    // Getters and setters
-    
+
     @Override
     public String toString() {
         return "User{" +
@@ -170,12 +175,11 @@ public class User {
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
                 ", nickName='" + nickName + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDate='" + birthDate + '\'' +
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", profile='" + profile + '\'' +
-                ", role='" + role + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }
