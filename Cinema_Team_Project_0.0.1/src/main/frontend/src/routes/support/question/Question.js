@@ -16,7 +16,7 @@ function Question() {
     const fetchQuestions = async () => {
       try {
         const data = await getQuestions();
-        setQuestions(data);
+        setQuestions(data.reverse());
       } catch (err) {
         setError(err.message);
       } finally {
@@ -87,8 +87,8 @@ function Question() {
             </li>
           ))}
         </ul>
+        </div>
         <button onClick={handleCreateQuestion}>질문 추가</button>
-      </div>
     </div>
   );
 }

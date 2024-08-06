@@ -24,6 +24,7 @@ function DrinkFood() {
                 { 
                     buttons &&
                     <div className={style.plusButton}>
+                        {/* 더보기 */}
                         <Button variant="light" onClick={ (e) => { e.stopPropagation(); navigate('food')} }>+</Button>{' '}
                     </div>
                 }
@@ -32,6 +33,7 @@ function DrinkFood() {
                 {
                     [1,2,3].map((a, i) => {
                         return (
+                            // 부트스트랩 개구려서 내가 알아서 만들듯 
                             <div className={style.cardBox} key={i}>
                                 <Card style={{ width: '28rem', border: '0px' }}>
                                     <Card.Body className={style.cardBody} onClick={() => navigate(`/store/${state.food.data[i].no}`)}>
@@ -40,6 +42,7 @@ function DrinkFood() {
                                             <Card.Title>{state.food.data[i].title}</Card.Title>
                                             <Card.Text>
                                                 {state.food.data[i].content}
+                                                {/* 자동컴마기능 */}
                                                 <div>{state.food.data[i].price.toLocaleString("ko-KR")}원</div>
                                             </Card.Text>
                                         </div>

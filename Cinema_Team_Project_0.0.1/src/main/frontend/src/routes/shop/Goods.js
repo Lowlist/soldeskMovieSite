@@ -24,6 +24,7 @@ function Goods() {
                     {/* Navbar Start */}
                     <div className={style.storeHead}>
                         <Navbar bg="light" data-bs-theme="light" className={style.navBar}>
+                            {/* 부트스트랩 개구려서 나중에 그냥 혼자 만들듯? */}
                             <Container>
                                 <Navbar.Brand onClick={ () => navigate('/store') } className={style.storeName} style={{cursor : 'pointer'}}>스토어</Navbar.Brand>
                                 <Nav className="me-auto">
