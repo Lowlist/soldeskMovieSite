@@ -19,7 +19,7 @@ function Ticketing() {
     const [selectedTheater, setSelectedTheater] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHall, setSelectedHall] = useState(null);
-    const [selectedTheaterNo, setSelectedTheaterNo] = useState(null); // 추가된 상태
+    const [selectedTheaterNo, setSelectedTheaterNo] = useState(null); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,6 +31,7 @@ function Ticketing() {
         axios.get('/ticketing/movies', { params: { releaseDate: formattedDate } })
             .then(response => {
                 const movieData = response.data.Data[0].Result;
+                console.log(movieData);
                 const filteredMovies = movieData
                     .filter(movie => movie.posters !== "")
                     .filter(movie => movie.genre !== '에로') // '에로' 장르 제외

@@ -33,5 +33,10 @@ public class TicketingRestController {
     public List<Theater> getTheatersByCinema(@RequestParam("cinemaNo") int cinemaNo) {
         return ticketingService.getTheatersByCinema(cinemaNo);
     }
-
+    
+    @GetMapping("/movie/add")
+    public String updateMovies() {
+    	ticketingService.updateMovies();
+        return "저장 성공";
+    }
 }
