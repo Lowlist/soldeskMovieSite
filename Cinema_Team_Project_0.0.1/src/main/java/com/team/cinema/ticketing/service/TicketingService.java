@@ -119,26 +119,24 @@ public class TicketingService {
                     for (MovieApiResponse.MovieResult result : data.getResult()) {
                     	System.out.println("응?" + result.getRepRlsDate());
                         Movie movie = new Movie();
-                        movie.setDocId(result.getDocid());
-                        movie.setTitle(result.getTitle());
-                        movie.setReleaseDate(parseDate(result.getRepRlsDate()));
-                        movie.setDeadLine(LocalDateTime.now().plusMonths(1));
-                        movie.setRuntime(result.getRuntime());
-
-                        if (result.getPosters() != null && !result.getPosters().isEmpty()) {
-                            movie.setPoster(result.getPosters().split("\\|")[0]);
+                        if (result.getPosters() == null && result.getPosters().isEmpty()) {
+                        	continue;
                         } else {
-                            movie.setPoster("default_poster.png");
-                        }
-
-                        movie.setCategory(result.getGenre());
-                        movie.setNation(result.getNation());
-                        movie.setRating(result.getRating());
-                        movie.setReviewNo(1); // 예시로 1로 설정
-                        if (result.getPlots() != null && result.getPlots().getPlot() != null && !result.getPlots().getPlot().isEmpty()) {
-                            movie.setContent(result.getPlots().getPlot().get(0).getPlotText());
-                        }
-                        movies.add(movie);
+                        	movie.setPoster(result.getPosters().split("\\|")[0]);
+                        	movie.setDocId(result.getDocid());
+                            movie.setTitle(result.getTitle());
+                            movie.setReleaseDate(parseDate(result.getRepRlsDate()));
+                            movie.setDeadLine(LocalDateTime.now().plusMonths(1));
+                            movie.setRuntime(result.getRuntime());
+                            movie.setCategory(result.getGenre());
+                            movie.setNation(result.getNation());
+                            movie.setRating(result.getRating());
+                            movie.setReviewNo(1);
+                            if (result.getPlots() != null && result.getPlots().getPlot() != null && !result.getPlots().getPlot().isEmpty()) {
+                                movie.setContent(result.getPlots().getPlot().get(0).getPlotText());
+                            }
+                            movies.add(movie);
+                        }   
                     }
                 }
                 saveMovies(movies);
