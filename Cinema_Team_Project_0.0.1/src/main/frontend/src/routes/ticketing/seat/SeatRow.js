@@ -10,7 +10,6 @@ const SeatRow = ({ row, cols, selectedSeats, handleSeatClick, numPeople }) => {
         <div className={styles.seatRow}>
             {cols.map((col, colIndex) => (
                 <Seat
-                    key={colIndex}
                     seat={`${row.rowLabel}${col.line}`}
                     isSelected={selectedSeats.includes(`${row.rowLabel}${col.line}`)}
                     handleSeatClick={handleSeatClick}

@@ -6,24 +6,22 @@ const DateSelection = ({ dates, selectedDate, setSelectedDate }) => {
         setSelectedDate(date);
     };
 
+    // 날짜 선택 불러오기
     const renderDates = () => {
         return dates.map((date, index) => {
-            const day = date.toLocaleDateString('ko-KR', { day: '2-digit' });
-            const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'short' });
+            const day = date.toLocaleDateString('ko-KR', { day: '2-digit' }); // 2자리로 표시 (8일이면 08일로)
+            const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'short' }); // 월 화 수 목 금 토 일 한글자로 짧게
             const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
 
             return (
-                <div
-                    key={index}
-                    className={`${styles.calendarItem} ${isSelected ? styles.selectedDate : ''}`}
-                    onClick={() => handleDateClick(date)}
-                >
+                <div className={`${styles.calendarItem} ${isSelected ? styles.selectedDate : ''}`} onClick={() => handleDateClick(date)}>
                     {`${dayOfWeek}`} &nbsp; {`${day}`}
                 </div>
             );
         });
     };
 
+    // 선택하면 2024.8.8.(목) 이 형식으로 변경되서 표시
     const currentMonth = selectedDate ? selectedDate.toLocaleDateString('ko-KR', { month: 'long' }) : '';
 
     return (

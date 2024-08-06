@@ -3,6 +3,7 @@ import styles from './style/MovieInfo.module.css';
 
 const MovieInfo = ({ selectedMovie, selectedTheater, selectedDateString, selectedTime, selectedHall }) => {
     return (
+        // 아까 선택한 값들 그대로 표시
         <div className={styles.movieDetails}>
             <div>
                 <div>영화 : </div>

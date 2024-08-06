@@ -8,15 +8,15 @@ const TheaterSelection = ({ selectedRegion, setSelectedRegion, selectedTheater, 
 
     useEffect(() => {
         if (selectedRegion) {
-            axios.get('/ticketing/theaters', { params: { area: selectedRegion } })
-                .then(response => setTheaters(response.data))
+            axios.get('/ticketing/theaters', { params: { area: selectedRegion } }) // 극장 데이터 불러오기
+                .then(response => setTheaters(response.data)) // 집어 넣기!
                 .catch(error => console.error("API 호출 오류: ", error));
         }
     }, [selectedRegion]);
 
     const handleTheaterSelect = (theater) => {
         setSelectedTheater(`${theater.name}(${theater.region})`);
-        setSelectedTheaterNo(theater.no); // 여기도 setSelectedTheaterNo로 수정
+        setSelectedTheaterNo(theater.no);
     };
 
     return (
@@ -25,23 +25,17 @@ const TheaterSelection = ({ selectedRegion, setSelectedRegion, selectedTheater, 
             <div className={styles.subHeader}></div>
             <div className={styles.theaterContainer}>
                 <div className={`${styles.regionList} ${styles.scrollable}`}>
+                    {/* 지역 선택 (서울밖에 없음) */}
                     {regions.map((region) => (
-                        <div
-                            key={region}
-                            className={`${styles.regionItem} ${selectedRegion === region ? styles.selectedRegion : ''}`}
-                            onClick={() => setSelectedRegion(region)}
-                        >
+                        <div className={`${styles.regionItem} ${selectedRegion === region ? styles.selectedRegion : ''}`} onClick={() => setSelectedRegion(region)}>
                             {region}
                         </div>
                     ))}
                 </div>
                 <div className={`${styles.theaterList} ${styles.scrollable}`}>
+                    {/* 극장 선택 하나뿐이지만 */}
                     {theaters.map((theater, index) => (
-                        <div
-                            key={index}
-                            className={`${styles.theaterItem} ${selectedTheater === `${theater.name}(${theater.region})` ? styles.selectedTheater : ''}`}
-                            onClick={() => handleTheaterSelect(theater)}
-                        >
+                        <div className={`${styles.theaterItem} ${selectedTheater === `${theater.name}(${theater.region})` ? styles.selectedTheater : ''}`} onClick={() => handleTheaterSelect(theater)}>
                             {`${theater.name}(${theater.region})`}
                         </div>
                     ))}

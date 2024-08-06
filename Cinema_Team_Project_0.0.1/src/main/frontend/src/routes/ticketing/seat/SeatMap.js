@@ -11,7 +11,6 @@ const SeatMap = ({ selectedSeats, handleSeatClick, hallConfigurations , numPeopl
             <div className={styles.seatMapContainer}>
                 {rows.map((row, rowIndex) => (
                     <SeatRow
-                        key={rowIndex}
                         row={row}
                         cols={cols}
                         selectedSeats={selectedSeats}

@@ -51,11 +51,7 @@ function SelectionComplete({ movie, theater, date, time, hall, audience, seatTyp
                 </div>
             </div>
             <div className={styles.buttonContainer}>
-                <button 
-                    className={`${styles.button} ${isButtonEnabled ? styles.enabled : styles.disabled}`} 
-                    onClick={isButtonEnabled ? onButtonClick : null}
-                    disabled={!isButtonEnabled}
-                >
+                <button className={`${styles.button} ${isButtonEnabled ? styles.enabled : styles.disabled}`} onClick={isButtonEnabled ? onButtonClick : null} disabled={!isButtonEnabled}>
                     결제
                 </button>
             </div>
