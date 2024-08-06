@@ -18,8 +18,8 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
 
-    @Column(name = "movieNo", nullable = false)
-    private int movieNo;
+    @Column(name = "movieSeq", nullable = false)
+    private String movieSeq;
 
     @Column(name = "theaterNo", nullable = false)
     private int theaterNo;
@@ -56,12 +56,12 @@ public class Schedule {
 		this.no = no;
 	}
 
-	public int getMovieNo() {
-		return movieNo;
+	public String getMovieSeq() {
+		return movieSeq;
 	}
 
-	public void setMovieNo(int movieNo) {
-		this.movieNo = movieNo;
+	public void setMovieSeq(String movieSeq) {
+		this.movieSeq = movieSeq;
 	}
 
 	public int getTheaterNo() {
