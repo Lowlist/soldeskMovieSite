@@ -16,7 +16,8 @@ function Question() {
     const fetchQuestions = async () => {
       try {
         const data = await getQuestions();
-        setQuestions(data);
+        // 최신 질문이 먼저 출력되도록 questions를 역순으로 정렬
+        setQuestions(data.reverse());
       } catch (err) {
         setError(err.message);
       } finally {
@@ -87,9 +88,10 @@ function Question() {
             </li>
           ))}
         </ul>
-        <button onClick={handleCreateQuestion}>질문 추가</button>
       </div>
+      <button onClick={handleCreateQuestion}>질문 추가</button>
     </div>
   );
 }
+
 export default Question;

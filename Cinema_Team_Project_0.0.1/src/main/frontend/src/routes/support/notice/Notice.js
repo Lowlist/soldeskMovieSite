@@ -17,7 +17,8 @@ function Notice() {
     const fetchNotices = async () => {
       try {
         const data = await getNotices();
-        setNotices(data);
+        // 최신 글이 먼저 출력되도록 notices를 역순으로 정렬
+        setNotices(data.reverse());
         setLoading(false);
       } catch (err) {
         console.error('Error fetching notices:', err);
