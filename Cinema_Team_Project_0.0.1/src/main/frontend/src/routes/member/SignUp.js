@@ -23,7 +23,6 @@ function SignUp() {
     // const [profile, setProfile] = useState('');
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState('');
-
     
     useEffect(() => {
         const newErrorClasses = errors.map(error => error ? styles.error : '');
@@ -268,20 +267,20 @@ function SignUp() {
                 address: address,
             };
             // JSON 형태로 서버에 POST 요청 전송
-            axios.post('/member/signUp', user)
-                    .then((response) => {console.log(response);
-                        if (response.status===200){
-                            navigate('/member/signIn');
-                        }
+            axios.post('/member/signIn',
+                user, { withCredentials: true })
+                    .then((response) => {
+                     alert("로그인 성공!");
+                        localStorage.setItem('userId', response.data.userId); // 로그인 정보 저장
+                        localStorage.setItem('userNo', response.data.userNo); // 넘버도 저장
+                    navigate('/'); // 메인 페이지로 이동
                     })
                     .catch((error) => {
+                        alert("다시 입력해주세요");
+                        console.error(user);
                         console.error('에러 발생:', error);
+                        console.error('에러 응답 데이터:', error.response ? error.response.data : '응답 없음');
                     });
-        		alert("가입성공");
-        			} else {
-            			console.error('Validation failed');
-        					}
-   					 };
     
    		const registerCheck = () => {
     	 axios.post('/member/registerCheck', {"id" : id})

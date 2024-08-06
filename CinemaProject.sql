@@ -225,6 +225,7 @@ createdAt,updatedAt) VALUES
 select *from goods;
 select *from food;
 select *from goodsSet;
+select *from storeBasket;
 
 -- 굿즈(관람권 등)
 CREATE TABLE `goods` (

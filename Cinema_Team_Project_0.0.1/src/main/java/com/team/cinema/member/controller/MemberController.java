@@ -35,7 +35,7 @@ public class MemberController {
 	 @Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
-	 
+	
 	@GetMapping("/signIn")
 	public void helloWorld() {
 		System.out.println("컨트롤러테스틋");
