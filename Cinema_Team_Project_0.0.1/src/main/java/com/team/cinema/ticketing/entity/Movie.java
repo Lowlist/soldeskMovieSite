@@ -1,27 +1,32 @@
 package com.team.cinema.ticketing.entity;
 
 import java.time.LocalDateTime;
-import java.time.LocalDate;
-import jakarta.persistence.*;
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "movie")
 public class Movie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int no;
+	@Id
+    @Column(name = "DOCID")
+    private String docId;
 
     @Column(name = "title", nullable = false, length = 128)
     private String title;
     
     @Column(name = "releaseDate", nullable = false)
-    private LocalDate releaseDate;
+    private LocalDateTime releaseDate;
 
     @Column(name = "deadLine", nullable = false, length = 64)
-    private String deadLine;
-    
-    @Column(name = "grade", nullable = false)
-    private Double grade;
+    private LocalDateTime deadLine;
 
     @Column(name = "runtime", nullable = false)
     private int runtime;
@@ -29,23 +34,20 @@ public class Movie {
     @Column(name = "poster", nullable = false, length = 256)
     private String poster;
     
-    @Column(name = "categoryNo", nullable = false)
-    private int categoryNo;
+    @Column(name = "category", nullable = false)
+    private String category;
 
-    @Column(name = "nationNo", nullable = false)
-    private int nationNo;
+    @Column(name = "nation", nullable = false)
+    private String nation;
     
-    @Column(name = "ratingNo", nullable = false)
-    private int ratingNo;
+    @Column(name = "rating", nullable = false)
+    private String rating;
     
-    @Column(name = "gradeNo", nullable = false)
-    private int gradeNo;
-    
-    @Column(name = "contentNo", nullable = false)
-    private int contentNo;
-    
-    @Column(name = "ranking", nullable = false)
-    private int ranking;
+    @Column(name = "reviewNo", nullable = false)
+    private int reviewNo;
+   
+    @Column(name = "content", nullable = false)
+    private String content;
 
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
@@ -65,124 +67,5 @@ public class Movie {
         updatedAt = LocalDateTime.now();
     }
     
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public LocalDate getReleaseDate() {
-		return releaseDate;
-	}
-
-	public void setReleaseDate(LocalDate releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
-	public String getDeadLine() {
-		return deadLine;
-	}
-
-	public void setDeadLine(String deadLine) {
-		this.deadLine = deadLine;
-	}
-
-	public Double getGrade() {
-		return grade;
-	}
-
-	public void setGrade(Double grade) {
-		this.grade = grade;
-	}
-
-	public int getRuntime() {
-		return runtime;
-	}
-
-	public void setRuntime(int runtime) {
-		this.runtime = runtime;
-	}
-
-	public String getPoster() {
-		return poster;
-	}
-
-	public void setPoster(String poster) {
-		this.poster = poster;
-	}
-
-	public int getCategoryNo() {
-		return categoryNo;
-	}
-
-	public void setCategoryNo(int categoryNo) {
-		this.categoryNo = categoryNo;
-	}
-
-	public int getNationNo() {
-		return nationNo;
-	}
-
-	public void setNationNo(int nationNo) {
-		this.nationNo = nationNo;
-	}
-
-	public int getRatingNo() {
-		return ratingNo;
-	}
-
-	public void setRatingNo(int ratingNo) {
-		this.ratingNo = ratingNo;
-	}
-
-	public int getGradeNo() {
-		return gradeNo;
-	}
-
-	public void setGradeNo(int gradeNo) {
-		this.gradeNo = gradeNo;
-	}
-
-	public int getContentNo() {
-		return contentNo;
-	}
-
-	public void setContentNo(int contentNo) {
-		this.contentNo = contentNo;
-	}
-
-	public int getRanking() {
-		return ranking;
-	}
-
-	public void setRanking(int ranking) {
-		this.ranking = ranking;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 
 }

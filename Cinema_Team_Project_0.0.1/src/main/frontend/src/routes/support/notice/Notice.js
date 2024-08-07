@@ -17,7 +17,7 @@ function Notice() {
     const fetchNotices = async () => {
       try {
         const data = await getNotices();
-        setNotices(data);
+        setNotices(data.reverse());
         setLoading(false);
       } catch (err) {
         console.error('Error fetching notices:', err);

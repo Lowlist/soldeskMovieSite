@@ -43,6 +43,11 @@ function PackageGoods() {
                     )
                     :
                     state.goodsSet.data.map((a, i) =>
+                        
+                        // 데이터를 3군데에서 NO 참조하여 가져왔잖아?
+                        // 만약에 state.goodsSet.data[i].no 이것만 사용했으면 1,2,3,4,5 <<< 이렇게밖에 안나와서 URL 지정이 고정적으로 1,2,3,4,5 중복으로 들어가게됨.
+                        // 그걸 방지하기위해서 랭스<< 배열길이만큼 +로직을 추가하여 3 + 6 + 1,2,3,4,5,6 중복이 발생될 일이 없습니다.
+
                         <Col className={style.packageBox} key={i} onClick={() => navigate(`/store/${state.food.data.length+state.goods.data.length+state.goodsSet.data[i].no}`)}>
                             <div className={style.packageImg}>
                                 <img src={state.goodsSet.data[i].img} width="300px" alt='이미지 로딩 실패'/>

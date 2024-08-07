@@ -3,6 +3,7 @@ use movies;
 drop database movies;
 
 select *from member;
+
 -- 영화관
 CREATE TABLE `cinema` (
     `no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 상영관 key값 -- 
@@ -33,13 +34,13 @@ CREATE TABLE `theaterRow` (
 
 -- 상영관 스케줄
 CREATE TABLE `schedule` (
-    `no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 스케쥴 Key값 -- 
-    `movieNo` INT NOT NULL, -- 영화 번호 (movie TABLE 외래키) -- 
-    `theaterNo` INT NOT NULL, -- 상영관 번호 ( theater TABLE 외래키 ) -- 
-    `date` TIMESTAMP NOT NULL, -- 상영 날짜 -- 
-    `start` TIMESTAMP NOT NULL, -- 상영 시간 -- 
-    `createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
-    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
+	`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`movieSeq` VARCHAR(50) NOT NULL,
+	`theaterNo` INT NOT NULL,
+	`date` TIMESTAMP NOT NULL,
+	`start` TIMESTAMP NOT NULL,
+	`createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
 -- 상영관
@@ -96,19 +97,19 @@ CREATE TABLE `useTicket` (
 
 -- 상영관에 상영할 영화정보
 CREATE TABLE `movie` (
-    `no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 영화 KEY값 -- 
-    `title` VARCHAR(128) NOT NULL, -- 영화 제목 -- 
-    `releaseDate` TIMESTAMP NOT NULL, -- 상영 시작일 -- 
-    `deadLine` TIMESTAMP NOT NULL, -- 상영 종료일 -- 
-    `runtime` INT NOT NULL, -- 상영 시간 -- 
-    `poster` VARCHAR(256) NOT NULL, -- 포스터 URL -- 
-    `category` VARCHAR(50) NOT NULL, -- 영화 장르 -- 
-    `nation` VARCHAR(50) NOT NULL, -- 제작 국가 -- 
-    `rating` VARCHAR(50) NOT NULL, -- 영화 심의등급 -- 
-    `reviewNo` INT NOT NULL, -- 영화 리뷰(reveiw Table 외래키) -- 
-    `content` TEXT NOT NULL, -- 영화 줄거리 -- 
-    `createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 -- 
-    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜 -- 
+    `DOCID` VARCHAR(50) NOT NULL PRIMARY KEY, -- 영화 KEY값
+    `title` VARCHAR(128) NOT NULL, -- 영화 제목
+    `releaseDate` TIMESTAMP NOT NULL, -- 상영 시작일
+    `deadLine` TIMESTAMP NOT NULL, -- 상영 종료일
+    `runtime` INT NOT NULL, -- 상영 시간
+    `poster` VARCHAR(256) NOT NULL, -- 포스터 URL
+    `category` VARCHAR(50) NOT NULL, -- 영화 장르
+    `nation` VARCHAR(50) NOT NULL, -- 제작 국가
+    `rating` VARCHAR(50) NOT NULL, -- 영화 심의등급
+    `reviewNo` INT NOT NULL, -- 영화 리뷰(reveiw Table 외래키)
+    `content` TEXT NOT NULL, -- 영화 줄거리
+    `createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜
+    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜
 ) ENGINE=InnoDB;
 
 -- 영화 리뷰
@@ -225,6 +226,7 @@ createdAt,updatedAt) VALUES
 select *from goods;
 select *from food;
 select *from goodsSet;
+select *from storeBasket;
 
 -- 굿즈(관람권 등)
 CREATE TABLE `goods` (

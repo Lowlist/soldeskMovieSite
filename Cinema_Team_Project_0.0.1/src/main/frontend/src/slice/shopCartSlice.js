@@ -52,11 +52,13 @@ let shopCart = createSlice({
                     newItem.goodsNo = action.payload.idUniq;
                 }
 
+                // 속도쪽에서 개선된로직
                 axios.post("/store/basket", newItem, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
+
                 .catch((error)=>{
                     console.log(error+"ㅋㅋ 님 에러남")
                 });

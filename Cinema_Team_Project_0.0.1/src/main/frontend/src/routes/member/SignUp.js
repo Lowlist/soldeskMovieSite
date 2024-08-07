@@ -277,11 +277,11 @@ function SignUp() {
                     .catch((error) => {
                         console.error('에러 발생:', error);
                     });
-        		alert("가입성공");
+        		        alert("가입성공");
         			} else {
             			console.error('Validation failed');
-        					}
-   					 };
+                    }
+            };
     
    		const registerCheck = () => {
     	 axios.post('/member/registerCheck', {"id" : id})

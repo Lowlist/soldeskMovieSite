@@ -43,7 +43,6 @@
     border-radius: 5px;
     margin-bottom: 5px;
     position: relative;
-
 }
 
 .movieItem:hover {
@@ -51,13 +50,13 @@
 }
 
 .selectedMovie {
-    background-color: #d3d3d3;
+    background-color: #d3d3d3; /* 왜인지 안 먹힘 */
 }
 
 .title {
     position: absolute;
     top: 50%;
-    margin-top: -25px; /* 이 요소 높이의 절반 */
+    margin-top: -25px; 
     margin-left: 150px;
     margin-right: 20px;
 }

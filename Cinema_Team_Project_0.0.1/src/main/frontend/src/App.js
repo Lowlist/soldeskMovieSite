@@ -51,6 +51,7 @@ function App() {
   let goodsSetState = useSelector((state) => state.goodsSet);
   let basketState = useSelector((state) => state.shopCart);
 
+  //첫 기동할떄 디스패치로 가져와야함
   useEffect(() => {
     disPatch(foodData());
     disPatch(goodsData());
@@ -69,6 +70,7 @@ function App() {
   if (!foodState.data || foodState.data.length === 0) {
     return <div>데이터가 없습니다!</div>;
   }
+
   return (
     <div className="App">
       

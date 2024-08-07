@@ -64,7 +64,6 @@ function GoodsDetail(){
         )
     }
 
-
     return(
         <div>
             <div className={style.detailName}>

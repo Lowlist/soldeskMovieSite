@@ -32,15 +32,16 @@ function Login() {
             password: pwValue,
         };
             // JSON 형태로 서버에 POST 요청 전송
-            axios.post('/member/signIn',  
+            axios.post('/member/signIn',
                 user, { withCredentials: true })
                     .then((response) => {
-					 alert("로그인 성공!");
-                   	 localStorage.setItem('userId', response.data.userId); // 로그인 정보 저장
-                    navigate('/'); // 메인 페이지로 이동
+                        alert("로그인 성공!");
+                        localStorage.setItem('userId', response.data.userId); // 로그인 정보 저장
+                        localStorage.setItem('userNo', response.data.userNo); // 넘버도 저장
+                        navigate('/'); // 메인 페이지로 이동
                     })
                     .catch((error) => {
-						alert("다시 입력해주세요");
+                        alert("다시 입력해주세요");
                         console.error(user);
                         console.error('에러 발생:', error);
                         console.error('에러 응답 데이터:', error.response ? error.response.data : '응답 없음');

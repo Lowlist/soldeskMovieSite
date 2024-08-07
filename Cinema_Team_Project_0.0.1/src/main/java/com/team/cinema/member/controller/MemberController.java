@@ -19,6 +19,7 @@ import com.team.cinema.member.entity.User;
 import com.team.cinema.member.repository.UserRepository;
 import com.team.cinema.member.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -35,7 +36,7 @@ public class MemberController {
 	 @Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
-	 
+	
 	@GetMapping("/signIn")
 	public void helloWorld() {
 		System.out.println("컨트롤러테스틋");
@@ -62,25 +63,28 @@ public class MemberController {
 	// 로그인 했을시 회원가입 페이지 접근 막기 리다이렉트로 마이페이지 가는거 괜찮은듯?
 	
 	@PostMapping("/signIn")
-    public ResponseEntity<Map<String, String>> signIn(@RequestBody User user, HttpServletRequest request) {
+    @Operation(summary = "로그인", description = "유저 로그인 시도 API", tags = {"User"})
+    public ResponseEntity<Map<String, Object>> signIn(@RequestBody User user, HttpServletRequest request) {
         if (user.getId() == null || user.getId().isEmpty() ||
-            user.getPassword() == null || user.getPassword().isEmpty()) {
+        	user.getPassword() == null || user.getPassword().isEmpty()) {
 //            System.out.println("아이디와 비밀번호가 비어있습니다.");
             return ResponseEntity.badRequest().body(Map.of("message", "아이디와 비밀번호를 입력해주세요."));
         }
 
         Optional<User> userOptional = userRepository.findById(user.getId());
-        
+
         if (userOptional.isPresent() && pwEncoder.matches(user.getPassword(), userOptional.get().getPassword())) {
-        	User storedUser = userOptional.get();
-        	HttpSession session = request.getSession();
+            User storedUser = userOptional.get();
+            HttpSession session = request.getSession();
             session.setAttribute("userId", storedUser.getId()); // 세션에 사용자 ID 저장
-//            session.setAttribute("userRole", storedUser.getRole()); // 세션에 사용자 역할 저장
-            session.setAttribute("userPassword", storedUser.getPassword()); // 세션에 사용자 이메일 저장
-            System.out.println("세션 저장 완료: " + session.getAttribute("userId") + ", " + session.getAttribute("userPassword"));
-            return ResponseEntity.ok(Map.of("userId", storedUser.getId()));
+            session.setAttribute("userId", storedUser.getNo()); // 세션에 no 저장
+            //            session.setAttribute("userRole", storedUser.getRole()); // 세션에 사용자 역할 저장
+            session.setAttribute("userPassword", storedUser.getPassword()); //패스워드 필요하면 넣고 아니면 지우기 
+         //   System.out.println("세션 저장 완료: " + session.getAttribute("userId") + ", " + session.getAttribute("userPassword"));
+
+            return ResponseEntity.ok(Map.of("userId", storedUser.getId(), "userNo", storedUser.getNo()));
         } else {
-        	return ResponseEntity.status(401).body(Map.of("message", "아이디 또는 비밀번호가 올바르지 않습니다."));
+            return ResponseEntity.status(401).body(Map.of("message", "아이디 또는 비밀번호가 올바르지 않습니다."));
         }
     }
 	

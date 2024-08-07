@@ -1,4 +1,3 @@
-// MovieSelection.js
 import React from 'react';
 import styles from './style/MovieSelection.module.css';
 
