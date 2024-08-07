@@ -1,5 +1,6 @@
 package com.team.cinema.support.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.team.cinema.support.dto.NoticeDTO;
 import com.team.cinema.support.dto.QuestionDTO;
@@ -42,18 +45,31 @@ public class SupportController {
 
     // 공지사항 작성
     @PostMapping("/notice/write")
-    public ResponseEntity<Void> writeNotice(@RequestBody NoticeDTO noticeDTO) {
+    public ResponseEntity<Void> writeNotice(
+            @RequestParam("noticeTitle") String noticeTitle,
+            @RequestParam("noticeContent") String noticeContent,
+            @RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) throws IOException {
+
+        NoticeDTO noticeDTO = new NoticeDTO();
+        noticeDTO.setNoticeTitle(noticeTitle);
+        noticeDTO.setNoticeContent(noticeContent);
+
+        if (noticeImage != null && !noticeImage.isEmpty()) {
+            // 이미지 데이터를 byte 배열로 변환
+            noticeDTO.setNoticeImage(noticeImage.getBytes());
+        }
+
+        // 공지사항을 데이터베이스에 저장
         noticeService.write(noticeDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
-    // 공지사항 상세 조회
+    
     @GetMapping("/notice/{id}")
-    public ResponseEntity<NoticeDTO> getNotice(@PathVariable("id") int id) {
+    public ResponseEntity<NoticeDTO> getNoticeById(@PathVariable("id") int id) {
         NoticeDTO notice = noticeService.read(id);
         return ResponseEntity.ok(notice);
     }
-
+    
     // 공지사항 수정 폼 이동
     @GetMapping("/notice/modify/{id}")
     public ResponseEntity<NoticeDTO> modifyNoticeForm(@PathVariable("id") int id) {
@@ -63,7 +79,20 @@ public class SupportController {
 
     // 공지사항 수정
     @PostMapping("/notice/modify/{id}")
-    public ResponseEntity<Void> modifyNotice(@PathVariable("id") int id, @RequestBody NoticeDTO noticeDTO) {
+    public ResponseEntity<Void> modifyNotice(
+            @PathVariable("id") int id,
+            @RequestParam("noticeTitle") String noticeTitle,
+            @RequestParam("noticeContent") String noticeContent,
+            @RequestParam(value = "noticeImage", required = false) MultipartFile noticeImage) throws IOException {
+
+        NoticeDTO noticeDTO = new NoticeDTO();
+        noticeDTO.setNoticeNo(id);
+        noticeDTO.setNoticeTitle(noticeTitle);
+        noticeDTO.setNoticeContent(noticeContent);
+        if (noticeImage != null && !noticeImage.isEmpty()) {
+            noticeDTO.setNoticeImage(noticeImage.getBytes()); // 이미지 데이터를 바이트 배열로 변환
+        }
+
         noticeService.modify(id, noticeDTO);
         return ResponseEntity.ok().build();
     }
@@ -84,8 +113,20 @@ public class SupportController {
 
     // 질문 작성
     @PostMapping("/question/write")
-    public ResponseEntity<Void> writeQuestion(@RequestBody QuestionDTO questionDTO) {
-        questionService.write(questionDTO);
+    public ResponseEntity<Void> writeQuestion(
+            @RequestParam("questionTitle") String questionTitle,
+            @RequestParam("questionContent") String questionContent,
+            @RequestParam(value = "questionImage", required = false) MultipartFile questionImage) throws IOException {
+
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setQuestionTitle(questionTitle);
+        questionDTO.setQuestionContent(questionContent);
+
+        if (questionImage != null && !questionImage.isEmpty()) {
+            questionDTO.setQuestionImage(questionImage.getBytes());
+        }
+
+        questionService.write(questionDTO, questionImage);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -107,10 +148,25 @@ public class SupportController {
 
     // 질문 수정
     @PostMapping("/question/modify/{id}")
-    public ResponseEntity<Void> modifyQuestion(@PathVariable("id") int id, @RequestBody QuestionDTO questionDTO) {
-        questionService.modify(id, questionDTO);
+    public ResponseEntity<Void> modifyQuestion(
+            @PathVariable("id") int id,
+            @RequestParam("questionTitle") String questionTitle,
+            @RequestParam("questionContent") String questionContent,
+            @RequestParam(value = "questionImage", required = false) MultipartFile questionImage) throws IOException {
+
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setQuestionNo(id);
+        questionDTO.setQuestionTitle(questionTitle);
+        questionDTO.setQuestionContent(questionContent);
+
+        if (questionImage != null && !questionImage.isEmpty()) {
+            questionDTO.setQuestionImage(questionImage.getBytes());
+        }
+
+        questionService.modify(id, questionDTO, questionImage);
         return ResponseEntity.ok().build();
     }
+
 
     // 질문 삭제
     @DeleteMapping("/question/{id}")

@@ -33,9 +33,14 @@ export const getNoticeById = async (id) => {
 };
 
 // 공지사항을 생성하는 함수
-export const createNotice = async (notice) => {
+export const createNotice = async (formData) => {
   try {
-    const response = await axios.post(`${API_URL}/write`, notice);
+    const response = await axios.post(`${API_URL}/write`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
     if (response.status === 201) {
       return response.data;
     } else {
@@ -48,9 +53,14 @@ export const createNotice = async (notice) => {
 };
 
 // 공지사항을 수정하는 함수
-export const updateNotice = async (id, notice) => {
+export const updateNotice = async (id, formData) => {
   try {
-    const response = await axios.post(`${API_URL}/modify/${id}`, notice);
+    const response = await axios.post(`${API_URL}/modify/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
     if (response.status === 200) {
       return response.data;
     } else {

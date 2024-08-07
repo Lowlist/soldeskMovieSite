@@ -57,6 +57,9 @@ public class NoticeSerivce {
         notice.setNoticeContent(noticeDTO.getNoticeContent());
         notice.setNoticeHit(noticeDTO.getNoticeHit());
         notice.setUpdatedAt(LocalDateTime.now());
+        if (noticeDTO.getNoticeImage() != null) {
+            notice.setNoticeImage(noticeDTO.getNoticeImage()); // 이미지 업데이트
+        }
         NoticeEntity updatedNotice = noticeRepository.save(notice);
         return convertToDTO(updatedNotice);
     }
@@ -69,6 +72,7 @@ public class NoticeSerivce {
         noticeDTO.setNoticeHit(notice.getNoticeHit());
         noticeDTO.setCreatedAt(notice.getCreatedAt());
         noticeDTO.setUpdatedAt(notice.getUpdatedAt());
+        noticeDTO.setNoticeImage(notice.getNoticeImage()); // 이미지 데이터 추가
         return noticeDTO;
     }
 
@@ -84,6 +88,7 @@ public class NoticeSerivce {
         if (noticeDTO.getUpdatedAt() != null) {
             notice.setUpdatedAt(noticeDTO.getUpdatedAt());
         }
+        notice.setNoticeImage(noticeDTO.getNoticeImage()); // 이미지 데이터 추가
         return notice;
     }
 }

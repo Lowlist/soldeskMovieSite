@@ -13,4 +13,5 @@ public class NoticeDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String adminId;
+    private byte[] noticeImage; // 이미지 데이터 추가
 }

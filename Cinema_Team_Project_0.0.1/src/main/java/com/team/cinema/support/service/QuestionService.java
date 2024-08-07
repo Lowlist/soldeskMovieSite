@@ -1,11 +1,13 @@
 package com.team.cinema.support.service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.team.cinema.support.dto.QuestionDTO;
 import com.team.cinema.support.dto.ReplyDTO;
@@ -38,10 +40,15 @@ public class QuestionService {
                 .collect(Collectors.toList());
     }
 
-    public QuestionDTO write(QuestionDTO questionDTO) {
+    public QuestionDTO write(QuestionDTO questionDTO, MultipartFile imageFile) throws IOException {
         QuestionEntity question = convertToEntity(questionDTO);
         question.setCreatedAt(LocalDateTime.now());
         question.setUpdatedAt(LocalDateTime.now());
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            question.setQuestionImage(imageFile.getBytes());
+        }
+
         QuestionEntity savedQuestion = questionRepository.save(question);
         return convertToDTO(savedQuestion);
     }
@@ -64,13 +71,18 @@ public class QuestionService {
         questionRepository.deleteById(questionNo);
     }
 
-    public QuestionDTO modify(int questionNo, QuestionDTO questionDTO) {
+    public QuestionDTO modify(int questionNo, QuestionDTO questionDTO, MultipartFile imageFile) throws IOException {
         QuestionEntity question = questionRepository.findById(questionNo)
                 .orElseThrow(() -> new RuntimeException("Question not found"));
         question.setQuestionTitle(questionDTO.getQuestionTitle());
         question.setQuestionContent(questionDTO.getQuestionContent());
         question.setQuestionHit(questionDTO.getQuestionHit());
         question.setUpdatedAt(LocalDateTime.now());
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            question.setQuestionImage(imageFile.getBytes());
+        }
+
         QuestionEntity updatedQuestion = questionRepository.save(question);
         return convertToDTO(updatedQuestion);
     }
@@ -85,6 +97,7 @@ public class QuestionService {
         questionDTO.setUpdatedAt(question.getUpdatedAt());
         // questionDTO.setNo(question.getMember() != null ? question.getMember().getNo() : 0)
         questionDTO.setReplyNo(question.getQuestionReply() != null ? question.getQuestionReply().getReplyNo() : 0);
+        questionDTO.setQuestionImage(question.getQuestionImage());
         return questionDTO;
     }
 
@@ -98,6 +111,7 @@ public class QuestionService {
         question.setUpdatedAt(questionDTO.getUpdatedAt() != null ? questionDTO.getUpdatedAt() : LocalDateTime.now());
         // question.setMember(member); 
         // question.setQuestionReply(replyEntity); 
+        question.setQuestionImage(questionDTO.getQuestionImage());
         return question;
     }
 

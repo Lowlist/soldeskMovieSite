@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -41,6 +42,10 @@ public class NoticeEntity {
 	 * @JoinColumn(name = "adminId", referencedColumnName = "adminId") private Admin
 	 * admin;
 	 */
+    
+    @Lob
+    @Column(name = "noticeImage")
+    private byte[] noticeImage;
     
     public NoticeEntity() {
         this.createdAt = LocalDateTime.now();

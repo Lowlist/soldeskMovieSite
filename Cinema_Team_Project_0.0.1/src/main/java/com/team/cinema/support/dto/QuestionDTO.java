@@ -16,4 +16,5 @@ public class QuestionDTO {
     private int no; 
     private int replyNo; 
     private List<ReplyDTO> replies;  
+    private byte[] questionImage; // 이미지 데이터 추가
 }

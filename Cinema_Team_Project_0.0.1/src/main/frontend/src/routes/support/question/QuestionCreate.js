@@ -6,19 +6,28 @@ function QuestionCreate() {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [image, setImage] = useState(null); // 이미지 상태 추가
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const questionData = {
-        questionTitle: title.trim() !== "" ? title : "",
-        questionContent: content.trim() !== "" ? content : "",
-      };
-      await createQuestion(questionData);
+      const formData = new FormData();
+      formData.append('questionTitle', title.trim() !== "" ? title : "");
+      formData.append('questionContent', content.trim() !== "" ? content : "");
+      if (image) {
+        formData.append('questionImage', image);
+      }
+      
+      await createQuestion(formData);
       navigate('/support/question');
     } catch (error) {
       console.error('Error creating question:', error);
     }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
   };
 
   return (
@@ -44,6 +53,14 @@ function QuestionCreate() {
             value={content} 
             onChange={(e) => setContent(e.target.value)} 
             required 
+          />
+        </div>
+        <div style={{ marginBottom: '20px' }}>
+          <label style={{ fontWeight: 'bold', fontSize: '20px' }}>이미지</label>
+          <br />
+          <input 
+            type="file"
+            onChange={handleImageChange}
           />
         </div>
         <button type="submit">저장</button>
