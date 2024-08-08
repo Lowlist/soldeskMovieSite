@@ -3,6 +3,7 @@ import shopCart from './slice/shopCartSlice.js';
 import food from './slice/foodSlice.js';
 import goods from './slice/goodsSlice.js';
 import goodsSet from './slice/goodsSetSlice.js';
+import notice from './slice/noticeSlice.js';
 
 /**
  * -리덕스 쓰는이유 
@@ -22,11 +23,14 @@ import goodsSet from './slice/goodsSetSlice.js';
  * 버그추적에 용이함
  */
 
+
+
 export default configureStore({
   reducer: { 
     shopCart : shopCart.reducer,
     food: food.reducer,
     goods: goods.reducer,
-    goodsSet: goodsSet.reducer
+    goodsSet: goodsSet.reducer,
+    notice: notice.reducer
   }
 }) 

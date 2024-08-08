@@ -32,6 +32,7 @@ import { goodsData } from './slice/goodsSlice.js';
 import { goodsSetData } from './slice/goodsSetSlice.js';
 import { basketData } from './slice/shopCartSlice.js';
 import MovieTop from './routes/movieInfo/MovieTop.js';
+import { noticeData } from './slice/noticeSlice.js';
 
 // 내부 스테이트 들은 알아서 만들고 알아서 정리하세요!
 // 공용스테이트같은 경우에는 redux사용해서 정리할것!
@@ -50,6 +51,7 @@ function App() {
   let goodsState = useSelector((state) => state.goods);
   let goodsSetState = useSelector((state) => state.goodsSet);
   let basketState = useSelector((state) => state.shopCart);
+  let noticeState = useSelector((state) => state.notice);
 
   //첫 기동할떄 디스패치로 가져와야함
   useEffect(() => {
@@ -57,13 +59,14 @@ function App() {
     disPatch(goodsData());
     disPatch(goodsSetData());
     disPatch(basketData());
+    disPatch(noticeData());
   }, [disPatch]);
 
-  if (foodState.loading || goodsState.loading || goodsSetState.loading || basketState.loading) {
+  if (foodState.loading || goodsState.loading || goodsSetState.loading || basketState.loading || noticeState.loading) {
     return <div>로딩창</div>;
   }
 
-  if (foodState.error || goodsState.error || goodsSetState.error || basketState.error) {
+  if (foodState.error || goodsState.error || goodsSetState.error || basketState.error || noticeState.error) {
     return <div>에러메세지</div>;
   }
 

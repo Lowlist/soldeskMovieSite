@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import join from '../../images/join.png';
 import login from '../../images/login.png';
 import mypage from '../../images/mypage.png';
+import qrCord from '../../images/cgvQR.PNG';
 import search from '../../images/search.png';
 import styles from './style/Main.module.css';
 import Container from 'react-bootstrap/Container';
@@ -191,7 +192,7 @@ function Main() {
                         </div>
                         {/* 공지사항 1줄 데이터 바인딩 */}
                         <div className={styles['announcement-list']}>
-                           공지사항 리스트 1
+                           { state.notice.data[1].noticeTitle }
                         </div>
                         <div className={styles['announcement-button']}>
                            <button className={styles['announcement-button-click']}>
@@ -235,7 +236,7 @@ function Main() {
                            씨네망가앱에서 더 편리하게 이용하세요
                         </div>
                         <div className={styles['app-qr']}>
-                           대충 QR 이미지
+                           <img className={styles['qr-img']} src={qrCord}></img>
                         </div>
                         <div className={styles['qr-info']}>
                            QR코드를 스캔하고
@@ -255,7 +256,6 @@ function Main() {
 function MovieChart(props) {
    let navigate = useNavigate();
    let [show, setShow] = useState(false);
-   console.log(props.i);
    return (
       <div className={styles['chart-body']}>
          <div className={styles['chart-movie']} onMouseEnter={() => { setShow(true) }} onMouseLeave={() => { setShow(false) }}>
