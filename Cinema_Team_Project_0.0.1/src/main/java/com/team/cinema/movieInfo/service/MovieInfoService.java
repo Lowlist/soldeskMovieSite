@@ -17,7 +17,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.team.cinema.movieInfo.entity.Review;
+import com.team.cinema.movieInfo.repository.MovieInfoRepository;
 import com.team.cinema.movieInfo.repository.ReviewRepository;
+
+
 
 @Service
 public class MovieInfoService {
@@ -29,6 +32,8 @@ public class MovieInfoService {
     
     @Autowired
     private ReviewRepository reviewRepository;
+    @Autowired
+    private MovieInfoRepository movieInfoRepository;
     
     //영화목록 가져오기
     public String getMovies(String releaseDate) {
@@ -40,9 +45,15 @@ public class MovieInfoService {
                     .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
                     .toUriString(); //문자열로 변환해주는 함수
 
-            URI uri = new URI(requestUrl);
+    		URI uri = new URI(requestUrl);
+
             RestTemplate restTemplate = new RestTemplate();
-            String response = restTemplate.getForObject(uri, String.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+            String response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class).getBody();
+            
             return response;
     	} catch (Exception e) {
     		 logger.error("에러: ", e);
@@ -89,5 +100,131 @@ public class MovieInfoService {
     public List<Review> getReviewByMovieNo(int movieNo) {
     	return reviewRepository.findByMovieNo(movieNo);
     }
+    
+//    //영화 자동 DB 저장
+//    @Scheduled(cron = "0 0 0 * * ?")
+//    public void updateMovies() {
+//        try {
+//            RestTemplate restTemplate = new RestTemplate();
+//            LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+//            String releaseDts = oneMonthAgo.format(formatter);
+//
+//            String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
+//                    .queryParam("listCount", 10)
+//                    .queryParam("releaseDts", URLEncoder.encode(releaseDts, StandardCharsets.UTF_8))
+//                    .queryParam("detail", "Y")
+//                    .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
+//                    .toUriString();
+//            URI uri = new URI(requestUrl);
+//            String response = restTemplate.getForObject(uri, String.class);
+//            log.info("API 응답: " + response);
+//
+//            ObjectMapper mapper = new ObjectMapper();
+//            MovieApiResponse movieApiResponse = mapper.readValue(response, MovieApiResponse.class);
+//            if (movieApiResponse != null && movieApiResponse.getData() != null) {
+//                List<Movie> movies = new ArrayList<>();
+//                for (MovieApiResponse.Data data : movieApiResponse.getData()) {
+//                    for (MovieApiResponse.MovieResult result : data.getResult()) {
+//                    	System.out.println("응?" + result.getRepRlsDate());
+//                        Movie movie = new Movie();
+//                        movie.setDocId(result.getDocid());
+//                        movie.setTitle(result.getTitle());
+//                        movie.setReleaseDate(parseDate(result.getRepRlsDate()));
+//                        movie.setDeadLine(LocalDateTime.now().plusMonths(1));
+//                        movie.setRuntime(result.getRuntime());
+//
+//                        if (result.getPosters() != null && !result.getPosters().isEmpty()) {
+//                            movie.setPoster(result.getPosters().split("\\|")[0]);
+//                        } else {
+//                            movie.setPoster("default_poster.png");
+//                        }
+//
+//                        movie.setCategory(result.getGenre());
+//                        movie.setNation(result.getNation());
+//                        movie.setRating(result.getRating());
+//                        movie.setReviewNo(1); // 예시로 1로 설정
+//                        if (result.getPlots() != null && result.getPlots().getPlot() != null && !result.getPlots().getPlot().isEmpty()) {
+//                            movie.setContent(result.getPlots().getPlot().get(0).getPlotText());
+//                        }
+//                        movies.add(movie);
+//                    }
+//                }
+//                saveMovies(movies);
+//            }
+//        } catch (URISyntaxException e) {
+//            System.err.println("URI 신택스 에러: " + e.getMessage());
+//        } catch (Exception e) {
+//            System.err.println("API 호출 오류: " + e.getMessage());
+//        }
+//    }
+//
+//    // 날짜 형식 변경
+//    private LocalDateTime parseDate(String dateStr) {
+//        if (!isValidDate(dateStr)) {
+//            return LocalDateTime.now(); 
+//        }
+//        try {
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+//            return LocalDate.parse(dateStr, formatter).atStartOfDay();
+//        } catch (DateTimeParseException e) {
+//            logger.error("날짜 왜이럼: " + dateStr, e);
+//            return LocalDateTime.now();
+//        }
+//    }
+//
+//    // 유효한 날짜 형식 확인
+//    private boolean isValidDate(String dateStr) {
+//        if (dateStr == null || dateStr.length() != 8) {
+//            return false;
+//        }
+//
+//        String yearStr = dateStr.substring(0, 4);
+//        String monthStr = dateStr.substring(4, 6);
+//        String dayStr = dateStr.substring(6, 8);
+//
+//        try {
+//            int year = Integer.parseInt(yearStr);
+//            int month = Integer.parseInt(monthStr);
+//            int day = Integer.parseInt(dayStr);
+//
+//            if (month < 1 || month > 12) {
+//                return false;
+//            }
+//            if (day < 1 || day > 31) {
+//                return false;
+//            }
+//
+//            // 2월 윤년이면 29일
+//            if (month == 2) {
+//                if (isLeapYear(year)) {
+//                    return day <= 29;
+//                } else {
+//                    return day <= 28;
+//                }
+//            }
+//
+//            // 4, 6, 9, 11 총 30일
+//            if (month == 4 || month == 6 || month == 9 || month == 11) {
+//                return day <= 30;
+//            }
+//
+//            return true; 
+//        } catch (NumberFormatException e) {
+//            return false; 
+//        }
+//    }
+//    // 윤년확인
+//    private boolean isLeapYear(int year) {
+//        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+//    }
+//    
+//    public void saveMovies(List<MovieInfo> movies) {
+//        for (MovieInfo movie : movies) {
+//            if (!movieInfoRepository.existsById(movie.getDocId())) {
+//            	movieInfoRepository.save(movie);
+//            }
+//        }
+//    }
     
 }

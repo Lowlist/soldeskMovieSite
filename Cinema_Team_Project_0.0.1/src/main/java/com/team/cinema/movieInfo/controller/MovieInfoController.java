@@ -32,4 +32,10 @@ public class MovieInfoController {
 	public List<Review> getReview(@RequestParam("movieNo") int movieNo) {
 		return movieInfoService.getReviewByMovieNo(movieNo);
 	}
+	
+//	@GetMapping("/movie/add")
+//    public String updateMovies() {
+//		movieInfoService.updateMovies();
+//        return "저장 성공";
+//    }
 }
