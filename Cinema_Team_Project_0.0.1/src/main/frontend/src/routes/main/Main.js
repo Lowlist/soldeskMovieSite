@@ -28,24 +28,10 @@ import {
 function Main() {
    let navigate = useNavigate();
    let state = useSelector((state) => { return state });
-   let [movieList, setMovieList] = useState(null);
-   // 유즈이펙트 사용후 데이터 바인딩 해도 괜찮을듯?
-   // 포스터 URL도 여기안에다가 넣어도 좋을듯?
-   let movieChartData = [
-      { id: 0, title: '임시 영화 제목1', preference: '80%', reservation: '70%' },
-      { id: 1, title: '임시 영화 제목2', preference: '75%', reservation: '65%' },
-      { id: 2, title: '임시 영화 제목3', preference: '75%', reservation: '65%' },
-      { id: 3, title: '임시 영화 제목4', preference: '75%', reservation: '65%' },
-      { id: 4, title: '임시 영화 제목5', preference: '75%', reservation: '65%' },
-      { id: 5, title: '임시 영화 제목6', preference: '75%', reservation: '65%' },
-      { id: 6, title: '임시 영화 제목7', preference: '75%', reservation: '65%' },
-      { id: 7, title: '임시 영화 제목8', preference: '75%', reservation: '65%' },
-      { id: 8, title: '임시 영화 제목9', preference: '75%', reservation: '65%' },
-      { id: 9, title: '임시 영화 제목10', preference: '75%', reservation: '65%' }
-   ];
+   let movieData = state.movie.data.Data[0].Result;
 
    const [currentSlide, setCurrentSlide] = useState(0);
-   const [totalSlides, setTotalSlides] = useState(movieChartData.length);
+   const [totalSlides, setTotalSlides] = useState(movieData.length);
 
    // React-slick 세팅
    const settings = {
@@ -61,6 +47,11 @@ function Main() {
       beforeChange: (current, next) => setCurrentSlide(next)
    };
 
+   // URL 변환 함수 추가
+   const transformUrl = (url) => {
+      return url.replace('/trailer/trailerPlayPop?pFileNm=', '/trailer/play/');
+   };
+
    return (
       <div className={styles['wrapper']}>
          <MovieHeader></MovieHeader>
@@ -68,7 +59,7 @@ function Main() {
             <div className={styles['body-video']}>
                <ReactPlayer
                   className={styles['background-video']}
-                  url={"https://youtu.be/phuiiNCxRMg?si=VNb76MM_fBd7GHHe"}
+                  url={movieData[0].vods.vod.vodUrl}
                   width="100%"
                   height="100%"
                   loop={true}
@@ -80,8 +71,8 @@ function Main() {
                   // 예고편 데이터 바인딩
                }
                <div className={styles['video-div']}>
-                  <div className={styles['video-title']}>에스파 - 슈퍼노바</div>
-                  <div className={styles['video-info']}>에스파 윈터 vs 카리나 당신의 선택은???</div>
+                  <div className={styles['video-title']}>{ movieData[0].title }</div>
+                  <div className={styles['video-info']}>{ movieData[0].plots.plot[0].plotText }</div>
                   <Button className={styles['video-button']} onClick={() => { navigate('/') }} variant="light">상세보기 {'>'}</Button>{' '}
                </div>
             </div>
@@ -102,9 +93,9 @@ function Main() {
                <SliderContainer>
                   <Slider {...settings}>
                      {
-                        movieChartData.map((movie, i) => {
+                        movieData.map((movie, i) => {
                            return (
-                              <MovieChart key={i} i={i} movieData={movieChartData}></MovieChart>
+                              <MovieChart key={i} i={i} movieData = { movieData }></MovieChart>
                            )
                         })
                      }
@@ -256,10 +247,11 @@ function Main() {
 function MovieChart(props) {
    let navigate = useNavigate();
    let [show, setShow] = useState(false);
+
    return (
       <div className={styles['chart-body']}>
          <div className={styles['chart-movie']} onMouseEnter={() => { setShow(true) }} onMouseLeave={() => { setShow(false) }}>
-            임시 영화 포스터
+            <img src={props.movieData[props.i].posters.split('|')[0]} className={ styles['poster-img'] }/>
             <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
                {/* 네비게이트만 하면됨. */}
                <button className={styles['chart-button1']} onClick={() => { navigate('/') }}>상세보기</button>
@@ -268,14 +260,14 @@ function MovieChart(props) {
          </div>
          {/* 여기도 영화데이터 있는 부분에서 redux state 땡겨오면됨 */}
          <div className={styles['chart-movie-title']}>
-            {props.movieData[props.i].title}
+            { props.movieData[props.i].title }
          </div>
          <div className={styles['chart-movie-info']}>
             <div className={styles['chart-movie-preference']}>
-               {props.movieData[props.i].preference}
+               {console.log(props.movieData[props.i])}4.5점
             </div>
             <div className={styles['chart-movie-reservation']}>
-               예매율 {props.movieData[props.i].reservation}
+               예매율 15.5%
             </div>
          </div>
       </div>

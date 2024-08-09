@@ -4,6 +4,7 @@ import food from './slice/foodSlice.js';
 import goods from './slice/goodsSlice.js';
 import goodsSet from './slice/goodsSetSlice.js';
 import notice from './slice/noticeSlice.js';
+import movie from './slice/movieSlice.js';
 
 /**
  * -리덕스 쓰는이유 
@@ -31,6 +32,7 @@ export default configureStore({
     food: food.reducer,
     goods: goods.reducer,
     goodsSet: goodsSet.reducer,
-    notice: notice.reducer
+    notice: notice.reducer,
+    movie: movie.reducer
   }
 }) 

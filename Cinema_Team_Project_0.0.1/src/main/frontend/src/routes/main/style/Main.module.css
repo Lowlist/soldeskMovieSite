@@ -391,7 +391,7 @@ html, body {
     display: flex;
     width: 100%;
     height: 21px;
-    font-size: 18px;
+    font-size: 13px;
     font-weight: 600;
     justify-content: center;
     align-items: center;
@@ -790,4 +790,15 @@ html, body {
     justify-content: center;
     align-items: center;
     background-color: #e2e2e2;
+}
+
+.poster-img {
+    width: 170px;
+    height: 234px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 15px;
 }
