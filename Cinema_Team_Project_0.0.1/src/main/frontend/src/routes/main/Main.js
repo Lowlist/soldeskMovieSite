@@ -59,7 +59,7 @@ function Main() {
             <div className={styles['body-video']}>
                <ReactPlayer
                   className={styles['background-video']}
-                  url={movieData[0].vods.vod.vodUrl}
+                  url = { "https://youtu.be/R8dzC2ipTtY?si=U4mjDFiRXP1XDVRZ" }
                   width="100%"
                   height="100%"
                   loop={true}
