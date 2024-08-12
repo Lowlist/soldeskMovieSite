@@ -33,9 +33,9 @@ public class MovieInfoController {
 		return movieInfoService.getReviewByMovieNo(movieNo);
 	}
 	
-//	@GetMapping("/movie/add")
-//    public String updateMovies() {
-//		movieInfoService.updateMovies();
-//        return "저장 성공";
-//    }
+	@GetMapping("/add")
+    public String updateMovies() {
+		movieInfoService.updateMovies();
+        return "저장 성공";
+    }
 }

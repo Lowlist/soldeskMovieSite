@@ -187,6 +187,289 @@ public class MovieApiDto {
         private String alias;  // 별칭
         @JsonProperty("keywords")
         private String keywords;  // 키워드
+		public String getDocid() {
+			return docid;
+		}
+		public void setDocid(String docid) {
+			this.docid = docid;
+		}
+		public String getMovieId() {
+			return movieId;
+		}
+		public void setMovieId(String movieId) {
+			this.movieId = movieId;
+		}
+		public String getMovieSeq() {
+			return movieSeq;
+		}
+		public void setMovieSeq(String movieSeq) {
+			this.movieSeq = movieSeq;
+		}
+		public String getTitle() {
+			return title;
+		}
+		public void setTitle(String title) {
+			this.title = title;
+		}
+		public String getTitleEng() {
+			return titleEng;
+		}
+		public void setTitleEng(String titleEng) {
+			this.titleEng = titleEng;
+		}
+		public String getTitleOrg() {
+			return titleOrg;
+		}
+		public void setTitleOrg(String titleOrg) {
+			this.titleOrg = titleOrg;
+		}
+		public String getTitleEtc() {
+			return titleEtc;
+		}
+		public void setTitleEtc(String titleEtc) {
+			this.titleEtc = titleEtc;
+		}
+		public String getProdYear() {
+			return prodYear;
+		}
+		public void setProdYear(String prodYear) {
+			this.prodYear = prodYear;
+		}
+		public Director getDirectors() {
+			return directors;
+		}
+		public void setDirectors(Director directors) {
+			this.directors = directors;
+		}
+		public Actor getActors() {
+			return actors;
+		}
+		public void setActors(Actor actors) {
+			this.actors = actors;
+		}
+		public String getNation() {
+			return nation;
+		}
+		public void setNation(String nation) {
+			this.nation = nation;
+		}
+		public String getCompany() {
+			return company;
+		}
+		public void setCompany(String company) {
+			this.company = company;
+		}
+		public Plot getPlots() {
+			return plots;
+		}
+		public void setPlots(Plot plots) {
+			this.plots = plots;
+		}
+		public int getRuntime() {
+			return runtime;
+		}
+		public void setRuntime(int runtime) {
+			this.runtime = runtime;
+		}
+		public String getRating() {
+			return rating;
+		}
+		public void setRating(String rating) {
+			this.rating = rating;
+		}
+		public String getGenre() {
+			return genre;
+		}
+		public void setGenre(String genre) {
+			this.genre = genre;
+		}
+		public String getKmdbUrl() {
+			return kmdbUrl;
+		}
+		public void setKmdbUrl(String kmdbUrl) {
+			this.kmdbUrl = kmdbUrl;
+		}
+		public String getType() {
+			return type;
+		}
+		public void setType(String type) {
+			this.type = type;
+		}
+		public String getUse() {
+			return use;
+		}
+		public void setUse(String use) {
+			this.use = use;
+		}
+		public String getEpisodes() {
+			return episodes;
+		}
+		public void setEpisodes(String episodes) {
+			this.episodes = episodes;
+		}
+		public String getRatedYn() {
+			return ratedYn;
+		}
+		public void setRatedYn(String ratedYn) {
+			this.ratedYn = ratedYn;
+		}
+		public String getRepRatDate() {
+			return repRatDate;
+		}
+		public void setRepRatDate(String repRatDate) {
+			this.repRatDate = repRatDate;
+		}
+		public String getRepRlsDate() {
+			return repRlsDate;
+		}
+		public void setRepRlsDate(String repRlsDate) {
+			this.repRlsDate = repRlsDate;
+		}
+		public Ratings getRatings() {
+			return ratings;
+		}
+		public void setRatings(Ratings ratings) {
+			this.ratings = ratings;
+		}
+		public String getPosters() {
+			return posters;
+		}
+		public void setPosters(String posters) {
+			this.posters = posters;
+		}
+		public String getStlls() {
+			return stlls;
+		}
+		public void setStlls(String stlls) {
+			this.stlls = stlls;
+		}
+		public Staff getStaffs() {
+			return staffs;
+		}
+		public void setStaffs(Staff staffs) {
+			this.staffs = staffs;
+		}
+		public Vods getVods() {
+			return vods;
+		}
+		public void setVods(Vods vods) {
+			this.vods = vods;
+		}
+		public String getOpenThtr() {
+			return openThtr;
+		}
+		public void setOpenThtr(String openThtr) {
+			this.openThtr = openThtr;
+		}
+		public List<Stat> getStat() {
+			return stat;
+		}
+		public void setStat(List<Stat> stat) {
+			this.stat = stat;
+		}
+		public String getScreenArea() {
+			return screenArea;
+		}
+		public void setScreenArea(String screenArea) {
+			this.screenArea = screenArea;
+		}
+		public String getScreenCnt() {
+			return screenCnt;
+		}
+		public void setScreenCnt(String screenCnt) {
+			this.screenCnt = screenCnt;
+		}
+		public String getSalesAcc() {
+			return salesAcc;
+		}
+		public void setSalesAcc(String salesAcc) {
+			this.salesAcc = salesAcc;
+		}
+		public String getAudiAcc() {
+			return audiAcc;
+		}
+		public void setAudiAcc(String audiAcc) {
+			this.audiAcc = audiAcc;
+		}
+		public String getStatSouce() {
+			return statSouce;
+		}
+		public void setStatSouce(String statSouce) {
+			this.statSouce = statSouce;
+		}
+		public String getStatDate() {
+			return statDate;
+		}
+		public void setStatDate(String statDate) {
+			this.statDate = statDate;
+		}
+		public String getThemeSong() {
+			return themeSong;
+		}
+		public void setThemeSong(String themeSong) {
+			this.themeSong = themeSong;
+		}
+		public String getSoundtrack() {
+			return soundtrack;
+		}
+		public void setSoundtrack(String soundtrack) {
+			this.soundtrack = soundtrack;
+		}
+		public String getfLocation() {
+			return fLocation;
+		}
+		public void setfLocation(String fLocation) {
+			this.fLocation = fLocation;
+		}
+		public String getAwards1() {
+			return awards1;
+		}
+		public void setAwards1(String awards1) {
+			this.awards1 = awards1;
+		}
+		public String getAwards2() {
+			return awards2;
+		}
+		public void setAwards2(String awards2) {
+			this.awards2 = awards2;
+		}
+		public String getRegDate() {
+			return regDate;
+		}
+		public void setRegDate(String regDate) {
+			this.regDate = regDate;
+		}
+		public String getModDate() {
+			return modDate;
+		}
+		public void setModDate(String modDate) {
+			this.modDate = modDate;
+		}
+		public Codes getCodes() {
+			return codes;
+		}
+		public void setCodes(Codes codes) {
+			this.codes = codes;
+		}
+		public CommCodes getCommCodes() {
+			return commCodes;
+		}
+		public void setCommCodes(CommCodes commCodes) {
+			this.commCodes = commCodes;
+		}
+		public String getAlias() {
+			return alias;
+		}
+		public void setAlias(String alias) {
+			this.alias = alias;
+		}
+		public String getKeywords() {
+			return keywords;
+		}
+		public void setKeywords(String keywords) {
+			this.keywords = keywords;
+		}
+        
         
         // 각 필드의 getter와 setter 메소드들
         // 예시: getDocid(), setDocid(), getMovieId(), setMovieId(), ...
@@ -346,6 +629,10 @@ public class MovieApiDto {
         private String ratingMain;  // 주 등급
         @JsonProperty("ratingOrg")
         private String ratingOrg;  // 원 등급
+        @JsonProperty("ratingDate")
+        private String ratingDate;
+        @JsonProperty("ratingNo")
+        private String ratingNo;
 
         public String getRatingMain() {
             return ratingMain;
@@ -362,6 +649,22 @@ public class MovieApiDto {
         public void setRatingOrg(String ratingOrg) {
             this.ratingOrg = ratingOrg;
         }
+
+		public String getRatingDate() {
+			return ratingDate;
+		}
+
+		public void setRatingDate(String ratingDate) {
+			this.ratingDate = ratingDate;
+		}
+
+		public String getRatingNo() {
+			return ratingNo;
+		}
+
+		public void setRatingNo(String ratingNo) {
+			this.ratingNo = ratingNo;
+		}
     }
 
     // 내부 클래스 Staff 정의
