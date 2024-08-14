@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MovieApiDto {
-	
+
     @JsonProperty("Query")
     private String query;  // 쿼리 문자열
     @JsonProperty("KMAQuery")
@@ -14,7 +14,8 @@ public class MovieApiDto {
     private int totalCount;  // 총 결과 개수
     @JsonProperty("Data")
     private List<Data> data;  // 데이터 리스트
-    
+
+    // Getters and Setters
     public String getQuery() {
         return query;
     }
@@ -57,7 +58,8 @@ public class MovieApiDto {
         private int count;  // 개수
         @JsonProperty("Result")
         private List<MovieResult> result;  // 영화 결과 리스트
-        
+
+        // Getters and Setters
         public String getCollName() {
             return collName;
         }
@@ -187,292 +189,383 @@ public class MovieApiDto {
         private String alias;  // 별칭
         @JsonProperty("keywords")
         private String keywords;  // 키워드
-		public String getDocid() {
-			return docid;
-		}
-		public void setDocid(String docid) {
-			this.docid = docid;
-		}
-		public String getMovieId() {
-			return movieId;
-		}
-		public void setMovieId(String movieId) {
-			this.movieId = movieId;
-		}
-		public String getMovieSeq() {
-			return movieSeq;
-		}
-		public void setMovieSeq(String movieSeq) {
-			this.movieSeq = movieSeq;
-		}
-		public String getTitle() {
-			return title;
-		}
-		public void setTitle(String title) {
-			this.title = title;
-		}
-		public String getTitleEng() {
-			return titleEng;
-		}
-		public void setTitleEng(String titleEng) {
-			this.titleEng = titleEng;
-		}
-		public String getTitleOrg() {
-			return titleOrg;
-		}
-		public void setTitleOrg(String titleOrg) {
-			this.titleOrg = titleOrg;
-		}
-		public String getTitleEtc() {
-			return titleEtc;
-		}
-		public void setTitleEtc(String titleEtc) {
-			this.titleEtc = titleEtc;
-		}
-		public String getProdYear() {
-			return prodYear;
-		}
-		public void setProdYear(String prodYear) {
-			this.prodYear = prodYear;
-		}
-		public Director getDirectors() {
-			return directors;
-		}
-		public void setDirectors(Director directors) {
-			this.directors = directors;
-		}
-		public Actor getActors() {
-			return actors;
-		}
-		public void setActors(Actor actors) {
-			this.actors = actors;
-		}
-		public String getNation() {
-			return nation;
-		}
-		public void setNation(String nation) {
-			this.nation = nation;
-		}
-		public String getCompany() {
-			return company;
-		}
-		public void setCompany(String company) {
-			this.company = company;
-		}
-		public Plot getPlots() {
-			return plots;
-		}
-		public void setPlots(Plot plots) {
-			this.plots = plots;
-		}
-		public int getRuntime() {
-			return runtime;
-		}
-		public void setRuntime(int runtime) {
-			this.runtime = runtime;
-		}
-		public String getRating() {
-			return rating;
-		}
-		public void setRating(String rating) {
-			this.rating = rating;
-		}
-		public String getGenre() {
-			return genre;
-		}
-		public void setGenre(String genre) {
-			this.genre = genre;
-		}
-		public String getKmdbUrl() {
-			return kmdbUrl;
-		}
-		public void setKmdbUrl(String kmdbUrl) {
-			this.kmdbUrl = kmdbUrl;
-		}
-		public String getType() {
-			return type;
-		}
-		public void setType(String type) {
-			this.type = type;
-		}
-		public String getUse() {
-			return use;
-		}
-		public void setUse(String use) {
-			this.use = use;
-		}
-		public String getEpisodes() {
-			return episodes;
-		}
-		public void setEpisodes(String episodes) {
-			this.episodes = episodes;
-		}
-		public String getRatedYn() {
-			return ratedYn;
-		}
-		public void setRatedYn(String ratedYn) {
-			this.ratedYn = ratedYn;
-		}
-		public String getRepRatDate() {
-			return repRatDate;
-		}
-		public void setRepRatDate(String repRatDate) {
-			this.repRatDate = repRatDate;
-		}
-		public String getRepRlsDate() {
-			return repRlsDate;
-		}
-		public void setRepRlsDate(String repRlsDate) {
-			this.repRlsDate = repRlsDate;
-		}
-		public Ratings getRatings() {
-			return ratings;
-		}
-		public void setRatings(Ratings ratings) {
-			this.ratings = ratings;
-		}
-		public String getPosters() {
-			return posters;
-		}
-		public void setPosters(String posters) {
-			this.posters = posters;
-		}
-		public String getStlls() {
-			return stlls;
-		}
-		public void setStlls(String stlls) {
-			this.stlls = stlls;
-		}
-		public Staff getStaffs() {
-			return staffs;
-		}
-		public void setStaffs(Staff staffs) {
-			this.staffs = staffs;
-		}
-		public Vods getVods() {
-			return vods;
-		}
-		public void setVods(Vods vods) {
-			this.vods = vods;
-		}
-		public String getOpenThtr() {
-			return openThtr;
-		}
-		public void setOpenThtr(String openThtr) {
-			this.openThtr = openThtr;
-		}
-		public List<Stat> getStat() {
-			return stat;
-		}
-		public void setStat(List<Stat> stat) {
-			this.stat = stat;
-		}
-		public String getScreenArea() {
-			return screenArea;
-		}
-		public void setScreenArea(String screenArea) {
-			this.screenArea = screenArea;
-		}
-		public String getScreenCnt() {
-			return screenCnt;
-		}
-		public void setScreenCnt(String screenCnt) {
-			this.screenCnt = screenCnt;
-		}
-		public String getSalesAcc() {
-			return salesAcc;
-		}
-		public void setSalesAcc(String salesAcc) {
-			this.salesAcc = salesAcc;
-		}
-		public String getAudiAcc() {
-			return audiAcc;
-		}
-		public void setAudiAcc(String audiAcc) {
-			this.audiAcc = audiAcc;
-		}
-		public String getStatSouce() {
-			return statSouce;
-		}
-		public void setStatSouce(String statSouce) {
-			this.statSouce = statSouce;
-		}
-		public String getStatDate() {
-			return statDate;
-		}
-		public void setStatDate(String statDate) {
-			this.statDate = statDate;
-		}
-		public String getThemeSong() {
-			return themeSong;
-		}
-		public void setThemeSong(String themeSong) {
-			this.themeSong = themeSong;
-		}
-		public String getSoundtrack() {
-			return soundtrack;
-		}
-		public void setSoundtrack(String soundtrack) {
-			this.soundtrack = soundtrack;
-		}
-		public String getfLocation() {
-			return fLocation;
-		}
-		public void setfLocation(String fLocation) {
-			this.fLocation = fLocation;
-		}
-		public String getAwards1() {
-			return awards1;
-		}
-		public void setAwards1(String awards1) {
-			this.awards1 = awards1;
-		}
-		public String getAwards2() {
-			return awards2;
-		}
-		public void setAwards2(String awards2) {
-			this.awards2 = awards2;
-		}
-		public String getRegDate() {
-			return regDate;
-		}
-		public void setRegDate(String regDate) {
-			this.regDate = regDate;
-		}
-		public String getModDate() {
-			return modDate;
-		}
-		public void setModDate(String modDate) {
-			this.modDate = modDate;
-		}
-		public Codes getCodes() {
-			return codes;
-		}
-		public void setCodes(Codes codes) {
-			this.codes = codes;
-		}
-		public CommCodes getCommCodes() {
-			return commCodes;
-		}
-		public void setCommCodes(CommCodes commCodes) {
-			this.commCodes = commCodes;
-		}
-		public String getAlias() {
-			return alias;
-		}
-		public void setAlias(String alias) {
-			this.alias = alias;
-		}
-		public String getKeywords() {
-			return keywords;
-		}
-		public void setKeywords(String keywords) {
-			this.keywords = keywords;
-		}
-        
-        
-        // 각 필드의 getter와 setter 메소드들
-        // 예시: getDocid(), setDocid(), getMovieId(), setMovieId(), ...
+
+        // Getters and Setters
+        public String getDocid() {
+            return docid;
+        }
+
+        public void setDocid(String docid) {
+            this.docid = docid;
+        }
+
+        public String getMovieId() {
+            return movieId;
+        }
+
+        public void setMovieId(String movieId) {
+            this.movieId = movieId;
+        }
+
+        public String getMovieSeq() {
+            return movieSeq;
+        }
+
+        public void setMovieSeq(String movieSeq) {
+            this.movieSeq = movieSeq;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getTitleEng() {
+            return titleEng;
+        }
+
+        public void setTitleEng(String titleEng) {
+            this.titleEng = titleEng;
+        }
+
+        public String getTitleOrg() {
+            return titleOrg;
+        }
+
+        public void setTitleOrg(String titleOrg) {
+            this.titleOrg = titleOrg;
+        }
+
+        public String getTitleEtc() {
+            return titleEtc;
+        }
+
+        public void setTitleEtc(String titleEtc) {
+            this.titleEtc = titleEtc;
+        }
+
+        public String getProdYear() {
+            return prodYear;
+        }
+
+        public void setProdYear(String prodYear) {
+            this.prodYear = prodYear;
+        }
+
+        public Director getDirectors() {
+            return directors;
+        }
+
+        public void setDirectors(Director directors) {
+            this.directors = directors;
+        }
+
+        public Actor getActors() {
+            return actors;
+        }
+
+        public void setActors(Actor actors) {
+            this.actors = actors;
+        }
+
+        public String getNation() {
+            return nation;
+        }
+
+        public void setNation(String nation) {
+            this.nation = nation;
+        }
+
+        public String getCompany() {
+            return company;
+        }
+
+        public void setCompany(String company) {
+            this.company = company;
+        }
+
+        public Plot getPlots() {
+            return plots;
+        }
+
+        public void setPlots(Plot plots) {
+            this.plots = plots;
+        }
+
+        public int getRuntime() {
+            return runtime;
+        }
+
+        public void setRuntime(int runtime) {
+            this.runtime = runtime;
+        }
+
+        public String getRating() {
+            return rating;
+        }
+
+        public void setRating(String rating) {
+            this.rating = rating;
+        }
+
+        public String getGenre() {
+            return genre;
+        }
+
+        public void setGenre(String genre) {
+            this.genre = genre;
+        }
+
+        public String getKmdbUrl() {
+            return kmdbUrl;
+        }
+
+        public void setKmdbUrl(String kmdbUrl) {
+            this.kmdbUrl = kmdbUrl;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getUse() {
+            return use;
+        }
+
+        public void setUse(String use) {
+            this.use = use;
+        }
+
+        public String getEpisodes() {
+            return episodes;
+        }
+
+        public void setEpisodes(String episodes) {
+            this.episodes = episodes;
+        }
+
+        public String getRatedYn() {
+            return ratedYn;
+        }
+
+        public void setRatedYn(String ratedYn) {
+            this.ratedYn = ratedYn;
+        }
+
+        public String getRepRatDate() {
+            return repRatDate;
+        }
+
+        public void setRepRatDate(String repRatDate) {
+            this.repRatDate = repRatDate;
+        }
+
+        public String getRepRlsDate() {
+            return repRlsDate;
+        }
+
+        public void setRepRlsDate(String repRlsDate) {
+            this.repRlsDate = repRlsDate;
+        }
+
+        public Ratings getRatings() {
+            return ratings;
+        }
+
+        public void setRatings(Ratings ratings) {
+            this.ratings = ratings;
+        }
+
+        public String getPosters() {
+            return posters;
+        }
+
+        public void setPosters(String posters) {
+            this.posters = posters;
+        }
+
+        public String getStlls() {
+            return stlls;
+        }
+
+        public void setStlls(String stlls) {
+            this.stlls = stlls;
+        }
+
+        public Staff getStaffs() {
+            return staffs;
+        }
+
+        public void setStaffs(Staff staffs) {
+            this.staffs = staffs;
+        }
+
+        public Vods getVods() {
+            return vods;
+        }
+
+        public void setVods(Vods vods) {
+            this.vods = vods;
+        }
+
+        public String getOpenThtr() {
+            return openThtr;
+        }
+
+        public void setOpenThtr(String openThtr) {
+            this.openThtr = openThtr;
+        }
+
+        public List<Stat> getStat() {
+            return stat;
+        }
+
+        public void setStat(List<Stat> stat) {
+            this.stat = stat;
+        }
+
+        public String getScreenArea() {
+            return screenArea;
+        }
+
+        public void setScreenArea(String screenArea) {
+            this.screenArea = screenArea;
+        }
+
+        public String getScreenCnt() {
+            return screenCnt;
+        }
+
+        public void setScreenCnt(String screenCnt) {
+            this.screenCnt = screenCnt;
+        }
+
+        public String getSalesAcc() {
+            return salesAcc;
+        }
+
+        public void setSalesAcc(String salesAcc) {
+            this.salesAcc = salesAcc;
+        }
+
+        public String getAudiAcc() {
+            return audiAcc;
+        }
+
+        public void setAudiAcc(String audiAcc) {
+            this.audiAcc = audiAcc;
+        }
+
+        public String getStatSouce() {
+            return statSouce;
+        }
+
+        public void setStatSouce(String statSouce) {
+            this.statSouce = statSouce;
+        }
+
+        public String getStatDate() {
+            return statDate;
+        }
+
+        public void setStatDate(String statDate) {
+            this.statDate = statDate;
+        }
+
+        public String getThemeSong() {
+            return themeSong;
+        }
+
+        public void setThemeSong(String themeSong) {
+            this.themeSong = themeSong;
+        }
+
+        public String getSoundtrack() {
+            return soundtrack;
+        }
+
+        public void setSoundtrack(String soundtrack) {
+            this.soundtrack = soundtrack;
+        }
+
+        public String getfLocation() {
+            return fLocation;
+        }
+
+        public void setfLocation(String fLocation) {
+            this.fLocation = fLocation;
+        }
+
+        public String getAwards1() {
+            return awards1;
+        }
+
+        public void setAwards1(String awards1) {
+            this.awards1 = awards1;
+        }
+
+        public String getAwards2() {
+            return awards2;
+        }
+
+        public void setAwards2(String awards2) {
+            this.awards2 = awards2;
+        }
+
+        public String getRegDate() {
+            return regDate;
+        }
+
+        public void setRegDate(String regDate) {
+            this.regDate = regDate;
+        }
+
+        public String getModDate() {
+            return modDate;
+        }
+
+        public void setModDate(String modDate) {
+            this.modDate = modDate;
+        }
+
+        public Codes getCodes() {
+            return codes;
+        }
+
+        public void setCodes(Codes codes) {
+            this.codes = codes;
+        }
+
+        public CommCodes getCommCodes() {
+            return commCodes;
+        }
+
+        public void setCommCodes(CommCodes commCodes) {
+            this.commCodes = commCodes;
+        }
+
+        public String getAlias() {
+            return alias;
+        }
+
+        public void setAlias(String alias) {
+            this.alias = alias;
+        }
+
+        public String getKeywords() {
+            return keywords;
+        }
+
+        public void setKeywords(String keywords) {
+            this.keywords = keywords;
+        }
     }
 
     // 내부 클래스 Director 정의
@@ -627,13 +720,18 @@ public class MovieApiDto {
     public static class RatingDetail {
         @JsonProperty("ratingMain")
         private String ratingMain;  // 주 등급
-        @JsonProperty("ratingOrg")
-        private String ratingOrg;  // 원 등급
         @JsonProperty("ratingDate")
-        private String ratingDate;
+        private String ratingDate;  // 등급 날짜
         @JsonProperty("ratingNo")
-        private String ratingNo;
+        private String ratingNo;  // 등급 번호
+        @JsonProperty("releaseDate")
+        private String releaseDate;  // 개봉 날짜
+        @JsonProperty("ratingGrade")
+        private String ratingGrade; // 시청 연령
+        @JsonProperty("runtime")
+        private int runtime; // 상영 시간
 
+        // Getters and Setters
         public String getRatingMain() {
             return ratingMain;
         }
@@ -642,29 +740,45 @@ public class MovieApiDto {
             this.ratingMain = ratingMain;
         }
 
-        public String getRatingOrg() {
-            return ratingOrg;
+        public String getRatingDate() {
+            return ratingDate;
         }
 
-        public void setRatingOrg(String ratingOrg) {
-            this.ratingOrg = ratingOrg;
+        public void setRatingDate(String ratingDate) {
+            this.ratingDate = ratingDate;
         }
 
-		public String getRatingDate() {
-			return ratingDate;
-		}
+        public String getRatingNo() {
+            return ratingNo;
+        }
 
-		public void setRatingDate(String ratingDate) {
-			this.ratingDate = ratingDate;
-		}
+        public void setRatingNo(String ratingNo) {
+            this.ratingNo = ratingNo;
+        }
 
-		public String getRatingNo() {
-			return ratingNo;
-		}
+        public String getReleaseDate() {
+            return releaseDate;
+        }
 
-		public void setRatingNo(String ratingNo) {
-			this.ratingNo = ratingNo;
-		}
+        public void setReleaseDate(String releaseDate) {
+            this.releaseDate = releaseDate;
+        }
+
+        public String getRatingGrade() {
+            return ratingGrade;
+        }
+
+        public void setRatingGrade(String ratingGrade) {
+            this.ratingGrade = ratingGrade;
+        }
+
+        public int getRuntime() {
+            return runtime;
+        }
+
+        public void setRuntime(int runtime) {
+            this.runtime = runtime;
+        }
     }
 
     // 내부 클래스 Staff 정의
@@ -689,7 +803,14 @@ public class MovieApiDto {
         private String staffEnNm;  // 스태프 영어 이름
         @JsonProperty("staffId")
         private String staffId;  // 스태프 ID
+        @JsonProperty("staffRoleGroup")
+        private String staffRoleGroup; // 스태프 담당 업무
+        @JsonProperty("staffRole")
+        private String staffRole;
+        @JsonProperty("staffEtc")
+        private String staffEtc;
 
+        // Getters and Setters
         public String getStaffNm() {
             return staffNm;
         }
@@ -713,6 +834,30 @@ public class MovieApiDto {
         public void setStaffId(String staffId) {
             this.staffId = staffId;
         }
+
+        public String getStaffRoleGroup() {
+            return staffRoleGroup;
+        }
+
+        public void setStaffRoleGroup(String staffRoleGroup) {
+            this.staffRoleGroup = staffRoleGroup;
+        }
+
+        public String getStaffRole() {
+            return staffRole;
+        }
+
+        public void setStaffRole(String staffRole) {
+            this.staffRole = staffRole;
+        }
+
+        public String getStaffEtc() {
+            return staffEtc;
+        }
+
+        public void setStaffEtc(String staffEtc) {
+            this.staffEtc = staffEtc;
+        }
     }
 
     // 내부 클래스 Vods 정의
@@ -731,79 +876,97 @@ public class MovieApiDto {
 
     // 내부 클래스 VodDetail 정의
     public static class VodDetail {
-        @JsonProperty("vodNm")
-        private String vodNm;  // VOD 이름
-        @JsonProperty("vodEnNm")
-        private String vodEnNm;  // VOD 영어 이름
-        @JsonProperty("vodId")
-        private String vodId;  // VOD ID
+        @JsonProperty("vodClass")
+        private String vodClass;  // VOD 분류
+        @JsonProperty("vodUrl")
+        private String vodUrl;  // VOD URL
 
-        public String getVodNm() {
-            return vodNm;
+        // Getters and Setters
+        public String getVodClass() {
+            return vodClass;
         }
 
-        public void setVodNm(String vodNm) {
-            this.vodNm = vodNm;
+        public void setVodClass(String vodClass) {
+            this.vodClass = vodClass;
         }
 
-        public String getVodEnNm() {
-            return vodEnNm;
+        public String getVodUrl() {
+            return vodUrl;
         }
 
-        public void setVodEnNm(String vodEnNm) {
-            this.vodEnNm = vodEnNm;
-        }
-
-        public String getVodId() {
-            return vodId;
-        }
-
-        public void setVodId(String vodId) {
-            this.vodId = vodId;
+        public void setVodUrl(String vodUrl) {
+            this.vodUrl = vodUrl;
         }
     }
 
     // 내부 클래스 Stat 정의
     public static class Stat {
-        @JsonProperty("stat")
-        private List<StatDetail> stat;  // 통계 상세 정보 리스트
+        @JsonProperty("screenArea")
+        private String screenArea;  // 상영 지역
+        @JsonProperty("screenCnt")
+        private String screenCnt;  // 상영 횟수
+        @JsonProperty("salesAcc")
+        private String salesAcc;  // 누적 매출
+        @JsonProperty("audiAcc")
+        private String audiAcc;  // 누적 관객 수
+        @JsonProperty("statSouce")
+        private String statSouce;  // 통계 출처
+        @JsonProperty("statDate")
+        private String statDate;  // 통계 날짜
 
-        public List<StatDetail> getStat() {
-            return stat;
+        // Getters and Setters
+        public String getScreenArea() {
+            return screenArea;
         }
 
-        public void setStat(List<StatDetail> stat) {
-            this.stat = stat;
-        }
-    }
-
-    // 내부 클래스 StatDetail 정의
-    public static class StatDetail {
-        @JsonProperty("statMain")
-        private String statMain;  // 주요 통계
-        @JsonProperty("statOrg")
-        private String statOrg;  // 원 통계
-
-        public String getStatMain() {
-            return statMain;
+        public void setScreenArea(String screenArea) {
+            this.screenArea = screenArea;
         }
 
-        public void setStatMain(String statMain) {
-            this.statMain = statMain;
+        public String getScreenCnt() {
+            return screenCnt;
         }
 
-        public String getStatOrg() {
-            return statOrg;
+        public void setScreenCnt(String screenCnt) {
+            this.screenCnt = screenCnt;
         }
 
-        public void setStatOrg(String statOrg) {
-            this.statOrg = statOrg;
+        public String getSalesAcc() {
+            return salesAcc;
+        }
+
+        public void setSalesAcc(String salesAcc) {
+            this.salesAcc = salesAcc;
+        }
+
+        public String getAudiAcc() {
+            return audiAcc;
+        }
+
+        public void setAudiAcc(String audiAcc) {
+            this.audiAcc = audiAcc;
+        }
+
+        public String getStatSouce() {
+            return statSouce;
+        }
+
+        public void setStatSouce(String statSouce) {
+            this.statSouce = statSouce;
+        }
+
+        public String getStatDate() {
+            return statDate;
+        }
+
+        public void setStatDate(String statDate) {
+            this.statDate = statDate;
         }
     }
 
     // 내부 클래스 Codes 정의
     public static class Codes {
-        @JsonProperty("codes")
+        @JsonProperty("Code")
         private List<CodeDetail> codes;  // 코드 상세 정보 리스트
 
         public List<CodeDetail> getCodes() {
@@ -817,31 +980,32 @@ public class MovieApiDto {
 
     // 내부 클래스 CodeDetail 정의
     public static class CodeDetail {
-        @JsonProperty("codeMain")
-        private String codeMain;  // 주요 코드
-        @JsonProperty("codeOrg")
-        private String codeOrg;  // 원 코드
+        @JsonProperty("CodeNm")
+        private String codeNm;  // 코드 이름
+        @JsonProperty("CodeNo")
+        private String codeNo;  // 코드 번호
 
-        public String getCodeMain() {
-            return codeMain;
+        // Getters and Setters
+        public String getCodeNm() {
+            return codeNm;
         }
 
-        public void setCodeMain(String codeMain) {
-            this.codeMain = codeMain;
+        public void setCodeNm(String codeNm) {
+            this.codeNm = codeNm;
         }
 
-        public String getCodeOrg() {
-            return codeOrg;
+        public String getCodeNo() {
+            return codeNo;
         }
 
-        public void setCodeOrg(String codeOrg) {
-            this.codeOrg = codeOrg;
+        public void setCodeNo(String codeNo) {
+            this.codeNo = codeNo;
         }
     }
 
     // 내부 클래스 CommCodes 정의
     public static class CommCodes {
-        @JsonProperty("commCodes")
+        @JsonProperty("CommCode")
         private List<CommCodeDetail> commCodes;  // 커뮤니티 코드 상세 정보 리스트
 
         public List<CommCodeDetail> getCommCodes() {
@@ -859,7 +1023,12 @@ public class MovieApiDto {
         private String commCodeMain;  // 주요 커뮤니티 코드
         @JsonProperty("commCodeOrg")
         private String commCodeOrg;  // 원 커뮤니티 코드
+        @JsonProperty("CodeNm")
+        private String CodeNm;  // 코드 이름
+        @JsonProperty("CodeNo")
+        private String CodeNo;  // 코드 번호
 
+        // Getters and Setters
         public String getCommCodeMain() {
             return commCodeMain;
         }
@@ -874,6 +1043,22 @@ public class MovieApiDto {
 
         public void setCommCodeOrg(String commCodeOrg) {
             this.commCodeOrg = commCodeOrg;
+        }
+
+        public String getCodeNm() {
+            return CodeNm;
+        }
+
+        public void setCodeNm(String codeNm) {
+            this.CodeNm = codeNm;
+        }
+
+        public String getCodeNo() {
+            return CodeNo;
+        }
+
+        public void setCodeNo(String codeNo) {
+            this.CodeNo = codeNo;
         }
     }
 }
