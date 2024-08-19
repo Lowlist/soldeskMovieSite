@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.cinema.movieInfo.dto.MovieApiDto;
+import com.team.cinema.movieInfo.entity.MovieInfo;
 import com.team.cinema.movieInfo.entity.Review;
 import com.team.cinema.movieInfo.service.MovieInfoService;
 
@@ -21,10 +22,9 @@ public class MovieInfoController {
 	private MovieInfoService movieInfoService;
 	
 	@GetMapping("/main")
-	public ResponseEntity<List<MovieApiDto>> getMovies(){
-		List<MovieApiDto> movieList = movieInfoService.getMovies();
-		return ResponseEntity.ok(movieList);
-	}
+    public List<MovieInfo> getMovies() {
+        return movieInfoService.getMovies();
+    }
 	
 //	public String getMovies(@RequestParam("releaseDate") String releaseDate) {
 //		return movieInfoService.getMovies(releaseDate);

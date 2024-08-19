@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './style/MovieList.module.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,8 @@ import adult from './style/19.svg'
 
 function MovieList() {
 
+    let navigate = useNavigate();
+    let [show, setShow] = useState(false);
     let [data, setData] = useState(null);
     const stringLimit = (str, n) => { //글자수 제한 함수
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -20,11 +23,15 @@ function MovieList() {
         const date = new Date(today);
         date.setDate(today.getDate());
         const formattedDate = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
-        
-        axios.get('/movie/main', { params: { releaseDate: formattedDate } }).then((response) => {
-            const movies = response.data.Data[0].Result;
-            // 포스터가 없거나 장르가 '에로'인 영화를 필터링
-            const filteredMovies = movies.filter(movie => movie.posters !== "").filter(movie => movie.genre !== '에로') // '에로' 장르 제외
+
+        axios.get('/movie/main').then((response) => {
+            // const movies = response.data.Data[0].Result;
+            console.log(response.data)
+            // 서버로부터 데이터를 받아와 movies에 저장합니다.
+            const movies = response.data;
+            // 포스터가 없거나 장르가 '에로'인 영화를 필터링합니다.
+            const filteredMovies = movies.filter(movie => movie.poster !== "default_poster.png" && movie.poster !== "" && movie.category !== '에로');
+            // 필터링된 데이터를 상태에 저장합니다.
             setData(filteredMovies);
         }).catch(error => {
             console.error("Error fetching data: ", error);
@@ -61,17 +68,28 @@ function MovieList() {
 
                 return (
                     <div key={index} className={styles.movieItem}>
-                         <Link to={`/movie/info/${movie.movieId}/${movie.movieSeq}`} className={styles.link}>
-                        {/* 영화목록 */}
-                        <div className={styles.poster}>
-                            {/* 영화 포스터 */}
-                            <img src={movie.posters.split('|')[0]} alt="포스터" className={styles.poster} />
+                        <div className={styles['chart-movie']} onMouseEnter={() => { setShow(true) }} onMouseLeave={() => { setShow(false) }}>
+                            {/* 영화목록 */}
+                            <div>
+                                {/* 영화 포스터, 포스터가 있는 경우에만 렌더링 */}
+                                <div>
+                                {movie.poster && (
+                                    <img src={movie.poster.split('|')[0]} alt="포스터" className={styles.poster}/>
+                                )}
+                                </div>
+                            </div>
+                            <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
+                                <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
+                                    {/* 네비게이트만 하면됨. */}
+                                    <button className={styles['chart-button1']} onClick={() => { navigate(`/movie/info/${movie.movieId}/${movie.movieSeq}`) }}>상세보기</button>
+                                    <button className={styles['chart-button2']} onClick={() => { navigate('/') }}>예매하기</button>
+                                </div>
+                            </div>
+                            <div className={styles.textContainer}>
+                                {/* 영화 제목 */}
+                                {rating} <p className={styles.title}>{stringLimit(movie.title, 10)}</p>
+                            </div>
                         </div>
-                        <div className={styles.textContainer}>
-                            {/* 영화 제목 */}
-                            {rating} <p className={styles.title}>{stringLimit(movie.title, 10)}</p>
-                        </div>
-                        </Link>
                     </div>
                 );
             })}

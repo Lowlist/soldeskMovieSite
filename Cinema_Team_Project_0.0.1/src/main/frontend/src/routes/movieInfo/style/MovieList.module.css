@@ -1,8 +1,9 @@
 .poster {
     width: 213px;
-    height: 304px;
+    height: 290px;
     object-fit: cover; /* 이미지를 잘라서 크기에 맞추기 */
     position: relative;
+    border-radius: 15px;
 }
 
 .movieIndex {
@@ -10,10 +11,12 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    gap: 20px 20px; /* 세로 가로 */
 }
 
 .movieItem {
-    flex: 1 1 calc(20% - 20px); /* 한 줄에 5개씩 배치, 간격 조절을 위한 20px */
+    height: 300px;
+    /* flex: 1 1 calc(20% - 20px); 한 줄에 5개씩 배치, 간격 조절을 위한 20px */
     margin-right: 20px; /* 각 항목 사이의 간격 */
     margin-bottom: 20px; /* 줄바꿈 시 아래 항목과의 간격 */
     box-sizing: border-box; /* 패딩과 테두리를 크기에 포함 */
@@ -42,4 +45,67 @@
 .link {
     text-decoration: none; /* 링크의 밑줄 제거 */
     color: inherit; /* 링크 색상 기본으로 설정 (원하는 색상으로 변경 가능) */
+}
+
+
+.chart-body {
+    width: 170.4px;
+    height: 290px;
+}
+
+.chart-movie {
+    width: 213px;
+    /* height: 323px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 15px;
+}
+
+.chart-movie-button {
+    width: 213px;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* display: none; */
+    background-color: black;
+    opacity: 0;
+    border-radius: 15px;
+}
+
+.chart-movie-button2 {
+    top: 0px;
+    width: 213px;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba( 0, 0, 0, 0.2 );
+    border-radius: 15px;
+}
+
+.chart-button1 {
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+.chart-button2 {
+    width: 100px;
+    height: 30px;
+    margin-top: 5px;
+    background-color: tomato;
+    border: none;
+    border-radius: 5px;
+    opacity: 1;
 }

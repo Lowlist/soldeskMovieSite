@@ -48,35 +48,10 @@ public class MovieInfoService {
 	private MovieInfoRepository movieInfoRepository;
 
 	// 영화목록 가져오기
-	public List<MovieApiDto> getMovies() {
-    	List<MovieInfo> movieList = movieInfoRepository.findAll();
-    	return null;
-    }
-//    public String getMovies(String releaseDate) {
-//    	try {
-//    		String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
-//                    .queryParam("listCount", 10)
-//                    .queryParam("releaseDts", URLEncoder.encode(releaseDate, StandardCharsets.UTF_8))
-//                    .queryParam("detail", "Y")
-//                    .queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8))
-//                    .toUriString(); //문자열로 변환해주는 함수
-//
-//    		URI uri = new URI(requestUrl);
-//
-//            RestTemplate restTemplate = new RestTemplate();
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//            HttpEntity<String> entity = new HttpEntity<>(headers);
-//            String response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class).getBody();
-//            
-//            return response;
-//    	} catch (Exception e) {
-//    		 logger.error("에러: ", e);
-//		}
-//    	
-//    	return "{}"; //에러났을경우 리턴으로 확인하기 위해서 {}를 넣는다.
-//    }
+	public List<MovieInfo> getMovies() {
+		List<MovieInfo> movies = movieInfoRepository.findAll(); // DB에서 모든 영화 데이터 가져오기
+		return movies;
+	}
 
 	// 영화 상세정보
 	public String getMovieInfo(String movieId, String movieSeq) {
@@ -128,7 +103,7 @@ public class MovieInfoService {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 			String releaseDts = oneMonthAgo.format(formatter);
 
-			String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl).queryParam("listCount", 10)
+			String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl).queryParam("listCount", 50)
 					.queryParam("releaseDts", URLEncoder.encode(releaseDts, StandardCharsets.UTF_8))
 					.queryParam("detail", "Y")
 					.queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8)).toUriString();
