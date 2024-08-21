@@ -108,9 +108,15 @@ CREATE TABLE `movie` (
     `rating` VARCHAR(50) NOT NULL, -- 영화 심의등급
     `reviewNo` INT NOT NULL, -- 영화 리뷰(reveiw Table 외래키)
     `content` TEXT NOT NULL, -- 영화 줄거리
+    `director` VARCHAR(50) Not NULL, -- 영화감독
+    `actor` text Not NULL, -- 배우들
+    `company` VARCHAR(50) Not NULL, -- 제작사
+    `video` text NOT NULL, -- 트레일러 URL
+    `stlls` text NOT NULL, -- 스틸컷 URL
     `createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜
     `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정 날짜
 ) ENGINE=InnoDB;
+
 
 -- 영화 리뷰
 CREATE TABLE `review` (

@@ -124,12 +124,23 @@ public class MovieInfoService {
 						movie.setReleaseDate(parseDate(result.getRepRlsDate()));
 						movie.setDeadLine(LocalDateTime.now().plusMonths(1));
 						movie.setRuntime(result.getRuntime());
+						movie.setCompany(result.getCompany());
+						if (result.getVods() != null && !result.getVods().getVod().isEmpty()) {
+							movie.setVideo(result.getVods().getVod().toString());
+						}
+
+						if (result.getStlls() != null && result.getStlls().isEmpty()) {
+							movie.setStlls(result.getStlls().split("|").toString());
+						}
 
 						if (result.getPosters() != null && !result.getPosters().isEmpty()) {
 							movie.setPoster(result.getPosters().split("\\|")[0]);
 						} else {
 							movie.setPoster("default_poster.png");
 						}
+
+						movie.setDirector(result.getDirectors().getDirector().toString());
+						movie.setActor(result.getActors().getActor().toString());
 
 						movie.setCategory(result.getGenre());
 						movie.setNation(result.getNation());

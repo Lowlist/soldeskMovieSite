@@ -1,14 +1,21 @@
 package com.team.cinema.movieInfo.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.team.cinema.movieInfo.dto.MovieApiDto.ActorDetail;
+import com.team.cinema.movieInfo.dto.MovieApiDto.DirectorDetail;
+import com.team.cinema.movieInfo.dto.MovieApiDto.VodDetail;
+
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 // JPA 엔티티 클래스를 정의하는 어노테이션입니다.
 @Entity
@@ -18,60 +25,80 @@ import lombok.Data;
 @Table(name = "movie")
 public class MovieInfo {
 
-    // 이 필드는 엔티티의 기본 키(primary key)로 지정됩니다.
-    @Id
-    // 이 필드는 DOCID라는 이름의 컬럼과 매핑됩니다.
-    @Column(name = "DOCID")
-    private String docId;
+	// 이 필드는 엔티티의 기본 키(primary key)로 지정됩니다.
+	@Id
+	// 이 필드는 DOCID라는 이름의 컬럼과 매핑됩니다.
+	@Column(name = "DOCID")
+	private String docId;
 
-    // title이라는 이름의 컬럼과 매핑되고, 길이는 최대 128자로 제한되며, null 값을 허용하지 않습니다.
-    @Column(name = "title", nullable = false, length = 128)
-    private String title;
+	// title이라는 이름의 컬럼과 매핑되고, 길이는 최대 128자로 제한되며, null 값을 허용하지 않습니다.
+	@Column(name = "title", nullable = false, length = 128)
+	private String title;
 
-    // releaseDate라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "releaseDate", nullable = false)
-    private LocalDateTime releaseDate;
+	// releaseDate라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "releaseDate", nullable = false)
+	private LocalDateTime releaseDate;
 
-    // deadLine이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "deadLine", nullable = false)
-    private LocalDateTime deadLine;
+	// deadLine이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "deadLine", nullable = false)
+	private LocalDateTime deadLine;
 
-    // runtime이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "runtime", nullable = false)
-    private int runtime;
+	// runtime이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "runtime", nullable = false)
+	private Object runtime;
 
-    // poster라는 이름의 컬럼과 매핑되고, 길이는 최대 256자로 제한되며, null 값을 허용하지 않습니다.
-    @Column(name = "poster", nullable = false, length = 256)
-    private String poster;
+	// poster라는 이름의 컬럼과 매핑되고, 길이는 최대 256자로 제한되며, null 값을 허용하지 않습니다.
+	@Column(name = "poster", nullable = false, length = 256)
+	private String poster;
 
-    // category라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "category", nullable = false)
-    private String category;
+	// category라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "category", nullable = false)
+	private String category;
 
-    // nation이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "nation", nullable = false)
-    private String nation;
+	// nation이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "nation", nullable = false)
+	private String nation;
 
-    // rating이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "rating", nullable = false)
-    private String rating;
+	// rating이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "rating", nullable = false)
+	private String rating;
 
-    // reviewNo라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "reviewNo", nullable = false)
-    private int reviewNo;
+	// reviewNo라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "reviewNo", nullable = false)
+	private int reviewNo;
 
-    // content라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "content", nullable = false)
-    private String content;
+	// content라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "content", nullable = false)
+	private String content;
 
-    // createdAt이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "createdAt", nullable = false)
-    private LocalDateTime createdAt;
+	// director라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "director", nullable = false)
+	private String director;
 
-    // updatedAt이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-    @Column(name = "updatedAt", nullable = false)
-    private LocalDateTime updatedAt;
-    
+	// actor라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "actor", nullable = false)
+	private String actor;
+
+	// company라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "company", nullable = false)
+	private String company;
+
+	// video라는 이름의 컬럼과 매핑
+	@Column(name = "video")
+	private String video;
+
+	// stlls라는 이름의 컬럼과 매핑
+	@Column(name = "stlls")
+	private String stlls;
+
+	// createdAt이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "createdAt", nullable = false)
+	private LocalDateTime createdAt;
+
+	// updatedAt이라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
+	@Column(name = "updatedAt", nullable = false)
+	private LocalDateTime updatedAt;
+
 // // 새롭게 추가할 필드들
 //    @Column(name = "genre", nullable = false)
 //    private String genre;
@@ -79,19 +106,19 @@ public class MovieInfo {
 //    @Column(name = "prodYear", nullable = false)
 //    private String prodYear;
 
-    // 엔티티가 처음 저장되기 전에 호출되는 메서드입니다.
-    @PrePersist
-    protected void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
-        createdAt = now;
-        updatedAt = now;
-    }
+	// 엔티티가 처음 저장되기 전에 호출되는 메서드입니다.
+	@PrePersist
+	protected void onCreate() {
+		LocalDateTime now = LocalDateTime.now();
+		createdAt = now;
+		updatedAt = now;
+	}
 
-    // 엔티티가 업데이트되기 전에 호출되는 메서드입니다.
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
+	// 엔티티가 업데이트되기 전에 호출되는 메서드입니다.
+	@PreUpdate
+	protected void onUpdate() {
+		updatedAt = LocalDateTime.now();
+	}
 
 	public String getDocId() {
 		return docId;
@@ -125,11 +152,11 @@ public class MovieInfo {
 		this.deadLine = deadLine;
 	}
 
-	public int getRuntime() {
+	public Object getRuntime() {
 		return runtime;
 	}
 
-	public void setRuntime(int runtime) {
+	public void setRuntime(Object runtime) {
 		this.runtime = runtime;
 	}
 
@@ -196,7 +223,46 @@ public class MovieInfo {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-    
-    
 
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public String getActor() {
+		return actor;
+	}
+
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+
+	public String getStlls() {
+		return stlls;
+	}
+
+	public void setStlls(String stlls) {
+		this.stlls = stlls;
+	}
+	
+	
 }

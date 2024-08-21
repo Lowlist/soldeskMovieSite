@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Embeddable;
+
 public class MovieApiDto {
 
     @JsonProperty("Query")
@@ -122,7 +124,7 @@ public class MovieApiDto {
         @JsonProperty("plots")
         private Plot plots;  // 줄거리
         @JsonProperty("runtime")
-        private int runtime;  // 상영 시간
+        private Object runtime;  // 상영 시간
         @JsonProperty("rating")
         private String rating;  // 등급
         @JsonProperty("genre")
@@ -295,11 +297,11 @@ public class MovieApiDto {
             this.plots = plots;
         }
 
-        public int getRuntime() {
+        public Object getRuntime() {
             return runtime;
         }
 
-        public void setRuntime(int runtime) {
+        public void setRuntime(Object runtime) {
             this.runtime = runtime;
         }
 
@@ -631,6 +633,7 @@ public class MovieApiDto {
     }
 
     // 내부 클래스 ActorDetail 정의
+    @Embeddable
     public static class ActorDetail {
         @JsonProperty("actorNm")
         private String actorNm;  // 배우 이름
@@ -729,7 +732,7 @@ public class MovieApiDto {
         @JsonProperty("ratingGrade")
         private String ratingGrade; // 시청 연령
         @JsonProperty("runtime")
-        private int runtime; // 상영 시간
+        private Object runtime; // 상영 시간
 
         // Getters and Setters
         public String getRatingMain() {
@@ -772,11 +775,11 @@ public class MovieApiDto {
             this.ratingGrade = ratingGrade;
         }
 
-        public int getRuntime() {
+        public Object getRuntime() {
             return runtime;
         }
 
-        public void setRuntime(int runtime) {
+        public void setRuntime(Object runtime) {
             this.runtime = runtime;
         }
     }
