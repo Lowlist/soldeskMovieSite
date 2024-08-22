@@ -6,14 +6,14 @@ import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Movie() {
-    const { movieId, movieSeq } = useParams(); // useParams로 DOCID를 받아옴
+    const { DOCID } = useParams(); // useParams로 DOCID를 받아옴
     let [data, setData] = useState(null);
 
     useEffect(() => {
-        axios.get('/movie/info',   { params: { movieId : movieId, movieSeq : movieSeq } } )
+        axios.get('/movie/info', { params: { DOCID: DOCID } })
             .then((response) => {
                 console.log(response.data); // 데이터 구조 확인
-                const movieData = response.data.Data[0].Result[0];
+                const movieData = response.data;
                 if (movieData) {
                     setData(movieData);
                 } else {
@@ -24,7 +24,7 @@ function Movie() {
             .catch((error) => {
                 console.error("데이터 로딩 중 오류 발생:", error);
             });
-    }, [movieId, movieSeq]);
+    }, [DOCID]);
 
     if (!data) {
         return <div>Loading...</div>; // 데이터가 로드되기 전 로딩 메시지 표시
@@ -43,15 +43,18 @@ function Movie() {
     const transformUrl = (url) => {
         return url.replace('/trailer/trailerPlayPop?pFileNm=', '/trailer/play/');
     };
+    console.log(data.poster.split("|")[0]);
 
     return (
         <div className={styles.container}>
             <div className={styles.contents}>
                 <div className={styles.select_main}>
                     <div className={styles['sect-base-movie']}>
-                        <div className={styles['box-imge']}>
-                            <img src={data.posters.split('|')[0]} alt="포스터" className={styles['box-poster']} />
-                        </div>
+                        <img
+                            src={data.poster.split("|")[0]} // 첫 번째 '|' 전까지의 부분만 사용
+                            alt="포스터"
+                            className={styles['box-poster']}
+                        />
                         <div className={styles['box-contents']}>
                             <div className={styles.title}>
                                 {data.title}
@@ -61,10 +64,10 @@ function Movie() {
                             </div> */}
                             <div className={styles.spec}>
                                 {/* 영화 상세정보 */}
-                                감독: {data.directors.director.map(d => d.directorNm).join(', ')}<br />
-                                배우: {data.actors.actor.map(a => a.actorNm).join(', ')}<br />
+                                감독: {data.director}<br />
+                                배우: {data.actor}<br />
                                 기본정보: {data.rating}/{data.runtime}분/{data.nation}<br />
-                                개봉날짜: {formatDate(data.repRlsDate)}<br />
+                                개봉날짜: {formatDate(data.releaseDate.split("T00:00:00"))}<br />
                                 제작사: {data.company}
                             </div>
                             <span className={styles.ticketing}>
@@ -77,11 +80,11 @@ function Movie() {
                         {/* 하단 박스 */}
                         <div className={styles['col-detail']}>
                             <div className={styles['sect-story-movie']}>
-                                줄거리<br /> {data.plots.plot[0].plotText}
+                                {/* 줄거리<br /> {data.plots.plot[0].plotText} */}
                             </div>
                             <div className={styles['sect-trailer']}>
                                 트레일러 영상
-                                <Carousel data-bs-theme="dark" interval={null}>
+                                {/* <Carousel data-bs-theme="dark" interval={null}>
                                     {data.vods.vod.map((video, index) => (
                                         <Carousel.Item key={index}>
                                             <div className={styles['movie-trailer']}>
@@ -94,16 +97,16 @@ function Movie() {
                                             </div>
                                         </Carousel.Item>
                                     ))}
-                                </Carousel>
+                                </Carousel> */}
                             </div>
                             <div className={styles['sect-stillcut']}>
                                 <h3>스틸컷</h3>
                                 <div className={styles.stillcut}>
-                                    {data.stlls.split('|').map((stll, index) => (
+                                    {/* {data.stlls.split('|').map((stll, index) => (
                                         <div key={index}>
                                             <img src={stll} alt={`스틸컷 ${index + 1}`} className={styles.stillcutImage} />
                                         </div>
-                                    ))}
+                                    ))} */}
                                 </div>
                             </div>
                             <div className={styles['sect-grade']}>

@@ -10,15 +10,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -54,40 +51,10 @@ public class MovieInfoService {
 	}
 
 	// 영화 상세정보
-	public String getMovieInfo(String movieId, String movieSeq) {
-		try {
-			String requestUrl = UriComponentsBuilder.fromHttpUrl(apiUrl).queryParam("detail", "Y")
-					.queryParam("movieId", URLEncoder.encode(movieId, StandardCharsets.UTF_8))
-					.queryParam("movieSeq", URLEncoder.encode(movieSeq, StandardCharsets.UTF_8))
-					.queryParam("ServiceKey", URLEncoder.encode(serviceKey, StandardCharsets.UTF_8)).toUriString(); // toString()
-																													// 대신
-																													// toUriString()
-																													// 사용
-			// 예시:
-			// https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&movieId=k&movieSeq=36201&ServiceKey=BOC8E6E947M11OX4WO71
-
-			// 위에서 생성한 URL 문자열을 URI 객체로 변환합니다.
-			URI uri = new URI(requestUrl);
-
-			// RestTemplate 객체를 생성하여 HTTP 요청을 수행할 준비를 합니다.
-			RestTemplate restTemplate = new RestTemplate();
-			// HTTP 요청 헤더를 설정하기 위해 HttpHeaders 객체를 생성합니다.
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_JSON); // 요청의 콘텐츠 타입을 JSON으로 설정
-
-			// HttpEntity 객체를 생성하여 요청 헤더를 포함시킵니다.
-			HttpEntity<String> entity = new HttpEntity<>(headers);
-
-			// REST API에 GET 요청을 보내고, 응답을 String 형식으로 받습니다.
-			String response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class).getBody();
-
-			// 응답 본문을 반환합니다.
-			return response;
-		} catch (Exception e) {
-			logger.error("에러: ", e);
-		}
-		return "{}";
-	}
+	public Optional<MovieInfo> getMovieInfo(String DOCID) {
+        // Optional<MovieInfo>를 반환
+        return movieInfoRepository.findById(DOCID);
+    }
 
 	// 영화 리뷰 DB연결
 	public List<Review> getReviewByMovieNo(int movieNo) {
@@ -125,22 +92,40 @@ public class MovieInfoService {
 						movie.setDeadLine(LocalDateTime.now().plusMonths(1));
 						movie.setRuntime(result.getRuntime());
 						movie.setCompany(result.getCompany());
-						if (result.getVods() != null && !result.getVods().getVod().isEmpty()) {
-							movie.setVideo(result.getVods().getVod().toString());
+//						if (result.getVods() != null && !result.getVods().getVod().isEmpty()) {
+//							movie.setVideo(result.getVods().getVod().toString());
+//						}
+						if (result.getVods() != null && result.getVods().getVod() != null && !result.getVods().getVod().isEmpty()) {
+						    // 각 VOD 항목을 "vodClass: vodUrl" 형식으로 연결
+						    String vods = result.getVods().getVod().stream()
+						                        .map(vod -> vod.getVodClass() + ": " + vod.getVodUrl()) // "클래스: URL" 형식으로 변환
+						                        .collect(Collectors.joining(" | ")); // VOD 항목들을 " | "로 구분하여 연결
+						    movie.setVideo(vods);
 						}
 
-						if (result.getStlls() != null && result.getStlls().isEmpty()) {
-							movie.setStlls(result.getStlls().split("|").toString());
+						if (result.getStlls() != null && !result.getStlls().isEmpty()) {
+							movie.setStlls(result.getStlls());
 						}
 
 						if (result.getPosters() != null && !result.getPosters().isEmpty()) {
-							movie.setPoster(result.getPosters().split("\\|")[0]);
+							movie.setPoster(result.getPosters());
 						} else {
 							movie.setPoster("default_poster.png");
 						}
-
-						movie.setDirector(result.getDirectors().getDirector().toString());
-						movie.setActor(result.getActors().getActor().toString());
+						
+						if(result.getDirectors() != null && result.getDirectors().getDirector() != null && !result.getDirectors().getDirector().isEmpty()) {
+							String directors = result.getDirectors().getDirector().stream()
+									                                             .map(director->director.getDirectorNm())
+									                                             .collect(Collectors.joining(" , "));
+							movie.setDirector(directors);
+						}
+						
+						if(result.getActors() != null && result.getActors().getActor() != null && !result.getActors().getActor().isEmpty()) {
+							String actors = result.getActors().getActor().stream()
+									                                     .map(director->director.getActorNm())
+									                                     .collect(Collectors.joining(" , "));
+							movie.setActor(actors);
+						}
 
 						movie.setCategory(result.getGenre());
 						movie.setNation(result.getNation());

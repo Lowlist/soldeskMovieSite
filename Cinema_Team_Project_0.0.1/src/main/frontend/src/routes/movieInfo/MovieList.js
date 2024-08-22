@@ -26,12 +26,14 @@ function MovieList() {
 
         axios.get('/movie/main').then((response) => {
             // const movies = response.data.Data[0].Result;
-            console.log(response.data)
+            console.log(response.data);
+            
             // 서버로부터 데이터를 받아와 movies에 저장합니다.
             const movies = response.data;
             // 포스터가 없거나 장르가 '에로'인 영화를 필터링합니다.
             const filteredMovies = movies.filter(movie => movie.poster !== "default_poster.png" && movie.poster !== "" && movie.category !== '에로');
             // 필터링된 데이터를 상태에 저장합니다.
+            console.log(movies.docId)
             setData(filteredMovies);
         }).catch(error => {
             console.error("Error fetching data: ", error);
@@ -81,7 +83,7 @@ function MovieList() {
                             <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
                                 <div className={show ? styles['chart-movie-button2'] : styles['chart-movie-button']}>
                                     {/* 네비게이트만 하면됨. */}
-                                    <button className={styles['chart-button1']} onClick={() => { navigate(`/movie/info/${movie.movieId}/${movie.movieSeq}`) }}>상세보기</button>
+                                    <button className={styles['chart-button1']} onClick={() => { navigate(`/movie/info/${movie.docId}`) }}>상세보기</button>
                                     <button className={styles['chart-button2']} onClick={() => { navigate('/') }}>예매하기</button>
                                 </div>
                             </div>

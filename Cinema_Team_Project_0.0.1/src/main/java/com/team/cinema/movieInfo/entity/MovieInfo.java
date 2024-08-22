@@ -76,7 +76,7 @@ public class MovieInfo {
 	private String director;
 
 	// actor라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
-	@Column(name = "actor", nullable = false)
+	@Column(name = "actor")
 	private String actor;
 
 	// company라는 이름의 컬럼과 매핑되고, null 값을 허용하지 않습니다.
