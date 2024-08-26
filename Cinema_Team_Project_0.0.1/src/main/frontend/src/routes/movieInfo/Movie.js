@@ -8,6 +8,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Movie() {
     const { DOCID } = useParams(); // useParams로 DOCID를 받아옴
     let [data, setData] = useState(null);
+    // 트레일러 데이터를 파싱하는 함수
+    const parseTrailerData = (trailerData) => {
+        if (!trailerData) return []; // 트레일러 데이터가 없으면 빈 배열 반환
+
+        // " | "로 각 예고편 구분
+        return trailerData.split(" | ").map((item) => {
+            // "]: "로 제목과 URL 구분
+            const [title, url] = item.split("]: ");
+
+            // 만약 URL이 없거나 title과 URL이 유효하지 않다면 null 반환
+            if (!title || !url) return null;
+
+            return {
+                vodClass: title.trim() + "]", // 제목에 ']'를 다시 추가
+                vodUrl: url.trim(), // URL 양쪽의 공백 제거
+            };
+        }).filter(Boolean); // null 값 필터링
+    };
 
     useEffect(() => {
         axios.get('/movie/info', { params: { DOCID: DOCID } })
@@ -32,18 +50,22 @@ function Movie() {
 
     // 날짜 포맷 변경 함수 추가
     const formatDate = (dateString) => {
-        if (dateString.length !== 8) return dateString; // 잘못된 형식 처리
+        if (!dateString || dateString.length !== 8) return dateString; // 잘못된 형식 처리
         const year = dateString.substring(0, 4);
         const month = dateString.substring(4, 6);
         const day = dateString.substring(6, 8);
         return `${year}/${month}/${day}`;
     };
+    const timeCutData = formatDate(data.releaseDate.split("T")[0]);
+    const lastFotmatDate = formatDate(timeCutData.replace(/-/g, ''));
 
     // URL 변환 함수 추가
     const transformUrl = (url) => {
         return url.replace('/trailer/trailerPlayPop?pFileNm=', '/trailer/play/');
     };
-    console.log(data.poster.split("|")[0]);
+    const posterUrl = data.poster.includes("|") ? data.poster.split("|")[0] : data.poster;
+
+
 
     return (
         <div className={styles.container}>
@@ -51,7 +73,7 @@ function Movie() {
                 <div className={styles.select_main}>
                     <div className={styles['sect-base-movie']}>
                         <img
-                            src={data.poster.split("|")[0]} // 첫 번째 '|' 전까지의 부분만 사용
+                            src={posterUrl}
                             alt="포스터"
                             className={styles['box-poster']}
                         />
@@ -67,7 +89,7 @@ function Movie() {
                                 감독: {data.director}<br />
                                 배우: {data.actor}<br />
                                 기본정보: {data.rating}/{data.runtime}분/{data.nation}<br />
-                                개봉날짜: {formatDate(data.releaseDate.split("T00:00:00"))}<br />
+                                개봉날짜: {lastFotmatDate}<br />
                                 제작사: {data.company}
                             </div>
                             <span className={styles.ticketing}>
@@ -80,12 +102,12 @@ function Movie() {
                         {/* 하단 박스 */}
                         <div className={styles['col-detail']}>
                             <div className={styles['sect-story-movie']}>
-                                {/* 줄거리<br /> {data.plots.plot[0].plotText} */}
+                                줄거리<br /> {data.content}
                             </div>
                             <div className={styles['sect-trailer']}>
                                 트레일러 영상
-                                {/* <Carousel data-bs-theme="dark" interval={null}>
-                                    {data.vods.vod.map((video, index) => (
+                                <Carousel data-bs-theme="dark" interval={null}>
+                                    {parseTrailerData(data.video).map((video, index) => (
                                         <Carousel.Item key={index}>
                                             <div className={styles['movie-trailer']}>
                                                 <video className={styles['custom-video']} controls>
@@ -97,16 +119,17 @@ function Movie() {
                                             </div>
                                         </Carousel.Item>
                                     ))}
-                                </Carousel> */}
+                                </Carousel>
+
                             </div>
                             <div className={styles['sect-stillcut']}>
                                 <h3>스틸컷</h3>
                                 <div className={styles.stillcut}>
-                                    {/* {data.stlls.split('|').map((stll, index) => (
+                                    {data.stlls ? data.stlls.split('|').map((stll, index) => (
                                         <div key={index}>
                                             <img src={stll} alt={`스틸컷 ${index + 1}`} className={styles.stillcutImage} />
                                         </div>
-                                    ))} */}
+                                    )) : <div></div>}
                                 </div>
                             </div>
                             <div className={styles['sect-grade']}>

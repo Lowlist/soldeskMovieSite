@@ -30,10 +30,10 @@ public class MovieInfoController {
 		return movieInfoService.getMovieInfo(DOCID);
 	}
 	
-	@GetMapping("/review")
-	public List<Review> getReview(@RequestParam("movieNo") int movieNo) {
-		return movieInfoService.getReviewByMovieNo(movieNo);
-	}
+//	@GetMapping("/review")
+//	public List<Review> getReview(@RequestParam("movieNo") int movieNo) {
+//		return movieInfoService.getReviewByMovieNo(movieNo);
+//	}
 	
 	@GetMapping("/add")
     public String updateMovies() {

@@ -56,10 +56,10 @@ public class MovieInfoService {
         return movieInfoRepository.findById(DOCID);
     }
 
-	// 영화 리뷰 DB연결
-	public List<Review> getReviewByMovieNo(int movieNo) {
-		return reviewRepository.findByMovieNo(movieNo);
-	}
+//	// 영화 리뷰 DB연결
+//	public List<Review> getReviewByMovieNo(int movieNo) {
+//		return reviewRepository.findByMovieNo(movieNo);
+//	}
 
 	// 영화 자동 DB 저장
 	@Scheduled(cron = "0 0 0 * * ?") // 매일 자정
@@ -92,9 +92,6 @@ public class MovieInfoService {
 						movie.setDeadLine(LocalDateTime.now().plusMonths(1));
 						movie.setRuntime(result.getRuntime());
 						movie.setCompany(result.getCompany());
-//						if (result.getVods() != null && !result.getVods().getVod().isEmpty()) {
-//							movie.setVideo(result.getVods().getVod().toString());
-//						}
 						if (result.getVods() != null && result.getVods().getVod() != null && !result.getVods().getVod().isEmpty()) {
 						    // 각 VOD 항목을 "vodClass: vodUrl" 형식으로 연결
 						    String vods = result.getVods().getVod().stream()
