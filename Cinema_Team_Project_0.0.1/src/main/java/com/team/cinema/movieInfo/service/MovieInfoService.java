@@ -23,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.cinema.movieInfo.dto.MovieApiDto;
+import com.team.cinema.movieInfo.dto.ReviewDto;
 import com.team.cinema.movieInfo.entity.MovieInfo;
 import com.team.cinema.movieInfo.entity.Review;
 import com.team.cinema.movieInfo.repository.MovieInfoRepository;
@@ -40,8 +41,6 @@ public class MovieInfoService {
 	private final String serviceKey = "BOC8E6E947M11OX4WO71";
 
 	@Autowired
-	private ReviewRepository reviewRepository;
-	@Autowired
 	private MovieInfoRepository movieInfoRepository;
 
 	// 영화목록 가져오기
@@ -55,11 +54,6 @@ public class MovieInfoService {
         // Optional<MovieInfo>를 반환
         return movieInfoRepository.findById(DOCID);
     }
-
-//	// 영화 리뷰 DB연결
-//	public List<Review> getReviewByMovieNo(int movieNo) {
-//		return reviewRepository.findByMovieNo(movieNo);
-//	}
 
 	// 영화 자동 DB 저장
 	@Scheduled(cron = "0 0 0 * * ?") // 매일 자정

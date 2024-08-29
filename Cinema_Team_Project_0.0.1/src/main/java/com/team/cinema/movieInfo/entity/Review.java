@@ -2,7 +2,9 @@ package com.team.cinema.movieInfo.entity;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "review")
 
@@ -11,6 +13,9 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int no;
+	
+	@Column(name = "idNo", nullable = false)
+	private int idNo;
 	
 	// 리뷰 내용
 	@Column(name = "content", nullable = false, length = 50)

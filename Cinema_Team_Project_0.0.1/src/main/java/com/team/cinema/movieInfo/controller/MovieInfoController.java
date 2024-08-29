@@ -4,14 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.team.cinema.movieInfo.dto.ReviewDto;
 import com.team.cinema.movieInfo.entity.MovieInfo;
-import com.team.cinema.movieInfo.entity.Review;
 import com.team.cinema.movieInfo.service.MovieInfoService;
+import com.team.cinema.movieInfo.service.ReviewService;
 
 @RestController
 @RequestMapping("/movie")
@@ -19,6 +21,8 @@ public class MovieInfoController {
 	
 	@Autowired
 	private MovieInfoService movieInfoService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	@GetMapping("/main")
     public List<MovieInfo> getMovies() {
@@ -30,10 +34,12 @@ public class MovieInfoController {
 		return movieInfoService.getMovieInfo(DOCID);
 	}
 	
-//	@GetMapping("/review")
-//	public List<Review> getReview(@RequestParam("movieNo") int movieNo) {
-//		return movieInfoService.getReviewByMovieNo(movieNo);
-//	}
+	//영화리뷰 목록 조회
+	@GetMapping("/review")
+	public ResponseEntity<List<ReviewDto>> getReview(@RequestParam("movieNo") String movieNo) {
+		List<ReviewDto> reviews = reviewService.getList(movieNo);
+		return ResponseEntity.ok(reviews);
+	}
 	
 	@GetMapping("/add")
     public String updateMovies() {

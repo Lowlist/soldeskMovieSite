@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { PiStarFill, PiStarLight } from "react-icons/pi";
 import styles from './style/Movie.module.css';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
@@ -8,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Movie() {
     const { DOCID } = useParams(); // useParams로 DOCID를 받아옴
     let [data, setData] = useState(null);
+    //별점 매기는 함수
+    const [star, setStar] = useState(3);
     // 트레일러 데이터를 파싱하는 함수
     const parseTrailerData = (trailerData) => {
         if (!trailerData) return []; // 트레일러 데이터가 없으면 빈 배열 반환
@@ -56,13 +59,17 @@ function Movie() {
         const day = dateString.substring(6, 8);
         return `${year}/${month}/${day}`;
     };
+
+    // 0000/00/00 T00:00:00 형식에서 T지우고 앞에거 출략
     const timeCutData = formatDate(data.releaseDate.split("T")[0]);
+    //T지운후 뒤에 제거하고 앞에만 출력
     const lastFotmatDate = formatDate(timeCutData.replace(/-/g, ''));
 
     // URL 변환 함수 추가
     const transformUrl = (url) => {
         return url.replace('/trailer/trailerPlayPop?pFileNm=', '/trailer/play/');
     };
+    // '|'가 있는 포스터일 경우 '|'제거하고 나열한후 첫번째 배열 출력, '|'가 없다면 바로 출력
     const posterUrl = data.poster.includes("|") ? data.poster.split("|")[0] : data.poster;
 
 
@@ -138,7 +145,12 @@ function Movie() {
                                     영화 평점
                                 </div>
                                 <div className={styles['real-rating']}>
-                                    평점작성
+                                    {[...Array(star)].map((a, i)=>(
+                                        <PiStarFill size={30} color='gold' key={i} onClick={()=>setStar(i+1)}/>
+                                    ))}
+                                    {[...Array(5-star)].map((a, i)=>(
+                                        <PiStarLight size={30} color='gold' key={i} onClick={()=>setStar(star + i + 1)}/>
+                                    ))}
                                 </div>
                                 <div className={styles['wrap-persongrade']}>
                                     댓글기능

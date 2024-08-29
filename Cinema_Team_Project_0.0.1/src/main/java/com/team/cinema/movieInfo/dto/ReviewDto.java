@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class ReviewDto {
 	private int reviewNo;
+	private int idNo;
 	private String reviewContent;
 	private Double reviewGrade;
 	private int reviewLike;
